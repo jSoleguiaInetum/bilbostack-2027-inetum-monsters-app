@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-03-evo-3-shell" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <linearGradient id="body-03-evo-3-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <linearGradient id="body-03-evo-3-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <radialGradient id="body-03-evo-3-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="50%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-03-evo-3" class="layer-2">
+    <!-- Sombra magnética imponente -->
+    <ellipse cx="256" cy="455" rx="135" ry="24" fill="var(--color-primary, #232D4B)" opacity="0.4"/>
+
+    <!-- Alas de plasma cuántico multivectoriales desplegadas -->
+    <g id="body-03-evo-3-wings-left">
+      <path d="M155,230 C100,170 30,110 55,55 C95,70 128,130 158,190 Z" fill="url(#body-03-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M120,200 C80,150 45,100 68,68 C88,80 110,120 132,170 Z" fill="#8BB9FE" opacity="0.85"/>
+      <circle cx="55" cy="55" r="5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+    <g id="body-03-evo-3-wings-right">
+      <path d="M357,230 C412,170 482,110 457,55 C417,70 384,130 354,190 Z" fill="url(#body-03-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M392,200 C432,150 467,100 444,68 C424,80 402,120 380,170 Z" fill="#8BB9FE" opacity="0.85"/>
+      <circle cx="457" cy="55" r="5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Silueta principal bivalva imponente (+15% bounding box) -->
+    <path d="M256,40 C328,40 388,100 406,188 C426,278 402,375 366,422 C332,458 290,462 256,458 C222,462 180,458 146,422 C110,375 86,278 106,188 C124,100 184,40 256,40 Z" fill="url(#body-03-evo-3-shell)" stroke="var(--color-primary, #232D4B)" stroke-width="4"/>
+
+    <!-- Corona Imperial Flotante de Procesamiento Superior -->
+    <g id="body-03-evo-3-crown">
+      <path d="M215,40 L235,10 L256,35 L277,10 L297,40 Z" fill="url(#body-03-evo-3-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="235" cy="10" r="4.5" fill="var(--color-secondary, #E20074)"/>
+      <circle cx="256" cy="35" r="5.5" fill="var(--color-accent, #F5F340)"/>
+      <circle cx="277" cy="10" r="4.5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- Cavidad interna central -->
+    <path d="M256,112 C305,112 340,158 340,225 C340,292 305,338 256,338 C207,338 172,292 172,225 C172,158 207,112 256,112 Z" fill="#1A102F" stroke="var(--color-accent, #F5F340)" stroke-width="3.5"/>
+
+    <!-- Núcleo de plasma cuántico central -->
+    <ellipse cx="256" cy="275" rx="48" ry="28" fill="url(#body-03-evo-3-glow)" opacity="0.9"/>
+
+    <!-- Armadura Pectoral Blindada y Núcleo Reactor (respetando zona protegida de ojos y=170-270) -->
+    <g id="body-03-evo-3-chest">
+      <path d="M200,295 L256,280 L312,295 L298,375 L256,390 L214,375 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M212,305 L256,292 L300,305 L290,360 L256,372 L222,360 Z" fill="#2B1840" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="332" r="15" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="332" r="9" fill="var(--color-secondary, #E20074)"/>
+      <circle cx="253" cy="329" r="4" fill="#FFF7B4"/>
+    </g>
+
+    <!-- Volúmenes de luz e intensidad -->
+    <path d="M256,55 C305,55 352,95 370,158 C348,138 308,128 256,128 C204,128 164,138 142,158 C160,95 207,55 256,55 Z" fill="#FFF7B4" opacity="0.35"/>
+  </g>
+</svg>

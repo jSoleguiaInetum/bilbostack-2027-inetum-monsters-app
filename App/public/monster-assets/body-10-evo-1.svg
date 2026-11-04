@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-10-evo-1-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#2B1840"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <radialGradient id="body-10-evo-1-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-10-evo-1" class="layer-2">
+    <ellipse cx="256" cy="448" rx="128" ry="20" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Anillos orbitales dobles traseros -->
+    <ellipse cx="256" cy="256" rx="190" ry="80" fill="none" stroke="#8BB9FE" stroke-width="2" stroke-dasharray="8 6" opacity="0.6" transform="rotate(-15 256 256)"/>
+
+    <!-- Anillo toroidal principal -->
+    <path d="M256,90 C360,90 435,165 435,256 C435,347 360,422 256,422 C152,422 77,347 77,256 C77,165 152,90 256,90 Z M256,170 C200,170 155,215 155,256 C155,297 200,342 256,342 C312,342 357,297 357,256 C357,215 312,170 256,170 Z" fill="url(#body-10-evo-1-ring)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" fill-rule="evenodd" stroke-linejoin="round"/>
+
+    <circle cx="256" cy="256" r="38" fill="url(#body-10-evo-1-core)" opacity="0.9"/>
+    <circle cx="256" cy="256" r="18" fill="#FFF7B4" opacity="0.75"/>
+
+    <path d="M238,90 L256,55 L274,90 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+    <circle cx="256" cy="55" r="5" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Placa pectoral reforzada (y >= 285) -->
+    <g id="body-10-evo-1-chest">
+      <path d="M210,342 L256,330 L302,342 L290,395 L256,408 L222,395 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="370" r="7" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="aura-12-solar" cx="50%" cy="54.68%" r="60%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="aura-12" class="layer-1">
+    <circle cx="256" cy="280" r="240" fill="url(#aura-12-solar)"/>
+    <!-- Prominencias solares radiantes -->
+    <path d="M 256,40 C 270,120 300,150 350,110 C 310,170 330,200 410,210 C 330,230 310,260 350,320 C 290,290 270,320 256,420 C 240,320 220,290 160,320 C 200,260 180,230 100,210 C 180,200 200,170 160,110 C 210,150 240,120 256,40 Z" fill="var(--color-accent, #F5F340)" opacity="0.45"/>
+    <circle cx="256" cy="280" r="200" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="3" opacity="0.7"/>
+    <circle cx="256" cy="280" r="220" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="8 8" opacity="0.8"/>
+  </g>
+</svg>

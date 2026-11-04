@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-04-evo-2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-04-evo-2-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+  </defs>
+  <g id="body-04-evo-2" class="layer-2">
+    <!-- 1. Sombra proyectada amplia -->
+    <ellipse cx="256" cy="442" rx="145" ry="25" fill="var(--color-primary, #232D4B)" opacity="0.3"/>
+
+    <!-- 2. Módulos propulsores / aletas laterales expansivas -->
+    <g id="body-04-evo-2-pods">
+      <path d="M150,250 L85,200 L115,285 L165,300 Z" fill="url(#body-04-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <circle cx="85" cy="200" r="4" fill="var(--color-accent, #F5F340)"/>
+      <path d="M362,250 L427,200 L397,285 L347,300 Z" fill="url(#body-04-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <circle cx="427" cy="200" r="4" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- 3. Chasis principal expandido (+10%) -->
+    <path d="M256,105 C315,105 368,135 396,178 C425,222 432,285 410,342 C388,400 332,442 256,448 C180,442 124,400 102,342 C80,285 87,222 116,178 C144,135 197,105 256,105 Z" fill="url(#body-04-evo-2-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- 4. Corona de sensores superior -->
+    <g id="body-04-evo-2-crest">
+      <path d="M228,105 L256,65 L284,105 Z" fill="url(#body-04-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <circle cx="256" cy="65" r="6" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- 5. Armadura pectoral reforzada (respetando zona protegida en y >= 285) -->
+    <g id="body-04-evo-2-chest">
+      <path d="M200,295 L256,280 L312,295 L298,370 L256,385 L214,370 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="332" r="10" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="332" r="5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- 6. Highlight y volúmenes -->
+    <path d="M256,120 C310,120 360,145 382,190 C360,175 310,165 256,165 C202,165 152,175 130,190 C152,145 202,120 256,120 Z" fill="#FFF7B4" opacity="0.32"/>
+  </g>
+</svg>

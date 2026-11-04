@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-07-evo-2-stone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#2B1840"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-07-evo-2-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+  </defs>
+  <g id="body-07-evo-2" class="layer-2">
+    <ellipse cx="256" cy="448" rx="155" ry="27" fill="var(--color-primary, #232D4B)" opacity="0.38"/>
+    <path d="M145,210 L70,140 L120,115 L170,165 Z" fill="url(#body-07-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+    <circle cx="70" cy="140" r="5" fill="var(--color-accent, #F5F340)"/>
+    <path d="M367,210 L442,140 L392,115 L342,165 Z" fill="url(#body-07-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+    <circle cx="442" cy="140" r="5" fill="var(--color-accent, #F5F340)"/>
+    <path d="M256,100 L368,145 L395,280 L358,405 L256,442 L154,405 L117,280 L144,145 Z" fill="url(#body-07-evo-2-stone)" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round"/>
+    <polygon points="256,100 368,145 256,220" fill="#FFF7B4" opacity="0.3"/>
+    <polygon points="256,100 144,145 256,220" fill="#B8F5FF" opacity="0.25"/>
+    <polygon points="368,145 395,280 256,220" fill="var(--color-secondary, #E20074)" opacity="0.25"/>
+    <polygon points="144,145 117,280 256,220" fill="#8BB9FE" opacity="0.25"/>
+    <polygon points="256,442 358,405 256,310" fill="var(--color-primary, #232D4B)" opacity="0.45"/>
+    <polygon points="256,442 154,405 256,310" fill="#2B1840" opacity="0.55"/>
+    <polygon points="256,100 220,45 292,45" fill="url(#body-07-evo-2-plate)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+    <circle cx="256" cy="45" r="6" fill="var(--color-secondary, #E20074)"/>
+    <polygon points="188,295 324,295 305,380 207,380" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="256" cy="338" r="11" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5"/>
+    <circle cx="256" cy="338" r="5" fill="var(--color-secondary, #E20074)"/>
+  </g>
+</svg>

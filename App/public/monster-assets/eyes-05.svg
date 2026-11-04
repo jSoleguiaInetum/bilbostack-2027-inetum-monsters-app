@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <filter id="eyes-05-glow-filter" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <g id="eyes-05" class="layer-4" filter="url(#eyes-05-glow-filter)">
+    <!-- Brillantes/Luminosos (Poder): Sin pupila visible, glow radiante intenso -->
+    <ellipse cx="185" cy="215" rx="34" ry="26" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="3"/>
+    <ellipse cx="185" cy="215" rx="22" ry="15" fill="#FFFFFF"/>
+
+    <ellipse cx="327" cy="215" rx="34" ry="26" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="3"/>
+    <ellipse cx="327" cy="215" rx="22" ry="15" fill="#FFFFFF"/>
+
+    <path d="M140,175 L220,185" stroke="var(--color-secondary, #E20074)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M372,175 L292,185" stroke="var(--color-secondary, #E20074)" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

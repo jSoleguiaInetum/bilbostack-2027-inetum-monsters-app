@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-02-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="70%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-02-evo-1-tech" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-02-evo-1" class="layer-2">
+    <!-- Sombra proyectada -->
+    <ellipse cx="256" cy="435" rx="135" ry="21" fill="var(--color-primary, #232D4B)" opacity="0.22"/>
+
+    <!-- Disipadores térmicos laterales -->
+    <path d="M135,270 L110,240 L130,225 L155,250 Z" fill="url(#body-02-evo-1-tech)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+    <path d="M377,270 L402,240 L382,225 L357,250 Z" fill="url(#body-02-evo-1-tech)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+
+    <!-- Cuerpo principal anguloso -->
+    <path d="M190,360 L140,280 C130,240 145,190 180,165 C210,145 240,140 270,145 C310,150 350,180 365,220 C380,260 375,310 350,355 C325,400 280,420 230,415 C195,410 195,385 190,360 Z" fill="url(#body-02-evo-1-grad)"/>
+
+    <!-- Highlights y sombras -->
+    <path d="M210,165 C230,152 260,150 290,160 C320,170 345,200 350,230 C330,210 295,190 260,185 C225,180 215,170 210,165 Z" fill="var(--color-accent, #F5F340)" opacity="0.25"/>
+    <path d="M165,330 C185,380 230,405 285,395 C330,385 350,340 340,300 C330,335 290,370 240,370 C200,370 175,345 165,330 Z" fill="var(--color-primary, #232D4B)" opacity="0.3"/>
+
+    <!-- Módulo frontal inferior (respetando zona de ojos y=170-270) -->
+    <g id="body-02-evo-1-chest">
+      <polygon points="230,310 282,295 290,345 222,355" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="256" cy="325" r="6" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+
+    <!-- Contorno -->
+    <path d="M190,360 L140,280 C130,240 145,190 180,165 C210,145 240,140 270,145 C310,150 350,180 365,220 C380,260 375,310 350,355 C325,400 280,420 230,415 C195,410 195,385 190,360 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" opacity="0.4"/>
+  </g>
+</svg>

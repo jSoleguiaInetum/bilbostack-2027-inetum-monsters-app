@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-01-evo-2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-01-evo-2-pod" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <radialGradient id="body-01-evo-2-glow" cx="70%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-01-evo-2" class="layer-2">
+    <!-- 1. Sombra proyectada amplia -->
+    <ellipse cx="270" cy="440" rx="155" ry="26" fill="var(--color-primary, #232D4B)" opacity="0.25"/>
+
+    <!-- 2. Pods laterales de propulsión -->
+    <g id="body-01-evo-2-pod-left">
+      <path d="M138,270 C105,255 85,210 100,175 C120,185 142,220 148,255 Z" fill="url(#body-01-evo-2-pod)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <ellipse cx="102" cy="205" rx="5.5" ry="11" fill="var(--color-secondary, #E20074)" transform="rotate(-20 102 205)"/>
+      <ellipse cx="102" cy="205" rx="2.5" ry="5" fill="var(--color-accent, #F5F340)" transform="rotate(-20 102 205)"/>
+      <path d="M92,185 L115,195" stroke="#8BB9FE" stroke-width="1.5"/>
+    </g>
+    <g id="body-01-evo-2-pod-right">
+      <path d="M372,275 C405,260 425,215 410,180 C390,190 368,225 362,260 Z" fill="url(#body-01-evo-2-pod)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <ellipse cx="408" cy="210" rx="5.5" ry="11" fill="var(--color-secondary, #E20074)" transform="rotate(20 408 210)"/>
+      <ellipse cx="408" cy="210" rx="2.5" ry="5" fill="var(--color-accent, #F5F340)" transform="rotate(20 408 210)"/>
+      <path d="M418,190 L395,200" stroke="#8BB9FE" stroke-width="1.5"/>
+    </g>
+
+    <!-- 3. Cuerpo principal expansivo (+10% bounding box) -->
+    <path d="M155,385 C115,342 108,265 135,210 C158,168 185,155 208,145 C213,115 202,82 224,68 C240,58 258,78 252,110 C280,120 318,125 352,158 C390,195 412,260 400,325 C390,390 352,438 288,442 C228,448 190,422 155,385 Z" fill="url(#body-01-evo-2-grad)"/>
+
+    <!-- 4. Highlights y volúmenes -->
+    <path d="M224,68 C240,58 258,78 252,110 C280,120 312,128 335,152 C308,158 265,148 238,152 C218,158 212,138 224,68 Z" fill="#FFF7B4" opacity="0.3"/>
+    <path d="M288,175 C332,198 370,248 365,295 C348,262 305,230 278,225 C268,198 278,180 288,175 Z" fill="var(--color-secondary, #E20074)" opacity="0.38"/>
+    <path d="M165,375 C198,418 258,438 318,422 C368,405 385,362 380,325 C358,368 305,410 258,412 C210,410 178,390 165,375 Z" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+
+    <!-- 5. Corona dorsal de procesamiento (por delante de la protuberancia superior) -->
+    <g id="body-01-evo-2-crest">
+      <path d="M190,132 L170,72 L205,97 L235,57 L265,97 L300,72 L280,132 Z" fill="#2B1840" opacity="0.35"/>
+      <path d="M195,125 L175,65 L210,90 L240,50 L270,90 L305,65 L285,125 Z" fill="url(#body-01-evo-2-pod)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M175,65 L197,95 M240,50 L240,100 M305,65 L283,95" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+      <circle cx="175" cy="65" r="3.5" fill="var(--color-secondary, #E20074)"/>
+      <circle cx="240" cy="50" r="4.5" fill="var(--color-accent, #F5F340)"/>
+      <circle cx="305" cy="65" r="3.5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- 6. Vaina bioluminiscente de costado -->
+    <ellipse cx="348" cy="318" rx="20" ry="38" fill="url(#body-01-evo-2-glow)" opacity="0.85" transform="rotate(-15 348 318)"/>
+    <ellipse cx="350" cy="312" rx="9" ry="18" fill="#FFF7B4" opacity="0.65" transform="rotate(-15 350 312)"/>
+
+    <!-- 7. Armadura pectoral pesada con rejilla (punto superior en y ≥ 285) -->
+    <g id="body-01-evo-2-chest">
+      <path d="M202,295 L256,258 L310,295 L296,368 L256,382 L216,368 Z" fill="#2B1840" opacity="0.4"/>
+      <path d="M206,288 L256,252 L306,288 L292,362 L256,375 L220,362 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M218,294 L256,268 L294,294 L284,348 L256,358 L228,348 Z" fill="#2B1840" stroke="var(--color-accent, #F5F340)" stroke-width="1.5"/>
+      <line x1="230" y1="305" x2="282" y2="305" stroke="#8BB9FE" stroke-width="2"/>
+      <line x1="232" y1="318" x2="280" y2="318" stroke="#8BB9FE" stroke-width="2"/>
+      <line x1="236" y1="330" x2="276" y2="330" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="318" r="9" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+      <circle cx="256" cy="318" r="4.5" fill="var(--color-secondary, #E20074)"/>
+      <path d="M206,330 C182,338 165,350 152,365" fill="none" stroke="#8BB9FE" stroke-width="3" stroke-linecap="round"/>
+      <path d="M306,330 C330,338 347,350 360,365" fill="none" stroke="#8BB9FE" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- 8. Contorno -->
+    <path d="M155,385 C115,342 108,265 135,210 C158,168 185,155 208,145 C213,115 202,82 224,68 C240,58 258,78 252,110 C280,120 318,125 352,158 C390,195 412,260 400,325 C390,390 352,438 288,442 C228,448 190,422 155,385 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" opacity="0.4"/>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="aura-05-radar" cx="50%" cy="54.68%" r="50%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="aura-05" class="layer-1">
+    <circle cx="256" cy="280" r="225" fill="url(#aura-05-radar)"/>
+    <path d="M 106,280 A 150,150 0 0,1 406,280" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="3" opacity="0.6"/>
+    <path d="M 146,280 A 110,110 0 0,1 366,280" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="2.5" opacity="0.5"/>
+    <path d="M 186,280 A 70,70 0 0,1 326,280" fill="none" stroke="#8BB9FE" stroke-width="2" opacity="0.4"/>
+    <line x1="256" y1="50" x2="256" y2="510" stroke="var(--color-accent, #F5F340)" stroke-width="1" opacity="0.3"/>
+  </g>
+</svg>

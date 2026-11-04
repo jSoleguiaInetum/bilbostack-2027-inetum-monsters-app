@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="aura-08-crys" cx="50%" cy="54.68%" r="50%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="aura-08" class="layer-1">
+    <circle cx="256" cy="280" r="220" fill="url(#aura-08-crys)"/>
+    <!-- Fragmentos cristalinos flotantes -->
+    <polygon points="120,180 140,140 160,170" fill="var(--color-accent, #F5F340)" stroke="var(--color-primary, #232D4B)" stroke-width="1.5" opacity="0.8"/>
+    <polygon points="380,200 410,160 390,220" fill="var(--color-secondary, #E20074)" stroke="var(--color-primary, #232D4B)" stroke-width="1.5" opacity="0.75"/>
+    <polygon points="140,380 120,420 170,410" fill="#8BB9FE" stroke="var(--color-primary, #232D4B)" stroke-width="1.5" opacity="0.7"/>
+    <polygon points="370,360 400,400 350,390" fill="var(--color-accent, #F5F340)" stroke="var(--color-primary, #232D4B)" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="256" cy="280" r="190" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1" stroke-dasharray="4 8" opacity="0.4"/>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="pattern-12-clip">
+      <rect x="76" y="100" width="360" height="360"/>
+    </clipPath>
+  </defs>
+  <g id="pattern-12" class="layer-3" clip-path="url(#pattern-12-clip)" opacity="0.32">
+    <!-- Rombos / Diamantes (Cuadrícula rotada 45°) -->
+    <polygon points="256,140 296,180 256,220 216,180" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+    <polygon points="176,220 216,260 176,300 136,260" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="2.5"/>
+    <polygon points="336,220 376,260 336,300 296,260" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="2.5"/>
+    <polygon points="256,220 296,260 256,300 216,260" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+    <polygon points="256,300 296,340 256,380 216,340" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+    <polygon points="176,300 216,340 176,380 136,340" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+    <polygon points="336,300 376,340 336,380 296,340" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+  </g>
+</svg>

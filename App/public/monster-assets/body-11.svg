@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-11-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="65%" stop-color="#2B1840"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-11" class="layer-2">
+    <!-- Sombra elegante del felino -->
+    <ellipse cx="256" cy="438" rx="115" ry="18" fill="var(--color-primary, #232D4B)" opacity="0.3"/>
+
+    <!-- Orejas de gato puntiagudas estilizadas (fuera de zona de ojos) -->
+    <g id="body-11-ears">
+      <path d="M165,150 L125,65 L195,115 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M150,135 L135,80 L180,115 Z" fill="var(--color-secondary, #E20074)" opacity="0.6"/>
+      <path d="M347,150 L387,65 L317,115 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M362,135 L377,80 L332,115 Z" fill="var(--color-secondary, #E20074)" opacity="0.6"/>
+    </g>
+
+    <!-- Cola felina bífida en espiral fluida (trasera) -->
+    <path d="M310,380 C360,370 410,320 395,260 C385,220 350,230 365,270 C375,295 340,340 300,355" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="395" cy="260" r="4" fill="var(--color-accent, #F5F340)"/>
+
+    <!-- Silueta principal: Torso felino grácil y ágil -->
+    <path d="M195,135 
+             C225,115 287,115 317,135 
+             C355,160 370,220 360,290 
+             C350,360 325,415 256,420 
+             C187,415 162,360 152,290 
+             C142,220 157,160 195,135 Z" 
+          fill="url(#body-11-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- Highlights de pelaje/energía estelar -->
+    <path d="M195,135 C225,115 287,115 317,135 C290,160 222,160 195,135 Z" fill="var(--color-accent, #F5F340)" opacity="0.28"/>
+
+    <!-- Pelaje abombado pectoral inferior (y >= 285) -->
+    <g id="body-11-chest">
+      <path d="M210,300 L256,285 L302,300 L288,365 L256,380 L224,365 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="256" cy="335" r="5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+  </g>
+</svg>

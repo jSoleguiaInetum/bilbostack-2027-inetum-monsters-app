@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-01-evo-3-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <linearGradient id="body-01-evo-3-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <linearGradient id="body-01-evo-3-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <radialGradient id="body-01-evo-3-glow" cx="70%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-01-evo-3" class="layer-2">
+    <!-- 1. Sombra imponente -->
+    <ellipse cx="270" cy="445" rx="168" ry="28" fill="var(--color-primary, #232D4B)" opacity="0.3"/>
+
+    <!-- 2. Alas de plasma expansivas traseras -->
+    <g id="body-01-evo-3-wing-left">
+      <path d="M138,250 C88,200 35,128 65,78 C100,93 128,148 152,200 Z" fill="url(#body-01-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M100,213 C68,173 52,123 75,93 C95,108 115,143 128,186 Z" fill="#8BB9FE" opacity="0.8"/>
+      <line x1="65" y1="78" x2="110" y2="143" stroke="#FFF7B4" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="65" cy="78" r="4" fill="var(--color-accent, #F5F340)"/>
+    </g>
+    <g id="body-01-evo-3-wing-right">
+      <path d="M374,250 C424,200 477,128 447,78 C412,93 384,148 360,200 Z" fill="url(#body-01-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M412,213 C444,173 460,123 437,93 C417,108 397,143 384,186 Z" fill="#8BB9FE" opacity="0.8"/>
+      <line x1="447" y1="78" x2="402" y2="143" stroke="#FFF7B4" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="447" cy="78" r="4" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- 3. Cuerpo principal imponente (+15% bounding box) -->
+    <path d="M148,390 C108,345 100,265 128,208 C152,162 180,148 204,138 C209,108 198,75 220,60 C236,50 256,70 250,102 C280,112 320,118 356,152 C396,190 420,260 408,328 C398,395 358,442 292,446 C230,452 188,425 148,390 Z" fill="url(#body-01-evo-3-grad)"/>
+
+    <!-- 4. Volúmenes de luz superior y sombreado profundo -->
+    <path d="M220,60 C236,50 256,70 250,102 C280,112 314,120 338,145 C310,152 268,142 240,146 C218,152 212,130 220,60 Z" fill="#FFF7B4" opacity="0.32"/>
+    <path d="M292,170 C338,192 378,242 372,290 C354,258 310,225 282,220 C270,192 282,175 292,170 Z" fill="var(--color-secondary, #E20074)" opacity="0.4"/>
+    <path d="M158,380 C192,425 254,445 316,428 C368,410 388,365 382,328 C360,372 308,415 260,418 C210,415 174,395 158,380 Z" fill="#2B1840" opacity="0.45"/>
+
+    <!-- 5. Triple Corona de Procesamiento (por delante de la coronilla) -->
+    <g id="body-01-evo-3-crown">
+      <path d="M180,128 L200,48 L225,98 L241,33 L257,98 L282,48 L302,128 Z" fill="#2B1840" opacity="0.4"/>
+      <path d="M185,120 L205,40 L230,90 L246,25 L262,90 L287,40 L307,120 Z" fill="url(#body-01-evo-3-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M205,40 L222,80 M246,25 L246,75 M287,40 L270,80" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+      <circle cx="205" cy="40" r="4.5" fill="var(--color-secondary, #E20074)"/>
+      <circle cx="246" cy="25" r="5.5" fill="var(--color-accent, #F5F340)"/>
+      <circle cx="287" cy="40" r="4.5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- 6. Vaina bioluminiscente lateral expansiva -->
+    <ellipse cx="354" cy="322" rx="22" ry="38" fill="url(#body-01-evo-3-glow)" opacity="0.9" transform="rotate(-15 354 322)"/>
+    <ellipse cx="356" cy="316" rx="10" ry="20" fill="#FFF7B4" opacity="0.75" transform="rotate(-15 356 316)"/>
+
+    <!-- 7. Armadura pectoral blindada con núcleo cuántico (respetando zona y=170-270) -->
+    <g id="body-01-evo-3-chest">
+      <path d="M198,292 L256,252 L314,292 L300,372 L256,388 L212,372 Z" fill="#2B1840" opacity="0.45"/>
+      <path d="M202,285 L256,245 L310,285 L296,365 L256,382 L216,365 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M214,292 L256,262 L298,292 L288,352 L256,365 L224,352 Z" fill="#2B1840" stroke="#8BB9FE" stroke-width="2"/>
+      <path d="M202,308 L168,320 M310,308 L344,320" stroke="#8BB9FE" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="165" cy="321" r="4.5" fill="var(--color-accent, #F5F340)"/>
+      <circle cx="347" cy="321" r="4.5" fill="var(--color-accent, #F5F340)"/>
+      <circle cx="256" cy="318" r="16" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="318" r="10" fill="var(--color-secondary, #E20074)"/>
+      <circle cx="253" cy="315" r="4" fill="#FFF7B4"/>
+    </g>
+
+    <!-- 8. Contorno maestro definitivo -->
+    <path d="M148,390 C108,345 100,265 128,208 C152,162 180,148 204,138 C209,108 198,75 220,60 C236,50 256,70 250,102 C280,112 320,118 356,152 C396,190 420,260 408,328 C398,395 358,442 292,446 C230,452 188,425 148,390 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="3" opacity="0.5"/>
+  </g>
+</svg>

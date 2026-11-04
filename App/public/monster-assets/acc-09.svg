@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g id="acc-09" class="layer-6">
+    <!-- Cables/conductos tech por los laterales exteriores (x < 170 y x > 342) -->
+    <path d="M 220,110 C 140,110 110,180 120,280" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 220,110 C 140,110 110,180 120,280" fill="none" stroke="#8BB9FE" stroke-width="2.5" stroke-linecap="round"/>
+
+    <path d="M 292,110 C 372,110 402,180 392,280" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 292,110 C 372,110 402,180 392,280" fill="none" stroke="#8BB9FE" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Conectores luminosos -->
+    <rect x="212" y="102" width="16" height="16" rx="3" fill="var(--color-secondary, #E20074)"/>
+    <rect x="284" y="102" width="16" height="16" rx="3" fill="var(--color-secondary, #E20074)"/>
+    <circle cx="120" cy="280" r="6" fill="var(--color-accent, #F5F340)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+    <circle cx="392" cy="280" r="6" fill="var(--color-accent, #F5F340)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+  </g>
+</svg>

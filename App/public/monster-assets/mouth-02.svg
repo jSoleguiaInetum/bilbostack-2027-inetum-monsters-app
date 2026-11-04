@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="mouth-02-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="mouth-02" class="layer-5">
+    <!-- Sonrisa traviesa (Curva asimétrica) -->
+    <path d="M 215,295 Q 260,325 305,285 Q 255,305 215,295 Z" fill="url(#mouth-02-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M 215,295 Q 250,308 305,285" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="305" cy="285" r="3.5" fill="var(--color-accent, #F5F340)"/>
+  </g>
+</svg>

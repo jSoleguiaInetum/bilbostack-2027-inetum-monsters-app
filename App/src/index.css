@@ -1,0 +1,67 @@
+@import "snes.css/dist/snes.min.css" layer(snes);
+@import "tailwindcss" important;
+
+/* html5-qrcode: forzar visor cuadrado y ocultar controles extra */
+#qr-reader {
+  border: none !important;
+  padding: 0 !important;
+}
+#qr-reader__scan_region {
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden !important;
+}
+#qr-reader__scan_region video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+#qr-reader__dashboard {
+  display: none !important;
+}
+
+/* Press Start 2P globally (font loaded via index.html <link>) */
+* {
+  font-family: "Press Start 2P", system-ui !important;
+}
+
+/* Dark theme overrides for SNES.CSS components */
+html, body {
+  background-color: var(--color-background, #0a0a14) !important;
+  color: #ffffff !important;
+}
+
+.snes-input {
+  background-color: #131325 !important;
+}
+.snes-input input,
+.snes-input textarea,
+.snes-input select {
+  color: #ffffff !important;
+}
+.snes-input input::placeholder,
+.snes-input textarea::placeholder {
+  color: #6b7280 !important;
+}
+.snes-blockquote {
+  background-color: #131325 !important;
+  color: #ffffff !important;
+}
+.snes-blockquote.is-selected {
+  background-color: #2B1840 !important;
+  border-color: #E20074 !important;
+}
+
+@theme {
+  --color-primary: #232D4B;
+  --color-secondary: #E20074;
+  --color-accent: #F5F340;
+  --color-tech: #8BB9FE;
+  --color-light: #FFF7B4;
+  --color-dark: #2B1840;
+  --color-nature: #4DBF61;
+  --color-water: #00B5FF;
+  --color-crystal: #B8F5FF;
+  --color-energy: #D76CFF;
+  --color-surface: #131325;
+  --color-background: #0a0a14;
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="eyes-06-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </radialGradient>
+  </defs>
+  <g id="eyes-06" class="layer-4">
+    <!-- Múltiples (Vigilancia): 3 ojos en triángulo (2 arriba, 1 centro-abajo) -->
+    <!-- Ojo Superior Izquierdo -->
+    <circle cx="180" cy="195" r="22" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+    <circle cx="182" cy="197" r="12" fill="url(#eyes-06-grad)"/>
+    <circle cx="184" cy="198" r="5" fill="var(--color-primary, #232D4B)"/>
+    <circle cx="177" cy="191" r="3" fill="#FFFFFF"/>
+
+    <!-- Ojo Superior Derecho -->
+    <circle cx="332" cy="195" r="22" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+    <circle cx="330" cy="197" r="12" fill="url(#eyes-06-grad)"/>
+    <circle cx="328" cy="198" r="5" fill="var(--color-primary, #232D4B)"/>
+    <circle cx="325" cy="191" r="3" fill="#FFFFFF"/>
+
+    <!-- Ojo Central Inferior (más pequeño) -->
+    <circle cx="256" cy="235" r="16" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+    <circle cx="256" cy="236" r="9" fill="var(--color-accent, #F5F340)"/>
+    <circle cx="256" cy="237" r="4" fill="var(--color-primary, #232D4B)"/>
+    <circle cx="253" cy="233" r="2" fill="#FFFFFF"/>
+  </g>
+</svg>

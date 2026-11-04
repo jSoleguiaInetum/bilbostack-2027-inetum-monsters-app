@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-12-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#1B2838"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-12-evo-1-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-12-evo-1" class="layer-2">
+    <ellipse cx="256" cy="445" rx="155" ry="25" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+
+    <!-- Aletas con picos reforzados -->
+    <g id="body-12-evo-1-flippers">
+      <path d="M135,285 C80,270 35,300 20,355 C60,378 115,348 145,315 Z" fill="url(#body-12-evo-1-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="20" cy="355" r="4" fill="var(--color-accent, #F5F340)"/>
+      <path d="M377,285 C432,270 477,300 492,355 C452,378 397,348 367,315 Z" fill="url(#body-12-evo-1-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="492" cy="355" r="4" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Caparazón principal -->
+    <path d="M256,120 C335,120 408,160 422,238 C438,315 412,398 360,422 C308,435 204,435 152,422 C100,398 74,315 90,238 C104,160 177,120 256,120 Z" fill="url(#body-12-evo-1-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- Cresta superior de contención -->
+    <g id="body-12-evo-1-crest">
+      <path d="M215,122 L256,75 L297,122 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="75" r="5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- Plastrón pectoral reforzado (y >= 285) -->
+    <g id="body-12-evo-1-chest">
+      <path d="M195,305 L256,285 L317,305 L298,382 L256,398 L214,382 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="342" r="8" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

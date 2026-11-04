@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-13-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="65%" stop-color="#1E1B3A"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-13-gill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-13" class="layer-2">
+    <!-- Sombra suave y fluida -->
+    <ellipse cx="256" cy="438" rx="118" ry="18" fill="var(--color-primary, #232D4B)" opacity="0.3"/>
+
+    <!-- Branquias bio-digitales ramificadas laterales (3 por lado en la cabeza) -->
+    <g id="body-13-gills">
+      <!-- Branquias izquierdas -->
+      <path d="M160,150 C120,120 80,130 65,150 C85,160 125,155 155,165 Z" fill="url(#body-13-gill)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <circle cx="65" cy="150" r="3.5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M152,180 C105,170 60,195 50,215 C75,220 115,200 148,195 Z" fill="url(#body-13-gill)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <circle cx="50" cy="215" r="3.5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M155,210 C110,225 75,255 70,275 C92,270 125,245 152,225 Z" fill="url(#body-13-gill)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+
+      <!-- Branquias derechas -->
+      <path d="M352,150 C392,120 432,130 447,150 C427,160 387,155 357,165 Z" fill="url(#body-13-gill)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <circle cx="447" cy="150" r="3.5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M360,180 C407,170 452,195 462,215 C437,220 397,200 364,195 Z" fill="url(#body-13-gill)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <circle cx="462" cy="215" r="3.5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M357,210 C402,225 437,255 442,275 C420,270 387,245 360,225 Z" fill="url(#body-13-gill)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+    </g>
+
+    <!-- Cola acuática traslúcida caudal (trasera) -->
+    <path d="M256,380 C270,410 290,435 280,450 C265,460 245,430 240,400 Z" fill="var(--color-secondary, #E20074)" opacity="0.5"/>
+
+    <!-- Silueta principal: Torso anfibio suave y estilizado -->
+    <path d="M190,135 
+             C225,110 287,110 322,135 
+             C362,165 375,230 360,300 
+             C345,370 315,420 256,425 
+             C197,420 167,370 152,300 
+             C137,230 150,165 190,135 Z" 
+          fill="url(#body-13-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- Highlights de piel bioluminiscente -->
+    <path d="M190,135 C225,110 287,110 322,135 C290,160 222,160 190,135 Z" fill="var(--color-accent, #F5F340)" opacity="0.32"/>
+
+    <!-- Núcleo pectoral bioluminiscente inferior (y >= 285) -->
+    <g id="body-13-chest">
+      <path d="M210,298 L256,285 L302,298 L288,365 L256,378 L224,365 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="256" cy="335" r="6" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

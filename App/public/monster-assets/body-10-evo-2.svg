@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-10-evo-2-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#2B1840"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-10-evo-2-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <radialGradient id="body-10-evo-2-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-10-evo-2" class="layer-2">
+    <ellipse cx="256" cy="452" rx="138" ry="22" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+
+    <!-- Campos magnéticos dobles expandidos (+10%) -->
+    <ellipse cx="256" cy="256" rx="205" ry="90" fill="none" stroke="#8BB9FE" stroke-width="2.5" stroke-dasharray="10 6" opacity="0.7" transform="rotate(-20 256 256)"/>
+    <ellipse cx="256" cy="256" rx="185" ry="70" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="1.5" opacity="0.5" transform="rotate(20 256 256)"/>
+
+    <!-- Anillo toroidal expandido -->
+    <path d="M256,75 C375,75 455,155 455,256 C455,357 375,437 256,437 C137,437 57,357 57,256 C57,155 137,75 256,75 Z M256,160 C190,160 138,212 138,256 C138,300 190,352 256,352 C322,352 374,300 374,256 C374,212 322,160 256,160 Z" fill="url(#body-10-evo-2-ring)" stroke="var(--color-primary, #232D4B)" stroke-width="4" fill-rule="evenodd" stroke-linejoin="round"/>
+
+    <circle cx="256" cy="256" r="45" fill="url(#body-10-evo-2-core)" opacity="0.95"/>
+    <circle cx="256" cy="256" r="22" fill="#FFF7B4"/>
+
+    <!-- Corona de sensores -->
+    <path d="M232,75 L256,35 L280,75 Z" fill="url(#body-10-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+    <circle cx="256" cy="35" r="6" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Armadura pectoral reforzada (y >= 285) -->
+    <g id="body-10-evo-2-chest">
+      <path d="M200,352 L256,338 L312,352 L298,410 L256,425 L214,410 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="380" r="10" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="380" r="5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+  </g>
+</svg>

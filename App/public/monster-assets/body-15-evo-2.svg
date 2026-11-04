@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-15-evo-2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#241B35"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-15-evo-2-hex" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+  </defs>
+  <g id="body-15-evo-2" class="layer-2">
+    <ellipse cx="256" cy="448" rx="155" ry="22" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+
+    <!-- Panales satélites laterales amplificados (+10%) -->
+    <g id="body-15-evo-2-honeycombs">
+      <polygon points="80,225 115,205 150,225 150,265 115,285 80,265" fill="url(#body-15-evo-2-hex)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+      <circle cx="115" cy="205" r="4" fill="var(--color-accent, #F5F340)"/>
+      <polygon points="362,225 397,205 432,225 432,265 397,285 362,265" fill="url(#body-15-evo-2-hex)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+      <circle cx="397" cy="205" r="4" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Chasis expandido hexagonal regular Evo 2 (+10% bounding box: Top 256,98; TopRight 410,188; BottomRight 410,358; Bottom 256,448; BottomLeft 102,358; TopLeft 102,188) -->
+    <polygon points="256,98 410,188 410,358 256,448 102,358 102,188" 
+             fill="url(#body-15-evo-2-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Trama densa de celdas hexagonales de panal de abeja -->
+    <g id="body-15-evo-2-pattern" opacity="0.8">
+      <!-- Fila superior -->
+      <polygon points="256,140 288,157 288,190 256,207 224,190 224,157" fill="none" stroke="#8BB9FE" stroke-width="2"/>
+      <!-- Fila media -->
+      <polygon points="195,190 227,207 227,240 195,257 163,240 163,207" fill="none" stroke="#8BB9FE" stroke-width="1.8"/>
+      <polygon points="317,190 349,207 349,240 317,257 285,240 285,207" fill="none" stroke="#8BB9FE" stroke-width="1.8"/>
+      <!-- Fila central -->
+      <polygon points="256,230 288,247 288,280 256,297 224,280 224,247" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+    </g>
+
+    <!-- Corona de sensores superior -->
+    <g id="body-15-evo-2-crest">
+      <polygon points="225,98 256,45 287,98" fill="url(#body-15-evo-2-hex)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="45" r="6" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- Armadura pectoral reforzada (y >= 275) -->
+    <g id="body-15-evo-2-chest">
+      <polygon points="190,300 322,300 302,388 210,388" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="344" r="10" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="344" r="5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-14-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="55%" stop-color="#191B2E"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-14-crystal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-14" class="layer-2">
+    <!-- Sombra de vórtice cónico flotante -->
+    <ellipse cx="256" cy="442" rx="110" ry="16" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Silueta principal: Monolito de pirámide invertida estilizada estilizada -->
+    <path d="M165,120 
+             L347,120 
+             L385,220 
+             L256,430 
+             L127,220 Z" 
+          fill="url(#body-14-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- Biseles y facetas de la estructura cónica/piramidal -->
+    <polygon points="165,120 256,120 256,430 127,220" fill="var(--color-accent, #F5F340)" opacity="0.2"/>
+    <polygon points="256,120 347,120 385,220 256,430" fill="#8BB9FE" opacity="0.18"/>
+
+    <!-- Hombreras flotantes antigravitatorias -->
+    <polygon points="150,165 95,120 135,100 170,140" fill="url(#body-14-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+    <polygon points="362,165 417,120 377,100 342,140" fill="url(#body-14-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+
+    <!-- Cresta o aguja gravitacional de ápice (y < 120) -->
+    <polygon points="242,120 256,70 270,120" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+    <circle cx="256" cy="70" r="4.5" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Placa pectoral monolítica (y >= 285) -->
+    <g id="body-14-chest">
+      <polygon points="210,295 302,295 282,370 230,370" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="256" cy="330" r="6" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

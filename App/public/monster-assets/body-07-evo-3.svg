@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-07-evo-3-stone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <linearGradient id="body-07-evo-3-magma" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <radialGradient id="body-07-evo-3-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-07-evo-3" class="layer-2">
+    <ellipse cx="256" cy="458" rx="168" ry="29" fill="var(--color-primary, #232D4B)" opacity="0.42"/>
+    <path d="M135,200 L45,120 L105,90 L165,150 Z" fill="url(#body-07-evo-3-magma)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="45" cy="120" r="6" fill="var(--color-accent, #F5F340)"/>
+    <path d="M377,200 L467,120 L407,90 L347,150 Z" fill="url(#body-07-evo-3-magma)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="467" cy="120" r="6" fill="var(--color-accent, #F5F340)"/>
+    <path d="M256,85 L380,135 L410,280 L370,418 L256,455 L142,418 L102,280 L132,135 Z" fill="url(#body-07-evo-3-stone)" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linejoin="round"/>
+    <polygon points="256,85 380,135 256,210" fill="#FFF7B4" opacity="0.38"/>
+    <polygon points="256,85 132,135 256,210" fill="#B8F5FF" opacity="0.3"/>
+    <polygon points="380,135 410,280 256,210" fill="var(--color-accent, #F5F340)" opacity="0.3"/>
+    <polygon points="132,135 102,280 256,210" fill="#8BB9FE" opacity="0.3"/>
+    <polygon points="256,455 370,418 256,310" fill="var(--color-primary, #232D4B)" opacity="0.5"/>
+    <polygon points="256,455 142,418 256,310" fill="#2B1840" opacity="0.6"/>
+    <polygon points="256,85 210,25 302,25" fill="url(#body-07-evo-3-magma)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="256" cy="25" r="7.5" fill="var(--color-accent, #F5F340)"/>
+    <polygon points="180,300 332,300 312,395 200,395" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="256" cy="348" r="16" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3"/>
+    <circle cx="256" cy="348" r="10" fill="url(#body-07-evo-3-core)"/>
+    <circle cx="253" cy="345" r="4" fill="#FFF7B4"/>
+  </g>
+</svg>

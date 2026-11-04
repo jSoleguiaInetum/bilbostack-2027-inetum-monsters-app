@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-15-evo-3-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#241B35"/>
+    </linearGradient>
+    <linearGradient id="body-15-evo-3-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <radialGradient id="body-15-evo-3-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-15-evo-3" class="layer-2">
+    <ellipse cx="256" cy="458" rx="165" ry="26" fill="var(--color-primary, #232D4B)" opacity="0.42"/>
+
+    <!-- Panales energéticos y alas hexagonales poligonales angulares desplegadas (+15%) -->
+    <g id="body-15-evo-3-wings">
+      <polygon points="65,225 15,150 55,105 110,180" fill="url(#body-15-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="15" cy="150" r="5.5" fill="var(--color-accent, #F5F340)"/>
+      <polygon points="447,225 497,150 457,105 402,180" fill="url(#body-15-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="497" cy="150" r="5.5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Chasis definitivo en hexágono regular Evo 3 (+15% bounding box: Top 256,80; TopRight 425,178; BottomRight 425,368; Bottom 256,462; BottomLeft 87,368; TopLeft 87,178) -->
+    <polygon points="256,80 425,178 425,368 256,462 87,368 87,178" 
+             fill="url(#body-15-evo-3-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linejoin="round"/>
+
+    <!-- Trama completa de matriz de celdas de abeja hiper-desarrollada -->
+    <g id="body-15-evo-3-pattern" opacity="0.85">
+      <!-- Fila superior -->
+      <polygon points="256,125 292,145 292,182 256,202 220,182 220,145" fill="none" stroke="#FFF7B4" stroke-width="2.5"/>
+      <!-- Segunda fila -->
+      <polygon points="180,175 216,195 216,232 180,252 144,232 144,195" fill="none" stroke="#8BB9FE" stroke-width="2"/>
+      <polygon points="332,175 368,195 368,232 332,252 296,232 296,195" fill="none" stroke="#8BB9FE" stroke-width="2"/>
+      <!-- Tercera fila -->
+      <polygon points="256,215 292,235 292,272 256,292 220,272 220,235" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+    </g>
+
+    <!-- Corona imperial hexagonal -->
+    <g id="body-15-evo-3-crown">
+      <polygon points="210,80 256,10 302,80" fill="url(#body-15-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="10" r="7.5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Armadura pectoral con reactor colmena cuántico (y >= 275) -->
+    <g id="body-15-evo-3-chest">
+      <polygon points="180,300 332,300 307,400 205,400" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="350" r="15" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="350" r="9" fill="url(#body-15-evo-3-core)"/>
+      <circle cx="253" cy="347" r="3.5" fill="#FFF7B4"/>
+    </g>
+  </g>
+</svg>

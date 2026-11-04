@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <ellipse id="acc-06-ring-path" cx="256" cy="95" rx="100" ry="25"/>
+  </defs>
+  <g id="acc-06" class="layer-6">
+    <!-- Halo flotante sobre la cabeza (y < 125) -->
+    <ellipse cx="256" cy="95" rx="105" ry="28" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="2" opacity="0.5"/>
+    <ellipse cx="256" cy="95" rx="95" ry="24" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="4.5"/>
+    <ellipse cx="256" cy="95" rx="85" ry="20" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+
+    <!-- Nodos / Runas en órbita -->
+    <circle cx="161" cy="95" r="5" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+    <circle cx="351" cy="95" r="5" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+    <polygon points="256,115 261,120 256,125 251,120" fill="var(--color-secondary, #E20074)"/>
+  </g>
+</svg>

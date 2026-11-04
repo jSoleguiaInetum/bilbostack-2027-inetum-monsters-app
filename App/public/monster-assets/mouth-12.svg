@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g id="mouth-12" class="layer-5">
+    <!-- Panel de voz digital (Barras de ecualización verticales) -->
+    <rect x="215" y="285" width="60" height="30" rx="4" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5"/>
+    <rect x="223" y="293" width="7" height="14" fill="var(--color-accent, #F5F340)"/>
+    <rect x="234" y="289" width="7" height="22" fill="var(--color-secondary, #E20074)"/>
+    <rect x="245" y="295" width="7" height="10" fill="var(--color-accent, #F5F340)"/>
+    <rect x="256" y="291" width="7" height="18" fill="#FFFFFF"/>
+    <rect x="267" y="294" width="7" height="12" fill="var(--color-secondary, #E20074)"/>
+  </g>
+</svg>

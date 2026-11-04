@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-16-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="#2C1B4D"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-16-crystal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-16" class="layer-2">
+    <!-- Sombra estelar en el suelo -->
+    <ellipse cx="256" cy="442" rx="120" ry="18" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Cristales flotantes laterales en faceta geométrica -->
+    <g id="body-16-shards">
+      <polygon points="120,240 90,200 135,210" fill="url(#body-16-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <polygon points="392,240 422,200 377,210" fill="url(#body-16-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+    </g>
+
+    <!-- Silueta principal: Estrella de 6 puntas facetada (Hexagrama) -->
+    <!-- Centro en (256, 256). Puntas exteriores a r=160, valles interiores a r=90 -->
+    <polygon points="256,96 301,166 395,166 333,236 355,326 256,286 157,326 179,236 117,166 211,166" 
+             fill="url(#body-16-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- Facetas de refracción interna de luz -->
+    <polygon points="256,96 256,286 395,166" fill="var(--color-accent, #F5F340)" opacity="0.22"/>
+    <polygon points="256,96 256,286 117,166" fill="#8BB9FE" opacity="0.2"/>
+
+    <!-- Punta de cuarzo apical (y < 120) -->
+    <polygon points="244,96 256,52 268,96" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+    <circle cx="256" cy="52" r="4.5" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Placa pectoral geométrica inferior (y >= 275) -->
+    <g id="body-16-chest">
+      <polygon points="210,295 302,295 288,375 224,375" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="256" cy="335" r="6" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

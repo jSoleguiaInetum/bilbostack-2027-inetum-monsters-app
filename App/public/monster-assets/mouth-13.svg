@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g id="mouth-13" class="layer-5">
+    <!-- Sonrisa felina (:3 o tipo gato) -->
+    <path d="M 215,295 Q 235,315 256,295 Q 277,315 297,295" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 220,297 Q 235,311 256,297 Q 277,311 292,297" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 256,293 L 256,288" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-08-evo-2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <radialGradient id="body-08-evo-2-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-08-evo-2" class="layer-2">
+    <ellipse cx="256" cy="452" rx="118" ry="20" fill="var(--color-primary, #232D4B)" opacity="0.38"/>
+    <ellipse cx="256" cy="256" rx="210" ry="52" fill="none" stroke="#8BB9FE" stroke-width="3" stroke-dasharray="14 8" opacity="0.85" transform="rotate(-30 256 256)"/>
+    <ellipse cx="256" cy="256" rx="180" ry="42" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="2" opacity="0.75" transform="rotate(30 256 256)"/>
+    <path d="M256,90 C332,90 400,132 424,208 C448,285 418,370 362,415 C305,460 207,460 150,415 C94,370 64,285 88,208 C112,132 180,90 256,90 Z" fill="url(#body-08-evo-2-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="256" cy="256" r="80" fill="url(#body-08-evo-2-core)" opacity="0.92"/>
+    <circle cx="256" cy="256" r="45" fill="#FFF7B4" opacity="0.7"/>
+    <path d="M215,95 C228,62 245,38 256,22 C267,38 284,62 297,95 Z" fill="var(--color-accent, #F5F340)" opacity="0.9"/>
+    <path d="M215,417 C228,450 245,474 256,490 C267,474 284,450 297,417 Z" fill="var(--color-accent, #F5F340)" opacity="0.9"/>
+    <g id="body-08-evo-2-chest">
+      <path d="M190,300 L256,282 L322,300 C308,380 298,395 256,400 C214,395 204,380 190,300 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="342" r="12" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5"/>
+      <circle cx="256" cy="342" r="6" fill="var(--color-secondary, #E20074)"/>
+    </g>
+  </g>
+</svg>

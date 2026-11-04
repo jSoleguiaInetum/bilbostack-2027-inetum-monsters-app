@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-14-evo-2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="55%" stop-color="#191B2E"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-14-evo-2-crystal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-14-evo-2" class="layer-2">
+    <ellipse cx="256" cy="450" rx="128" ry="20" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+
+    <!-- Monolito expandido (+10% bounding box) -->
+    <path d="M150,105 L362,105 L405,220 L256,445 L107,220 Z" fill="url(#body-14-evo-2-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round"/>
+    <polygon points="150,105 256,105 256,445 107,220" fill="var(--color-accent, #F5F340)" opacity="0.25"/>
+
+    <!-- Placas flotantes secundarias de sustentación -->
+    <g id="body-14-evo-2-shoulders">
+      <polygon points="135,155 70,95 120,75 158,125" fill="url(#body-14-evo-2-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+      <circle cx="70" cy="95" r="5" fill="var(--color-accent, #F5F340)"/>
+      <polygon points="377,155 442,95 392,75 354,125" fill="url(#body-14-evo-2-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+      <circle cx="442" cy="95" r="5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Corona de cristal superior -->
+    <g id="body-14-evo-2-crest">
+      <polygon points="230,105 256,45 282,105" fill="url(#body-14-evo-2-crystal)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="45" r="6" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- Armadura pectoral reforzada en y >= 285 -->
+    <g id="body-14-evo-2-chest">
+      <polygon points="190,295 L322,295 L298,382 L214,382" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="338" r="10" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="338" r="5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+  </g>
+</svg>

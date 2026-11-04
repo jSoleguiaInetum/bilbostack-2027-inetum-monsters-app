@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-08-plasma-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="#3A1C4E"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <radialGradient id="body-08-core-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="60%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-08" class="layer-2">
+    <ellipse cx="256" cy="445" rx="100" ry="16" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+    <ellipse cx="256" cy="256" rx="180" ry="45" fill="none" stroke="#8BB9FE" stroke-width="2.5" stroke-dasharray="10 6" opacity="0.75" transform="rotate(-25 256 256)"/>
+    <ellipse cx="256" cy="256" rx="160" ry="35" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1.5" opacity="0.6" transform="rotate(25 256 256)"/>
+    <path d="M256,110 C320,110 380,150 400,215 C420,280 395,355 345,395 C295,435 215,435 165,395 C115,355 92,280 112,215 C132,150 192,110 256,110 Z" fill="url(#body-08-plasma-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="256" cy="256" r="65" fill="url(#body-08-core-glow)" opacity="0.85"/>
+    <circle cx="256" cy="256" r="35" fill="#FFF7B4" opacity="0.6"/>
+    <path d="M220,115 C230,85 245,65 256,50 C267,65 282,85 292,115 Z" fill="var(--color-accent, #F5F340)" opacity="0.8"/>
+    <path d="M220,397 C230,427 245,447 256,462 C267,447 282,427 292,397 Z" fill="var(--color-accent, #F5F340)" opacity="0.8"/>
+    <g id="body-08-armor">
+      <path d="M210,310 L256,295 L302,310 L290,375 L256,388 L222,375 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="342" r="6" fill="var(--color-accent, #F5F340)"/>
+    </g>
+    <path d="M256,125 C305,125 355,155 375,200 C350,180 305,170 256,170 C207,170 162,180 137,200 C157,155 207,125 256,125 Z" fill="#FFF7B4" opacity="0.35"/>
+  </g>
+</svg>

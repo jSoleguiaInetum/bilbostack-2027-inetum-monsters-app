@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-15-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#241B35"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-15-evo-1-hex" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-15-evo-1" class="layer-2">
+    <ellipse cx="256" cy="442" rx="145" ry="20" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Nodos hexagonales laterales extendidos -->
+    <g id="body-15-evo-1-honeycombs">
+      <polygon points="95,225 125,208 155,225 155,258 125,275 95,258" fill="url(#body-15-evo-1-hex)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <circle cx="125" cy="208" r="3" fill="var(--color-accent, #F5F340)"/>
+      <polygon points="357,225 387,208 417,225 417,258 387,275 357,258" fill="url(#body-15-evo-1-hex)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <circle cx="387" cy="208" r="3" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Chasis principal en hexágono regular Evo 1 (Puntos: Top 256,115; TopRight 395,198; BottomRight 395,358; Bottom 256,440; BottomLeft 117,358; TopLeft 117,198) -->
+    <polygon points="256,115 395,198 395,358 256,440 117,358 117,198" 
+             fill="url(#body-15-evo-1-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    
+    <!-- Celdas internas de panal -->
+    <polygon points="256,155 285,170 285,200 256,215 227,200 227,170" fill="none" stroke="#8BB9FE" stroke-width="2" opacity="0.65"/>
+    <polygon points="205,235 234,250 234,280 205,295 176,280 176,250" fill="none" stroke="#8BB9FE" stroke-width="1.8" opacity="0.65"/>
+    <polygon points="307,235 336,250 336,280 307,295 278,280 278,250" fill="none" stroke="#8BB9FE" stroke-width="1.8" opacity="0.65"/>
+
+    <!-- Antena superior con sensor -->
+    <polygon points="242,115 256,68 270,115" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+    <circle cx="256" cy="68" r="5" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Armadura pectoral reforzada (y >= 275) -->
+    <g id="body-15-evo-1-chest">
+      <polygon points="200,300 312,300 295,380 217,380" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="340" r="7" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>
