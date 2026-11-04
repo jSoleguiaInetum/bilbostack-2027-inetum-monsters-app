@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-04-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="65%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-04-evo-1-metal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-04-evo-1" class="layer-2">
+    <!-- 1. Sombra proyectada -->
+    <ellipse cx="256" cy="438" rx="132" ry="23" fill="var(--color-primary, #232D4B)" opacity="0.25"/>
+
+    <!-- 2. Hombreras mecánicas expandidas -->
+    <path d="M160,240 C120,220 105,175 130,150 C155,165 175,200 170,235 Z" fill="url(#body-04-evo-1-metal)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="130" cy="150" r="4" fill="var(--color-accent, #F5F340)"/>
+    <path d="M352,240 C392,220 407,175 382,150 C357,165 337,200 342,235 Z" fill="url(#body-04-evo-1-metal)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="382" cy="150" r="4" fill="var(--color-accent, #F5F340)"/>
+
+    <!-- 3. Chasis principal esférico -->
+    <path d="M256,115 C308,115 355,142 382,182 C408,222 415,280 395,332 C375,385 322,425 256,430 C190,425 137,385 117,332 C97,280 104,222 130,182 C157,142 204,115 256,115 Z" fill="url(#body-04-evo-1-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- 4. Antena o cresta superior (fuera de zona de ojos) -->
+    <path d="M242,115 L256,80 L270,115 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+    <circle cx="256" cy="80" r="5" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- 5. Sub-placa pectoral de contención (respetando zona protegida de ojos en y >= 285) -->
+    <g id="body-04-evo-1-chest">
+      <path d="M210,290 L256,278 L302,290 L292,360 L256,372 L220,360 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="256" cy="325" r="7" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+
+    <!-- 6. Highlights y contorno -->
+    <path d="M256,130 C300,130 340,150 365,185 C345,175 305,170 256,170 C207,170 167,175 147,185 C172,150 212,130 256,130 Z" fill="var(--color-accent, #F5F340)" opacity="0.32"/>
+    <path d="M256,115 C308,115 355,142 382,182 C408,222 415,280 395,332 C375,385 322,425 256,430 C190,425 137,385 117,332 C97,280 104,222 130,182 C157,142 204,115 256,115 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="3" opacity="0.5"/>
+  </g>
+</svg>

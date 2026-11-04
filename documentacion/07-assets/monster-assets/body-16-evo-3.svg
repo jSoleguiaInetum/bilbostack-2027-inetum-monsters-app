@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-16-evo-3-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#2C1B4D"/>
+    </linearGradient>
+    <linearGradient id="body-16-evo-3-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <radialGradient id="body-16-evo-3-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-16-evo-3" class="layer-2">
+    <ellipse cx="256" cy="458" rx="148" ry="24" fill="var(--color-primary, #232D4B)" opacity="0.42"/>
+
+    <!-- Alas de cristal fracturado / prismas de plasma desplegados (+15%) -->
+    <g id="body-16-evo-3-wings">
+      <polygon points="90,210 30,130 75,85 130,165" fill="url(#body-16-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="30" cy="130" r="5.5" fill="var(--color-accent, #F5F340)"/>
+      <polygon points="422,210 482,130 437,85 382,165" fill="url(#body-16-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="482" cy="130" r="5.5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Estrella de 6 puntas definitiva Evo 3 (+15% bounding box: exterior r=208, exterior interior r=117) -->
+    <polygon points="256,48 322,142 438,142 362,226 389,348 256,298 123,348 150,226 74,142 190,142" 
+             fill="url(#body-16-evo-3-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linejoin="round"/>
+             
+    <polygon points="256,48 256,298 438,142" fill="#FFF7B4" opacity="0.3"/>
+
+    <!-- Corona imperial de cuarzo -->
+    <g id="body-16-evo-3-crown">
+      <polygon points="210,48 256,0 302,48" fill="url(#body-16-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="0" r="7.5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Armadura pectoral con reactor de núcleo de cuarzo cuántico (y >= 275) -->
+    <g id="body-16-evo-3-chest">
+      <polygon points="180,300 332,300 307,398 205,398" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="349" r="15" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="349" r="9" fill="url(#body-16-evo-3-core)"/>
+      <circle cx="253" cy="346" r="3.5" fill="#FFF7B4"/>
+    </g>
+  </g>
+</svg>

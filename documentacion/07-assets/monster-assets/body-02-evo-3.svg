@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-02-evo-3-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <linearGradient id="body-02-evo-3-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-02-evo-3" class="layer-2">
+    <!-- Sombra imponente -->
+    <ellipse cx="256" cy="450" rx="160" ry="28" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Propulsores angulares traseros -->
+    <g id="body-02-evo-3-thrusters">
+      <polygon points="120,240 65,170 95,150 145,215" fill="url(#body-02-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <polygon points="392,240 447,170 417,150 367,215" fill="url(#body-02-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Cuerpo principal hiper-cibernético (+15% Bounding Box) -->
+    <path d="M170,395 L110,295 C95,245 115,180 160,145 C200,118 240,110 280,115 C330,122 380,160 400,210 C420,260 410,325 380,380 C350,435 295,455 235,450 C180,445 175,420 170,395 Z" fill="url(#body-02-evo-3-grad)"/>
+
+    <!-- Volúmenes de luz superior -->
+    <path d="M190,145 C220,128 265,125 305,140 C345,155 380,190 390,230 C365,200 315,170 270,165 C230,160 205,150 190,145 Z" fill="#FFF7B4" opacity="0.35"/>
+    <path d="M140,360 C170,420 230,445 295,435 C355,425 385,370 375,320 C365,365 315,410 250,410 C200,410 155,375 140,360 Z" fill="#2B1840" opacity="0.5"/>
+
+    <!-- Núcleo cuántico central frontal (respetando estrictamente zona y=170-270) -->
+    <g id="body-02-evo-3-core">
+      <polygon points="190,290 322,270 338,375 175,395" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="205,305 307,290 318,360 190,375" fill="#2B1840" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="332" r="18" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="332" r="10" fill="var(--color-secondary, #E20074)"/>
+      <circle cx="252" cy="328" r="4" fill="#FFF7B4"/>
+    </g>
+
+    <!-- Contorno maestro definitivo -->
+    <path d="M170,395 L110,295 C95,245 115,180 160,145 C200,118 240,110 280,115 C330,122 380,160 400,210 C420,260 410,325 380,380 C350,435 295,455 235,450 C180,445 175,420 170,395 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" opacity="0.5"/>
+  </g>
+</svg>

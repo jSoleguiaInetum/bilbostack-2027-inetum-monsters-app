@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g id="acc-12" class="layer-6">
+    <!-- Runas flotantes alrededor de la cabeza (y < 150) -->
+    <!-- Runa 1: Rombo central -->
+    <polygon points="256,70 268,85 256,100 244,85" fill="var(--color-accent, #F5F340)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+    <circle cx="256" cy="85" r="2.5" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Runa 2: Triángulo Izquierdo -->
+    <polygon points="170,110 185,130 155,130" fill="var(--color-secondary, #E20074)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+
+    <!-- Runa 3: Triángulo Derecho -->
+    <polygon points="342,110 357,130 327,130" fill="var(--color-secondary, #E20074)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+
+    <!-- Runa 4 y 5: Cruces pequeñas flotantes -->
+    <path d="M 200,75 L 210,75 M 205,70 L 205,80" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 302,75 L 312,75 M 307,70 L 307,80" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+</svg>

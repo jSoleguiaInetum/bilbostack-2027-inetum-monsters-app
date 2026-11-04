@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-09-shell-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#1F2338"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-09-wing-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-09" class="layer-2">
+    <!-- Sombra pesada del exoesqueleto -->
+    <ellipse cx="256" cy="438" rx="135" ry="22" fill="var(--color-primary, #232D4B)" opacity="0.3"/>
+
+    <!-- Patas articuladas cibernéticas laterales (traseras) -->
+    <g id="body-09-legs">
+      <path d="M150,260 L90,220 L70,280 L110,310" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M362,260 L422,220 L442,280 L402,310" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+
+    <!-- Silueta principal: Caparazón biomecánico estilizado de escarabajo -->
+    <path d="M256,110 
+             C310,110 365,145 385,210 
+             C405,285 390,365 350,405 
+             C310,430 256,435 256,435 
+             C256,435 202,430 162,405 
+             C122,365 107,285 127,210 
+             C147,145 202,110 256,110 Z" 
+          fill="url(#body-09-shell-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- División dorsal del elitro (caparazón de alas) -->
+    <line x1="256" y1="180" x2="256" y2="435" stroke="#8BB9FE" stroke-width="2.5" stroke-dasharray="8 4"/>
+
+    <!-- Cuernos frontal/superior en tenaza cibernética -->
+    <path d="M220,115 L200,60 L235,80 Z" fill="url(#body-09-wing-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+    <path d="M292,115 L312,60 L277,80 Z" fill="url(#body-09-wing-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+
+    <!-- Highlights en las placas acorazadas -->
+    <path d="M256,125 C295,125 340,150 362,195 C335,180 295,170 256,170 C217,170 177,180 150,195 C172,150 217,125 256,125 Z" fill="var(--color-accent, #F5F340)" opacity="0.3"/>
+  </g>
+</svg>

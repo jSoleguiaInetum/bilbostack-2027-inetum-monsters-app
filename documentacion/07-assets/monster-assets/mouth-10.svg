@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g id="mouth-10" class="layer-5">
+    <!-- Silbido/soplo (Boca fruncida circular con líneas de aire) -->
+    <ellipse cx="256" cy="300" rx="10" ry="12" fill="var(--color-primary, #232D4B)" stroke="var(--color-secondary, #E20074)" stroke-width="3"/>
+    <ellipse cx="256" cy="300" rx="5" ry="7" fill="#191B2E"/>
+    <!-- Líneas de soplo de aire -->
+    <path d="M 238,295 C 220,292 210,290 195,285" fill="none" stroke="#8BB9FE" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/>
+    <path d="M 238,305 C 220,308 210,310 195,315" fill="none" stroke="#8BB9FE" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/>
+  </g>
+</svg>

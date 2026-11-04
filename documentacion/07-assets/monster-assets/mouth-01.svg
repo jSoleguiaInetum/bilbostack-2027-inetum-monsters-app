@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="mouth-01-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <filter id="mouth-01-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="var(--color-primary, #232D4B)" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <g id="mouth-01" class="layer-5" filter="url(#mouth-01-shadow)">
+    <path d="M 220,290 Q 256,315 292,290 Q 256,302 220,290 Z" fill="var(--color-primary, #232D4B)"/>
+    <path d="M 218,288 Q 256,305 294,288 Q 256,294 218,288 Z" fill="var(--color-secondary, #E20074)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M 220,292 Q 256,326 292,292 Q 256,314 220,292 Z" fill="url(#mouth-01-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M 245,291 L 267,291 L 265,300 L 247,300 Z" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="1.5"/>
+    <circle cx="294" cy="290" r="2" fill="var(--color-accent, #F5F340)"/>
+  </g>
+</svg>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>BilboStack 2027 — Preview de Criaturas por Arquetipo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a14;
+    color: #fff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 24px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #232D4B, #E20074, #F5F340);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    text-align: center;
+    color: #8BB9FE;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+
+  /* Generator section */
+  .generator {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+  .generator-controls {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .generator-controls label {
+    color: #8BB9FE;
+    font-size: 13px;
+  }
+  .generator-controls input {
+    background: #1a1a2e;
+    border: 2px solid #232D4B;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 280px;
+  }
+  .generator-controls input:focus {
+    outline: none;
+    border-color: #E20074;
+  }
+  .generator-controls select {
+    background: #1a1a2e;
+    border: 2px solid #232D4B;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .btn-generate {
+    background: linear-gradient(135deg, #232D4B, #E20074);
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-generate:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(226, 0, 116, 0.4);
+  }
+
+  /* Evolution strip */
+  .evo-strip {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .evo-card {
+    background: #131325;
+    border: 2px solid #232D4B;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .evo-card:hover { border-color: #E20074; }
+  .evo-card.active { border-color: #F5F340; }
+  .evo-card .creature-stack {
+    position: relative;
+    margin: 0 auto 8px;
+  }
+  .evo-card .creature-stack img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  .evo-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #F5F340;
+  }
+  .evo-sublabel {
+    font-size: 10px;
+    color: #555;
+    margin-top: 2px;
+  }
+  .evo-size-0 .creature-stack { width: 140px; height: 140px; }
+  .evo-size-1 .creature-stack { width: 170px; height: 170px; }
+  .evo-size-2 .creature-stack { width: 200px; height: 200px; }
+  .evo-size-3 .creature-stack { width: 240px; height: 240px; }
+
+  .seed-info {
+    font-size: 11px;
+    color: #555;
+    margin-top: 12px;
+    font-family: monospace;
+  }
+  .rarity-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+  .rarity-inusual { background: #232D4B; color: #8BB9FE; }
+  .rarity-singular { background: #2B1840; color: #D76CFF; }
+  .rarity-unico { background: #1a3a1a; color: #4DBF61; }
+  .rarity-epico { background: #3a2800; color: #F5F340; }
+  .rarity-legendario { background: #3a0020; color: #E20074; }
+
+  /* Archetype examples grid */
+  .section-title {
+    text-align: center;
+    font-size: 20px;
+    color: #8BB9FE;
+    margin: 40px 0 20px;
+    border-top: 1px solid #232D4B;
+    padding-top: 32px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .creature-card {
+    background: #131325;
+    border: 2px solid #232D4B;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .creature-card:hover { border-color: #E20074; }
+  .creature-card .creature-stack {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 12px;
+  }
+  .creature-card .creature-stack img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  .archetype-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #F5F340;
+    margin-bottom: 4px;
+  }
+  .archetype-desc {
+    font-size: 11px;
+    color: #8BB9FE;
+    line-height: 1.4;
+  }
+  .layer-label {
+    font-size: 10px;
+    color: #555;
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .evo-strip { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<h1>BilboStack 2027 — Criaturas Tech</h1>
+<p class="subtitle">Generador procedural de criaturas por composición de capas SVG</p>
+
+<!-- GENERATOR -->
+<div class="generator">
+  <div class="generator-controls">
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="tu@email.com" value="demo@bilbostack.dev">
+    <label for="archetype">Arquetipo:</label>
+    <select id="archetype">
+      <option value="developer">Developer</option>
+      <option value="ux">UX / Design</option>
+      <option value="devops">DevOps / Platform</option>
+      <option value="qa">QA</option>
+      <option value="product">Product</option>
+      <option value="management">Management</option>
+      <option value="ia">IA Engineer</option>
+      <option value="multiclass">Multiclass</option>
+    </select>
+    <button class="btn-generate" onclick="generateCreature()">Generar Criatura</button>
+  </div>
+  <div id="result"></div>
+</div>
+
+<!-- ARCHETYPE EXAMPLES -->
+<div class="section-title">Ejemplos por Arquetipo</div>
+<div style="text-align:center; margin-bottom: 20px;">
+  <button class="btn-generate" onclick="randomizeExamples()" style="background: linear-gradient(135deg, #2B1840, #8BB9FE);">Randomizar Ejemplos</button>
+</div>
+<div class="grid" id="archetype-grid"></div>
+
+<script>
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function hexToInt(hex, start, len) {
+  return parseInt(hex.substring(start, start + len), 16);
+}
+
+function pad(n) { return String(n).padStart(2, '0'); }
+
+function getRarity(hash) {
+  const score = hexToInt(hash, 24, 4) / 0xFFFF;
+  if (score <= 0.60) return { name: 'Inusual', cls: 'rarity-inusual', accCount: 1 };
+  if (score <= 0.82) return { name: 'Singular', cls: 'rarity-singular', accCount: 1 };
+  if (score <= 0.93) return { name: 'Unico', cls: 'rarity-unico', accCount: 2 };
+  if (score <= 0.98) return { name: 'Epico', cls: 'rarity-epico', accCount: 2 };
+  return { name: 'Legendario', cls: 'rarity-legendario', accCount: 3 };
+}
+
+function extractParams(hash) {
+  return {
+    bodyShape:   (hexToInt(hash, 0, 4) % 16) + 1,
+    eyesType:    (hexToInt(hash, 12, 2) % 16) + 1,
+    mouthType:   (hexToInt(hash, 14, 2) % 16) + 1,
+    accessory:   (hexToInt(hash, 16, 2) % 16) + 1,
+    pattern:     (hexToInt(hash, 18, 2) % 16) + 1,
+    auraEffect:  (hexToInt(hash, 20, 2) % 16) + 1,
+  };
+}
+
+function buildStack(bodyFile, params, archetype, auraFile) {
+  return `
+    <img src="${auraFile}" alt="aura">
+    <img src="${bodyFile}" alt="body">
+    <img src="pattern-${pad(params.pattern)}.svg" alt="pattern">
+    <img src="eyes-${pad(params.eyesType)}.svg" alt="eyes">
+    <img src="mouth-${pad(params.mouthType)}.svg" alt="mouth">
+    <img src="acc-${pad(params.accessory)}.svg" alt="acc">
+    <img src="arch-${archetype}.svg" alt="badge">
+  `;
+}
+
+function getEvoAura(baseAura, evo) {
+  const auraProgression = [baseAura, Math.min(baseAura + 3, 16), Math.min(baseAura + 6, 16), Math.min(baseAura + 9, 16)];
+  return auraProgression[evo];
+}
+
+async function generateCreature() {
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  const archetype = document.getElementById('archetype').value;
+  if (!email) { alert('Introduce un email'); return; }
+
+  const hash = await sha256(email);
+  const params = extractParams(hash);
+  const rarity = getRarity(hash);
+  const bodyNum = pad(params.bodyShape);
+
+  const evos = [
+    { label: 'Base', sublabel: 'Evo 0', bodyFile: `body-${bodyNum}.svg`, aura: params.auraEffect },
+    { label: 'Evo 1', sublabel: 'Expertise ≥ 15', bodyFile: `body-${bodyNum}-evo-1.svg`, aura: Math.min(params.auraEffect + 3, 16) },
+    { label: 'Evo 2', sublabel: 'Aura Tech ≥ 20', bodyFile: `body-${bodyNum}-evo-2.svg`, aura: Math.min(params.auraEffect + 6, 16) },
+    { label: 'Evo 3', sublabel: 'Exp ≥ 30 & AT ≥ 35', bodyFile: `body-${bodyNum}-evo-3.svg`, aura: Math.min(params.auraEffect + 9, 16) },
+  ];
+
+  let html = `
+    <span class="rarity-badge ${rarity.cls}">${rarity.name}</span>
+    <div class="evo-strip">
+  `;
+
+  evos.forEach((evo, i) => {
+    html += `
+      <div class="evo-card evo-size-${i} ${i === 3 ? 'active' : ''}">
+        <div class="creature-stack">
+          ${buildStack(evo.bodyFile, params, archetype, `aura-${pad(evo.aura)}.svg`)}
+        </div>
+        <div class="evo-label">${evo.label}</div>
+        <div class="evo-sublabel">${evo.sublabel}</div>
+      </div>
+    `;
+  });
+
+  html += `</div>
+    <div class="seed-info">
+      SHA-256: ${hash.substring(0, 32)}...<br>
+      body-${bodyNum} · eyes-${pad(params.eyesType)} · mouth-${pad(params.mouthType)} · acc-${pad(params.accessory)} · pattern-${pad(params.pattern)} · aura-${pad(params.auraEffect)} · arch-${archetype}
+    </div>
+  `;
+
+  document.getElementById('result').innerHTML = html;
+}
+
+const ARCHETYPES = [
+  { key: 'developer', name: 'Developer' },
+  { key: 'ux', name: 'UX / Design' },
+  { key: 'devops', name: 'DevOps / Platform' },
+  { key: 'qa', name: 'QA' },
+  { key: 'product', name: 'Product' },
+  { key: 'management', name: 'Management' },
+  { key: 'ia', name: 'IA Engineer' },
+  { key: 'multiclass', name: 'Multiclass' },
+];
+
+const BODY_NAMES = [
+  'Blob orgánico','Cristal angular','Shell bivalvo','Esfera mech',
+  'Prisma cristalino','Medusa/domo','Monolito roca','Plasma + anillos',
+  'Escarabajo','Toroide','Felino','Tortuga',
+  'Axolotl','Pirámide inv.','Colmena hex','Estrella cuarzo'
+];
+const EYES_NAMES = [
+  'Amigables','Felinos','HUD','Robóticos',
+  'Luminosos','Múltiples','Cíclope','Compuestos',
+  'Asimétricos','Visor','Gema','Llama',
+  'Góticos','X/KO','Estrella','Targeting'
+];
+const MOUTH_NAMES = [
+  'Sonrisa','Traviesa','Concentración','Alegría',
+  'Orgullo','Curiosidad','Gruñido','Zigzag',
+  'Nerviosa','Silbido','Mordisco','Panel voz',
+  'Felina :3','Soplete','Cosida','Vacío'
+];
+
+function randInt(max) { return Math.floor(Math.random() * max) + 1; }
+
+function randomizeExamples() {
+  const grid = document.getElementById('archetype-grid');
+  let html = '';
+  ARCHETYPES.forEach(arch => {
+    const b = randInt(16), e = randInt(16), m = randInt(16);
+    const a = randInt(16), p = randInt(16), au = randInt(16);
+    const desc = `${BODY_NAMES[b-1]} + ${EYES_NAMES[e-1]} + ${MOUTH_NAMES[m-1]}`;
+    const layers = `body-${pad(b)} · eyes-${pad(e)} · mouth-${pad(m)} · acc-${pad(a)} · pattern-${pad(p)} · aura-${pad(au)}`;
+    html += `
+      <div class="creature-card">
+        <div class="creature-stack">
+          <img src="aura-${pad(au)}.svg" alt="aura">
+          <img src="body-${pad(b)}.svg" alt="body">
+          <img src="pattern-${pad(p)}.svg" alt="pattern">
+          <img src="eyes-${pad(e)}.svg" alt="eyes">
+          <img src="mouth-${pad(m)}.svg" alt="mouth">
+          <img src="acc-${pad(a)}.svg" alt="acc">
+          <img src="arch-${arch.key}.svg" alt="badge">
+        </div>
+        <div class="archetype-name">${arch.name}</div>
+        <div class="archetype-desc">${desc}</div>
+        <div class="layer-label">${layers}</div>
+      </div>
+    `;
+  });
+  grid.innerHTML = html;
+}
+
+generateCreature();
+randomizeExamples();
+</script>
+
+</body>
+</html>

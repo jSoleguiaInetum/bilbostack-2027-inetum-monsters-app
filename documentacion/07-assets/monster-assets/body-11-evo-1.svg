@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-11-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="65%" stop-color="#2B1840"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-11-evo-1" class="layer-2">
+    <ellipse cx="256" cy="440" rx="122" ry="20" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Orejas de gato afiladas con sensores de púa -->
+    <g id="body-11-evo-1-ears">
+      <path d="M165,145 L115,50 L195,110 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="115" cy="50" r="4" fill="var(--color-secondary, #E20074)"/>
+      <path d="M347,145 L397,50 L317,110 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="397" cy="50" r="4" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- Doble cola felina cibernética -->
+    <path d="M310,380 C365,370 415,320 400,250 C390,210 355,220 370,260 C380,285 345,335 300,355" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M202,380 C147,370 97,320 112,250 C122,210 157,220 142,260 C132,285 167,335 212,355" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linecap="round"/>
+
+    <path d="M195,130 C225,110 287,110 317,130 C358,155 375,220 365,292 C355,365 328,420 256,425 C184,420 157,365 147,292 C137,220 154,155 195,130 Z" fill="url(#body-11-evo-1-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- Cascabel/Gema estelar pectoral en y >= 285 -->
+    <g id="body-11-evo-1-chest">
+      <path d="M200,295 L256,280 L312,295 L298,365 L256,380 L214,365 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="332" r="7" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

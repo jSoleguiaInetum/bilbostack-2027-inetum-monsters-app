@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-09-evo-2-shell" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#1F2338"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-09-evo-2-wing" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+  </defs>
+  <g id="body-09-evo-2" class="layer-2">
+    <ellipse cx="256" cy="445" rx="150" ry="26" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+
+    <!-- Elitros parcialmente desplegados laterales (Alas acorazadas +10%) -->
+    <g id="body-09-evo-2-elytra">
+      <path d="M130,220 L50,170 L80,270 L140,290 Z" fill="url(#body-09-evo-2-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+      <circle cx="50" cy="170" r="4.5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M382,220 L462,170 L432,270 L372,290 Z" fill="url(#body-09-evo-2-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+      <circle cx="462" cy="170" r="4.5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Exoesqueleto expandido (+10%) -->
+    <path d="M256,90 C320,90 380,132 402,205 C425,288 408,375 365,418 C320,442 256,448 256,448 C256,448 192,442 147,418 C104,375 87,288 110,205 C132,132 192,90 256,90 Z" fill="url(#body-09-evo-2-shell)" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Tenazas hiper-desarrolladas -->
+    <g id="body-09-evo-2-horns">
+      <path d="M210,95 L170,30 L225,65 Z" fill="url(#body-09-evo-2-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+      <path d="M302,95 L342,30 L287,65 Z" fill="url(#body-09-evo-2-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+      <circle cx="256" cy="30" r="6" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- Armadura ventral abdominal reforzada (y >= 285) -->
+    <g id="body-09-evo-2-chest">
+      <path d="M195,300 L256,285 L317,300 L300,375 L256,390 L212,375 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="338" r="10" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="338" r="5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+  </g>
+</svg>

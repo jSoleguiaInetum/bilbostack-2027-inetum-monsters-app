@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="acc-11-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)" />
+      <stop offset="100%" stop-color="#151C33" />
+    </linearGradient>
+    <filter id="acc-11-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <g id="acc-11" class="layer-6" transform="translate(130, 100)" filter="url(#acc-11-shadow)">
+    <!-- Sombra de flotación inferior -->
+    <ellipse cx="28" cy="62" rx="22" ry="5" fill="#000000" opacity="0.3" />
+    
+    <!-- Conector inferior de alta velocidad (pines dorados/amarillos) -->
+    <rect x="18" y="48" width="20" height="6" rx="1" fill="var(--color-accent, #F5F340)" stroke="var(--color-primary, #232D4B)" stroke-width="1.2" />
+    <line x1="23" y1="48" x2="23" y2="54" stroke="var(--color-primary, #232D4B)" stroke-width="1" />
+    <line x1="28" y1="48" x2="28" y2="54" stroke="var(--color-primary, #232D4B)" stroke-width="1" />
+    <line x1="33" y1="48" x2="33" y2="54" stroke="var(--color-primary, #232D4B)" stroke-width="1" />
+    
+    <!-- Cuerpo principal del módulo industrial / NVMe -->
+    <rect x="12" y="8" width="32" height="42" rx="4" fill="url(#acc-11-grad)" stroke="var(--color-secondary, #E20074)" stroke-width="2" />
+    
+    <!-- Ranuras de disipación térmica con alto contraste -->
+    <g stroke-linecap="round">
+      <line x1="16" y1="13" x2="40" y2="13" stroke="#0A0E1A" stroke-width="2.5" />
+      <line x1="16" y1="14.5" x2="40" y2="14.5" stroke="var(--color-accent, #F5F340)" stroke-width="0.8" opacity="0.8" />
+
+      <line x1="16" y1="18" x2="40" y2="18" stroke="#0A0E1A" stroke-width="2.5" />
+      <line x1="16" y1="19.5" x2="40" y2="19.5" stroke="var(--color-accent, #F5F340)" stroke-width="0.8" opacity="0.8" />
+
+      <line x1="16" y1="23" x2="40" y2="23" stroke="#0A0E1A" stroke-width="2.5" />
+      <line x1="16" y1="24.5" x2="40" y2="24.5" stroke="var(--color-accent, #F5F340)" stroke-width="0.8" opacity="0.8" />
+    </g>
+    
+    <!-- Panel LED de estado y trazas de circuito ortogonales -->
+    <rect x="16" y="28" width="24" height="14" rx="2" fill="#0A0E1A" stroke="var(--color-accent, #F5F340)" stroke-width="1" />
+    <path d="M 19,35 L 23,35" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1" />
+    <circle cx="25" cy="35" r="1.5" fill="var(--color-secondary, #E20074)" />
+    <circle cx="31" cy="35" r="1.5" fill="var(--color-accent, #F5F340)" />
+    <circle cx="37" cy="35" r="1.5" fill="#00FF66" />
+  </g>
+</svg>

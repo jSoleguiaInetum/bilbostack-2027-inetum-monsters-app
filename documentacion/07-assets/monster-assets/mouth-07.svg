@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="mouth-07-dark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="mouth-07" class="layer-5">
+    <!-- Gruñido de poder (Colmillos superiores e inferiores) -->
+    <path d="M 210,285 L 302,285 L 290,322 L 222,322 Z" fill="url(#mouth-07-dark)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Colmillos superiores -->
+    <polygon points="225,285 235,302 245,285" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="1.5"/>
+    <polygon points="267,285 277,302 287,285" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="1.5"/>
+    <!-- Colmillos inferiores -->
+    <polygon points="238,322 248,305 258,322" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="1.5"/>
+  </g>
+</svg>

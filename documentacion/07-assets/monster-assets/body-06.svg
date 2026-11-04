@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-06-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="65%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <radialGradient id="body-06-glow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-06" class="layer-2">
+    <ellipse cx="256" cy="438" rx="120" ry="20" fill="var(--color-primary, #232D4B)" opacity="0.25"/>
+    <g id="body-06-tentacles">
+      <path d="M190,370 C170,400 150,420 130,410 C120,405 130,385 150,375 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <path d="M225,385 C215,420 200,440 185,435 C175,430 190,405 205,380 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <path d="M287,385 C297,420 312,440 327,435 C337,430 322,405 307,380 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <path d="M322,370 C342,400 362,420 382,410 C392,405 382,385 362,375 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+    </g>
+    <path d="M180,380 C135,320 120,200 180,145 C215,110 297,110 332,145 C392,200 377,320 332,380 C290,410 222,410 180,380 Z" fill="url(#body-06-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M180,145 C215,110 297,110 332,145 C305,165 207,165 180,145 Z" fill="var(--color-accent, #F5F340)" opacity="0.32"/>
+    <path d="M180,380 C222,410 290,410 332,380 C290,390 222,390 180,380 Z" fill="var(--color-primary, #232D4B)" opacity="0.4"/>
+    <ellipse cx="256" cy="275" rx="35" ry="22" fill="url(#body-06-glow)" opacity="0.8"/>
+    <path d="M210,180 C210,240 220,330 220,380" fill="none" stroke="#8BB9FE" stroke-width="2" stroke-linecap="round"/>
+    <path d="M302,180 C302,240 292,330 292,380" fill="none" stroke="#8BB9FE" stroke-width="2" stroke-linecap="round"/>
+    <path d="M180,380 C135,320 120,200 180,145 C215,110 297,110 332,145 C392,200 377,320 332,380 C290,410 222,410 180,380 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="3" opacity="0.5"/>
+  </g>
+</svg>

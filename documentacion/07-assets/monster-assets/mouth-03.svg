@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g id="mouth-03" class="layer-5">
+    <!-- Concentración (Línea horizontal firme con comisuras hacia abajo) -->
+    <path d="M 210,300 C 230,292 282,292 302,300" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="214" y1="300" x2="298" y2="300" stroke="var(--color-secondary, #E20074)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="256" cy="300" r="2" fill="var(--color-accent, #F5F340)"/>
+  </g>
+</svg>

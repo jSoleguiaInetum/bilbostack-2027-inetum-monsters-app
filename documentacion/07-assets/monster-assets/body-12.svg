@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-12-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#1B2838"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-12-shell-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-12" class="layer-2">
+    <!-- Sombra ancha de alta densidad/peso -->
+    <ellipse cx="256" cy="442" rx="148" ry="24" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+
+    <!-- Aletas / Extremidades laterales pesadas estilo quelonio -->
+    <g id="body-12-flippers">
+      <path d="M140,290 C90,280 50,310 35,360 C70,380 120,350 150,320 Z" fill="url(#body-12-shell-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M372,290 C422,280 462,310 477,360 C442,380 392,350 362,320 Z" fill="url(#body-12-shell-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Silueta principal: Caparazón domo ensanchado de tortuga acorazada -->
+    <path d="M256,125 
+             C330,125 400,165 415,240 
+             C430,315 405,395 355,420 
+             C305,432 207,432 157,420 
+             C107,395 82,315 97,240 
+             C112,165 182,125 256,125 Z" 
+          fill="url(#body-12-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- Placas de caparazón hexagonales marcadas -->
+    <polygon points="256,135 310,165 310,210 256,230 202,210 202,165" fill="none" stroke="#8BB9FE" stroke-width="2" opacity="0.6"/>
+    <polygon points="256,230 330,260 330,320 256,350 182,320 182,260" fill="none" stroke="#8BB9FE" stroke-width="2" opacity="0.6"/>
+
+    <!-- Cresta de protección superior en la nuca (fuera de zona de ojos) -->
+    <path d="M220,128 L256,90 L292,128 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="256" cy="90" r="4.5" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Plastrón pectoral acorazado inferior (y >= 285) -->
+    <g id="body-12-chest">
+      <path d="M200,310 L256,290 L312,310 L295,380 L256,395 L217,380 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="342" r="7" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

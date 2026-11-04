@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-01-grad-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="65%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <radialGradient id="body-01-glow" cx="70%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-01" class="layer-2">
+    <!-- 1. Sombra proyectada en el suelo -->
+    <ellipse cx="270" cy="435" rx="140" ry="24" fill="var(--color-primary, #232D4B)" opacity="0.22"/>
+
+    <!-- 2. Silueta principal: masa orgánica asimétrica con antena superior -->
+    <path d="M165,375 
+             C128,335 120,265 145,215 
+             C165,175 190,165 210,155 
+             C215,125 205,95 225,80 
+             C240,70 255,90 250,120 
+             C275,130 310,135 340,165 
+             C375,200 395,260 385,320 
+             C375,380 340,425 280,430 
+             C225,435 195,410 165,375 Z" 
+          fill="url(#body-01-grad-primary)"/>
+
+    <!-- 3. Highlight de volumen superior en la coronilla y antena -->
+    <path d="M225,80 
+             C240,70 255,90 250,120 
+             C275,130 305,138 325,160 
+             C300,165 260,155 235,160 
+             C215,165 210,145 225,80 Z" 
+          fill="var(--color-accent, #F5F340)" opacity="0.25"/>
+
+    <!-- 4. Brillo volumétrico secundario en el lomo -->
+    <path d="M280,180 
+             C320,200 355,245 350,290 
+             C335,260 295,230 270,225 
+             C260,200 270,185 280,180 Z" 
+          fill="var(--color-secondary, #E20074)" opacity="0.35"/>
+
+    <!-- 5. Sombra de profundidad inferior y pliegues de base -->
+    <path d="M175,365 
+             C205,405 260,425 315,410 
+             C360,395 375,355 370,320 
+             C350,360 300,400 255,402 
+             C210,400 180,380 175,365 Z" 
+          fill="var(--color-primary, #232D4B)" opacity="0.3"/>
+
+    <!-- 6. Vaina bioluminiscente lateral -->
+    <ellipse cx="335" cy="310" rx="18" ry="32" fill="url(#body-01-glow)" opacity="0.8" transform="rotate(-15 335 310)"/>
+    <ellipse cx="337" cy="305" rx="8" ry="16" fill="var(--color-accent, #F5F340)" opacity="0.6" transform="rotate(-15 337 305)"/>
+
+    <!-- 7. Gotas de gel orgánico flotantes -->
+    <path d="M135,280 C120,270 115,250 130,245 C142,240 148,265 135,280 Z" fill="var(--color-secondary, #E20074)" opacity="0.7"/>
+
+    <!-- 8. Borde de definición maestro -->
+    <path d="M165,375 
+             C128,335 120,265 145,215 
+             C165,175 190,165 210,155 
+             C215,125 205,95 225,80 
+             C240,70 255,90 250,120 
+             C275,130 310,135 340,165 
+             C375,200 395,260 385,320 
+             C375,380 340,425 280,430 
+             C225,435 195,410 165,375 Z" 
+          fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" opacity="0.4"/>
+  </g>
+</svg>

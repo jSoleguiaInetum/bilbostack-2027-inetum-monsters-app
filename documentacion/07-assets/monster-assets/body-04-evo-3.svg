@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-04-evo-3-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <linearGradient id="body-04-evo-3-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <radialGradient id="body-04-evo-3-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-04-evo-3" class="layer-2">
+    <!-- 1. Sombra imponente -->
+    <ellipse cx="256" cy="455" rx="155" ry="26" fill="var(--color-primary, #232D4B)" opacity="0.38"/>
+
+    <!-- 2. Alas de plasma cibernéticas traseras desplegadas -->
+    <g id="body-04-evo-3-wings">
+      <path d="M145,245 C90,185 25,125 50,75 C90,90 120,150 150,210 Z" fill="url(#body-04-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="50" cy="75" r="5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M367,245 C422,185 487,125 462,75 C422,90 392,150 362,210 Z" fill="url(#body-04-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="462" cy="75" r="5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- 3. Chasis principal definitivo (+15%) -->
+    <path d="M256,90 C322,90 380,122 410,168 C440,215 448,282 424,345 C400,410 342,455 256,462 C170,455 112,410 88,345 C64,282 72,215 102,168 C132,122 190,90 256,90 Z" fill="url(#body-04-evo-3-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- 4. Corona imperial superior de procesamiento -->
+    <g id="body-04-evo-3-crown">
+      <path d="M220,90 L256,45 L292,90 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="45" r="7" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- 5. Armadura pectoral blindada con reactor cuántico (respetando zona protegida en y >= 285) -->
+    <g id="body-04-evo-3-chest">
+      <path d="M190,300 L256,282 L322,300 C310,380 300,395 256,400 C212,395 202,380 190,300 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="342" r="16" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="342" r="10" fill="url(#body-04-evo-3-core)"/>
+      <circle cx="253" cy="339" r="4" fill="#FFF7B4"/>
+    </g>
+
+    <!-- 6. Highlights de alta intensidad -->
+    <path d="M256,105 C315,105 370,135 392,185 C370,165 315,155 256,155 C197,155 142,165 120,185 C142,135 197,105 256,105 Z" fill="#FFF7B4" opacity="0.38"/>
+  </g>
+</svg>

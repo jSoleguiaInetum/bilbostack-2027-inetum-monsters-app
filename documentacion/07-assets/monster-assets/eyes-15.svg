@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="eyes-15-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="eyes-15" class="layer-4">
+    <!-- Estrella/destello (Euforia): Pupilas en forma de estrella de 4 puntas -->
+    <!-- Ojo izquierdo -->
+    <circle cx="185" cy="215" r="32" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="4"/>
+    <polygon points="185,190 192,210 210,215 192,220 185,240 178,220 160,215 178,210" fill="url(#eyes-15-glow)"/>
+    <circle cx="185" cy="215" r="4" fill="var(--color-primary, #232D4B)"/>
+
+    <!-- Ojo derecho -->
+    <circle cx="327" cy="215" r="32" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="4"/>
+    <polygon points="327,190 334,210 352,215 334,220 327,240 320,220 302,215 320,210" fill="url(#eyes-15-glow)"/>
+    <circle cx="327" cy="215" r="4" fill="var(--color-primary, #232D4B)"/>
+
+    <!-- Destellos secundarios eufóricos -->
+    <polygon points="140,180 143,188 150,190 143,192 140,200 137,192 130,190 137,188" fill="var(--color-accent, #F5F340)"/>
+    <polygon points="372,180 375,188 382,190 375,192 372,200 369,192 362,190 369,188" fill="var(--color-accent, #F5F340)"/>
+  </g>
+</svg>

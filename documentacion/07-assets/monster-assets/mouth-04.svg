@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="mouth-04-dark" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </radialGradient>
+  </defs>
+  <g id="mouth-04" class="layer-5">
+    <!-- Alegría abierta (Boca abierta en arco con interior oscuro y dientes) -->
+    <path d="M 215,290 C 215,322 297,322 297,290 Z" fill="url(#mouth-04-dark)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M 217,290 Q 256,298 295,290 L 295,296 Q 256,304 217,296 Z" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="1.5"/>
+    <path d="M 235,314 Q 256,302 277,314 Z" fill="var(--color-secondary, #E20074)"/>
+  </g>
+</svg>

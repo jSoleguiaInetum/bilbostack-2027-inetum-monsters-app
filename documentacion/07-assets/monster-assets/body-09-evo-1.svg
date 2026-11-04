@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-09-evo-1-shell" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#1F2338"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-09-evo-1-wing" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-09-evo-1" class="layer-2">
+    <ellipse cx="256" cy="440" rx="142" ry="24" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Patas reforzadas -->
+    <g id="body-09-evo-1-legs">
+      <path d="M145,260 L80,215 L55,280 L100,315" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="55" cy="280" r="4" fill="var(--color-accent, #F5F340)"/>
+      <path d="M367,260 L432,215 L457,280 L412,315" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="457" cy="280" r="4" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Caparazón principal -->
+    <path d="M256,105 C312,105 368,142 388,208 C408,285 392,368 352,408 C312,432 256,438 256,438 C256,438 200,432 160,408 C120,368 104,285 124,208 C144,142 200,105 256,105 Z" fill="url(#body-09-evo-1-shell)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    <line x1="256" y1="175" x2="256" y2="438" stroke="#8BB9FE" stroke-width="3" stroke-dasharray="8 4"/>
+
+    <!-- Tenazas superiores expandidas y corona central -->
+    <g id="body-09-evo-1-horns">
+      <path d="M215,110 L185,50 L230,75 Z" fill="url(#body-09-evo-1-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <path d="M297,110 L327,50 L282,75 Z" fill="url(#body-09-evo-1-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <circle cx="256" cy="45" r="5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Sub-placa de contención pectoral abdominal (y >= 285) -->
+    <g id="body-09-evo-1-chest">
+      <path d="M205,295 L256,282 L307,295 L292,365 L256,380 L220,365 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="330" r="7" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

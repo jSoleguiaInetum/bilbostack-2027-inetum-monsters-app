@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-06-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="65%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-06-evo-1" class="layer-2">
+    <ellipse cx="256" cy="440" rx="128" ry="22" fill="var(--color-primary, #232D4B)" opacity="0.25"/>
+    
+    <!-- Tentáculos conectados orgánicamente desde la base del domo -->
+    <g id="body-06-evo-1-tentacles">
+      <path d="M175,360 C155,395 135,425 110,420 C100,415 115,385 145,370 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <path d="M195,375 C175,415 155,445 130,435 C120,430 140,395 165,375 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <path d="M220,385 C205,430 185,460 165,450 C155,445 175,410 195,380 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <path d="M292,385 C307,430 327,460 347,450 C357,445 337,410 317,380 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <path d="M317,375 C337,415 357,445 382,435 C392,430 372,395 347,375 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <path d="M337,360 C357,395 377,425 402,420 C412,415 397,385 367,370 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+    </g>
+
+    <path d="M180,380 C135,320 120,200 180,145 C215,110 297,110 332,145 C392,200 377,320 332,380 C290,410 222,410 180,380 Z" fill="url(#body-06-evo-1-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M235,115 L256,65 L277,115 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+    <circle cx="256" cy="65" r="5" fill="var(--color-secondary, #E20074)"/>
+    <g id="body-06-evo-1-chest">
+      <path d="M215,290 L256,280 L297,290 L285,355 L256,365 L227,355 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="256" cy="322" r="6" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+    <path d="M180,380 C135,320 120,200 180,145 C215,110 297,110 332,145 C392,200 377,320 332,380 C290,410 222,410 180,380 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="3" opacity="0.5"/>
+  </g>
+</svg>

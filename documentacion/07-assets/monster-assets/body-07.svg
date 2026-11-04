@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-07-stone-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#2B1840"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-07" class="layer-2">
+    <ellipse cx="256" cy="440" rx="140" ry="24" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+    <path d="M160,220 L115,165 L150,140 L185,180 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M352,220 L397,165 L362,140 L327,180 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M256,120 L352,160 L377,280 L342,390 L256,425 L170,390 L135,280 L160,160 Z" fill="url(#body-07-stone-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="256,120 352,160 256,230" fill="var(--color-accent, #F5F340)" opacity="0.25"/>
+    <polygon points="256,120 160,160 256,230" fill="#B8F5FF" opacity="0.2"/>
+    <polygon points="352,160 377,280 256,230" fill="var(--color-secondary, #E20074)" opacity="0.2"/>
+    <polygon points="160,160 135,280 256,230" fill="#8BB9FE" opacity="0.2"/>
+    <polygon points="256,425 342,390 256,310" fill="var(--color-primary, #232D4B)" opacity="0.4"/>
+    <polygon points="256,425 170,390 256,310" fill="#2B1840" opacity="0.5"/>
+    <path d="M256,120 L352,160 L377,280 L342,390 L256,425 L170,390 L135,280 L160,160 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="3" opacity="0.6"/>
+  </g>
+</svg>

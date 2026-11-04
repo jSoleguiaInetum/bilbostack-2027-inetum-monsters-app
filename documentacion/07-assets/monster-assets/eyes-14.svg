@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g id="eyes-14" class="layer-4">
+    <!-- X / apagados (Dormido/KO): Ojos en forma de X de trazo grueso -->
+    <!-- X Izquierda -->
+    <line x1="160" y1="195" x2="210" y2="235" stroke="var(--color-primary, #232D4B)" stroke-width="8" stroke-linecap="round"/>
+    <line x1="210" y1="195" x2="160" y2="235" stroke="var(--color-primary, #232D4B)" stroke-width="8" stroke-linecap="round"/>
+    <line x1="160" y1="195" x2="210" y2="235" stroke="var(--color-secondary, #E20074)" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- X Derecha -->
+    <line x1="302" y1="195" x2="352" y2="235" stroke="var(--color-primary, #232D4B)" stroke-width="8" stroke-linecap="round"/>
+    <line x1="352" y1="195" x2="302" y2="235" stroke="var(--color-primary, #232D4B)" stroke-width="8" stroke-linecap="round"/>
+    <line x1="302" y1="195" x2="352" y2="235" stroke="var(--color-secondary, #E20074)" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Gotas/símbolo de K.O. / Zzz -->
+    <path d="M250,180 C250,170 262,165 262,175 C262,185 250,180 250,180 Z" fill="#8BB9FE"/>
+  </g>
+</svg>

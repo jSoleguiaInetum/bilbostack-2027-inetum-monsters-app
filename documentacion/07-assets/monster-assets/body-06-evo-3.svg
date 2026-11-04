@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-06-evo-3-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <linearGradient id="body-06-evo-3-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <radialGradient id="body-06-evo-3-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-06-evo-3" class="layer-2">
+    <ellipse cx="256" cy="460" rx="160" ry="28" fill="var(--color-primary, #232D4B)" opacity="0.4"/>
+
+    <!-- Tentáculos masivos de plasma cuántico naciendo orgánicamente del cuerpo principal -->
+    <g id="body-06-evo-3-tentacles">
+      <!-- Alas/Tentáculos laterales envolventes nacidos de los flancos del domo -->
+      <path d="M175,250 C120,200 65,140 85,90 C115,100 145,150 172,210 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="85" cy="90" r="5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M337,250 C392,200 447,140 427,90 C397,100 367,150 340,210 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="427" cy="90" r="5" fill="var(--color-accent, #F5F340)"/>
+
+      <!-- Manta inferior de tentáculos abisales nacidos del borde inferior del domo -->
+      <path d="M160,390 C120,430 80,460 55,450 C45,445 70,410 100,395 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M185,398 C150,445 110,480 85,470 C75,465 100,430 130,410 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M210,402 C180,455 145,490 120,480 C110,475 135,438 162,415 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M235,405 C212,460 185,495 160,485 C150,480 175,442 198,418 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+
+      <path d="M277,405 C300,460 327,495 352,485 C362,480 337,442 314,418 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M302,402 C332,455 367,490 392,480 C402,475 377,438 350,415 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M327,398 C362,445 402,480 427,470 C437,465 412,430 382,410 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M352,390 C392,430 432,460 457,450 C467,445 442,410 412,395 Z" fill="url(#body-06-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+    </g>
+
+    <!-- Domo principal definitivo (+15%) -->
+    <path d="M168,405 C115,335 98,195 168,135 C208,92 304,92 344,135 C414,195 397,335 344,405 C296,438 216,438 168,405 Z" fill="url(#body-06-evo-3-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Corona imperial superior -->
+    <g id="body-06-evo-3-crown">
+      <path d="M215,92 L256,35 L297,92 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="35" r="7" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Reactor cuántico pectoral (respetando zona en y >= 285) -->
+    <g id="body-06-evo-3-chest">
+      <path d="M195,300 L256,282 L317,300 C305,380 295,395 256,400 C217,395 207,380 195,300 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="342" r="15" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="342" r="9" fill="url(#body-06-evo-3-core)"/>
+      <circle cx="253" cy="339" r="3.5" fill="#FFF7B4"/>
+    </g>
+
+    <!-- Highlights de alta intensidad -->
+    <path d="M168,135 C208,92 304,92 344,135 C312,160 200,160 168,135 Z" fill="#FFF7B4" opacity="0.38"/>
+  </g>
+</svg>

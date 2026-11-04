@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-03-evo-1-shell" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="#2B1840"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-03-evo-1-glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-03-evo-1" class="layer-2">
+    <!-- Sombra magnética ampliada -->
+    <ellipse cx="256" cy="442" rx="100" ry="17" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Anillos de energía orbitales traseros -->
+    <ellipse cx="256" cy="230" rx="195" ry="50" fill="none" stroke="#8BB9FE" stroke-width="2" stroke-dasharray="8 6" opacity="0.6" transform="rotate(-10 256 230)"/>
+
+    <!-- Aletas magnéticas duplicadas -->
+    <g id="body-03-evo-1-fins">
+      <path d="M170,240 L95,195 L120,280 L175,290 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5"/>
+      <circle cx="95" cy="195" r="3.5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M342,240 L417,195 L392,280 L337,290 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5"/>
+      <circle cx="417" cy="195" r="3.5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Silueta principal bivalva -->
+    <path d="M256,65 C312,65 362,118 377,198 C392,278 372,360 342,402 C317,432 285,437 256,432 C227,437 195,432 170,402 C140,360 120,278 135,198 C150,118 200,65 256,65 Z" fill="url(#body-03-evo-1-shell)" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+
+    <!-- Cresta/Sensor de ápice superior (fuera de zona de ojos) -->
+    <path d="M242,65 L256,35 L270,65 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2"/>
+    <circle cx="256" cy="35" r="4" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Cavidad interna central -->
+    <path d="M256,128 C295,128 325,168 325,228 C325,288 295,328 256,328 C217,328 187,288 187,228 C187,168 217,128 256,128 Z" fill="#1A102F" stroke="var(--color-secondary, #E20074)" stroke-width="2.5"/>
+
+    <!-- Núcleo de plasma extendido -->
+    <ellipse cx="256" cy="275" rx="38" ry="22" fill="url(#body-03-evo-1-glow)" opacity="0.8"/>
+
+    <!-- Sub-placa inferior de contención pectoral (respetando zona de ojos y=170-270) -->
+    <g id="body-03-evo-1-chest">
+      <path d="M220,285 L256,275 L292,285 L282,345 L256,355 L230,345 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="256" cy="315" r="6" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+
+    <!-- Highlights y detalles -->
+    <path d="M256,80 C295,80 335,115 348,170 C330,155 300,145 256,145 C212,145 182,155 164,170 C177,115 217,80 256,80 Z" fill="var(--color-accent, #F5F340)" opacity="0.32"/>
+    <path d="M256,65 L256,128" stroke="#8BB9FE" stroke-width="2"/>
+    <path d="M135,228 L187,228" stroke="#8BB9FE" stroke-width="2"/>
+    <path d="M377,228 L325,228" stroke="#8BB9FE" stroke-width="2"/>
+  </g>
+</svg>

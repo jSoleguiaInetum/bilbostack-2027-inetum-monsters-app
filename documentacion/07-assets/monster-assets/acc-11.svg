@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="acc-11-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="acc-11" class="layer-6">
+    <!-- Alas mini tech en laterales superiores (x < 170 y x > 342, y < 200) -->
+    <!-- Ala Izquierda -->
+    <path d="M 165,180 L 80,120 L 115,160 L 70,170 L 135,190 Z" fill="url(#acc-11-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <line x1="165" y1="180" x2="80" y2="120" stroke="#FFFFFF" stroke-width="2"/>
+
+    <!-- Ala Derecha -->
+    <path d="M 347,180 L 432,120 L 397,160 L 442,170 L 377,190 Z" fill="url(#acc-11-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <line x1="347" y1="180" x2="432" y2="120" stroke="#FFFFFF" stroke-width="2"/>
+
+    <circle cx="165" cy="180" r="4" fill="var(--color-primary, #232D4B)"/>
+    <circle cx="347" cy="180" r="4" fill="var(--color-primary, #232D4B)"/>
+  </g>
+</svg>

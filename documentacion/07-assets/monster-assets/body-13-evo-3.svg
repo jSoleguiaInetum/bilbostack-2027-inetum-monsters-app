@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-13-evo-3-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#1E1B3A"/>
+    </linearGradient>
+    <linearGradient id="body-13-evo-3-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <radialGradient id="body-13-evo-3-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-13-evo-3" class="layer-2">
+    <ellipse cx="256" cy="454" rx="148" ry="25" fill="var(--color-primary, #232D4B)" opacity="0.42"/>
+
+    <!-- Manta espectral de aletas/branquias cibernéticas de plasma hidro-cuántico (+15%) -->
+    <g id="body-13-evo-3-gills">
+      <path d="M130,210 C65,150 10,85 35,30 C75,45 110,110 140,170 Z" fill="url(#body-13-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="35" cy="30" r="6" fill="var(--color-accent, #F5F340)"/>
+      <path d="M382,210 C447,150 502,85 477,30 C437,45 402,110 372,170 Z" fill="url(#body-13-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="477" cy="30" r="6" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Torso bio-digital definitivo (+15% bounding box) -->
+    <path d="M178,105 C218,80 294,80 334,105 C380,135 402,212 388,298 C374,382 342,445 256,450 C170,445 138,382 124,298 C110,212 132,135 178,105 Z" fill="url(#body-13-evo-3-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linejoin="round"/>
+
+    <!-- Corona imperial anfibio-digital -->
+    <g id="body-13-evo-3-crown">
+      <path d="M215,90 L256,25 L297,90 Z" fill="url(#body-13-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="25" r="7.5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Armadura pectoral con reactor biológico definitivo (y >= 285) -->
+    <g id="body-13-evo-3-chest">
+      <path d="M185,302 L256,285 L327,302 L310,382 L256,398 L202,382 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="342" r="15" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="342" r="9" fill="url(#body-13-evo-3-core)"/>
+      <circle cx="253" cy="339" r="3.5" fill="#FFF7B4"/>
+    </g>
+  </g>
+</svg>

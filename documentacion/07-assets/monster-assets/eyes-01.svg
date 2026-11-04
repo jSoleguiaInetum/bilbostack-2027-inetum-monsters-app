@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="eyes-01-iris-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="#2B1840"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <radialGradient id="eyes-01-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="eyes-01" class="layer-4">
+    <ellipse cx="190" cy="215" rx="42" ry="42" fill="url(#eyes-01-glow)"/>
+    <ellipse cx="322" cy="215" rx="42" ry="42" fill="url(#eyes-01-glow)"/>
+    <g id="eyes-01-left">
+      <ellipse cx="190" cy="215" rx="35" ry="38" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="4"/>
+      <circle cx="194" cy="218" r="24" fill="url(#eyes-01-iris-grad)"/>
+      <circle cx="196" cy="220" r="14" fill="var(--color-primary, #232D4B)"/>
+      <circle cx="186" cy="208" r="7" fill="#FFFFFF"/>
+      <circle cx="204" cy="226" r="3" fill="#FFFFFF" opacity="0.8"/>
+    </g>
+    <g id="eyes-01-right">
+      <ellipse cx="322" cy="215" rx="35" ry="38" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="4"/>
+      <circle cx="318" cy="218" r="24" fill="url(#eyes-01-iris-grad)"/>
+      <circle cx="316" cy="220" r="14" fill="var(--color-primary, #232D4B)"/>
+      <circle cx="310" cy="208" r="7" fill="#FFFFFF"/>
+      <circle cx="328" cy="226" r="3" fill="#FFFFFF" opacity="0.8"/>
+    </g>
+    <path d="M152,172 Q190,158 228,172" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M284,172 Q322,158 360,172" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="256" cy="195" r="3.5" fill="var(--color-accent, #F5F340)"/>
+  </g>
+</svg>

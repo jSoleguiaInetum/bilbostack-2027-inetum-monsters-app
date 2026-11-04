@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-01-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-01-evo-1-tech" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <radialGradient id="body-01-evo-1-glow" cx="70%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-01-evo-1" class="layer-2">
+    <!-- 1. Sombra proyectada -->
+    <ellipse cx="270" cy="435" rx="142" ry="24" fill="var(--color-primary, #232D4B)" opacity="0.22"/>
+
+    <!-- 2. Alerones laterales de energía -->
+    <g id="body-01-evo-1-fin-left">
+      <path d="M142,260 C115,245 92,205 105,175 C122,185 140,220 152,240 Z" fill="url(#body-01-evo-1-tech)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M115,200 Q128,210 140,228" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="110" cy="190" r="3" fill="var(--color-secondary, #E20074)"/>
+    </g>
+    <g id="body-01-evo-1-fin-right">
+      <path d="M362,265 C390,250 412,210 400,180 C382,192 365,225 352,245 Z" fill="url(#body-01-evo-1-tech)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M390,205 Q378,215 365,232" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="395" cy="195" r="3" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- 3. Silueta principal -->
+    <path d="M165,375 C128,335 120,265 145,215 C165,175 190,165 210,155 C215,125 205,95 225,80 C240,70 255,90 250,120 C275,130 310,135 340,165 C375,200 395,260 385,320 C375,380 340,425 280,430 C225,435 195,410 165,375 Z" fill="url(#body-01-evo-1-grad)"/>
+
+    <!-- 4. Highlights y sensor de antena brillante -->
+    <path d="M225,80 C240,70 255,90 250,120 C275,130 305,138 325,160 C300,165 260,155 235,160 C215,165 210,145 225,80 Z" fill="var(--color-accent, #F5F340)" opacity="0.25"/>
+    <circle cx="232" cy="78" r="6" fill="var(--color-accent, #F5F340)" stroke="var(--color-primary, #232D4B)" stroke-width="1.5"/>
+
+    <!-- 5. Brillos y sombras de volumen -->
+    <path d="M280,180 C320,200 355,245 350,290 C335,260 295,230 270,225 C260,200 270,185 280,180 Z" fill="var(--color-secondary, #E20074)" opacity="0.35"/>
+    <path d="M175,365 C205,405 260,425 315,410 C360,395 375,355 370,320 C350,360 300,400 255,402 C210,400 180,380 175,365 Z" fill="var(--color-primary, #232D4B)" opacity="0.3"/>
+
+    <!-- 6. Vaina bioluminiscente -->
+    <ellipse cx="335" cy="310" rx="18" ry="32" fill="url(#body-01-evo-1-glow)" opacity="0.8" transform="rotate(-15 335 310)"/>
+    <ellipse cx="337" cy="305" rx="8" ry="16" fill="var(--color-accent, #F5F340)" opacity="0.6" transform="rotate(-15 337 305)"/>
+
+    <!-- 7. Micro-peto frontal (respetando la zona de ojos superior y=170-270) -->
+    <g id="body-01-evo-1-chest">
+      <path d="M228,290 C228,278 256,268 284,278 L278,342 C262,352 250,352 234,342 Z" fill="#2B1840" opacity="0.35"/>
+      <path d="M232,285 C232,272 256,262 280,272 L274,336 C258,346 248,346 238,336 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="256" cy="302" r="7" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1.5"/>
+      <circle cx="256" cy="302" r="3.5" fill="var(--color-secondary, #E20074)"/>
+      <path d="M238,322 C222,328 208,336 198,348" fill="none" stroke="#8BB9FE" stroke-width="2" stroke-linecap="round"/>
+      <path d="M274,322 C290,328 304,336 314,348" fill="none" stroke="#8BB9FE" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="198" cy="348" r="2.5" fill="var(--color-accent, #F5F340)"/>
+      <circle cx="314" cy="348" r="2.5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- 8. Contorno -->
+    <path d="M165,375 C128,335 120,265 145,215 C165,175 190,165 210,155 C215,125 205,95 225,80 C240,70 255,90 250,120 C275,130 310,135 340,165 C375,200 395,260 385,320 C375,380 340,425 280,430 C225,435 195,410 165,375 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" opacity="0.4"/>
+  </g>
+</svg>

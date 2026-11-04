@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-12-evo-2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="#1B2838"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-12-evo-2-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+  </defs>
+  <g id="body-12-evo-2" class="layer-2">
+    <ellipse cx="256" cy="450" rx="165" ry="27" fill="var(--color-primary, #232D4B)" opacity="0.38"/>
+
+    <!-- Aletas biomecánicas expandidas con propulsores -->
+    <g id="body-12-evo-2-flippers">
+      <path d="M130,280 C70,260 20,295 5,350 C50,375 110,345 142,310 Z" fill="url(#body-12-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+      <circle cx="5" cy="350" r="5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M382,280 C442,260 492,295 507,350 C462,375 402,345 370,310 Z" fill="url(#body-12-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+      <circle cx="507" cy="350" r="5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Caparazón expandido (+10% bounding box) -->
+    <path d="M256,108 C342,108 422,150 438,235 C455,318 428,405 370,430 C312,445 200,445 142,430 C84,405 57,318 74,235 C90,150 170,108 256,108 Z" fill="url(#body-12-evo-2-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Corona de titanio superior -->
+    <g id="body-12-evo-2-crest">
+      <path d="M210,110 L256,55 L302,110 Z" fill="url(#body-12-evo-2-plate)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="55" r="6" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- Plastrón pectoral reforzado con núcleo (y >= 285) -->
+    <g id="body-12-evo-2-chest">
+      <path d="M188,300 L256,282 L324,300 L305,385 L256,402 L207,385 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="342" r="11" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5"/>
+      <circle cx="256" cy="342" r="5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+  </g>
+</svg>

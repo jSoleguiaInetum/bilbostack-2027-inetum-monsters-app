@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-02-evo-2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="70%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-02-evo-2-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+  </defs>
+  <g id="body-02-evo-2" class="layer-2">
+    <!-- Sombra proyectada amplia -->
+    <ellipse cx="256" cy="440" rx="145" ry="24" fill="var(--color-primary, #232D4B)" opacity="0.25"/>
+
+    <!-- Placas de blindaje lateral expuestas -->
+    <path d="M125,280 L95,235 L120,210 L150,245 Z" fill="url(#body-02-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+    <path d="M387,280 L417,235 L392,210 L362,245 Z" fill="url(#body-02-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+
+    <!-- Cuerpo principal expandido (+10% Bounding Box) -->
+    <path d="M180,375 L125,285 C112,240 130,185 170,155 C205,130 240,125 275,130 C320,138 365,172 382,215 C400,258 392,315 365,365 C338,415 290,435 235,430 C190,425 185,400 180,375 Z" fill="url(#body-02-evo-2-grad)"/>
+
+    <!-- Volúmenes y luz -->
+    <path d="M200,155 C225,140 260,138 295,150 C330,162 362,195 370,230 C345,205 305,180 265,175 C230,170 210,160 200,155 Z" fill="var(--color-accent, #F5F340)" opacity="0.3"/>
+    <path d="M150,340 C175,395 225,420 285,410 C340,400 365,350 355,305 C345,345 300,385 245,385 C200,385 165,355 150,340 Z" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+
+    <!-- Placa de armadura frontal inferior (respetando zona y=170-270) -->
+    <g id="body-02-evo-2-chest">
+      <polygon points="210,315 302,295 315,365 200,380" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="338" r="10" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="338" r="4.5" fill="var(--color-secondary, #E20074)"/>
+    </g>
+
+    <!-- Contorno -->
+    <path d="M180,375 L125,285 C112,240 130,185 170,155 C205,130 240,125 275,130 C320,138 365,172 382,215 C400,258 392,315 365,365 C338,415 290,435 235,430 C190,425 185,400 180,375 Z" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="3" opacity="0.4"/>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-08-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="#3A1C4E"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <radialGradient id="body-08-evo-1-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-08-evo-1" class="layer-2">
+    <ellipse cx="256" cy="448" rx="108" ry="18" fill="var(--color-primary, #232D4B)" opacity="0.35"/>
+    <ellipse cx="256" cy="256" rx="195" ry="48" fill="none" stroke="#8BB9FE" stroke-width="2.5" stroke-dasharray="12 6" opacity="0.8" transform="rotate(-28 256 256)"/>
+    <path d="M256,100 C325,100 390,140 412,210 C435,280 408,360 355,402 C302,445 210,445 157,402 C104,360 77,280 100,210 C122,140 187,100 256,100 Z" fill="url(#body-08-evo-1-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="256" cy="256" r="72" fill="url(#body-08-evo-1-core)" opacity="0.9"/>
+    <circle cx="256" cy="256" r="40" fill="#FFF7B4" opacity="0.65"/>
+    <path d="M220,105 C230,75 245,52 256,38 C267,52 282,75 292,105 Z" fill="var(--color-accent, #F5F340)" opacity="0.85"/>
+    <path d="M220,407 C230,437 245,460 256,474 C267,460 282,437 292,407 Z" fill="var(--color-accent, #F5F340)" opacity="0.85"/>
+    <g id="body-08-evo-1-chest">
+      <path d="M200,295 L256,280 L312,295 L298,375 L256,390 L214,375 Z" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="335" r="8" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

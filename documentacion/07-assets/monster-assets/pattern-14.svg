@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="pattern-14-clip">
+      <rect x="76" y="100" width="360" height="360"/>
+    </clipPath>
+  </defs>
+  <g id="pattern-14" class="layer-3" clip-path="url(#pattern-14-clip)" opacity="0.32">
+    <!-- Matriz de cruces (+) pequeñas equiespaciadas -->
+    <!-- Fila 1 -->
+    <path d="M 140,160 H 160 M 150,150 V 170" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 220,160 H 240 M 230,150 V 170" stroke="var(--color-secondary, #E20074)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 300,160 H 320 M 310,150 V 170" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Fila 2 -->
+    <path d="M 180,220 H 200 M 190,210 V 230" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 260,220 H 280 M 270,210 V 230" stroke="var(--color-secondary, #E20074)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 340,220 H 360 M 350,210 V 230" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Fila 3 -->
+    <path d="M 140,280 H 160 M 150,270 V 290" stroke="var(--color-secondary, #E20074)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 220,280 H 240 M 230,270 V 290" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 300,280 H 320 M 310,270 V 290" stroke="var(--color-secondary, #E20074)" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Fila 4 -->
+    <path d="M 180,340 H 200 M 190,330 V 350" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 260,340 H 280 M 270,330 V 350" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 340,340 H 360 M 350,330 V 350" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-16-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="#2C1B4D"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-16-evo-1-crystal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-16-evo-1" class="layer-2">
+    <ellipse cx="256" cy="442" rx="125" ry="18" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Cristales flotantes extendidos -->
+    <g id="body-16-evo-1-shards">
+      <polygon points="112,235 80,185 125,200" fill="url(#body-16-evo-1-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <circle cx="80" cy="185" r="3" fill="var(--color-accent, #F5F340)"/>
+      <polygon points="400,235 432,185 387,200" fill="url(#body-16-evo-1-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <circle cx="432" cy="185" r="3" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- Estrella de 6 puntas Evo 1 (puntas exteriores r=175, interiores r=98) -->
+    <polygon points="256,81 305,158 409,158 342,231 366,328 256,285 146,328 170,231 103,158 207,158" 
+             fill="url(#body-16-evo-1-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+             
+    <polygon points="256,81 256,285 409,158" fill="var(--color-accent, #F5F340)" opacity="0.22"/>
+
+    <!-- Punta de cuarzo superior alargada -->
+    <polygon points="242,81 256,35 270,81" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+    <circle cx="256" cy="35" r="5" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Armadura pectoral en y >= 275 -->
+    <g id="body-16-evo-1-chest">
+      <polygon points="200,295 312,295 295,378 217,378" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="336" r="7" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-05-evo-3-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+    <linearGradient id="body-05-evo-3-wing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B8F5FF"/>
+      <stop offset="50%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+    <radialGradient id="body-05-evo-3-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7B4"/>
+      <stop offset="60%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </radialGradient>
+  </defs>
+  <g id="body-05-evo-3" class="layer-2">
+    <!-- 1. Sombra imponente -->
+    <ellipse cx="256" cy="452" rx="150" ry="26" fill="var(--color-primary, #232D4B)" opacity="0.4"/>
+
+    <!-- 2. Alas de cristal cuántico multivectoriales -->
+    <g id="body-05-evo-3-wings">
+      <polygon points="140,240 50,165 85,275 140,300" fill="url(#body-05-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="50" cy="165" r="5" fill="var(--color-accent, #F5F340)"/>
+      <polygon points="372,240 462,165 427,275 372,300" fill="url(#body-05-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="462" cy="165" r="5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <!-- 3. Cuerpo principal definitivo (+15% bounding box) -->
+    <path d="M256,60 L400,150 L380,400 L132,400 L112,150 Z" fill="url(#body-05-evo-3-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- 4. Corona imperial de cristal superior -->
+    <polygon points="256,60 215,15 297,15" fill="url(#body-05-evo-3-wing)" stroke="var(--color-primary, #232D4B)" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="256" cy="15" r="6.5" fill="var(--color-accent, #F5F340)"/>
+
+    <!-- 5. Armadura pectoral cristalina blindada con reactor central (respetando zona en y >= 285) -->
+    <g id="body-05-evo-3-chest">
+      <polygon points="190,300 322,300 307,385 205,385" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="256" cy="342" r="15" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+      <circle cx="256" cy="342" r="9" fill="url(#body-05-evo-3-core)"/>
+      <circle cx="253" cy="339" r="3.5" fill="#FFF7B4"/>
+    </g>
+
+    <!-- 6. Highlights de alta intensidad -->
+    <polygon points="256,60 256,400 400,150" fill="#FFF7B4" opacity="0.38"/>
+  </g>
+</svg>

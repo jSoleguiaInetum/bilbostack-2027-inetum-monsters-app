@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-06-evo-2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="60%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-06-evo-2-plate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8BB9FE"/>
+      <stop offset="50%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="#2B1840"/>
+    </linearGradient>
+  </defs>
+  <g id="body-06-evo-2" class="layer-2">
+    <ellipse cx="256" cy="450" rx="145" ry="25" fill="var(--color-primary, #232D4B)" opacity="0.3"/>
+
+    <!-- Tentáculos biomecánicos anclados firmemente bajo el domo ampliado -->
+    <g id="body-06-evo-2-tentacles">
+      <path d="M150,370 C125,410 100,435 75,425 C65,420 85,395 115,380 Z" fill="url(#body-06-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <circle cx="75" cy="425" r="3.5" fill="var(--color-accent, #F5F340)"/>
+      <path d="M175,380 C150,420 125,450 100,440 C90,435 110,405 140,388 Z" fill="url(#body-06-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M200,388 C180,435 155,465 135,455 C125,450 145,415 170,392 Z" fill="url(#body-06-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M225,392 C210,440 190,470 170,460 C160,455 180,420 200,395 Z" fill="url(#body-06-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      
+      <path d="M287,392 C302,440 322,470 342,460 C352,455 332,420 312,395 Z" fill="url(#body-06-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M312,388 C332,435 357,465 377,455 C387,450 367,415 342,392 Z" fill="url(#body-06-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M337,380 C362,420 387,450 412,440 C422,435 402,405 372,388 Z" fill="url(#body-06-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <path d="M362,370 C387,410 412,435 437,425 C447,420 427,395 397,380 Z" fill="url(#body-06-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2"/>
+      <circle cx="437" cy="425" r="3.5" fill="var(--color-accent, #F5F340)"/>
+    </g>
+
+    <path d="M172,398 C122,332 105,200 172,140 C210,100 302,100 340,140 C407,200 390,332 340,398 C294,430 218,430 172,398 Z" fill="url(#body-06-evo-2-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    <g id="body-06-evo-2-crest">
+      <path d="M225,105 L256,50 L287,105 Z" fill="url(#body-06-evo-2-plate)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+      <circle cx="256" cy="50" r="6" fill="var(--color-secondary, #E20074)"/>
+    </g>
+    <g id="body-06-evo-2-chest">
+      <path d="M205,295 L256,280 L307,295 L292,365 L256,378 L220,365 Z" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="332" r="9" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2"/>
+      <circle cx="256" cy="332" r="4" fill="var(--color-secondary, #E20074)"/>
+    </g>
+    <path d="M172,140 C210,100 302,100 340,140 C310,162 202,162 172,140 Z" fill="#FFF7B4" opacity="0.32"/>
+  </g>
+</svg>

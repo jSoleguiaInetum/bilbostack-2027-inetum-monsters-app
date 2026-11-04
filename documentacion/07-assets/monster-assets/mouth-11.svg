@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="mouth-11-lip" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-secondary, #E20074)"/>
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)"/>
+    </linearGradient>
+  </defs>
+  <g id="mouth-11" class="layer-5">
+    <!-- Mordisco inferior (Labio inferior mordido, colmillo superior) -->
+    <path d="M 215,292 Q 256,285 297,292 L 297,315 Q 256,310 215,315 Z" fill="url(#mouth-11-lip)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="265,280 277,300 289,280" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="1.5"/>
+    <line x1="215" y1="292" x2="297" y2="292" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+  </g>
+</svg>

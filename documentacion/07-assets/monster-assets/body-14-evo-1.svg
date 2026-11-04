@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body-14-evo-1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="55%" stop-color="#191B2E"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+    <linearGradient id="body-14-evo-1-crystal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-accent, #F5F340)"/>
+      <stop offset="100%" stop-color="var(--color-secondary, #E20074)"/>
+    </linearGradient>
+  </defs>
+  <g id="body-14-evo-1" class="layer-2">
+    <ellipse cx="256" cy="445" rx="118" ry="18" fill="var(--color-primary, #232D4B)" opacity="0.32"/>
+
+    <!-- Monolito piramidal invertido -->
+    <path d="M160,115 L352,115 L390,220 L256,435 L122,220 Z" fill="url(#body-14-evo-1-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="160,115 256,115 256,435 122,220" fill="var(--color-accent, #F5F340)" opacity="0.22"/>
+
+    <!-- Hombreras con picos cristalinos -->
+    <polygon points="145,160 85,110 130,90 165,135" fill="url(#body-14-evo-1-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+    <circle cx="85" cy="110" r="4" fill="var(--color-accent, #F5F340)"/>
+    <polygon points="367,160 427,110 382,90 347,135" fill="url(#body-14-evo-1-crystal)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5"/>
+    <circle cx="427" cy="110" r="4" fill="var(--color-accent, #F5F340)"/>
+
+    <!-- Aguja superior estilizada -->
+    <polygon points="238,115 256,60 274,115" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="2.5"/>
+    <circle cx="256" cy="60" r="5" fill="var(--color-secondary, #E20074)"/>
+
+    <!-- Armadura pectoral en y >= 285 -->
+    <g id="body-14-evo-1-chest">
+      <polygon points="200,295 312,295 290,375 222,375" fill="var(--color-primary, #232D4B)" stroke="#8BB9FE" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="256" cy="332" r="7" fill="var(--color-accent, #F5F340)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

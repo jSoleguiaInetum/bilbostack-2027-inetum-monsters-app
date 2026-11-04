@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>BilboStack 2027 — Galería de Assets</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a14;
+    color: #fff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 24px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 4px;
+    background: linear-gradient(90deg, #232D4B, #E20074, #F5F340);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    text-align: center;
+    color: #8BB9FE;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+
+  /* Filters */
+  .filters {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    position: sticky;
+    top: 0;
+    background: #0a0a14;
+    padding: 12px 0;
+    z-index: 10;
+    border-bottom: 1px solid #1a1a2e;
+  }
+  .filter-btn {
+    background: #131325;
+    border: 2px solid #232D4B;
+    color: #8BB9FE;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: #E20074; color: #fff; }
+  .filter-btn.active { background: #E20074; border-color: #E20074; color: #fff; font-weight: 700; }
+  .filter-count {
+    font-size: 10px;
+    opacity: 0.7;
+    margin-left: 4px;
+  }
+
+  /* Section */
+  .section {
+    max-width: 1400px;
+    margin: 0 auto 40px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #232D4B;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #F5F340;
+  }
+  .section-count {
+    font-size: 13px;
+    color: #555;
+  }
+  .section-badge {
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: #232D4B;
+    color: #8BB9FE;
+  }
+
+  /* Grid */
+  .asset-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .grid-large { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+  .grid-medium { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .grid-acc { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .grid-badge { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+
+  /* Badge card override: show badge centered and large */
+  .asset-card-badge {
+    background: #131325;
+    border: 2px solid #1a1a2e;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .asset-card-badge:hover {
+    border-color: #E20074;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(226, 0, 116, 0.2);
+  }
+  .asset-card-badge img {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0 auto;
+    object-fit: none;
+    object-position: 78% 78%;
+    transform: scale(4.5);
+    transform-origin: 100% 100%;
+  }
+  .asset-card-badge .badge-frame {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #1a1a2e;
+  }
+  .asset-card-badge .asset-name {
+    font-size: 13px;
+    color: #888;
+    margin-top: 12px;
+    font-family: monospace;
+  }
+  .asset-card-badge .asset-desc {
+    font-size: 12px;
+    color: #F5F340;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .grid-on-light { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+
+  /* Card */
+  .asset-card {
+    background: #131325;
+    border: 2px solid #1a1a2e;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .asset-card:hover {
+    border-color: #E20074;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(226, 0, 116, 0.2);
+  }
+  .asset-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    display: block;
+  }
+  .asset-card .asset-name {
+    font-size: 11px;
+    color: #888;
+    margin-top: 6px;
+    font-family: monospace;
+  }
+  .asset-card .asset-desc {
+    font-size: 10px;
+    color: #555;
+    margin-top: 2px;
+  }
+
+  /* Body evo group */
+  .evo-group {
+    background: #131325;
+    border: 2px solid #1a1a2e;
+    border-radius: 10px;
+    padding: 12px;
+    transition: all 0.2s;
+  }
+  .evo-group:hover {
+    border-color: #E20074;
+  }
+  .evo-group .evo-row {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .evo-group .evo-row img {
+    display: block;
+  }
+  .evo-group .evo-base { width: 60px; height: 60px; }
+  .evo-group .evo-1 { width: 72px; height: 72px; }
+  .evo-group .evo-2 { width: 84px; height: 84px; }
+  .evo-group .evo-3 { width: 100px; height: 100px; }
+  .evo-group .asset-name {
+    font-size: 11px;
+    color: #888;
+    margin-top: 6px;
+    text-align: center;
+    font-family: monospace;
+  }
+  .evo-group .asset-desc {
+    font-size: 10px;
+    color: #555;
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  /* Cards on lighter background (auras, patterns) */
+  .asset-card-light {
+    background: #1e2040;
+    border: 2px solid #2a2a4a;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .asset-card-light:hover {
+    border-color: #E20074;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(226, 0, 116, 0.2);
+  }
+  .asset-card-light img {
+    width: 100%;
+    aspect-ratio: 1;
+    display: block;
+    background: #2a2d50;
+    border-radius: 6px;
+  }
+  .asset-card-light .asset-name {
+    font-size: 11px;
+    color: #888;
+    margin-top: 6px;
+    font-family: monospace;
+  }
+  .asset-card-light .asset-desc {
+    font-size: 10px;
+    color: #555;
+    margin-top: 2px;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 80vmin;
+    max-height: 80vmin;
+    border: 3px solid #232D4B;
+    border-radius: 12px;
+    background: #0a0a14;
+  }
+  .lightbox .lb-name {
+    position: absolute;
+    bottom: 40px;
+    color: #8BB9FE;
+    font-size: 16px;
+    font-family: monospace;
+  }
+
+  /* Stats bar */
+  .stats {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #E20074;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<h1>BilboStack 2027 — Galería de Assets</h1>
+<p class="subtitle">152 assets SVG modulares para composición procedural de criaturas</p>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">64</div><div class="stat-label">Bodies</div></div>
+  <div class="stat"><div class="stat-num">16</div><div class="stat-label">Eyes</div></div>
+  <div class="stat"><div class="stat-num">16</div><div class="stat-label">Mouths</div></div>
+  <div class="stat"><div class="stat-num">16</div><div class="stat-label">Accessories</div></div>
+  <div class="stat"><div class="stat-num">16</div><div class="stat-label">Patterns</div></div>
+  <div class="stat"><div class="stat-num">16</div><div class="stat-label">Auras</div></div>
+  <div class="stat"><div class="stat-num">8</div><div class="stat-label">Badges</div></div>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="showSection('all')">Todos<span class="filter-count">152</span></button>
+  <button class="filter-btn" onclick="showSection('bodies')">Bodies<span class="filter-count">64</span></button>
+  <button class="filter-btn" onclick="showSection('eyes')">Eyes<span class="filter-count">16</span></button>
+  <button class="filter-btn" onclick="showSection('mouths')">Mouths<span class="filter-count">16</span></button>
+  <button class="filter-btn" onclick="showSection('acc')">Accessories<span class="filter-count">16</span></button>
+  <button class="filter-btn" onclick="showSection('patterns')">Patterns<span class="filter-count">16</span></button>
+  <button class="filter-btn" onclick="showSection('auras')">Auras<span class="filter-count">16</span></button>
+  <button class="filter-btn" onclick="showSection('badges')">Badges<span class="filter-count">8</span></button>
+</div>
+
+<div id="gallery"></div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lb-img" src="" alt="">
+  <div class="lb-name" id="lb-name"></div>
+</div>
+
+<script>
+const pad = n => String(n).padStart(2, '0');
+
+const BODY_DESC = [
+  'Blob orgánico + antena','Cristal angular facetado','Shell bivalvo / ojiva','Esfera acorazada mech',
+  'Prisma cristalino','Medusa / domo + tentáculos','Monolito roca octogonal','Plasma + anillos + jets',
+  'Escarabajo biomecánico','Toroide (anillo)','Felino cibernético','Tortuga acorazada',
+  'Axolotl + branquias','Pirámide invertida','Colmena hexagonal','Estrella cuarzo'
+];
+const EYES_DESC = [
+  'Grandes amigables','Felinos','HUD / digitales','Robóticos',
+  'Luminosos / poder','Múltiples (3)','Cíclope','Compuestos / insecto',
+  'Asimétricos','Visor / franja','Gema / cristalinos','Llama / energía',
+  'Góticos / profundos','X / apagados','Estrella / destello','Targeting / HUD'
+];
+const MOUTH_DESC = [
+  'Sonrisa amigable','Traviesa','Concentración','Alegría abierta',
+  'Orgullo','Curiosidad "O"','Gruñido poder','Zigzag mecánico',
+  'Mueca nerviosa','Silbido / soplo','Mordisco inferior','Panel voz digital',
+  'Felina ":3"','Soplete energía','Cosida / sellada','Vacío / sin boca'
+];
+const ACC_DESC = [
+  'Cuerno único','Antenas','Visor frontal','Módulo dorsal',
+  'Cristales emergentes','Halo flotante','Hombreras dobles','Cuernos tenaza',
+  'Cables / conductos','Corona tech','Alas mini','Runas flotantes',
+  'Escudo facial','Orejas tech','Espinas dorsales','Orbe flotante'
+];
+const PATTERN_DESC = [
+  'Circuitos PCB','Binario / digital','Ondas concéntricas','Escamas orgánicas',
+  'Hexágonos / panal','Fracturas / grietas','Rayas diagonales','Halftone puntos',
+  'Nervaduras orgánicas','Pixeles / glitch','Espirales','Rombos / diamantes',
+  'Topografía','Matriz de cruces','Flujo de energía','Constelaciones'
+];
+const AURA_DESC = [
+  'Halo sutil','Resplandor cálido','Pulso eléctrico','Niebla digital',
+  'Ondas radar','Llamas etéreas','Campo magnético','Cristalización',
+  'Vórtice orbital','Tormenta plasma','Aurora boreal','Aura solar',
+  'Singularidad','Dimensión fracturada','Constelación viva','Trascendencia'
+];
+const BADGE_DATA = [
+  { key: 'developer', name: 'Developer' },
+  { key: 'devops', name: 'DevOps' },
+  { key: 'ia', name: 'IA Engineer' },
+  { key: 'management', name: 'Management' },
+  { key: 'multiclass', name: 'Multiclass' },
+  { key: 'product', name: 'Product' },
+  { key: 'qa', name: 'QA' },
+  { key: 'ux', name: 'UX / Design' },
+];
+
+function openLightbox(src, name) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb-name').textContent = name;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+function cardHTML(src, name, desc, light) {
+  const cls = light ? 'asset-card-light' : 'asset-card';
+  return `<div class="${cls}" onclick="openLightbox('${src}','${name}')">
+    <img src="${src}" alt="${name}"><div class="asset-name">${name}</div><div class="asset-desc">${desc}</div>
+  </div>`;
+}
+
+function renderBodies() {
+  let html = '';
+  for (let i = 1; i <= 16; i++) {
+    const n = pad(i);
+    html += `<div class="evo-group">
+      <div class="evo-row">
+        <img class="evo-base" src="body-${n}.svg" alt="base" onclick="openLightbox('body-${n}.svg','body-${n}')">
+        <img class="evo-1" src="body-${n}-evo-1.svg" alt="evo1" onclick="openLightbox('body-${n}-evo-1.svg','body-${n}-evo-1')">
+        <img class="evo-2" src="body-${n}-evo-2.svg" alt="evo2" onclick="openLightbox('body-${n}-evo-2.svg','body-${n}-evo-2')">
+        <img class="evo-3" src="body-${n}-evo-3.svg" alt="evo3" onclick="openLightbox('body-${n}-evo-3.svg','body-${n}-evo-3')">
+      </div>
+      <div class="asset-name">body-${n}</div>
+      <div class="asset-desc">${BODY_DESC[i-1]}</div>
+    </div>`;
+  }
+  return `<div class="section" data-section="bodies">
+    <div class="section-header">
+      <div class="section-title">Bodies</div>
+      <div class="section-badge">Capa 2</div>
+      <div class="section-count">16 siluetas × 4 evoluciones = 64 SVGs</div>
+    </div>
+    <div class="asset-grid grid-large">${html}</div>
+  </div>`;
+}
+
+function renderSimpleSection(prefix, title, layer, descs, count, opts) {
+  const light = opts && opts.light;
+  const gridClass = (opts && opts.gridClass) || 'grid-medium';
+  let html = '';
+  for (let i = 1; i <= count; i++) {
+    const n = pad(i);
+    const src = `${prefix}-${n}.svg`;
+    html += cardHTML(src, `${prefix}-${n}`, descs[i-1], light);
+  }
+  return `<div class="section" data-section="${prefix}">
+    <div class="section-header">
+      <div class="section-title">${title}</div>
+      <div class="section-badge">Capa ${layer}</div>
+      <div class="section-count">${count} variantes</div>
+    </div>
+    <div class="asset-grid ${gridClass}">${html}</div>
+  </div>`;
+}
+
+function renderBadges() {
+  let html = '';
+  BADGE_DATA.forEach(b => {
+    const src = `arch-${b.key}.svg`;
+    html += `<div class="asset-card-badge" onclick="openLightbox('${src}','arch-${b.key}')">
+      <div class="badge-frame"><img src="${src}" alt="${b.key}"></div>
+      <div class="asset-name">arch-${b.key}</div>
+      <div class="asset-desc">${b.name}</div>
+    </div>`;
+  });
+  return `<div class="section" data-section="badges">
+    <div class="section-header">
+      <div class="section-title">Archetype Badges</div>
+      <div class="section-badge">Capa 7</div>
+      <div class="section-count">8 arquetipos</div>
+    </div>
+    <div class="asset-grid grid-badge">${html}</div>
+  </div>`;
+}
+
+function renderAll() {
+  return renderBodies()
+    + renderSimpleSection('eyes', 'Eyes', 4, EYES_DESC, 16)
+    + renderSimpleSection('mouth', 'Mouths', 5, MOUTH_DESC, 16)
+    + renderSimpleSection('acc', 'Accessories', 6, ACC_DESC, 16, { gridClass: 'grid-acc' })
+    + renderSimpleSection('pattern', 'Patterns', 3, PATTERN_DESC, 16, { light: true, gridClass: 'grid-on-light' })
+    + renderSimpleSection('aura', 'Auras', 1, AURA_DESC, 16, { light: true, gridClass: 'grid-on-light' })
+    + renderBadges();
+}
+
+const sectionMap = {
+  bodies: () => renderBodies(),
+  eyes: () => renderSimpleSection('eyes', 'Eyes', 4, EYES_DESC, 16),
+  mouths: () => renderSimpleSection('mouth', 'Mouths', 5, MOUTH_DESC, 16),
+  acc: () => renderSimpleSection('acc', 'Accessories', 6, ACC_DESC, 16, { gridClass: 'grid-acc' }),
+  patterns: () => renderSimpleSection('pattern', 'Patterns', 3, PATTERN_DESC, 16, { light: true, gridClass: 'grid-on-light' }),
+  auras: () => renderSimpleSection('aura', 'Auras', 1, AURA_DESC, 16, { light: true, gridClass: 'grid-on-light' }),
+  badges: () => renderBadges(),
+  all: () => renderAll(),
+};
+
+function showSection(key) {
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('gallery').innerHTML = sectionMap[key]();
+}
+
+document.getElementById('gallery').innerHTML = renderAll();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="acc-15-spine" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)"/>
+      <stop offset="100%" stop-color="var(--color-accent, #F5F340)"/>
+    </linearGradient>
+  </defs>
+  <g id="acc-15" class="layer-6">
+    <!-- Espinas dorsales en la cresta superior (y < 145) -->
+    <polygon points="256,60 264,110 248,110" fill="url(#acc-15-spine)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linejoin="round"/>
+    <polygon points="232,80 238,120 226,120" fill="url(#acc-15-spine)" stroke="var(--color-primary, #232D4B)" stroke-width="2" stroke-linejoin="round"/>
+    <polygon points="280,80 286,120 274,120" fill="url(#acc-15-spine)" stroke="var(--color-primary, #232D4B)" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="256" cy="60" r="3.5" fill="var(--color-secondary, #E20074)"/>
+    <line x1="220" y1="122" x2="292" y2="122" stroke="var(--color-primary, #232D4B)" stroke-width="3"/>
+  </g>
+</svg>
