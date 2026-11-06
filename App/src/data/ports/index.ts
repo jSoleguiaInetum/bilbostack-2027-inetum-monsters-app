@@ -4,6 +4,7 @@ import type { BattlesRepository } from './battles-repository'
 import type { CheckInsRepository } from './checkins-repository'
 import type { ContactsRepository } from './contacts-repository'
 import type { MetricsRepository } from './metrics-repository'
+import type { RankingsRepository } from './rankings-repository'
 import type { TalksRepository } from './talks-repository'
 import type { UserRepository } from './user-repository'
 
@@ -16,6 +17,7 @@ export interface Repositories {
   achievements: AchievementsRepository
   checkins: CheckInsRepository
   talks: TalksRepository
+  rankings: RankingsRepository
 }
 
 export type {
@@ -25,6 +27,7 @@ export type {
   CheckInsRepository,
   ContactsRepository,
   MetricsRepository,
+  RankingsRepository,
   TalksRepository,
   UserRepository,
 }

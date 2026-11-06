@@ -112,6 +112,36 @@ describe('api domain repositories', () => {
     expect(added).toBe(false)
   })
 
+  it('maps rankings with the current user position', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({
+      category: 'aura',
+      entries: [{
+        rank: 1,
+        userId: 'user-1',
+        name: 'Alice',
+        archetype: 'developer',
+        score: 16,
+      }],
+      currentUser: {
+        rank: 3,
+        userId: 'user-3',
+        name: 'Carla',
+        archetype: 'qa',
+        score: 6,
+      },
+    }))
+
+    const ranking = await repositories.rankings.getByCategory('aura', {
+      limit: 1,
+      currentUserId: 'user-3',
+    })
+
+    expect(ranking.entries[0]).toMatchObject({ userId: 'user-1', score: 16 })
+    expect(ranking.currentUser).toMatchObject({ rank: 3, userId: 'user-3' })
+    const [url] = fetchMock.mock.calls[0] as [string]
+    expect(url).toBe('https://api.test/rankings?category=aura&limit=1&userId=user-3')
+  })
+
   it('maps network failures to a normalized DataError', async () => {
     fetchMock.mockRejectedValueOnce(new Error('offline'))
 

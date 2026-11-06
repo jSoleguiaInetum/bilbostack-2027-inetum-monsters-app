@@ -35,14 +35,12 @@ Ver [fase-1/README.md](fase-1/README.md) para instrucciones de ejecucion.
 
 Ver [fase-2/README.md](fase-2/README.md) para dependencias entre stories.
 
-## Fase 3 — Rankings y Dashboards (pendiente)
+## Fase 3 — Rankings y Dashboards (en curso)
 
-Stories no escritas aun. Corresponden a epicas E11-E14 del backlog:
-- Rankings publicos (4 categorias)
-- Dashboard admin (CRUD)
-- Dashboard publico (pantallas del evento)
-- Tarjetas compartibles (LinkedIn)
-- Inventario de objetos
-- Misiones base
+Stories 20-28 planificadas. La capa de datos de rankings ya está implementada.
 
+- ✅ Story 20: `RankingsRepository` (4 categorías, local/API, tests)
+- Pendientes: página de rankings, dashboard público, roles/admin, dashboard privado, inventario, misiones, tarjetas compartibles + OG y Home real.
+
+Ver [fase-3/README.md](fase-3/README.md) para el orden y las dependencias.
 Ver [backlog-estructurado.md](../03-backlog-y-criterios/backlog-estructurado.md) para el detalle de epicas.

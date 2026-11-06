@@ -6,6 +6,7 @@ import { createApiCheckInsRepository } from './checkins-repository'
 import { createApiContactsRepository } from './contacts-repository'
 import { HttpClient, httpClient } from './http-client'
 import { createApiMetricsRepository } from './metrics-repository'
+import { createApiRankingsRepository } from './rankings-repository'
 import { createApiTalksRepository } from './talks-repository'
 import { createApiUserRepository } from './user-repository'
 
@@ -19,6 +20,7 @@ export function createApiRepositories(client: HttpClient = httpClient): Reposito
     achievements: createApiAchievementsRepository(client),
     checkins: createApiCheckInsRepository(client),
     talks: createApiTalksRepository(client),
+    rankings: createApiRankingsRepository(client),
   }
 }
 

@@ -6,6 +6,7 @@ import type { BattleResult } from '../../lib/battle'
 import type { CheckIn } from '../../lib/checkins'
 import type { Achievement, UnlockedAchievement } from '../../lib/achievements'
 import type { Talk } from '../../lib/seed-talks'
+import type { Ranking, RankingCategory, RankingEntry } from '../../lib/rankings'
 
 export interface UserDto {
   id: string
@@ -140,4 +141,36 @@ export interface TalkDto {
 
 export function toTalk(dto: TalkDto): Talk {
   return { talkId: dto.talkId, title: dto.title, speaker: dto.speaker }
+}
+
+export interface RankingEntryDto {
+  rank: number
+  userId: string
+  name: string
+  archetype: Archetype
+  score: number
+}
+
+export interface RankingDto {
+  category: RankingCategory
+  entries: RankingEntryDto[]
+  currentUser?: RankingEntryDto | null
+}
+
+function toRankingEntry(dto: RankingEntryDto): RankingEntry {
+  return {
+    rank: dto.rank,
+    userId: dto.userId,
+    name: dto.name,
+    archetype: dto.archetype,
+    score: dto.score,
+  }
+}
+
+export function toRanking(dto: RankingDto): Ranking {
+  return {
+    category: dto.category,
+    entries: (dto.entries ?? []).map(toRankingEntry),
+    currentUser: dto.currentUser ? toRankingEntry(dto.currentUser) : null,
+  }
 }

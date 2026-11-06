@@ -55,7 +55,7 @@ App/
 │   ├── data/                  ports/, local/, api/, talks.json, DataProvider, types, errors, config
 │   ├── monster/               generator.ts, MonsterCard, RarityBadge, types
 │   ├── qr/                    QRDisplay, QRScanner, qr-codec, types
-│   ├── lib/                   metrics, battle, achievements, evolution, questions, seed-talks, constants, crypto, MetricsProvider
+│   ├── lib/                   metrics, battle, achievements, evolution, questions, rankings, seed-talks, constants, crypto, MetricsProvider
 │   ├── components/            Layout, MetricsDisplay, EvolutionProgress, Spinner, MonsterSkeleton, AchievementToast, ArchetypeSelector, ErrorBoundary
 │   └── pages/                 Login, Register, MyMonster, UserCard, Scan, Contacts, Battle, Achievements, TalkCheckIn, DevSeed
 ```
@@ -77,11 +77,12 @@ Rutas: `/login`, `/register`, `/my-monster`, `/scan`, `/user/:id`, `/contacts`, 
 - Contactos con iconos de origen (🤝 / ⚔️👑 / ⚔️💀 / ⚔️🤗).
 - 12 logros con evaluación automática y toast.
 - QR personal, escáner, check-in de charlas (+5 Aura Tech), 10 charlas reales de BilboStack 2027 en `/dev-seed` (datos en `src/data/talks.json`).
+- `RankingsRepository` con 4 categorías, adaptadores `local`/`api` y tests (sin UI todavía).
 - Code splitting con `React.lazy` (8 chunks).
 
 ### Pendiente
 
-- **Fase 3:** rankings (Expertise, Aura Tech, Contactos, Victorias), dashboard público, dashboard admin, tarjetas compartibles + OG, inventario, misiones.
+- **Fase 3:** página de rankings, dashboard público, dashboard admin, tarjetas compartibles + OG, inventario, misiones.
 - **Home real** (story 18): resumen del jugador y navegación a 1 tap. Hoy `/` redirige a `/my-monster`.
 - **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
@@ -117,7 +118,7 @@ Crear interfaces (puertos) y dos implementaciones por dominio. La UI/providers s
 | `AchievementsRepository` | listDefinitions, listUnlocked, checkAndUnlock |
 | `CheckInsRepository` | list, hasCheckedIn, add |
 | `TalksRepository` | listTalks |
-| `RankingsRepository` | getByCategory (fase 3) |
+| `RankingsRepository` | getByCategory |
 
 ### Reglas obligatorias
 
@@ -145,7 +146,7 @@ Pendiente:
 
 1. Implementar el backend real que cumpla el contrato REST.
 2. Validar los adaptadores `api` contra ese backend (hoy se prueban con `fetch` mockeado).
-3. `RankingsRepository` cuando llegue la Fase 3.
+3. Implementar los puertos de inventario, misiones y administración cuando lleguen sus stories.
 4. Definir la estrategia de sesión/token definitiva si el backend no usa cookie (`credentials: 'include'` es el supuesto actual).
 
 ### Contrato REST sugerido (orientativo)
@@ -242,7 +243,7 @@ unlayered         ← overrides globales
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. Implementar Home (story 18) y Fase 3 con datos mock: rankings, dashboard público/admin, inventario y misiones.
+3. Implementar Home (story 18) y Fase 3 con datos mock: rankings (repo listo), dashboard público/admin, inventario y misiones.
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.

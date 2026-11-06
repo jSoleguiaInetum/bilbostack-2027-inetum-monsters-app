@@ -5,9 +5,12 @@ import { localBattlesRepository } from './battles-repository'
 import { localCheckInsRepository } from './checkins-repository'
 import { localContactsRepository } from './contacts-repository'
 import { localMetricsRepository } from './metrics-repository'
+import { localRankingsRepository } from './rankings-repository'
 import { localTalksRepository } from './talks-repository'
 import type { AchievementContext } from '../types'
 import type { BattleResult } from '../../lib/battle'
+import type { User } from '../../auth/types'
+import { STORAGE_KEYS, writeJson } from './storage'
 
 beforeEach(() => {
   localStorage.clear()
@@ -135,6 +138,137 @@ describe('local talks repository', () => {
     expect(talks[0]).toMatchObject({
       talkId: 'reconstruyendo-equipo-plataforma-ted-lasso',
       speaker: 'Anastasia Kondratieva',
+    })
+  })
+})
+
+describe('local rankings repository', () => {
+  const users: User[] = [
+    {
+      id: 'alice',
+      email: 'alice@example.com',
+      name: 'Alice',
+      archetype: 'developer',
+      createdAt: '2026-01-01T00:00:00.000Z',
+    },
+    {
+      id: 'bob',
+      email: 'bob@example.com',
+      name: 'Bob',
+      archetype: 'ux',
+      createdAt: '2026-01-02T00:00:00.000Z',
+    },
+    {
+      id: 'carla',
+      email: 'carla@example.com',
+      name: 'Carla',
+      archetype: 'qa',
+      createdAt: '2026-01-03T00:00:00.000Z',
+    },
+  ]
+
+  function battle(id: string, opponentId: string, outcome: BattleResult['outcome']): BattleResult {
+    return {
+      id,
+      opponentId,
+      opponentName: opponentId,
+      opponentArchetype: 'multiclass',
+      rounds: [],
+      outcome,
+      timestamp: '2026-01-01T00:00:00.000Z',
+    }
+  }
+
+  async function seedRankings() {
+    writeJson(STORAGE_KEYS.users, users)
+
+    await localMetricsRepository.initialize('alice', 'Inusual')
+    await localMetricsRepository.addReward('alice', 'battle_win')
+    await localMetricsRepository.addReward('alice', 'battle_win')
+
+    await localMetricsRepository.initialize('bob', 'Inusual')
+    await localMetricsRepository.addReward('bob', 'talk_checkin')
+    await localMetricsRepository.addReward('bob', 'talk_checkin')
+    await localMetricsRepository.addReward('bob', 'talk_checkin')
+
+    await localMetricsRepository.initialize('carla', 'Inusual')
+    await localMetricsRepository.addReward('carla', 'battle_win')
+    await localMetricsRepository.addReward('carla', 'battle_loss')
+    await localMetricsRepository.addReward('carla', 'battle_loss')
+
+    await localContactsRepository.add('alice', {
+      userId: 'bob',
+      name: 'Bob',
+      email: 'bob@example.com',
+      archetype: 'ux',
+    })
+    await localContactsRepository.add('bob', {
+      userId: 'alice',
+      name: 'Alice',
+      email: 'alice@example.com',
+      archetype: 'developer',
+    })
+    await localContactsRepository.add('bob', {
+      userId: 'carla',
+      name: 'Carla',
+      email: 'carla@example.com',
+      archetype: 'qa',
+    })
+
+    await localBattlesRepository.save('alice', battle('battle-1', 'bob', 'win'))
+    await localBattlesRepository.save('alice', battle('battle-2', 'carla', 'win'))
+    await localBattlesRepository.save('carla', battle('battle-3', 'bob', 'win'))
+    await localBattlesRepository.save('carla', battle('battle-4', 'alice', 'loss'))
+    await localBattlesRepository.save('carla', battle('battle-5', 'bob', 'loss'))
+  }
+
+  it('ranks users in the four categories', async () => {
+    await seedRankings()
+
+    const expertise = await localRankingsRepository.getByCategory('expertise')
+    expect(expertise.entries.map(entry => [entry.rank, entry.userId, entry.score])).toEqual([
+      [1, 'alice', 11],
+      [2, 'carla', 10],
+      [3, 'bob', 1],
+    ])
+
+    const aura = await localRankingsRepository.getByCategory('aura')
+    expect(aura.entries.map(entry => [entry.rank, entry.userId, entry.score])).toEqual([
+      [1, 'bob', 16],
+      [2, 'alice', 7],
+      [3, 'carla', 6],
+    ])
+
+    const contacts = await localRankingsRepository.getByCategory('contacts')
+    expect(contacts.entries.map(entry => [entry.rank, entry.userId, entry.score])).toEqual([
+      [1, 'bob', 2],
+      [2, 'alice', 1],
+      [3, 'carla', 0],
+    ])
+
+    const wins = await localRankingsRepository.getByCategory('wins')
+    expect(wins.entries.map(entry => [entry.rank, entry.userId, entry.score])).toEqual([
+      [1, 'alice', 2],
+      [2, 'carla', 1],
+      [3, 'bob', 0],
+    ])
+  })
+
+  it('keeps the current user position outside the returned top', async () => {
+    await seedRankings()
+
+    const ranking = await localRankingsRepository.getByCategory('expertise', {
+      limit: 1,
+      currentUserId: 'bob',
+    })
+
+    expect(ranking.entries).toHaveLength(1)
+    expect(ranking.currentUser).toEqual({
+      rank: 3,
+      userId: 'bob',
+      name: 'Bob',
+      archetype: 'ux',
+      score: 1,
     })
   })
 })
