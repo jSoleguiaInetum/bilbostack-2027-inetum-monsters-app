@@ -6,8 +6,9 @@ import { MonsterCard } from '../monster/MonsterCard'
 import { MonsterSkeleton } from '../components/MonsterSkeleton'
 import { RarityBadge } from '../monster/RarityBadge'
 import { generateMonster } from '../monster/generator'
-import { addContact, isContact } from '../lib/contacts'
+import { useRepositories } from '../data/DataProvider'
 import { ARCHETYPES } from '../lib/constants'
+import type { User } from '../auth/types'
 import type { MonsterParams, Archetype } from '../monster/types'
 import type { QRPayload } from '../qr/types'
 
@@ -16,12 +17,15 @@ export function UserCardPage() {
   const location = useLocation()
   const navigate = useNavigate()
   const { user, getUserById } = useAuth()
+  const { contacts } = useRepositories()
 
   const { addMetricsReward } = useMetrics()
 
-  const payloadFromState = (location.state as { payload?: QRPayload })?.payload
-  const userFromStore = id ? getUserById(id) : null
+  const rawPayload = (location.state as { payload?: QRPayload })?.payload
+  const payloadFromState = rawPayload?.type === 'person' ? rawPayload : undefined
 
+  const [userFromStore, setUserFromStore] = useState<User | null>(null)
+  const [lookupDone, setLookupDone] = useState(false)
   const targetEmail = payloadFromState?.email ?? userFromStore?.email ?? null
   const targetName = payloadFromState?.name ?? userFromStore?.name ?? null
   const targetArchetype = (payloadFromState?.archetype ?? userFromStore?.archetype ?? 'developer') as Archetype
@@ -31,15 +35,61 @@ export function UserCardPage() {
   const [connected, setConnected] = useState(false)
 
   useEffect(() => {
-    if (targetEmail) {
-      generateMonster(targetEmail).then(({ params }) => setParams(params))
+    if (!id) {
+      setUserFromStore(null)
+      setLookupDone(true)
+      return
     }
-    if (user && targetId) {
-      setConnected(isContact(user.id, targetId))
-    }
-  }, [targetEmail, user, targetId])
 
-  if (!targetId || (!payloadFromState && !userFromStore)) {
+    let active = true
+    setLookupDone(false)
+    getUserById(id).then((found) => {
+      if (!active) return
+      setUserFromStore(found)
+      setLookupDone(true)
+    }).catch(() => {
+      if (!active) return
+      setUserFromStore(null)
+      setLookupDone(true)
+    })
+
+    return () => {
+      active = false
+    }
+  }, [id, getUserById])
+
+  useEffect(() => {
+    if (!targetEmail) return
+
+    let active = true
+    generateMonster(targetEmail).then(({ params }) => {
+      if (active) setParams(params)
+    })
+
+    return () => {
+      active = false
+    }
+  }, [targetEmail])
+
+  useEffect(() => {
+    if (!user || !targetId) {
+      setConnected(false)
+      return
+    }
+
+    let active = true
+    contacts.isContact(user.id, targetId).then((value) => {
+      if (active) setConnected(value)
+    }).catch(() => {
+      if (active) setConnected(false)
+    })
+
+    return () => {
+      active = false
+    }
+  }, [user, targetId, contacts])
+
+  if (!targetId || (!payloadFromState && lookupDone && !userFromStore)) {
     return (
       <div className="bg-background flex flex-col items-center justify-center gap-4">
         <p className="text-4xl">🔍</p>
@@ -53,9 +103,9 @@ export function UserCardPage() {
 
   const archetypeInfo = ARCHETYPES.find(a => a.key === targetArchetype)
 
-  function handleConnect() {
+  async function handleConnect() {
     if (!user || !targetId || !targetName || !targetEmail) return
-    const added = addContact(user.id, {
+    const added = await contacts.add(user.id, {
       userId: targetId,
       name: targetName,
       email: targetEmail,
@@ -63,7 +113,7 @@ export function UserCardPage() {
     })
     if (added) {
       setConnected(true)
-      addMetricsReward('contact_add', targetArchetype)
+      await addMetricsReward('contact_add', targetArchetype)
     }
   }
 

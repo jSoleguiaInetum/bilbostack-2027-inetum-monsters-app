@@ -1,41 +1,52 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../auth/AuthProvider'
-import { getContacts } from '../lib/contacts'
+import { useRepositories } from '../data/DataProvider'
 import { generateMonster } from '../monster/generator'
 import { MonsterCard } from '../monster/MonsterCard'
 import { ARCHETYPES } from '../lib/constants'
-import type { Archetype, MonsterParams } from '../monster/types'
+import type { Contact } from '../lib/contacts'
+import type { MonsterParams } from '../monster/types'
 
-interface ContactWithMonster {
-  userId: string
-  name: string
-  email: string
-  archetype: string
-  connectedAt: string
-  origin?: 'contact' | 'battle_win' | 'battle_loss' | 'battle_draw'
+interface ContactWithMonster extends Contact {
   params: MonsterParams | null
 }
 
 export function ContactsPage() {
   const { user } = useAuth()
+  const { contacts: contactsRepository } = useRepositories()
   const navigate = useNavigate()
   const [contacts, setContacts] = useState<ContactWithMonster[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (!user) return
-    const raw = getContacts(user.id)
-    Promise.all(
-      raw.map(async (c) => {
-        const { params } = await generateMonster(c.email)
-        return { ...c, params, origin: (c as ContactWithMonster).origin ?? 'contact' as const }
+
+    let active = true
+    setLoading(true)
+    contactsRepository
+      .list(user.id)
+      .then(async (raw) => {
+        const withMonsters = await Promise.all(
+          raw.map(async (contact) => {
+            const { params } = await generateMonster(contact.email)
+            return { ...contact, params }
+          }),
+        )
+        if (!active) return
+        setContacts(withMonsters)
+        setLoading(false)
       })
-    ).then(withMonsters => {
-      setContacts(withMonsters)
-      setLoading(false)
-    })
-  }, [user])
+      .catch(() => {
+        if (!active) return
+        setContacts([])
+        setLoading(false)
+      })
+
+    return () => {
+      active = false
+    }
+  }, [user, contactsRepository])
 
   if (!user) return null
 
@@ -86,7 +97,7 @@ export function ContactsPage() {
                     {contact.params && (
                       <MonsterCard
                         params={contact.params}
-                        archetype={contact.archetype as Archetype}
+                        archetype={contact.archetype}
                         evolution={0}
                         size={48}
                       />

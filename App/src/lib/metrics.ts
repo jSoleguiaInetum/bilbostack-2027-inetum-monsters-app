@@ -46,28 +46,13 @@ const RARITY_AURA_BONUS: Record<string, number> = {
   Legendario:  8,
 }
 
-const METRICS_KEY = 'bilbostack_metrics'
-
-function storageKey(userId: string): string {
-  return `${METRICS_KEY}_${userId}`
-}
-
-export function getMetrics(userId: string): PlayerMetrics {
-  const data = localStorage.getItem(storageKey(userId))
-  if (data) return JSON.parse(data)
+export function emptyMetrics(): PlayerMetrics {
   return { expertise: 0, auraTech: 0, history: [] }
 }
 
-function saveMetrics(userId: string, metrics: PlayerMetrics): void {
-  localStorage.setItem(storageKey(userId), JSON.stringify(metrics))
-}
-
-export function initializeMetrics(userId: string, rarityName: string): PlayerMetrics {
-  const existing = getMetrics(userId)
-  if (existing.history.length > 0) return existing
-
+export function createInitialMetrics(rarityName: string): PlayerMetrics {
   const auraBonus = RARITY_AURA_BONUS[rarityName] ?? 0
-  const metrics: PlayerMetrics = {
+  return {
     expertise: 1,
     auraTech: 1 + auraBonus,
     history: [{
@@ -77,33 +62,35 @@ export function initializeMetrics(userId: string, rarityName: string): PlayerMet
       timestamp: new Date().toISOString(),
     }],
   }
-  saveMetrics(userId, metrics)
-  return metrics
 }
 
-export function addReward(
-  userId: string,
+export function applyReward(
+  metrics: PlayerMetrics,
   action: ActionType,
   contactArchetype?: Archetype,
   userArchetype?: Archetype,
 ): PlayerMetrics {
-  const metrics = getMetrics(userId)
   let reward = { ...REWARDS[action] }
 
   if (action === 'contact_add' && contactArchetype && userArchetype && contactArchetype !== userArchetype) {
     const diverseReward = REWARDS.contact_diverse
-    reward = { expertise: reward.expertise + diverseReward.expertise, auraTech: reward.auraTech + diverseReward.auraTech }
+    reward = {
+      expertise: reward.expertise + diverseReward.expertise,
+      auraTech: reward.auraTech + diverseReward.auraTech,
+    }
   }
 
-  metrics.expertise += reward.expertise
-  metrics.auraTech += reward.auraTech
-  metrics.history.push({
-    action,
-    expertise: reward.expertise,
-    auraTech: reward.auraTech,
-    timestamp: new Date().toISOString(),
-  })
-
-  saveMetrics(userId, metrics)
-  return metrics
+  return {
+    expertise: metrics.expertise + reward.expertise,
+    auraTech: metrics.auraTech + reward.auraTech,
+    history: [
+      ...metrics.history,
+      {
+        action,
+        expertise: reward.expertise,
+        auraTech: reward.auraTech,
+        timestamp: new Date().toISOString(),
+      },
+    ],
+  }
 }

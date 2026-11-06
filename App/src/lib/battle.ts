@@ -18,41 +18,6 @@ export interface BattleResult {
   timestamp: string
 }
 
-const BATTLES_KEY = 'bilbostack_battles'
-const FOUGHT_KEY = 'bilbostack_fought'
-
-function battlesKey(userId: string): string {
-  return `${BATTLES_KEY}_${userId}`
-}
-
-function foughtKey(userId: string): string {
-  return `${FOUGHT_KEY}_${userId}`
-}
-
-export function getBattles(userId: string): BattleResult[] {
-  const data = localStorage.getItem(battlesKey(userId))
-  return data ? JSON.parse(data) : []
-}
-
-export function saveBattle(userId: string, battle: BattleResult): void {
-  const battles = getBattles(userId)
-  battles.push(battle)
-  localStorage.setItem(battlesKey(userId), JSON.stringify(battles))
-
-  const fought = getFoughtOpponents(userId)
-  fought.add(battle.opponentId)
-  localStorage.setItem(foughtKey(userId), JSON.stringify([...fought]))
-}
-
-export function getFoughtOpponents(userId: string): Set<string> {
-  const data = localStorage.getItem(foughtKey(userId))
-  return data ? new Set(JSON.parse(data)) : new Set()
-}
-
-export function hasAlreadyFought(userId: string, opponentId: string): boolean {
-  return getFoughtOpponents(userId).has(opponentId)
-}
-
 export function resolveRound(
   playerCorrect: boolean,
   playerTimeMs: number,

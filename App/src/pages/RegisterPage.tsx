@@ -3,11 +3,12 @@ import { useNavigate, Link } from 'react-router'
 import { useAuth } from '../auth/AuthProvider'
 import { ArchetypeSelector } from '../components/ArchetypeSelector'
 import { generateMonster } from '../monster/generator'
-import { initPlayerMetrics } from '../lib/MetricsProvider'
+import { useRepositories } from '../data/DataProvider'
 import type { Archetype } from '../monster/types'
 
 export function RegisterPage() {
   const { signUpWithEmail, user } = useAuth()
+  const { metrics } = useRepositories()
   const navigate = useNavigate()
   const [step, setStep] = useState<1 | 2>(1)
   const [name, setName] = useState('')
@@ -38,10 +39,9 @@ export function RegisterPage() {
     setError('')
     setLoading(true)
     try {
-      await signUpWithEmail(email, password, name.trim(), archetype)
+      const newUser = await signUpWithEmail(email, password, name.trim(), archetype)
       const { params } = await generateMonster(email.trim().toLowerCase())
-      const session = JSON.parse(localStorage.getItem('bilbostack_session') || '{}')
-      if (session.id) initPlayerMetrics(session.id, params.rarity.name)
+      await metrics.initialize(newUser.id, params.rarity.name)
       navigate('/my-monster')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al registrarse')

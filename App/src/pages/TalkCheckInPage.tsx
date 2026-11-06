@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { useAuth } from '../auth/AuthProvider'
 import { useMetrics } from '../lib/MetricsProvider'
-import { addCheckIn, hasCheckedIn } from '../lib/checkins'
+import { useRepositories } from '../data/DataProvider'
 import type { TalkPayload } from '../qr/types'
 
 export function TalkCheckInPage() {
@@ -10,12 +10,29 @@ export function TalkCheckInPage() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const { addMetricsReward } = useMetrics()
+  const { checkins } = useRepositories()
 
   const talk = (location.state as { payload?: TalkPayload })?.payload
-  const [checked, setChecked] = useState(() =>
-    user && talk ? hasCheckedIn(user.id, talk.talkId) : false
-  )
+  const [checked, setChecked] = useState(false)
   const [justCheckedIn, setJustCheckedIn] = useState(false)
+
+  useEffect(() => {
+    if (!user || !talk) {
+      setChecked(false)
+      return
+    }
+
+    let active = true
+    checkins.hasCheckedIn(user.id, talk.talkId).then((value) => {
+      if (active) setChecked(value)
+    }).catch(() => {
+      if (active) setChecked(false)
+    })
+
+    return () => {
+      active = false
+    }
+  }, [user, talk, checkins])
 
   if (!user || !talk) {
     return (
@@ -29,17 +46,19 @@ export function TalkCheckInPage() {
     )
   }
 
-  function handleCheckIn() {
+  async function handleCheckIn() {
     if (!user || !talk) return
-    const added = addCheckIn(user.id, {
+    const added = await checkins.add(user.id, {
       talkId: talk.talkId,
       title: talk.title,
       speaker: talk.speaker,
     })
     if (added) {
-      addMetricsReward('talk_checkin')
       setChecked(true)
       setJustCheckedIn(true)
+      await addMetricsReward('talk_checkin')
+    } else {
+      setChecked(true)
     }
   }
 

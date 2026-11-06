@@ -5,8 +5,8 @@ import { useMetrics } from '../lib/MetricsProvider'
 import { MonsterCard } from '../monster/MonsterCard'
 import { generateMonster } from '../monster/generator'
 import { selectBattleQuestions } from '../lib/questions'
-import { resolveRound, resolveBattle, simulateOpponentAnswer, saveBattle, hasAlreadyFought } from '../lib/battle'
-import { addContact, isContact } from '../lib/contacts'
+import { resolveRound, resolveBattle, simulateOpponentAnswer } from '../lib/battle'
+import { useRepositories } from '../data/DataProvider'
 import { ARCHETYPES } from '../lib/constants'
 import type { MonsterParams, Archetype } from '../monster/types'
 import type { RoundResult } from '../lib/battle'
@@ -22,6 +22,7 @@ export function BattlePage() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const { addMetricsReward } = useMetrics()
+  const { battles, contacts } = useRepositories()
 
   const opponentData = (location.state as { name?: string; email?: string; archetype?: string }) ?? {}
   const opponentName = opponentData.name ?? 'Oponente'
@@ -36,23 +37,42 @@ export function BattlePage() {
   const [timeLeft, setTimeLeft] = useState(QUESTION_TIME_LIMIT)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [alreadyFought, setAlreadyFought] = useState(false)
+  const [checkingHistory, setCheckingHistory] = useState(true)
 
   const startTimeRef = useRef(0)
-  const timerRef = useRef<ReturnType<typeof setInterval>>()
+  const timerRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined)
 
   useEffect(() => {
     if (!user || !opponentId) return
-    if (hasAlreadyFought(user.id, opponentId)) {
-      setAlreadyFought(true)
-      return
+
+    let active = true
+    setCheckingHistory(true)
+    battles.hasFought(user.id, opponentId).then((fought) => {
+      if (!active) return
+      setCheckingHistory(false)
+      if (fought) {
+        setAlreadyFought(true)
+        return
+      }
+
+      generateMonster(user.email).then(({ params }) => {
+        if (active) setPlayerParams(params)
+      })
+      if (opponentData.email) {
+        generateMonster(opponentData.email).then(({ params }) => {
+          if (active) setOpponentParams(params)
+        })
+      }
+      const { playerQuestions: pq } = selectBattleQuestions(user.archetype, opponentArchetype)
+      setPlayerQuestions(pq)
+    }).catch(() => {
+      if (active) setCheckingHistory(false)
+    })
+
+    return () => {
+      active = false
     }
-    generateMonster(user.email).then(({ params }) => setPlayerParams(params))
-    if (opponentData.email) {
-      generateMonster(opponentData.email).then(({ params }) => setOpponentParams(params))
-    }
-    const { playerQuestions: pq } = selectBattleQuestions(user.archetype, opponentArchetype)
-    setPlayerQuestions(pq)
-  }, [user, opponentId]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [user, opponentId, battles]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const startRound = useCallback(() => {
     setPhase('question')
@@ -98,11 +118,11 @@ export function BattlePage() {
     }, 1500)
   }
 
-  function finishBattle(allRounds: RoundResult[]) {
+  async function finishBattle(allRounds: RoundResult[]) {
     if (!user || !opponentId) return
     const outcome = resolveBattle(allRounds)
 
-    saveBattle(user.id, {
+    await battles.save(user.id, {
       id: crypto.randomUUID(),
       opponentId,
       opponentName,
@@ -112,23 +132,38 @@ export function BattlePage() {
       timestamp: new Date().toISOString(),
     })
 
-    if (!isContact(user.id, opponentId) && opponentData.email) {
-      addContact(user.id, {
+    const alreadyContact = await contacts.isContact(user.id, opponentId)
+    if (!alreadyContact && opponentData.email) {
+      const origin = outcome === 'win'
+        ? 'battle_win'
+        : outcome === 'loss'
+          ? 'battle_loss'
+          : 'battle_draw'
+      await contacts.add(user.id, {
         userId: opponentId,
         name: opponentName,
         email: opponentData.email,
         archetype: opponentArchetype,
+        origin,
       })
     }
 
-    if (outcome === 'win') addMetricsReward('battle_win')
-    else if (outcome === 'loss') addMetricsReward('battle_loss')
-    else addMetricsReward('battle_draw')
+    if (outcome === 'win') await addMetricsReward('battle_win')
+    else if (outcome === 'loss') await addMetricsReward('battle_loss')
+    else await addMetricsReward('battle_draw')
 
     setPhase('final')
   }
 
   if (!user || !opponentId) return null
+
+  if (checkingHistory) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="border-4 border-surface border-t-secondary rounded-full animate-spin w-10 h-10" />
+      </div>
+    )
+  }
 
   if (alreadyFought) {
     return (

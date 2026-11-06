@@ -1,5 +1,3 @@
-import { getContacts } from './contacts'
-import { getBattles } from './battle'
 import type { PlayerMetrics } from './metrics'
 
 export interface Achievement {
@@ -23,12 +21,6 @@ export interface AchievementContext {
   battleCount: number
   battleWins: number
   uniqueArchetypesContacted: number
-}
-
-const ACHIEVEMENTS_KEY = 'bilbostack_achievements'
-
-function storageKey(userId: string): string {
-  return `${ACHIEVEMENTS_KEY}_${userId}`
 }
 
 export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
@@ -130,48 +122,22 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
 ]
 
-export function getUnlockedAchievements(userId: string): UnlockedAchievement[] {
-  const data = localStorage.getItem(storageKey(userId))
-  return data ? JSON.parse(data) : []
-}
-
-function saveUnlocked(userId: string, unlocked: UnlockedAchievement[]): void {
-  localStorage.setItem(storageKey(userId), JSON.stringify(unlocked))
-}
-
-export function buildContext(userId: string, metrics: PlayerMetrics): AchievementContext {
-  const contacts = getContacts(userId)
-  const battles = getBattles(userId)
-  const archetypes = new Set(contacts.map(c => c.archetype))
-
-  return {
-    userId,
-    metrics,
-    contactCount: contacts.length,
-    battleCount: battles.length,
-    battleWins: battles.filter(b => b.outcome === 'win').length,
-    uniqueArchetypesContacted: archetypes.size,
-  }
-}
-
-export function checkAchievements(userId: string, metrics: PlayerMetrics): UnlockedAchievement[] {
-  const ctx = buildContext(userId, metrics)
-  const unlocked = getUnlockedAchievements(userId)
-  const unlockedIds = new Set(unlocked.map(a => a.id))
+export function evaluateAchievements(
+  unlocked: UnlockedAchievement[],
+  context: AchievementContext,
+): { unlocked: UnlockedAchievement[]; newlyUnlocked: UnlockedAchievement[] } {
+  const unlockedIds = new Set(unlocked.map((achievement) => achievement.id))
+  const next = [...unlocked]
   const newlyUnlocked: UnlockedAchievement[] = []
 
   for (const def of ACHIEVEMENT_DEFINITIONS) {
     if (unlockedIds.has(def.id)) continue
-    if (def.condition(ctx)) {
+    if (def.condition(context)) {
       const entry = { id: def.id, unlockedAt: new Date().toISOString() }
       newlyUnlocked.push(entry)
-      unlocked.push(entry)
+      next.push(entry)
     }
   }
 
-  if (newlyUnlocked.length > 0) {
-    saveUnlocked(userId, unlocked)
-  }
-
-  return newlyUnlocked
+  return { unlocked: next, newlyUnlocked }
 }
