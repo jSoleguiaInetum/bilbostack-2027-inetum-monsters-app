@@ -1,0 +1,116 @@
+[
+  {
+    "talkId": "reconstruyendo-equipo-plataforma-ted-lasso",
+    "title": "Reconstruyendo un equipo de Plataforma con el playbook de Ted Lasso",
+    "speakers": [
+      {
+        "name": "Anastasia Kondratieva",
+        "url": "https://bilbostack.com/speakers/anastasia-kondratieva/"
+      }
+    ],
+    "description": "Hace año y medio, Tasia llegó a un equipo de plataforma casi renovado y con una mala fama heredada. En Bilbostack 2027 nos contará cómo lo reconstruyeron: de infraestructura reactiva a Platform Engineering moderno, y de un equipo del que se desconfiaba a uno con el que todo el mundo quiere trabajar. Qué construyeron, qué automatizaron y qué decisiones técnicas tomaron por el camino. Y qué pinta Ted Lasso en todo esto."
+  },
+  {
+    "talkId": "nuestro-viaje-greenfield",
+    "title": "Nuestro viaje por el greenfield",
+    "speakers": [
+      {
+        "name": "Eli Maruenda Joya",
+        "url": "https://bilbostack.com/speakers/eli-maruenda/"
+      },
+      {
+        "name": "Anna Romagosa Rovira",
+        "url": "https://bilbostack.com/speakers/anna-romagosa/"
+      }
+    ],
+    "description": "Construir un producto desde cero en un sector regulado, con deadlines exigentes y sin conocer bien el dominio no es tan fácil como parece. Eli y Anna nos contarán cómo transformaron un proceso de facturación: de decisiones por intuición a decisiones con datos, ganándose la confianza de stakeholders escépticos y alineando un equipo grande y muy senior. Una historia real de aprendizajes, errores y decisiones en incertidumbre, con algo de humor por el camino."
+  },
+  {
+    "talkId": "ia-en-la-empresa-mas-alla-del-hype",
+    "title": "IA en la empresa: activando su valor más allá del hype",
+    "speakers": [
+      {
+        "name": "Anna Via Baraldés",
+        "url": "https://bilbostack.com/speakers/anna-via/"
+      }
+    ],
+    "description": "Los modelos de IA generativa ya igualan o superan a personas expertas en algunas tareas. Entonces, ¿por qué su adopción y su impacto real en las empresas avanzan tan despacio? Anna, que lidera la función de IA en InfoJobs, analizará las razones de este gap y, sobre todo, las palancas para cerrarlo: del «esto es posible» al «esto funciona de forma fiable y genera valor cada día»."
+  },
+  {
+    "talkId": "comunidades-desde-dentro-empresa",
+    "title": "Las comunidades no están muertas: cómo crear comunidad desde dentro de una empresa",
+    "speakers": [
+      {
+        "name": "Borja Pérez Francés",
+        "url": "https://bilbostack.com/speakers/borja-perez/"
+      }
+    ],
+    "description": "¿Qué puede hacer una persona para crear comunidad? ¿Y cómo se hace desde dentro de una empresa? Borja nos contará cómo construir comunidad desde la compañía y cómo la compañía también puede beneficiarse de ello."
+  },
+  {
+    "talkId": "evolucion-tecnologia-cine",
+    "title": "La evolución de la tecnología en el cine: del cinematógrafo a la inteligencia artificial",
+    "speakers": [
+      {
+        "name": "Carolina Jiménez García",
+        "url": "https://bilbostack.com/speakers/carolina-jimenez/"
+      }
+    ],
+    "description": "Del cinematógrafo a la inteligencia artificial: la historia del cine siempre ha ido de la mano de la tecnología. Carolina, con 36 largometrajes a sus espaldas, nos llevará por más de un siglo de innovación: trucos y efectos ópticos, efectos visuales digitales, entornos y personajes imposibles y las nuevas herramientas basadas en IA."
+  },
+  {
+    "talkId": "sigue-importando-el-codigo",
+    "title": "¿Sigue importando el código?",
+    "speakers": [
+      {
+        "name": "Gorka Moreno Asín",
+        "url": "https://bilbostack.com/speakers/gorka-moreno/"
+      }
+    ],
+    "description": "En 540 llevan doce años cuidando el código que escriben. Llegó la IA y dejaron de escribirlo ellos, pero no de preocuparse por él. Gorka nos contará cómo construyen un sistema que genere software con su criterio, seguro y fiable, con un objetivo: no tener que leer el código generado y seguir durmiendo tranquilos. Lo que funciona, lo que no y lo que están aprendiendo."
+  },
+  {
+    "talkId": "algoritmo-de-la-cooperacion",
+    "title": "El algoritmo de la cooperación",
+    "speakers": [
+      {
+        "name": "Maica Trinidad",
+        "url": "https://bilbostack.com/speakers/maica-trinidad/"
+      }
+    ],
+    "description": "Trabajar en equipo parece sencillo hasta que llegan los desacuerdos o la sensación de que ponemos más que el resto. ¿Seguimos cooperando? ¿Nos protegemos? Maica nos llevará por lo que las matemáticas han descubierto sobre la cooperación: qué la hace posible, por qué se rompe y qué estrategias funcionan. Y también por los límites de un algoritmo para explicar cómo trabajamos con otras personas."
+  },
+  {
+    "talkId": "perturbacion-fuerza-agile",
+    "title": "Una perturbación en la fuerza Agile",
+    "speakers": [
+      {
+        "name": "María Berenguer Caballero",
+        "url": "https://bilbostack.com/speakers/maria-berenguer/"
+      }
+    ],
+    "description": "El imperio waterfall recupera posiciones y la IA avanza imparable por la galaxia. María nos contará cómo eXtreme Programming ayuda a los equipos a entrenar su excelencia técnica y a despertar su fuerza, ahora que la IA está cambiando la forma de desarrollar software. Con casos reales de organizaciones que han iniciado su viaje, con sus errores y aciertos."
+  },
+  {
+    "talkId": "funk-conversacion-pendiente-gandalf",
+    "title": "ᚠunk: la conversación pendiente de los desarrolladores de tecnología con Gandalf",
+    "speakers": [
+      {
+        "name": "Pablo Ruiz Múzquiz",
+        "url": "https://bilbostack.com/speakers/pablo-ruiz/"
+      }
+    ],
+    "description": "¿Qué pinta tendría un movimiento punk desde las trincheras de la tecnología? Pablo nos hablará de tecnofeudalismo, autonomía material, responsabilidad y Gandalf, para evitar una nueva banalidad del mal en torno a la IA generativa."
+  },
+  {
+    "talkId": "gestion-producto-todos-pueden-construir",
+    "title": "Gestión de producto cuando todo el mundo puede construir",
+    "speakers": [
+      {
+        "name": "Vanesa Tejada Muñoz",
+        "url": "https://bilbostack.com/speakers/vanesa-tejada/"
+      }
+    ],
+    "description": "Hoy todo el mundo puede construir con IA, pero la velocidad no debería costarnos el criterio, la calidad ni la identidad del producto. Vanesa nos hablará de gestión de producto cuando equipos y agentes aceleran a la vez: visibilidad y gobernanza frente al caos, autonomía con control y las nuevas herramientas que han venido para quedarse."
+  }
+]
