@@ -17,6 +17,7 @@ const BattlePage = lazy(() => import('./pages/BattlePage').then(m => ({ default:
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage').then(m => ({ default: m.AchievementsPage })))
 const TalkCheckInPage = lazy(() => import('./pages/TalkCheckInPage').then(m => ({ default: m.TalkCheckInPage })))
 const RankingsPage = lazy(() => import('./pages/RankingsPage').then(m => ({ default: m.RankingsPage })))
+const PublicDashboardPage = lazy(() => import('./pages/PublicDashboardPage').then(m => ({ default: m.PublicDashboardPage })))
 const DevSeedPage = lazy(() => import('./pages/DevSeedPage').then(m => ({ default: m.DevSeedPage })))
 
 function LazyFallback() {
@@ -37,6 +38,7 @@ export default function App() {
               <Routes>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
+                <Route path="/dashboard" element={<PublicDashboardPage />} />
                 <Route path="/my-monster" element={
                   <ProtectedRoute>
                     <Layout><MyMonsterPage /></Layout>

@@ -18,7 +18,7 @@
 | Fase 0 — Fundacion | ✅ Completada | Stack, setup, assets SVG, prompts de IA |
 | Fase 1 — MVP Core | ✅ Completada | Auth, criatura, QR, scan, post-scan |
 | Fase 2 — Interaccion Social | ✅ Completada (con polish) | Metricas, combates, contactos, logros, evolucion, check-in charlas |
-| Fase 3 — Rankings, Dashboards, Social | ❌ Pendiente | Rankings publicos, dashboard admin, tarjetas compartibles |
+| Fase 3 — Rankings, Dashboards, Social | 🚧 En curso | Rankings y dashboard publico hechos; faltan admin, inventario, misiones y tarjetas |
 | Fase 4 — Hardening + Evento | ❌ Pendiente | Prueba de carga, ensayo general, deploy produccion |
 
 ### Lo que esta construido (codigo en `plan/App/bilbostack-app/`)

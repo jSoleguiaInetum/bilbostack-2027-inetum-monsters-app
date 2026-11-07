@@ -142,6 +142,58 @@ describe('api domain repositories', () => {
     expect(url).toBe('https://api.test/rankings?category=aura&limit=1&userId=user-3')
   })
 
+  it('maps the public dashboard overview', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({
+      stats: {
+        totalUsers: 3,
+        totalBattles: 5,
+        totalContacts: 4,
+        totalAchievements: 6,
+      },
+      rankings: {
+        aura: [{
+          rank: 1,
+          userId: 'user-1',
+          name: 'Alice',
+          archetype: 'developer',
+          score: 16,
+        }],
+      },
+      recentEvolutions: [{
+        userId: 'user-2',
+        name: 'Bob',
+        archetype: 'ux',
+        stage: 1,
+        totalPoints: 22,
+        evolvedAt: '2026-01-01T12:20:00.000Z',
+      }],
+    }))
+
+    const dashboard = await repositories.dashboard.getOverview({
+      rankingsLimit: 1,
+      evolutionsLimit: 2,
+    })
+
+    expect(dashboard.stats).toEqual({
+      totalUsers: 3,
+      totalBattles: 5,
+      totalContacts: 4,
+      totalAchievements: 6,
+    })
+    expect(dashboard.rankings.aura).toHaveLength(1)
+    expect(dashboard.rankings.expertise).toEqual([])
+    expect(dashboard.rankings.contacts).toEqual([])
+    expect(dashboard.rankings.wins).toEqual([])
+    expect(dashboard.recentEvolutions[0]).toMatchObject({
+      userId: 'user-2',
+      stage: 1,
+      totalPoints: 22,
+    })
+
+    const [url] = fetchMock.mock.calls[0] as [string]
+    expect(url).toBe('https://api.test/dashboard/public?rankingsLimit=1&evolutionsLimit=2')
+  })
+
   it('maps network failures to a normalized DataError', async () => {
     fetchMock.mockRejectedValueOnce(new Error('offline'))
 

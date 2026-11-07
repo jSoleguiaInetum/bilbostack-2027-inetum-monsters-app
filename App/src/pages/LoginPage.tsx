@@ -107,6 +107,10 @@ export function LoginPage() {
           ¿No tienes cuenta?{' '}
           <Link to="/register" className="snes-link text-ocean-color">Regístrate</Link>
         </p>
+
+        <p className="text-center text-gray-500 text-sm mt-4">
+          <Link to="/dashboard" className="snes-link text-tech">Ver dashboard público</Link>
+        </p>
       </div>
     </div>
   )

@@ -14,8 +14,7 @@ export const EVOLUTION_THRESHOLDS: EvolutionThreshold[] = [
   { stage: 3, totalRequired: 120, label: 'Evolución III' },
 ]
 
-export function getEvolutionStage(metrics: PlayerMetrics): Evolution {
-  const total = metrics.expertise + metrics.auraTech
+export function getEvolutionStageFromTotal(total: number): Evolution {
   let stage: Evolution = 0
   for (const threshold of EVOLUTION_THRESHOLDS) {
     if (total >= threshold.totalRequired) {
@@ -23,6 +22,10 @@ export function getEvolutionStage(metrics: PlayerMetrics): Evolution {
     }
   }
   return stage
+}
+
+export function getEvolutionStage(metrics: PlayerMetrics): Evolution {
+  return getEvolutionStageFromTotal(metrics.expertise + metrics.auraTech)
 }
 
 export function getNextEvolution(metrics: PlayerMetrics): { threshold: EvolutionThreshold; progress: number } | null {

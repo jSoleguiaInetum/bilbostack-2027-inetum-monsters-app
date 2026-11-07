@@ -4,6 +4,7 @@ import { localAuthRepository } from './auth-repository'
 import { localBattlesRepository } from './battles-repository'
 import { localCheckInsRepository } from './checkins-repository'
 import { localContactsRepository } from './contacts-repository'
+import { localDashboardRepository } from './dashboard-repository'
 import { localMetricsRepository } from './metrics-repository'
 import { localRankingsRepository } from './rankings-repository'
 import { localTalksRepository } from './talks-repository'
@@ -19,4 +20,5 @@ export const localRepositories: Repositories = {
   checkins: localCheckInsRepository,
   talks: localTalksRepository,
   rankings: localRankingsRepository,
+  dashboard: localDashboardRepository,
 }

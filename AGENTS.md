@@ -60,7 +60,7 @@ App/
 │   └── pages/                 Login, Register, MyMonster, UserCard, Scan, Contacts, Battle, Achievements, TalkCheckIn, DevSeed
 ```
 
-Rutas: `/login`, `/register`, `/my-monster`, `/scan`, `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/talk-checkin`, `/dev-seed`.
+Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/talk-checkin`, `/dev-seed`.
 
 ## 5. Estado actual
 
@@ -79,11 +79,12 @@ Rutas: `/login`, `/register`, `/my-monster`, `/scan`, `/user/:id`, `/contacts`, 
 - QR personal, escáner, check-in de charlas (+5 Aura Tech), 10 charlas reales de BilboStack 2027 en `/dev-seed` (datos en `src/data/talks.json`).
 - `RankingsRepository` con 4 categorías, adaptadores `local`/`api` y tests.
 - Página `/rankings` con 4 tabs, top 20, posición propia y refresco cada 30 s.
+- Dashboard público `/dashboard`: 4 rankings, estadísticas globales y evoluciones recientes, sin autenticación.
 - Code splitting con `React.lazy` (8 chunks).
 
 ### Pendiente
 
-- **Fase 3:** dashboard público, dashboard admin, tarjetas compartibles + OG, inventario, misiones.
+- **Fase 3:** dashboard admin, tarjetas compartibles + OG, inventario, misiones.
 - **Home real** (story 18): resumen del jugador y navegación a 1 tap. Hoy `/` redirige a `/my-monster`.
 - **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
@@ -120,6 +121,7 @@ Crear interfaces (puertos) y dos implementaciones por dominio. La UI/providers s
 | `CheckInsRepository` | list, hasCheckedIn, add |
 | `TalksRepository` | listTalks |
 | `RankingsRepository` | getByCategory |
+| `DashboardRepository` | getOverview (stats + rankings + evoluciones recientes) |
 
 ### Reglas obligatorias
 
@@ -175,6 +177,7 @@ GET    /users/:id/checkins
 POST   /users/:id/checkins
 GET    /talks
 GET    /rankings?category=expertise|aura|contacts|wins
+GET    /dashboard/public?rankingsLimit=5&evolutionsLimit=10
 POST   /qr/resolve
 ```
 
@@ -244,7 +247,7 @@ unlayered         ← overrides globales
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. ~~Rankings UI (story 21)~~ (hecho). Implementar Home (story 18) y el resto de Fase 3 con datos mock: dashboard público/admin, inventario y misiones.
+3. ~~Rankings UI (story 21) y dashboard público (story 22)~~ (hecho). Implementar el resto de Fase 3 con datos mock: roles/admin, dashboard privado, inventario y misiones.
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.

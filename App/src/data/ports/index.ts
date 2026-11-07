@@ -3,6 +3,7 @@ import type { AuthRepository } from './auth-repository'
 import type { BattlesRepository } from './battles-repository'
 import type { CheckInsRepository } from './checkins-repository'
 import type { ContactsRepository } from './contacts-repository'
+import type { DashboardRepository } from './dashboard-repository'
 import type { MetricsRepository } from './metrics-repository'
 import type { RankingsRepository } from './rankings-repository'
 import type { TalksRepository } from './talks-repository'
@@ -18,6 +19,7 @@ export interface Repositories {
   checkins: CheckInsRepository
   talks: TalksRepository
   rankings: RankingsRepository
+  dashboard: DashboardRepository
 }
 
 export type {
@@ -26,6 +28,7 @@ export type {
   BattlesRepository,
   CheckInsRepository,
   ContactsRepository,
+  DashboardRepository,
   MetricsRepository,
   RankingsRepository,
   TalksRepository,

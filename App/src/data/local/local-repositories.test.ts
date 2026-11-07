@@ -4,13 +4,14 @@ import { localAuthRepository } from './auth-repository'
 import { localBattlesRepository } from './battles-repository'
 import { localCheckInsRepository } from './checkins-repository'
 import { localContactsRepository } from './contacts-repository'
+import { localDashboardRepository } from './dashboard-repository'
 import { localMetricsRepository } from './metrics-repository'
 import { localRankingsRepository } from './rankings-repository'
 import { localTalksRepository } from './talks-repository'
 import type { AchievementContext } from '../types'
 import type { BattleResult } from '../../lib/battle'
 import type { User } from '../../auth/types'
-import { STORAGE_KEYS, writeJson } from './storage'
+import { STORAGE_KEYS, userKey, writeJson } from './storage'
 
 beforeEach(() => {
   localStorage.clear()
@@ -270,5 +271,161 @@ describe('local rankings repository', () => {
       archetype: 'ux',
       score: 1,
     })
+  })
+})
+
+describe('local dashboard repository', () => {
+  const dashboardUsers: User[] = [
+    {
+      id: 'alice',
+      email: 'alice@example.com',
+      name: 'Alice',
+      archetype: 'developer',
+      createdAt: '2026-01-01T09:00:00.000Z',
+    },
+    {
+      id: 'bob',
+      email: 'bob@example.com',
+      name: 'Bob',
+      archetype: 'ux',
+      createdAt: '2026-01-01T09:10:00.000Z',
+    },
+    {
+      id: 'carla',
+      email: 'carla@example.com',
+      name: 'Carla',
+      archetype: 'qa',
+      createdAt: '2026-01-01T09:20:00.000Z',
+    },
+  ]
+
+  function writeMetrics(
+    userId: string,
+    history: Array<{
+      action: Parameters<typeof localMetricsRepository.addReward>[1]
+      expertise: number
+      auraTech: number
+      timestamp: string
+    }>,
+  ) {
+    writeJson(userKey(STORAGE_KEYS.metrics, userId), {
+      expertise: history.reduce((total, entry) => total + entry.expertise, 0),
+      auraTech: history.reduce((total, entry) => total + entry.auraTech, 0),
+      history,
+    })
+  }
+
+  async function seedDashboard() {
+    writeJson(STORAGE_KEYS.users, dashboardUsers)
+
+    writeMetrics('alice', [
+      { action: 'register', expertise: 1, auraTech: 1, timestamp: '2026-01-01T10:00:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T10:05:00.000Z' },
+      { action: 'talk_checkin', expertise: 0, auraTech: 5, timestamp: '2026-01-01T10:08:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T10:10:00.000Z' },
+      { action: 'contact_diverse', expertise: 0, auraTech: 3, timestamp: '2026-01-01T10:12:00.000Z' },
+    ])
+
+    writeMetrics('bob', [
+      { action: 'register', expertise: 1, auraTech: 1, timestamp: '2026-01-01T11:00:00.000Z' },
+      { action: 'talk_checkin', expertise: 0, auraTech: 5, timestamp: '2026-01-01T11:05:00.000Z' },
+      { action: 'talk_checkin', expertise: 0, auraTech: 5, timestamp: '2026-01-01T11:10:00.000Z' },
+      { action: 'talk_checkin', expertise: 0, auraTech: 5, timestamp: '2026-01-01T11:20:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T11:30:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T11:40:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T11:50:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T12:00:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T12:10:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T12:20:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T12:30:00.000Z' },
+      { action: 'battle_win', expertise: 5, auraTech: 3, timestamp: '2026-01-01T12:40:00.000Z' },
+    ])
+
+    writeMetrics('carla', [
+      { action: 'register', expertise: 1, auraTech: 1, timestamp: '2026-01-01T09:30:00.000Z' },
+      { action: 'contact_add', expertise: 0, auraTech: 2, timestamp: '2026-01-01T09:35:00.000Z' },
+    ])
+
+    await localContactsRepository.add('alice', {
+      userId: 'bob',
+      name: 'Bob',
+      email: 'bob@example.com',
+      archetype: 'ux',
+    })
+    await localContactsRepository.add('bob', {
+      userId: 'alice',
+      name: 'Alice',
+      email: 'alice@example.com',
+      archetype: 'developer',
+    })
+
+    await localBattlesRepository.save('alice', {
+      id: 'battle-1',
+      opponentId: 'bob',
+      opponentName: 'Bob',
+      opponentArchetype: 'ux',
+      rounds: [],
+      outcome: 'win',
+      timestamp: '2026-01-01T10:20:00.000Z',
+    })
+    await localBattlesRepository.save('bob', {
+      id: 'battle-2',
+      opponentId: 'carla',
+      opponentName: 'Carla',
+      opponentArchetype: 'qa',
+      rounds: [],
+      outcome: 'loss',
+      timestamp: '2026-01-01T11:55:00.000Z',
+    })
+
+    writeJson(userKey(STORAGE_KEYS.achievements, 'alice'), [
+      { id: 'first-contact', unlockedAt: '2026-01-01T10:21:00.000Z' },
+    ])
+    writeJson(userKey(STORAGE_KEYS.achievements, 'bob'), [
+      { id: 'first-contact', unlockedAt: '2026-01-01T11:56:00.000Z' },
+    ])
+  }
+
+  it('aggregates global stats, rankings and recent evolutions', async () => {
+    await seedDashboard()
+
+    const dashboard = await localDashboardRepository.getOverview()
+
+    expect(dashboard.stats).toEqual({
+      totalUsers: 3,
+      totalBattles: 2,
+      totalContacts: 2,
+      totalAchievements: 2,
+    })
+    expect(dashboard.rankings.aura).toHaveLength(3)
+    expect(dashboard.rankings.aura[0].userId).toBe('bob')
+    expect(dashboard.recentEvolutions.map(evolution => evolution.userId)).toEqual(['bob', 'alice'])
+    expect(dashboard.recentEvolutions[0]).toMatchObject({
+      name: 'Bob',
+      stage: 2,
+      totalPoints: 65,
+      evolvedAt: '2026-01-01T12:20:00.000Z',
+    })
+    expect(dashboard.recentEvolutions[1]).toMatchObject({
+      name: 'Alice',
+      stage: 1,
+      evolvedAt: '2026-01-01T10:10:00.000Z',
+    })
+  })
+
+  it('respects the ranking and evolution limits', async () => {
+    await seedDashboard()
+
+    const dashboard = await localDashboardRepository.getOverview({
+      rankingsLimit: 1,
+      evolutionsLimit: 1,
+    })
+
+    expect(dashboard.rankings.aura).toHaveLength(1)
+    expect(dashboard.rankings.expertise).toHaveLength(1)
+    expect(dashboard.rankings.contacts).toHaveLength(1)
+    expect(dashboard.rankings.wins).toHaveLength(1)
+    expect(dashboard.recentEvolutions).toHaveLength(1)
+    expect(dashboard.recentEvolutions[0].userId).toBe('bob')
   })
 })

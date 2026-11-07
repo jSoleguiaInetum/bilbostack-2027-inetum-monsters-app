@@ -8,6 +8,7 @@ describe('data composition root', () => {
     expect(repositories.auth).toBeDefined()
     expect(repositories.talks).toBeDefined()
     expect(repositories.rankings).toBeDefined()
+    expect(repositories.dashboard).toBeDefined()
   })
 
   it('returns API repositories in API mode', () => {
@@ -16,5 +17,6 @@ describe('data composition root', () => {
     expect(repositories.auth).toBeDefined()
     expect(repositories.achievements).toBeDefined()
     expect(repositories.rankings).toBeDefined()
+    expect(repositories.dashboard).toBeDefined()
   })
 })

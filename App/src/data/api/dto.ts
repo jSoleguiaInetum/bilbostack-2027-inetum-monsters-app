@@ -1,5 +1,5 @@
 import type { User } from '../../auth/types'
-import type { Archetype } from '../../monster/types'
+import type { Archetype, Evolution } from '../../monster/types'
 import type { PlayerMetrics } from '../../lib/metrics'
 import type { Contact } from '../../lib/contacts'
 import type { BattleResult } from '../../lib/battle'
@@ -7,6 +7,7 @@ import type { CheckIn } from '../../lib/checkins'
 import type { Achievement, UnlockedAchievement } from '../../lib/achievements'
 import type { Talk } from '../../lib/seed-talks'
 import type { Ranking, RankingCategory, RankingEntry } from '../../lib/rankings'
+import type { PublicDashboard, RecentEvolution } from '../../lib/dashboard'
 
 export interface UserDto {
   id: string
@@ -172,5 +173,58 @@ export function toRanking(dto: RankingDto): Ranking {
     category: dto.category,
     entries: (dto.entries ?? []).map(toRankingEntry),
     currentUser: dto.currentUser ? toRankingEntry(dto.currentUser) : null,
+  }
+}
+
+export interface DashboardStatsDto {
+  totalUsers: number
+  totalBattles: number
+  totalContacts: number
+  totalAchievements: number
+}
+
+export interface RecentEvolutionDto {
+  userId: string
+  name: string
+  archetype: Archetype
+  stage: Evolution
+  totalPoints: number
+  evolvedAt: string
+}
+
+export interface DashboardDto {
+  stats: DashboardStatsDto
+  rankings?: Partial<Record<RankingCategory, RankingEntryDto[]>>
+  recentEvolutions?: RecentEvolutionDto[]
+}
+
+const DASHBOARD_CATEGORIES: RankingCategory[] = ['aura', 'expertise', 'contacts', 'wins']
+
+function toRecentEvolution(dto: RecentEvolutionDto): RecentEvolution {
+  return {
+    userId: dto.userId,
+    name: dto.name,
+    archetype: dto.archetype,
+    stage: dto.stage,
+    totalPoints: dto.totalPoints,
+    evolvedAt: dto.evolvedAt,
+  }
+}
+
+export function toDashboard(dto: DashboardDto): PublicDashboard {
+  const rankings = {} as PublicDashboard['rankings']
+  for (const category of DASHBOARD_CATEGORIES) {
+    rankings[category] = (dto.rankings?.[category] ?? []).map(toRankingEntry)
+  }
+
+  return {
+    stats: {
+      totalUsers: dto.stats?.totalUsers ?? 0,
+      totalBattles: dto.stats?.totalBattles ?? 0,
+      totalContacts: dto.stats?.totalContacts ?? 0,
+      totalAchievements: dto.stats?.totalAchievements ?? 0,
+    },
+    rankings,
+    recentEvolutions: (dto.recentEvolutions ?? []).map(toRecentEvolution),
   }
 }
