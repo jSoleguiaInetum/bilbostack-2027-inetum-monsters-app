@@ -195,6 +195,52 @@ describe('api domain repositories', () => {
     expect(url).toBe('https://api.test/dashboard/public?rankingsLimit=1&evolutionsLimit=2')
   })
 
+  it('updates a user role', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({
+      id: 'user-1',
+      email: 'test@example.com',
+      name: 'Test',
+      archetype: 'developer',
+      role: 'admin',
+      createdAt: '2026-01-01T00:00:00.000Z',
+    }))
+
+    const user = await repositories.users.updateRole('user-1', 'admin')
+
+    expect(user.role).toBe('admin')
+    const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit]
+    expect(url).toBe('https://api.test/users/user-1/role')
+    expect(init).toMatchObject({ method: 'PATCH', credentials: 'include' })
+    expect(JSON.parse(init.body as string)).toEqual({ role: 'admin' })
+  })
+
+  it('maps the admin dashboard overview', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({
+      stats: {
+        totalUsers: 3,
+        totalBattles: 5,
+        totalContacts: 4,
+        totalAchievements: 6,
+        averageExpertise: 12.5,
+        averageAuraTech: 8,
+      },
+    }))
+
+    const dashboard = await repositories.dashboard.getAdminOverview()
+
+    expect(dashboard.stats).toEqual({
+      totalUsers: 3,
+      totalBattles: 5,
+      totalContacts: 4,
+      totalAchievements: 6,
+      averageExpertise: 12.5,
+      averageAuraTech: 8,
+    })
+
+    const [url] = fetchMock.mock.calls[0] as [string]
+    expect(url).toBe('https://api.test/dashboard/admin')
+  })
+
   it('maps network failures to a normalized DataError', async () => {
     fetchMock.mockRejectedValueOnce(new Error('offline'))
 

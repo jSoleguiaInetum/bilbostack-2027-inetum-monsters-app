@@ -7,3 +7,4 @@ export type { Achievement, UnlockedAchievement, AchievementContext } from '../li
 export type { Talk } from '../lib/seed-talks'
 export type { Ranking, RankingEntry, RankingCategory, RankingOptions } from '../lib/rankings'
 export type { DashboardStats, RecentEvolution, PublicDashboard, DashboardOptions } from '../lib/dashboard'
+export type { AdminDashboard, AdminDashboardStats } from '../lib/dashboard'

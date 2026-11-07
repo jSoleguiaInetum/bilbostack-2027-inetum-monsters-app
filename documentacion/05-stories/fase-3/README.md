@@ -10,7 +10,7 @@ Estado: **iniciada**. La Fase 3 se apoya en la capa `src/data` y debe funcionar 
 | 21 | Página de rankings | E12 | ✅ |
 | 22 | Dashboard público | E12 | ✅ |
 | 23 | Roles y guard de administración | E11 | ✅ |
-| 24 | Dashboard privado | E11 | Pendiente |
+| 24 | Dashboard privado | E11 | ✅ |
 | 25 | Inventario de objetos | E11/E13 | Pendiente |
 | 26 | Misiones base | E11/E13 | Pendiente |
 | 27 | Tarjetas compartibles y OG | E13 | Pendiente |
@@ -49,3 +49,5 @@ Story 28 (Home) depende de 20, 21, 25 y 26
 - La posición propia se devuelve aunque el usuario quede fuera del top solicitado.
 - `User` incluye `role`; los adaptadores normalizan roles ausentes o desconocidos a `participant`.
 - El panel `/admin` acepta el rol `admin`. En modo `local`, el primer usuario registrado es admin para poder probarlo.
+- `DashboardRepository.getAdminOverview` agrega totales del evento y medias de Expertise/Aura; no expone email en rankings públicos.
+- `UserRepository.updateRole` actualiza el rol en modo `local`/`api`; en `local` también refresca la sesión si el usuario se cambia a sí mismo.

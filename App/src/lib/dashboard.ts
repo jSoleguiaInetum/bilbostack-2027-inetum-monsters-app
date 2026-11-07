@@ -8,6 +8,15 @@ export interface DashboardStats {
   totalAchievements: number
 }
 
+export interface AdminDashboardStats extends DashboardStats {
+  averageExpertise: number
+  averageAuraTech: number
+}
+
+export interface AdminDashboard {
+  stats: AdminDashboardStats
+}
+
 export interface RecentEvolution {
   userId: string
   name: string

@@ -81,11 +81,12 @@ Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `
 - Página `/rankings` con 4 tabs, top 20, posición propia y refresco cada 30 s.
 - Dashboard público `/dashboard`: 4 rankings, estadísticas globales y evoluciones recientes, sin autenticación.
 - Roles de usuario (`participant`, `admin`) con guard `/admin` (`AdminRoute`) y enlace condicional en Mi Criatura. En modo `local`, el primer usuario registrado es admin.
+- Dashboard privado `/admin`: estadísticas (totales + medias de Expertise/Aura), listado de usuarios con búsqueda y filtros por rol/arquetipo, y cambio de rol participante ↔ admin. Refresco cada 30 s.
 - Code splitting con `React.lazy` (9 chunks).
 
 ### Pendiente
 
-- **Fase 3:** contenido del dashboard privado (usuarios/roles, CRUD, estadísticas), tarjetas compartibles + OG, inventario, misiones.
+- **Fase 3:** CRUD de logros/objetos y QRs, tarjetas compartibles + OG, inventario, misiones.
 - **Home real** (story 18): resumen del jugador y navegación a 1 tap. Hoy `/` redirige a `/my-monster`.
 - **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
@@ -114,7 +115,7 @@ Crear interfaces (puertos) y dos implementaciones por dominio. La UI/providers s
 | Puerto | Operaciones mínimas |
 |---|---|
 | `AuthRepository` | register, login, oauth, logout, getSession, getUserById |
-| `UserRepository` | getUserById, findUsers, updateProfile |
+| `UserRepository` | getUserById, list, updateRole |
 | `MetricsRepository` | get, init, addReward |
 | `ContactsRepository` | list, add, isContact |
 | `BattlesRepository` | list, save, hasFought, getFoughtOpponents |
@@ -122,7 +123,7 @@ Crear interfaces (puertos) y dos implementaciones por dominio. La UI/providers s
 | `CheckInsRepository` | list, hasCheckedIn, add |
 | `TalksRepository` | listTalks |
 | `RankingsRepository` | getByCategory |
-| `DashboardRepository` | getOverview (stats + rankings + evoluciones recientes) |
+| `DashboardRepository` | getOverview (stats + rankings + evoluciones recientes), getAdminOverview (stats + medias) |
 
 ### Reglas obligatorias
 
@@ -164,6 +165,7 @@ POST   /auth/logout
 GET    /auth/session
 GET    /users/:id
 GET    /users
+PATCH  /users/:id/role
 GET    /users/:id/metrics
 POST   /users/:id/metrics
 POST   /users/:id/metrics/rewards
@@ -180,6 +182,7 @@ POST   /users/:id/checkins
 GET    /talks
 GET    /rankings?category=expertise|aura|contacts|wins
 GET    /dashboard/public?rankingsLimit=5&evolutionsLimit=10
+GET    /dashboard/admin
 POST   /qr/resolve
 ```
 

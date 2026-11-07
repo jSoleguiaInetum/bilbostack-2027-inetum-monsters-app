@@ -1,6 +1,6 @@
 import type { DashboardRepository } from '../ports'
 import type { DashboardOptions } from '../../lib/dashboard'
-import { toDashboard, type DashboardDto } from './dto'
+import { toAdminDashboard, toDashboard, type AdminDashboardDto, type DashboardDto } from './dto'
 import type { HttpClient } from './http-client'
 
 export function createApiDashboardRepository(client: HttpClient): DashboardRepository {
@@ -14,5 +14,10 @@ export function createApiDashboardRepository(client: HttpClient): DashboardRepos
     return toDashboard(dto)
   }
 
-  return { getOverview }
+  async function getAdminOverview() {
+    const dto = await client.request<AdminDashboardDto>('/dashboard/admin')
+    return toAdminDashboard(dto)
+  }
+
+  return { getOverview, getAdminOverview }
 }

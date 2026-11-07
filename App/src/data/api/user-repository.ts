@@ -1,4 +1,5 @@
 import { DataError } from '../errors'
+import type { UserRole } from '../../auth/types'
 import type { UserRepository } from '../ports'
 import { toUser, type UserDto } from './dto'
 import type { HttpClient } from './http-client'
@@ -18,5 +19,13 @@ export function createApiUserRepository(client: HttpClient): UserRepository {
     return dtos.map(toUser)
   }
 
-  return { getUserById, list }
+  async function updateRole(id: string, role: UserRole) {
+    const dto = await client.request<UserDto>(`/users/${encodeURIComponent(id)}/role`, {
+      method: 'PATCH',
+      body: { role },
+    })
+    return toUser(dto)
+  }
+
+  return { getUserById, list, updateRole }
 }

@@ -8,6 +8,7 @@ import { localDashboardRepository } from './dashboard-repository'
 import { localMetricsRepository } from './metrics-repository'
 import { localRankingsRepository } from './rankings-repository'
 import { localTalksRepository } from './talks-repository'
+import { localUserRepository } from './user-repository'
 import type { AchievementContext } from '../types'
 import type { BattleResult } from '../../lib/battle'
 import type { User } from '../../auth/types'
@@ -62,6 +63,46 @@ describe('local auth repository', () => {
     const session = await localAuthRepository.getSession()
 
     expect(session?.role).toBe('participant')
+  })
+})
+
+describe('local user repository', () => {
+  const users: User[] = [
+    {
+      id: 'alice',
+      email: 'alice@example.com',
+      name: 'Alice',
+      archetype: 'developer',
+      role: 'participant',
+      createdAt: '2026-01-01T00:00:00.000Z',
+    },
+    {
+      id: 'bob',
+      email: 'bob@example.com',
+      name: 'Bob',
+      archetype: 'ux',
+      role: 'admin',
+      createdAt: '2026-01-02T00:00:00.000Z',
+    },
+  ]
+
+  it('updates the role of a user and the current session', async () => {
+    writeJson(STORAGE_KEYS.users, users)
+    writeJson(STORAGE_KEYS.session, users[0])
+
+    const updated = await localUserRepository.updateRole('alice', 'admin')
+
+    expect(updated.role).toBe('admin')
+    expect((await localUserRepository.list()).find(user => user.id === 'alice')?.role).toBe('admin')
+    expect(JSON.parse(localStorage.getItem(STORAGE_KEYS.session) as string).role).toBe('admin')
+  })
+
+  it('throws NOT_FOUND for unknown users', async () => {
+    writeJson(STORAGE_KEYS.users, users)
+
+    await expect(localUserRepository.updateRole('missing', 'admin')).rejects.toMatchObject({
+      code: 'NOT_FOUND',
+    })
   })
 })
 
@@ -456,5 +497,20 @@ describe('local dashboard repository', () => {
     expect(dashboard.rankings.wins).toHaveLength(1)
     expect(dashboard.recentEvolutions).toHaveLength(1)
     expect(dashboard.recentEvolutions[0].userId).toBe('bob')
+  })
+
+  it('aggregates admin stats with average metrics', async () => {
+    await seedDashboard()
+
+    const dashboard = await localDashboardRepository.getAdminOverview()
+
+    expect(dashboard.stats).toMatchObject({
+      totalUsers: 3,
+      totalBattles: 2,
+      totalContacts: 2,
+      totalAchievements: 2,
+    })
+    expect(dashboard.stats.averageExpertise).toBeCloseTo(53 / 3)
+    expect(dashboard.stats.averageAuraTech).toBeCloseTo(58 / 3)
   })
 })

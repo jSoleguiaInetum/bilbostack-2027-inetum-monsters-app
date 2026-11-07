@@ -8,7 +8,7 @@ import type { CheckIn } from '../../lib/checkins'
 import type { Achievement, UnlockedAchievement } from '../../lib/achievements'
 import type { Talk } from '../../lib/seed-talks'
 import type { Ranking, RankingCategory, RankingEntry } from '../../lib/rankings'
-import type { PublicDashboard, RecentEvolution } from '../../lib/dashboard'
+import type { AdminDashboard, PublicDashboard, RecentEvolution } from '../../lib/dashboard'
 
 export interface UserDto {
   id: string
@@ -199,6 +199,28 @@ export interface DashboardDto {
   stats: DashboardStatsDto
   rankings?: Partial<Record<RankingCategory, RankingEntryDto[]>>
   recentEvolutions?: RecentEvolutionDto[]
+}
+
+export interface AdminDashboardStatsDto extends DashboardStatsDto {
+  averageExpertise?: number
+  averageAuraTech?: number
+}
+
+export interface AdminDashboardDto {
+  stats: AdminDashboardStatsDto
+}
+
+export function toAdminDashboard(dto: AdminDashboardDto): AdminDashboard {
+  return {
+    stats: {
+      totalUsers: dto.stats?.totalUsers ?? 0,
+      totalBattles: dto.stats?.totalBattles ?? 0,
+      totalContacts: dto.stats?.totalContacts ?? 0,
+      totalAchievements: dto.stats?.totalAchievements ?? 0,
+      averageExpertise: dto.stats?.averageExpertise ?? 0,
+      averageAuraTech: dto.stats?.averageAuraTech ?? 0,
+    },
+  }
 }
 
 const DASHBOARD_CATEGORIES: RankingCategory[] = ['aura', 'expertise', 'contacts', 'wins']
