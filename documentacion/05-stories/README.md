@@ -40,7 +40,8 @@ Ver [fase-2/README.md](fase-2/README.md) para dependencias entre stories.
 Stories 20-28 planificadas. La capa de datos de rankings ya está implementada.
 
 - ✅ Story 20: `RankingsRepository` (4 categorías, local/API, tests)
-- Pendientes: página de rankings, dashboard público, roles/admin, dashboard privado, inventario, misiones, tarjetas compartibles + OG y Home real.
+- ✅ Story 21: página de rankings (4 tabs, top 20, posición propia, refresco cada 30 s)
+- Pendientes: dashboard público, roles/admin, dashboard privado, inventario, misiones, tarjetas compartibles + OG y Home real.
 
 Ver [fase-3/README.md](fase-3/README.md) para el orden y las dependencias.
 Ver [backlog-estructurado.md](../03-backlog-y-criterios/backlog-estructurado.md) para el detalle de epicas.

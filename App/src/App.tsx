@@ -16,6 +16,7 @@ const ContactsPage = lazy(() => import('./pages/ContactsPage').then(m => ({ defa
 const BattlePage = lazy(() => import('./pages/BattlePage').then(m => ({ default: m.BattlePage })))
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage').then(m => ({ default: m.AchievementsPage })))
 const TalkCheckInPage = lazy(() => import('./pages/TalkCheckInPage').then(m => ({ default: m.TalkCheckInPage })))
+const RankingsPage = lazy(() => import('./pages/RankingsPage').then(m => ({ default: m.RankingsPage })))
 const DevSeedPage = lazy(() => import('./pages/DevSeedPage').then(m => ({ default: m.DevSeedPage })))
 
 function LazyFallback() {
@@ -64,6 +65,11 @@ export default function App() {
                 <Route path="/achievements" element={
                   <ProtectedRoute>
                     <Layout><AchievementsPage /></Layout>
+                  </ProtectedRoute>
+                } />
+                <Route path="/rankings" element={
+                  <ProtectedRoute>
+                    <Layout><RankingsPage /></Layout>
                   </ProtectedRoute>
                 } />
                 <Route path="/talk-checkin" element={

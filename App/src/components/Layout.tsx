@@ -6,6 +6,7 @@ const NAV_TABS = [
   { path: '/scan', icon: '📷', label: 'QR' },
   { path: '/contacts', icon: '👥', label: 'Contactos' },
   { path: '/achievements', icon: '🏆', label: 'Logros' },
+  { path: '/rankings', icon: '🏅', label: 'Rankings' },
 ]
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -26,7 +27,7 @@ export function Layout({ children }: { children: ReactNode }) {
               key={tab.path}
               onClick={() => navigate(tab.path)}
               className={[
-                'flex flex-col items-center gap-4 px-4 py-1 rounded-lg transition-colors relative cursor-pointer',
+                'flex flex-1 min-w-0 flex-col items-center gap-3 px-1 py-1 rounded-lg transition-colors relative cursor-pointer',
                 isActive ? 'text-accent' : 'text-gray-500 hover:text-gray-300',
               ].join(' ')}
             >

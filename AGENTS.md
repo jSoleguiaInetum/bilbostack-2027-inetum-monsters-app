@@ -60,7 +60,7 @@ App/
 │   └── pages/                 Login, Register, MyMonster, UserCard, Scan, Contacts, Battle, Achievements, TalkCheckIn, DevSeed
 ```
 
-Rutas: `/login`, `/register`, `/my-monster`, `/scan`, `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/talk-checkin`, `/dev-seed`.
+Rutas: `/login`, `/register`, `/my-monster`, `/scan`, `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/talk-checkin`, `/dev-seed`.
 
 ## 5. Estado actual
 
@@ -77,12 +77,13 @@ Rutas: `/login`, `/register`, `/my-monster`, `/scan`, `/user/:id`, `/contacts`, 
 - Contactos con iconos de origen (🤝 / ⚔️👑 / ⚔️💀 / ⚔️🤗).
 - 12 logros con evaluación automática y toast.
 - QR personal, escáner, check-in de charlas (+5 Aura Tech), 10 charlas reales de BilboStack 2027 en `/dev-seed` (datos en `src/data/talks.json`).
-- `RankingsRepository` con 4 categorías, adaptadores `local`/`api` y tests (sin UI todavía).
+- `RankingsRepository` con 4 categorías, adaptadores `local`/`api` y tests.
+- Página `/rankings` con 4 tabs, top 20, posición propia y refresco cada 30 s.
 - Code splitting con `React.lazy` (8 chunks).
 
 ### Pendiente
 
-- **Fase 3:** página de rankings, dashboard público, dashboard admin, tarjetas compartibles + OG, inventario, misiones.
+- **Fase 3:** dashboard público, dashboard admin, tarjetas compartibles + OG, inventario, misiones.
 - **Home real** (story 18): resumen del jugador y navegación a 1 tap. Hoy `/` redirige a `/my-monster`.
 - **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
@@ -243,7 +244,7 @@ unlayered         ← overrides globales
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. Implementar Home (story 18) y Fase 3 con datos mock: rankings (repo listo), dashboard público/admin, inventario y misiones.
+3. ~~Rankings UI (story 21)~~ (hecho). Implementar Home (story 18) y el resto de Fase 3 con datos mock: dashboard público/admin, inventario y misiones.
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.

@@ -7,7 +7,7 @@ Estado: **iniciada**. La Fase 3 se apoya en la capa `src/data` y debe funcionar 
 | # | Story | Épica | Estado |
 |---|---|---|---|
 | 20 | RankingsRepository | E12 | ✅ |
-| 21 | Página de rankings | E12 | Pendiente |
+| 21 | Página de rankings | E12 | ✅ |
 | 22 | Dashboard público | E12 | Pendiente |
 | 23 | Roles y guard de administración | E11 | Pendiente |
 | 24 | Dashboard privado | E11 | Pendiente |
