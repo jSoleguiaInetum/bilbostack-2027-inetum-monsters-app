@@ -485,7 +485,7 @@ Estas queries se ejecutan desde el **Dashboard admin** (pantalla del MVP), no de
 | Almacenamiento tokens | `supabase-js` gestiona automáticamente (localStorage por defecto) |
 | Rotación refresh token | Sí — gestionada automáticamente por Supabase Auth |
 | Payload JWT | `{ sub: userId, role: "authenticated", aud: "authenticated", iat, exp }` |
-| Roles custom | Claim `app_role` añadido via trigger `on_auth_user_created` (Participant, Admin, etc.) |
+| Roles custom | Claim `app_role` añadido via trigger `on_auth_user_created` (Participant, Admin) |
 | RLS | Activada en TODAS las tablas. Policies usan `auth.uid()` y `auth.jwt()` |
 
 ### Protección de datos (GDPR/RGPD)

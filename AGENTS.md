@@ -60,7 +60,7 @@ App/
 │   └── pages/                 Login, Register, MyMonster, UserCard, Scan, Contacts, Battle, Achievements, TalkCheckIn, Rankings, PublicDashboard, Admin, DevSeed
 ```
 
-Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/talk-checkin`, `/admin` (admin/organización), `/dev-seed`.
+Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/talk-checkin`, `/admin` (admin), `/dev-seed`.
 
 ## 5. Estado actual
 
@@ -80,7 +80,7 @@ Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `
 - `RankingsRepository` con 4 categorías, adaptadores `local`/`api` y tests.
 - Página `/rankings` con 4 tabs, top 20, posición propia y refresco cada 30 s.
 - Dashboard público `/dashboard`: 4 rankings, estadísticas globales y evoluciones recientes, sin autenticación.
-- Roles de usuario (`participant`, `organization`, `speaker`, `ex-speaker`, `sponsor`, `npc`, `admin`) con guard `/admin` (`AdminRoute`) y enlace condicional en Mi Criatura. En modo `local`, el primer usuario registrado es admin.
+- Roles de usuario (`participant`, `admin`) con guard `/admin` (`AdminRoute`) y enlace condicional en Mi Criatura. En modo `local`, el primer usuario registrado es admin.
 - Code splitting con `React.lazy` (9 chunks).
 
 ### Pendiente

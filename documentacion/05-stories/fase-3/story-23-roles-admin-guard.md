@@ -4,7 +4,7 @@
 
 ## Objetivo
 
-Introducir roles de usuario en el modelo de dominio y proteger el futuro panel de administración para que solo puedan acceder los roles Administrador y Organización.
+Introducir roles de usuario en el modelo de dominio y proteger el futuro panel de administración para que solo pueda acceder el rol Administrador.
 
 ## Dependencias
 
@@ -15,14 +15,7 @@ Introducir roles de usuario en el modelo de dominio y proteger el futuro panel d
 ## Modelo de roles
 
 ```typescript
-export type UserRole =
-  | 'participant'
-  | 'organization'
-  | 'speaker'
-  | 'ex-speaker'
-  | 'sponsor'
-  | 'npc'
-  | 'admin'
+export type UserRole = 'participant' | 'admin'
 ```
 
 `User` incorpora `role: UserRole`.
@@ -30,7 +23,7 @@ export type UserRole =
 Helpers en `src/auth/roles.ts`:
 
 - `USER_ROLES`: metadatos (nombre y descripción) de cada rol.
-- `isAdminRole(role)`: `true` para `admin` y `organization`.
+- `isAdminRole(role)`: `true` para `admin`.
 - `isKnownRole(value)`: valida strings que llegan de fuera.
 - `roleInfo(role)`: devuelve los metadatos de un rol.
 
@@ -48,7 +41,7 @@ Helpers en `src/auth/roles.ts`:
 - `loading` → estado de carga.
 - Sin sesión → redirige a `/login`.
 - Rol no administrador → redirige a `/my-monster`.
-- `admin` u `organization` → renderiza el contenido.
+- `admin` → renderiza el contenido.
 
 ## UI
 
@@ -74,8 +67,8 @@ Helpers en `src/auth/roles.ts`:
 
 ## Criterios de aceptación
 
-- [x] Existe un modelo de roles alineado con el dominio (Participante, Organización, Ponente, Ex-Ponente, Patrocinador, NPC, Administrador).
-- [x] Solo `admin` y `organization` pueden acceder al panel (F-60).
+- [x] Existe un modelo de roles alineado con el dominio (Participante, Administrador).
+- [x] Solo `admin` puede acceder al panel (F-60).
 - [x] Sin sesión se redirige a login; con rol participante se redirige a Mi Criatura.
 - [x] El rol se persiste en modo `local` y se mapea desde `api`.
 - [x] Usuarios y sesiones antiguos sin rol se normalizan a `participant`.

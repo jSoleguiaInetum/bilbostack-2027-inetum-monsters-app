@@ -32,7 +32,7 @@ describe('api auth repository', () => {
       email: 'test@example.com',
       name: 'Test',
       archetype: 'developer',
-      role: 'organization',
+      role: 'admin',
       createdAt: '2026-01-01T00:00:00.000Z',
     }))
 
@@ -43,7 +43,7 @@ describe('api auth repository', () => {
       'developer',
     )
 
-    expect(user).toMatchObject({ id: 'user-1', archetype: 'developer', role: 'organization' })
+    expect(user).toMatchObject({ id: 'user-1', archetype: 'developer', role: 'admin' })
     const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit]
     expect(url).toBe('https://api.test/auth/register')
     expect(init).toMatchObject({ method: 'POST', credentials: 'include' })

@@ -1,13 +1,6 @@
 import type { Archetype } from '../monster/types'
 
-export type UserRole =
-  | 'participant'
-  | 'organization'
-  | 'speaker'
-  | 'ex-speaker'
-  | 'sponsor'
-  | 'npc'
-  | 'admin'
+export type UserRole = 'participant' | 'admin'
 
 export interface User {
   id: string

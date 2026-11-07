@@ -235,7 +235,7 @@
 **Descripción:** Panel de administración para que la organización del evento gestione todos los elementos del juego: usuarios, roles, preguntas, logros, QR, objetos y estadísticas.
 
 **Criterios de aceptación:**
-- Solo usuarios con rol Administrador u Organización pueden acceder
+- Solo usuarios con rol Administrador pueden acceder
 - CRUD completo para: usuarios, roles, logros, objetos, QR, preguntas
 - Vista de estadísticas en tiempo real: usuarios registrados, combates, contactos, logros desbloqueados
 - Capacidad de asignar/modificar roles de usuario
@@ -246,7 +246,7 @@
 |---|---|---|---|---|
 | E11-01 | Como administrador, quiero acceder a un panel protegido con navegación a todas las secciones de gestión, para administrar el evento | L | P0 | E1-05 |
 | E11-02 | Como administrador, quiero ver la lista de usuarios registrados con filtros por rol y arquetipo, para monitorear la participación | M | P0 | E11-01 |
-| E11-03 | Como administrador, quiero asignar y modificar roles (Participante, Ponente, Patrocinador, NPC, Organización) a cualquier usuario, para gestionar permisos | M | P0 | E11-01 |
+| E11-03 | Como administrador, quiero asignar y modificar roles (Participante, Administrador) a cualquier usuario, para gestionar permisos | M | P0 | E11-01 |
 | E11-04 | Como administrador, quiero ver un dashboard de estadísticas en tiempo real (registros, combates, contactos, logros, métricas promedio), para monitorear el evento | L | P0 | E11-01 |
 | E11-05 | Como administrador, quiero gestionar (CRUD) los objetos del inventario con nombre, descripción, rareza y beneficio, para configurar las recompensas | M | P1 | E11-01 |
 | E11-06 | Como administrador, quiero generar y descargar QR imprimibles para charlas, NPCs y objetos, para distribuirlos físicamente | M | P0 | E11-01, E6-06 |

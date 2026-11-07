@@ -122,7 +122,7 @@ Restricciones:
 
 ## 3. ROLES DEL SISTEMA
 
-Participante | Organización | Ponente | Ex-Ponente | Patrocinador | NPC | Administrador
+Participante | Administrador
 
 ---
 

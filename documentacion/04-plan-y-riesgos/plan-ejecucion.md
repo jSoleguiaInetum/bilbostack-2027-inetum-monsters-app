@@ -64,7 +64,7 @@
 |---|---|---|
 | Rankings públicos (Aura Tech, Expertise, Contactos, Victorias) | Full-stack | Rankings en tiempo real, top 10 + posición del usuario |
 | Dashboard público (rankings, estadísticas globales, evoluciones recientes) | Frontend | Accesible sin login, datos actualizados cada 30s |
-| Dashboard privado — Gestión de usuarios y roles | Full-stack | CRUD completo, asignación de roles (Ponente, NPC, Patrocinador, Admin) |
+| Dashboard privado — Gestión de usuarios y roles | Full-stack | CRUD completo, asignación de roles (Participante, Admin) |
 | Dashboard privado — Gestión de logros y objetos | Full-stack | Crear/editar/activar/desactivar logros y objetos |
 | Dashboard privado — Gestión de QRs | Full-stack | Generar QRs por tipo (Charla, NPC, Misión, Objeto, Evento), exportar para impresión |
 | Dashboard privado — Estadísticas del evento | Full-stack | Métricas en tiempo real: combates, contactos, logros, usuarios activos |

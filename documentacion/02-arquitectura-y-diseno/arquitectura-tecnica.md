@@ -210,7 +210,7 @@ El free tier limita a 200 conexiones WebSocket simultáneas. Estrategia de optim
 | email | VARCHAR(255) | Unique, índice |
 | name | VARCHAR(100) | |
 | archetype | ENUM | Developer, UX/Design, Product, DevOps/Platform, QA, Management, IA Engineer, Multiclass |
-| role | ENUM | Participant, Organization, Speaker, ExSpeaker, Sponsor, NPC, Admin |
+| role | ENUM | Participant, Admin |
 | expertise | INTEGER | Default 1. Nunca negativo |
 | aura_tech | INTEGER | Default 1. Nunca negativo |
 | email_domain_bonus | SMALLINT | Bonus inicial calculado del dominio del email |

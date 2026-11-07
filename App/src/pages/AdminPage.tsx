@@ -38,7 +38,7 @@ export function AdminPage() {
       </section>
 
       <p className="mt-8 rounded-lg border border-primary bg-surface px-4 py-3 text-[9px] text-gray-500">
-        Acceso restringido a roles Administrador y Organización. Esta vista es el esqueleto del
+        Acceso restringido al rol Administrador. Esta vista es el esqueleto del
         dashboard privado; el contenido de gestión llega en la siguiente story.
       </p>
     </div>

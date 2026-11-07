@@ -53,13 +53,8 @@ describe('AdminRoute', () => {
     expect(screen.getByText('Mi Criatura')).toBeTruthy()
   })
 
-  it('allows admin and organization roles', () => {
+  it('allows admin role', () => {
     mocks.auth.user = { role: 'admin' }
-    renderAt('/admin')
-    expect(screen.getByText('Panel')).toBeTruthy()
-
-    cleanup()
-    mocks.auth.user = { role: 'organization' }
     renderAt('/admin')
     expect(screen.getByText('Panel')).toBeTruthy()
   })

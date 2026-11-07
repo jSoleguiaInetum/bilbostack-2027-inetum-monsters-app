@@ -48,4 +48,4 @@ Story 28 (Home) depende de 20, 21, 25 y 26
 - En modo `api`, el backend devuelve el top y la posición del usuario actual.
 - La posición propia se devuelve aunque el usuario quede fuera del top solicitado.
 - `User` incluye `role`; los adaptadores normalizan roles ausentes o desconocidos a `participant`.
-- El panel `/admin` acepta los roles `admin` y `organization`. En modo `local`, el primer usuario registrado es admin para poder probarlo.
+- El panel `/admin` acepta el rol `admin`. En modo `local`, el primer usuario registrado es admin para poder probarlo.
