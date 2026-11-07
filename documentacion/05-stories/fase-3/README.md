@@ -9,7 +9,7 @@ Estado: **iniciada**. La Fase 3 se apoya en la capa `src/data` y debe funcionar 
 | 20 | RankingsRepository | E12 | ✅ |
 | 21 | Página de rankings | E12 | ✅ |
 | 22 | Dashboard público | E12 | ✅ |
-| 23 | Roles y guard de administración | E11 | Pendiente |
+| 23 | Roles y guard de administración | E11 | ✅ |
 | 24 | Dashboard privado | E11 | Pendiente |
 | 25 | Inventario de objetos | E11/E13 | Pendiente |
 | 26 | Misiones base | E11/E13 | Pendiente |
@@ -47,3 +47,5 @@ Story 28 (Home) depende de 20, 21, 25 y 26
 - En modo `local`, los rankings se agregan en el navegador a partir de los datos mock.
 - En modo `api`, el backend devuelve el top y la posición del usuario actual.
 - La posición propia se devuelve aunque el usuario quede fuera del top solicitado.
+- `User` incluye `role`; los adaptadores normalizan roles ausentes o desconocidos a `participant`.
+- El panel `/admin` acepta los roles `admin` y `organization`. En modo `local`, el primer usuario registrado es admin para poder probarlo.

@@ -18,10 +18,10 @@
 | Fase 0 — Fundacion | ✅ Completada | Stack, setup, assets SVG, prompts de IA |
 | Fase 1 — MVP Core | ✅ Completada | Auth, criatura, QR, scan, post-scan |
 | Fase 2 — Interaccion Social | ✅ Completada (con polish) | Metricas, combates, contactos, logros, evolucion, check-in charlas |
-| Fase 3 — Rankings, Dashboards, Social | 🚧 En curso | Rankings y dashboard publico hechos; faltan admin, inventario, misiones y tarjetas |
+| Fase 3 — Rankings, Dashboards, Social | 🚧 En curso | Rankings, dashboard publico y guard de roles/admin hechos; faltan dashboard privado, inventario, misiones y tarjetas |
 | Fase 4 — Hardening + Evento | ❌ Pendiente | Prueba de carga, ensayo general, deploy produccion |
 
-### Lo que esta construido (codigo en `plan/App/bilbostack-app/`)
+### Lo que esta construido (codigo en `App/`)
 
 - **React 19 + Vite 8 + TypeScript 7 + Tailwind v4 + SNES.CSS** (estetica retro pixel-art)
 - Auth mock con localStorage (interfaz preparada para Supabase/Firebase)
@@ -31,15 +31,16 @@
 - Combates: mejor de 3 rondas con countdown 10s, preguntas por arquetipo
 - Contactos con iconos de origen (🤝/⚔️👑/⚔️💀/⚔️🤗)
 - 12 logros con evaluacion automatica y toast animado
-- 8 charlas seed con QR escaneables (pagina `/dev-seed`)
-- Code splitting: 5 paginas lazy-loaded (chunk principal 304KB → antes 704KB)
-- 0 errores TypeScript, build limpio (184 modulos, 8 chunks)
+- 10 charlas seed con QR escaneables (pagina `/dev-seed`)
+- Rankings publicos con 4 categorias y dashboard publico `/dashboard`
+- Roles de usuario y guard `/admin` para Administrador/Organizacion (contenido del panel pendiente)
+- Code splitting con `React.lazy` (9 chunks)
+- 0 errores TypeScript, build limpio
 
 ### Lo que falta
 
-- **Backend real** (Supabase o alternativa) — toda la data esta en localStorage
-- **Rankings publicos** con 4 categorias
-- **Dashboard admin** (CRUD usuarios, logros, QRs)
+- **Backend real** (API generica; no Supabase) — toda la data esta en localStorage
+- **Contenido del dashboard privado** (CRUD usuarios, logros, QRs, estadisticas)
 - **Tarjetas compartibles** para redes sociales
 - **PWA** con service worker y manifest
 - **Prueba de carga** y ensayo general

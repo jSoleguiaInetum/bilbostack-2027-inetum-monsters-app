@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../auth/AuthProvider'
+import { isAdminRole } from '../auth/roles'
 import { useMetrics } from '../lib/MetricsProvider'
 import { MonsterCard } from '../monster/MonsterCard'
 import { MonsterSkeleton } from '../components/MonsterSkeleton'
@@ -60,12 +61,19 @@ export function MyMonsterPage() {
           style={{ background: 'linear-gradient(90deg, #E20074, #F5F340)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           Mi Criatura
         </h1>
-        <button
-          onClick={() => signOut().then(() => navigate('/login'))}
-          className="text-gray-500 hover:text-white text-sm transition-colors"
-        >
-          Salir
-        </button>
+        <div className="flex items-center gap-4">
+          {isAdminRole(user.role) && (
+            <Link to="/admin" className="text-tech hover:text-white text-sm transition-colors">
+              Admin
+            </Link>
+          )}
+          <button
+            onClick={() => signOut().then(() => navigate('/login'))}
+            className="text-gray-500 hover:text-white text-sm transition-colors"
+          >
+            Salir
+          </button>
+        </div>
       </header>
 
       <main className="flex flex-col items-center justify-center gap-6 px-6 py-8">

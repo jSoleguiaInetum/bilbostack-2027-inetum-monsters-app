@@ -4,6 +4,7 @@ import { AuthProvider } from './auth/AuthProvider'
 import { DataProvider } from './data/DataProvider'
 import { MetricsProvider } from './lib/MetricsProvider'
 import { ProtectedRoute } from './auth/ProtectedRoute'
+import { AdminRoute } from './auth/AdminRoute'
 import { Layout } from './components/Layout'
 import { Spinner } from './components/Spinner'
 import { LoginPage } from './pages/LoginPage'
@@ -18,6 +19,7 @@ const AchievementsPage = lazy(() => import('./pages/AchievementsPage').then(m =>
 const TalkCheckInPage = lazy(() => import('./pages/TalkCheckInPage').then(m => ({ default: m.TalkCheckInPage })))
 const RankingsPage = lazy(() => import('./pages/RankingsPage').then(m => ({ default: m.RankingsPage })))
 const PublicDashboardPage = lazy(() => import('./pages/PublicDashboardPage').then(m => ({ default: m.PublicDashboardPage })))
+const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })))
 const DevSeedPage = lazy(() => import('./pages/DevSeedPage').then(m => ({ default: m.DevSeedPage })))
 
 function LazyFallback() {
@@ -78,6 +80,11 @@ export default function App() {
                   <ProtectedRoute>
                     <TalkCheckInPage />
                   </ProtectedRoute>
+                } />
+                <Route path="/admin" element={
+                  <AdminRoute>
+                    <AdminPage />
+                  </AdminRoute>
                 } />
                 <Route path="/dev-seed" element={<DevSeedPage />} />
                 <Route path="*" element={<Navigate to="/my-monster" replace />} />

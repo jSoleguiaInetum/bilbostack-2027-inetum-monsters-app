@@ -1,4 +1,5 @@
-import type { User } from '../../auth/types'
+import type { User, UserRole } from '../../auth/types'
+import { isKnownRole } from '../../auth/roles'
 import type { Archetype, Evolution } from '../../monster/types'
 import type { PlayerMetrics } from '../../lib/metrics'
 import type { Contact } from '../../lib/contacts'
@@ -14,6 +15,7 @@ export interface UserDto {
   email: string
   name: string
   archetype: Archetype
+  role?: UserRole
   createdAt: string
 }
 
@@ -23,6 +25,7 @@ export function toUser(dto: UserDto): User {
     email: dto.email,
     name: dto.name,
     archetype: dto.archetype,
+    role: dto.role && isKnownRole(dto.role) ? dto.role : 'participant',
     createdAt: dto.createdAt,
   }
 }

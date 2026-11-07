@@ -1,14 +1,23 @@
-import type { User } from '../../auth/types'
+import type { User, UserRole } from '../../auth/types'
 import type { Archetype } from '../../monster/types'
 import type { AuthRepository, OAuthProvider } from '../ports/auth-repository'
+import { isAdminRole } from '../../auth/roles'
 import { readJson, removeKey, STORAGE_KEYS, writeJson } from './storage'
 
 function delay(ms = 300): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
+function normalizeUser(user: User): User {
+  return { ...user, role: user.role ?? 'participant' }
+}
+
 function readUsers(): User[] {
-  return readJson<User[]>(STORAGE_KEYS.users, [])
+  return readJson<User[]>(STORAGE_KEYS.users, []).map(normalizeUser)
+}
+
+function nextRole(users: User[]): UserRole {
+  return users.some((user) => isAdminRole(user.role)) ? 'participant' : 'admin'
 }
 
 function saveUsers(users: User[]): void {
@@ -27,7 +36,7 @@ function readSession(): User | null {
     if (typeof parsed === 'string') {
       return readUsers().find((user) => user.id === parsed) ?? null
     }
-    return parsed
+    return normalizeUser(parsed)
   } catch {
     return null
   }
@@ -52,6 +61,7 @@ async function signUpWithEmail(
     email: normalized,
     name,
     archetype,
+    role: nextRole(users),
     createdAt: new Date().toISOString(),
   }
   saveUsers([...users, user])
@@ -76,6 +86,7 @@ async function signInWithOAuth(provider: OAuthProvider): Promise<User> {
     email: `oauth-${provider}-${Date.now()}@mock.bilbostack.dev`,
     name: `Usuario ${provider}`,
     archetype: 'multiclass',
+    role: 'participant',
     createdAt: new Date().toISOString(),
   }
   saveUsers([...readUsers(), user])

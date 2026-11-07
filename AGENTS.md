@@ -51,16 +51,16 @@ App/
 │   ├── App.tsx                Router + lazy loading + providers
 │   ├── main.tsx               Entry point (SIN StrictMode a propósito)
 │   ├── index.css              Cascada SNES/Tailwind + tema + overrides QR
-│   ├── auth/                  AuthProvider, ProtectedRoute, types
+│   ├── auth/                  AuthProvider, ProtectedRoute, AdminRoute, roles, types
 │   ├── data/                  ports/, local/, api/, talks.json, DataProvider, types, errors, config
 │   ├── monster/               generator.ts, MonsterCard, RarityBadge, types
 │   ├── qr/                    QRDisplay, QRScanner, qr-codec, types
 │   ├── lib/                   metrics, battle, achievements, evolution, questions, rankings, seed-talks, constants, crypto, MetricsProvider
 │   ├── components/            Layout, MetricsDisplay, EvolutionProgress, Spinner, MonsterSkeleton, AchievementToast, ArchetypeSelector, ErrorBoundary
-│   └── pages/                 Login, Register, MyMonster, UserCard, Scan, Contacts, Battle, Achievements, TalkCheckIn, DevSeed
+│   └── pages/                 Login, Register, MyMonster, UserCard, Scan, Contacts, Battle, Achievements, TalkCheckIn, Rankings, PublicDashboard, Admin, DevSeed
 ```
 
-Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/talk-checkin`, `/dev-seed`.
+Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/talk-checkin`, `/admin` (admin/organización), `/dev-seed`.
 
 ## 5. Estado actual
 
@@ -80,11 +80,12 @@ Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `
 - `RankingsRepository` con 4 categorías, adaptadores `local`/`api` y tests.
 - Página `/rankings` con 4 tabs, top 20, posición propia y refresco cada 30 s.
 - Dashboard público `/dashboard`: 4 rankings, estadísticas globales y evoluciones recientes, sin autenticación.
-- Code splitting con `React.lazy` (8 chunks).
+- Roles de usuario (`participant`, `organization`, `speaker`, `ex-speaker`, `sponsor`, `npc`, `admin`) con guard `/admin` (`AdminRoute`) y enlace condicional en Mi Criatura. En modo `local`, el primer usuario registrado es admin.
+- Code splitting con `React.lazy` (9 chunks).
 
 ### Pendiente
 
-- **Fase 3:** dashboard admin, tarjetas compartibles + OG, inventario, misiones.
+- **Fase 3:** contenido del dashboard privado (usuarios/roles, CRUD, estadísticas), tarjetas compartibles + OG, inventario, misiones.
 - **Home real** (story 18): resumen del jugador y navegación a 1 tap. Hoy `/` redirige a `/my-monster`.
 - **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
@@ -144,6 +145,7 @@ Hecho:
 5. Firmas convertidas a `Promise` en todos los dominios.
 6. Adaptadores `api` con cliente HTTP común, DTOs mapeados y errores normalizados.
 7. Runner Vitest + jsdom con tests de lógica pura y adaptadores `local`/`api`.
+8. Roles en `User` (`UserRole`) con normalización defensiva a `participant` en los adaptadores.
 
 Pendiente:
 
@@ -247,7 +249,7 @@ unlayered         ← overrides globales
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. ~~Rankings UI (story 21) y dashboard público (story 22)~~ (hecho). Implementar el resto de Fase 3 con datos mock: roles/admin, dashboard privado, inventario y misiones.
+3. ~~Rankings UI (story 21), dashboard público (story 22) y roles/admin (story 23)~~ (hecho). Implementar el resto de Fase 3 con datos mock: dashboard privado, inventario y misiones.
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.

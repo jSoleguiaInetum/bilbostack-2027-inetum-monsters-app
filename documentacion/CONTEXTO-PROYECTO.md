@@ -12,10 +12,10 @@ PWA gamificada de networking para BilboStack 2027, conferencia tech de un dia (~
 
 **Restriccion clave:** Los combates son vehiculo de networking, no competicion pura.
 
-## Estado actual: Fase 2 completada, Fase 3 pendiente
+## Estado actual: Fases 0-2 completadas, Fase 3 en curso
 
-### Implementado (Fases 1+2)
-- Auth mock (localStorage, interfaz preparada para Supabase)
+### Implementado (Fases 1-3 parcial)
+- Auth mock (localStorage) y capa `src/data` backend-agnostica (modos `local`/`api`)
 - Generacion procedural de criaturas (SHA-256 email → 7 capas SVG, 16 variantes por capa)
 - 4 estadios de evolucion visual con animacion (ping + bounce)
 - Metricas: Expertise (⚡) + Aura Tech (✨) con tabla de recompensas
@@ -23,15 +23,15 @@ PWA gamificada de networking para BilboStack 2027, conferencia tech de un dia (~
 - Contactos con iconos de origen (contacto directo vs combate con resultado)
 - 12 logros con evaluacion automatica
 - Check-in de charlas via QR (+5 Aura Tech)
-- 8 charlas seed con QR escaneables (/dev-seed)
-- Code splitting con React.lazy (5 paginas lazy-loaded)
-- Build limpio: 184 modulos, 8 chunks, 0 errores TS
+- 10 charlas seed con QR escaneables (/dev-seed)
+- Rankings publicos con 4 categorias y dashboard publico `/dashboard`
+- Roles de usuario y guard `/admin` (Administrador/Organizacion)
+- Code splitting con React.lazy (9 chunks)
+- Build limpio: 0 errores TS
 
 ### Pendiente (Fases 3+4)
-- Backend real (Supabase: Auth, PostgreSQL, Realtime, Storage)
-- Rankings publicos (Expertise, Aura Tech, Contactos, Victorias)
-- Dashboard admin (CRUD usuarios, logros, QRs)
-- Dashboard publico para pantallas del evento
+- Backend real (API generica; no Supabase)
+- Contenido del dashboard privado (CRUD usuarios, logros, QRs, estadisticas)
 - Tarjetas compartibles (LinkedIn)
 - PWA con service worker
 - Inventario de objetos y misiones
@@ -108,7 +108,7 @@ src/pages/MyMonsterPage.tsx → Criatura + metricas + banner evolucion
 ## Para continuar: que hacer primero
 
 1. Leer este documento para tener contexto
-2. Explorar el codigo en `plan/App/bilbostack-app/`
-3. Para Fase 3: empezar por rankings (query SQL simple sobre metricas existentes)
+2. Explorar el codigo en `App/`
+3. Para Fase 3: continuar por el dashboard privado (el guard de roles y `/admin` ya existen)
 4. Para backend: seguir arquitectura en `02-arquitectura-y-diseno/arquitectura-tecnica.md`
 5. Consultar `03-backlog-y-criterios/backlog-estructurado.md` para historias pendientes (epicas 11-14)

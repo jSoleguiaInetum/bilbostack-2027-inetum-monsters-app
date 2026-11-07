@@ -40,6 +40,29 @@ describe('local auth repository', () => {
       localAuthRepository.signUpWithEmail('DUPLICATE@example.com', 'secret', 'Second', 'qa'),
     ).rejects.toThrow('Email ya registrado')
   })
+
+  it('bootstraps the first user as admin and the rest as participants', async () => {
+    const first = await localAuthRepository.signUpWithEmail('first@example.com', 'secret', 'First', 'developer')
+    const second = await localAuthRepository.signUpWithEmail('second@example.com', 'secret', 'Second', 'qa')
+
+    expect(first.role).toBe('admin')
+    expect(second.role).toBe('participant')
+  })
+
+  it('normalizes legacy users without a role to participant', async () => {
+    writeJson(STORAGE_KEYS.users, [{
+      id: 'legacy',
+      email: 'legacy@example.com',
+      name: 'Legacy',
+      archetype: 'ux',
+      createdAt: '2026-01-01T00:00:00.000Z',
+    }])
+    writeJson(STORAGE_KEYS.session, 'legacy')
+
+    const session = await localAuthRepository.getSession()
+
+    expect(session?.role).toBe('participant')
+  })
 })
 
 describe('local metrics repository', () => {
@@ -150,6 +173,7 @@ describe('local rankings repository', () => {
       email: 'alice@example.com',
       name: 'Alice',
       archetype: 'developer',
+      role: 'participant',
       createdAt: '2026-01-01T00:00:00.000Z',
     },
     {
@@ -157,6 +181,7 @@ describe('local rankings repository', () => {
       email: 'bob@example.com',
       name: 'Bob',
       archetype: 'ux',
+      role: 'participant',
       createdAt: '2026-01-02T00:00:00.000Z',
     },
     {
@@ -164,6 +189,7 @@ describe('local rankings repository', () => {
       email: 'carla@example.com',
       name: 'Carla',
       archetype: 'qa',
+      role: 'participant',
       createdAt: '2026-01-03T00:00:00.000Z',
     },
   ]
@@ -281,6 +307,7 @@ describe('local dashboard repository', () => {
       email: 'alice@example.com',
       name: 'Alice',
       archetype: 'developer',
+      role: 'participant',
       createdAt: '2026-01-01T09:00:00.000Z',
     },
     {
@@ -288,6 +315,7 @@ describe('local dashboard repository', () => {
       email: 'bob@example.com',
       name: 'Bob',
       archetype: 'ux',
+      role: 'participant',
       createdAt: '2026-01-01T09:10:00.000Z',
     },
     {
@@ -295,6 +323,7 @@ describe('local dashboard repository', () => {
       email: 'carla@example.com',
       name: 'Carla',
       archetype: 'qa',
+      role: 'participant',
       createdAt: '2026-01-01T09:20:00.000Z',
     },
   ]
