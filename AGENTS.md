@@ -2,6 +2,13 @@
 
 Guía operativa para agentes de IA y desarrolladores. Leer antes de tocar código.
 
+## 0. To-do viva (obligatorio)
+
+- **Al inicio de cada sesión:** leer `TODO.md` en la raíz del repo para conocer el estado real y el próximo foco.
+- **Al completar, agregar, bloquear o descartar una tarea:** actualizar `TODO.md` en el mismo cambio (marcar `[x]`, `[!]` o `[?]`).
+- **Al cerrar una sesión:** dejar actualizado el bloque "Próximo foco" de `TODO.md`.
+- `TODO.md` es la fuente operativa de verdad; no crear listas paralelas en el chat ni en otros archivos.
+
 ## 1. Qué es el proyecto
 
 PWA gamificada de networking para BilboStack 2027 (evento tech de un día, ~1000 asistentes). Cada asistente recibe una criatura única generada proceduralmente desde su email y evoluciona según su participación: combates de preguntas, contactos por QR, check-in de charlas y logros.
@@ -10,7 +17,7 @@ PWA gamificada de networking para BilboStack 2027 (evento tech de un día, ~1000
 - **Código:** `App/` (no existe `plan/App/...`, aunque la documentación vieja lo mencione)
 - **Documentación:** `documentacion/`
 - **Idioma:** UI y docs en español; identificadores de código en inglés.
-- **Estado:** Fases 0, 1 y 2 completadas. Fases 3 y 4 pendientes.
+- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 en curso (stories 20–24 hechas; 25–28 pendientes). Fase 4 pendiente. Ver `TODO.md`.
 - **Backend:** NO hay backend todavía. Todo funciona con mock local (`localStorage`).
 
 ## 2. Stack
@@ -234,7 +241,7 @@ unlayered         ← overrides globales
 
 - Runner: Vitest + jsdom (`npm test`, `npm run test:watch`).
 - Tests actuales: generación determinista, evolución, resolución de combates, recompensas, logros, adaptadores `local` y `api` con `fetch` mockeado.
-- Si se añade UI con comportamiento propio, usar `@testing-library/react` (aún no instalado).
+- Si se añade UI con comportamiento propio, usar `@testing-library/react` (ya instalado, `^16.3.3`).
 - Zona prioritaria de tests: `generator.ts`, `evolution.ts`, `battle.ts`, `achievements.ts` y los adaptadores de datos (misma suite para `local` y `api`).
 
 ## 11. Gotchas conocidos
@@ -243,7 +250,7 @@ unlayered         ← overrides globales
 - `App/node_modules` puede no existir: ejecutar `npm install` antes de nada.
 - La documentación referencia `plan/App/bilbostack-app/` y `plan/Claude-plan/...`; esos paths ya no existen. El código real está en `App/`.
 - El README de `documentacion/` dice 154 SVGs; hay 152.
-- `documentacion/README.md` menciona 19 stories, pero solo están las 10 de fase 1.
+- `documentacion/README.md` menciona 19 stories; faltan las detalladas de fase 2 (11–19) y varias de fase 3 (24–28).
 - El combate es 100% local y simulado; no hay sincronización entre dispositivos.
 - El QR actual no está firmado (solo base64 de JSON). No asumir seguridad anti-falsificación.
 - No hay PWA, manifest ni service worker.
@@ -252,7 +259,7 @@ unlayered         ← overrides globales
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. ~~Rankings UI (story 21), dashboard público (story 22) y roles/admin (story 23)~~ (hecho). Implementar el resto de Fase 3 con datos mock: dashboard privado, inventario y misiones.
+3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23) y dashboard privado (story 24)~~ (hecho). Falta el resto de Fase 3 con datos mock: inventario (25), misiones (26), tarjetas compartibles (27) y Home real (28).
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.
@@ -265,9 +272,11 @@ unlayered         ← overrides globales
 - UI responsive a 375px.
 - Sin secretos ni claves en el repo.
 - Documentación actualizada solo si cambia el contrato o el estado del proyecto.
+- `TODO.md` actualizado con las tareas completadas y el próximo foco.
 
 ## 14. Documentación de referencia
 
+- `TODO.md` — to-do viva y próximo foco (leer primero).
 - `documentacion/CONTEXTO-PROYECTO.md` — resumen compacto.
 - `documentacion/02-arquitectura-y-diseno/arquitectura-tecnica.md` — arquitectura original (basada en Supabase; usar solo como referencia de dominio, NO como decisión de backend).
 - `documentacion/03-backlog-y-criterios/backlog-estructurado.md` — 14 épicas / 73 historias.
