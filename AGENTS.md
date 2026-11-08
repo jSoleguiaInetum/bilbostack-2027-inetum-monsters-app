@@ -82,7 +82,7 @@ Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `
 - Métricas Expertise (⚡) y Aura Tech (✨), tabla de recompensas e historial.
 - Combates mejor de 3, timer 10s, preguntas por arquetipo, oponente simulado, 1 combate por par.
 - Contactos con iconos de origen (🤝 / ⚔️👑 / ⚔️💀 / ⚔️🤗).
-- 12 logros con evaluación automática y toast.
+- 12 logros con evaluación automática, recompensa de +2 Aura Tech y toast.
 - QR personal, escáner, check-in de charlas (+5 Aura Tech), 10 charlas reales de BilboStack 2027 en `/dev-seed` (datos en `src/data/talks.json`).
 - `RankingsRepository` con 4 categorías, adaptadores `local`/`api` y tests.
 - Página `/rankings` con 4 tabs, top 20, posición propia y refresco cada 30 s.
@@ -207,6 +207,8 @@ GET    /feature-flags
 PATCH  /feature-flags/:key
 POST   /qr/resolve
 ```
+
+En modo `api`, `POST /users/:id/achievements/check` solo desbloquea logros; el cliente aplica la recompensa con `POST /users/:id/metrics/rewards` (`action: 'achievement'`).
 
 ### Deuda restante
 

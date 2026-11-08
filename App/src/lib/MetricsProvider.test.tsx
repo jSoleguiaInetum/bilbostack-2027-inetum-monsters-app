@@ -118,6 +118,67 @@ describe('MetricsProvider missions integration', () => {
     )
   })
 
+  it('awards +2 aura for each unlocked achievement', async () => {
+    mocks.isEnabled.mockReturnValue(false)
+    mocks.metricsAddReward
+      .mockResolvedValueOnce({ expertise: 0, auraTech: 2, history: [] })
+      .mockResolvedValueOnce({ expertise: 0, auraTech: 4, history: [] })
+    mocks.achievementsCheck
+      .mockResolvedValueOnce([{ id: 'first-contact', unlockedAt: '2026-01-01T10:00:00.000Z' }])
+      .mockResolvedValueOnce([])
+
+    render(
+      <MetricsProvider>
+        <Probe />
+      </MetricsProvider>,
+    )
+
+    expect(await screen.findByText('0/0')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'reward' }))
+
+    expect(await screen.findByText('0/4')).toBeTruthy()
+    expect(mocks.metricsAddReward).toHaveBeenNthCalledWith(
+      1,
+      'user-1',
+      'contact_add',
+      undefined,
+      'developer',
+    )
+    expect(mocks.metricsAddReward).toHaveBeenNthCalledWith(
+      2,
+      'user-1',
+      'achievement',
+      undefined,
+      'developer',
+    )
+    expect(mocks.achievementsCheck).toHaveBeenCalledTimes(2)
+  })
+
+  it('keeps evaluating when the achievement reward unlocks another achievement', async () => {
+    mocks.isEnabled.mockReturnValue(false)
+    mocks.metricsAddReward
+      .mockResolvedValueOnce({ expertise: 0, auraTech: 2, history: [] })
+      .mockResolvedValueOnce({ expertise: 0, auraTech: 4, history: [] })
+      .mockResolvedValueOnce({ expertise: 0, auraTech: 6, history: [] })
+    mocks.achievementsCheck
+      .mockResolvedValueOnce([{ id: 'first-contact', unlockedAt: '2026-01-01T10:00:00.000Z' }])
+      .mockResolvedValueOnce([{ id: 'aura-master', unlockedAt: '2026-01-01T10:00:01.000Z' }])
+      .mockResolvedValueOnce([])
+
+    render(
+      <MetricsProvider>
+        <Probe />
+      </MetricsProvider>,
+    )
+
+    expect(await screen.findByText('0/0')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'reward' }))
+
+    expect(await screen.findByText('0/6')).toBeTruthy()
+    expect(mocks.achievementsCheck).toHaveBeenCalledTimes(3)
+    expect(mocks.metricsAddReward).toHaveBeenCalledTimes(3)
+  })
+
   it('skips the mission check when the missions flag is disabled', async () => {
     mocks.isEnabled.mockReturnValue(false)
     mocks.metricsAddReward.mockResolvedValue({ expertise: 0, auraTech: 2, history: [] })

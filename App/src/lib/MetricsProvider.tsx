@@ -17,6 +17,8 @@ interface MetricsContextValue {
 
 const MetricsContext = createContext<MetricsContextValue | null>(null)
 
+const MAX_ACHIEVEMENT_PASSES = 12
+
 export function MetricsProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth()
   const { isEnabled } = useFeatureFlags()
@@ -65,40 +67,62 @@ export function MetricsProvider({ children }: { children: ReactNode }) {
     }
   }, [currentMission, missionQueue])
 
-  const handleAchievementCheck = useCallback(async (updatedMetrics: PlayerMetrics) => {
-    if (!user) return
+  const handleAchievementCheck = useCallback(async (
+    updatedMetrics: PlayerMetrics,
+  ): Promise<PlayerMetrics> => {
+    if (!user) return updatedMetrics
 
     const [allContacts, allBattles] = await Promise.all([
       contactsRepository.list(user.id),
       battlesRepository.list(user.id),
     ])
-    const context: AchievementContext = {
+    const baseContext = {
       userId: user.id,
-      metrics: updatedMetrics,
       contactCount: allContacts.length,
       battleCount: allBattles.length,
       battleWins: allBattles.filter(b => b.outcome === 'win').length,
       uniqueArchetypesContacted: new Set(allContacts.map(c => c.archetype)).size,
     }
-    const newlyUnlocked = await achievementsRepository.checkAndUnlock(user.id, context)
+
+    let currentMetrics = updatedMetrics
+    const newlyUnlocked: UnlockedAchievement[] = []
+
+    for (let pass = 0; pass < MAX_ACHIEVEMENT_PASSES; pass++) {
+      const context: AchievementContext = { ...baseContext, metrics: currentMetrics }
+      const unlocked = await achievementsRepository.checkAndUnlock(user.id, context)
+      if (unlocked.length === 0) break
+
+      newlyUnlocked.push(...unlocked)
+      for (let index = 0; index < unlocked.length; index++) {
+        currentMetrics = await metricsRepository.addReward(
+          user.id,
+          'achievement',
+          undefined,
+          user.archetype,
+        )
+      }
+    }
+
     if (newlyUnlocked.length > 0) {
+      setMetrics(currentMetrics)
       setToastQueue(q => [...q, ...newlyUnlocked])
     }
-  }, [user, contactsRepository, battlesRepository, achievementsRepository])
+
+    return currentMetrics
+  }, [user, contactsRepository, battlesRepository, achievementsRepository, metricsRepository])
 
   const handleProgressCheck = useCallback(async (
     updatedMetrics: PlayerMetrics,
   ): Promise<PlayerMetrics> => {
-    await handleAchievementCheck(updatedMetrics)
-    if (!user || !isEnabled('missions')) return updatedMetrics
+    const afterAchievements = await handleAchievementCheck(updatedMetrics)
+    if (!user || !isEnabled('missions')) return afterAchievements
 
     const result = await missionsRepository.checkAndComplete(user.id)
-    if (result.completed.length === 0) return updatedMetrics
+    if (result.completed.length === 0) return afterAchievements
 
     setMetrics(result.metrics)
     setMissionQueue(q => [...q, ...result.completed])
-    await handleAchievementCheck(result.metrics)
-    return result.metrics
+    return handleAchievementCheck(result.metrics)
   }, [user, isEnabled, missionsRepository, handleAchievementCheck])
 
   const refreshMetrics = useCallback(async () => {

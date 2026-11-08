@@ -3,7 +3,7 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: Story 26 implementada (pendiente de commit), 19 archivos de test, 113 tests verdes, `lint` y `tsc --noEmit` OK.
+- Última verificación: recompensa de +2 Aura Tech por logro conectada (pendiente de commit), 19 archivos de test, 115 tests verdes, `lint` y `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
