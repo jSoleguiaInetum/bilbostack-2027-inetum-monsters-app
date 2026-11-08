@@ -17,7 +17,7 @@ PWA gamificada de networking para BilboStack 2027 (evento tech de un día, ~1000
 - **Código:** `App/` (no existe `plan/App/...`, aunque la documentación vieja lo mencione)
 - **Documentación:** `documentacion/`
 - **Idioma:** UI y docs en español; identificadores de código en inglés.
-- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 en curso (stories 20–25 + feature flags hechas; 26–28 pendientes). Fase 4 pendiente. Ver `TODO.md`.
+- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 en curso (stories 20–26 + feature flags hechas; 27–28 pendientes). Fase 4 pendiente. Ver `TODO.md`.
 - **Backend:** NO hay backend todavía. Todo funciona con mock local (`localStorage`).
 
 ## 2. Stack
@@ -90,12 +90,13 @@ Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `
 - Roles de usuario (`participant`, `admin`) con guard `/admin` (`AdminRoute`) y enlace condicional en Mi Criatura. En modo `local`, el primer usuario registrado es admin.
 - Dashboard privado `/admin`: estadísticas (totales + medias de Expertise/Aura), listado de usuarios con búsqueda y filtros por rol/arquetipo, y cambio de rol participante ↔ admin. Refresco cada 30 s.
 - Inventario: 16 objetos seed (`src/lib/objects.ts`), `InventoryRepository` con adaptadores `local`/`api`, página `/inventory` y seed de demo en `/dev-seed`. Detrás del flag `inventory`, apagado por defecto.
-- Feature flags globales: `src/lib/feature-flags.ts`, `FeatureFlagsRepository`, `FeatureFlagsProvider`/`useFeatureFlags`, guard `FeatureFlagRoute` y gestión en `/admin`. Persisten en `bilbostack_feature_flags` (local) o `/feature-flags` (api).
-- Code splitting con `React.lazy` (10 chunks).
+- Feature flags globales: `src/lib/feature-flags.ts`, `FeatureFlagsRepository`, `FeatureFlagsProvider`/`useFeatureFlags`, guard `FeatureFlagRoute` y gestión en `/admin`. Persisten en `bilbostack_feature_flags` (local) o `/feature-flags` (api). `inventory` y `missions` arrancan apagados.
+- Misiones base: 7 misiones seed (`src/lib/missions.ts`), `MissionsRepository` con `list`/`checkAndComplete`, adaptadores `local`/`api`, evaluación automática en `MetricsProvider`, recompensas de métricas y objetos, toast y página `/missions`. Detrás del flag `missions`.
+- Code splitting con `React.lazy`.
 
 ### Pendiente
 
-- **Fase 3:** CRUD de logros/objetos y QRs, tarjetas compartibles + OG, misiones y entrega automática de objetos.
+- **Fase 3:** CRUD de logros/objetos y QRs, tarjetas compartibles + OG y Home real.
 - **Home real** (story 18): resumen del jugador y navegación a 1 tap. Hoy `/` redirige a `/my-monster`.
 - **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
@@ -133,7 +134,8 @@ Crear interfaces (puertos) y dos implementaciones por dominio. La UI/providers s
 | `TalksRepository` | listTalks |
 | `RankingsRepository` | getByCategory |
 | `DashboardRepository` | getOverview (stats + rankings + evoluciones recientes), getAdminOverview (stats + medias) |
-| `FeatureFlagsRepository` | list, set (flags globales; `inventory` apagado por defecto) |
+| `MissionsRepository` | list, checkAndComplete (progreso, recompensas y objetos) |
+| `FeatureFlagsRepository` | list, set (flags globales; `inventory` y `missions` apagados por defecto) |
 
 ### Reglas obligatorias
 
@@ -158,7 +160,8 @@ Hecho:
 7. Runner Vitest + jsdom con tests de lógica pura y adaptadores `local`/`api`.
 8. Roles en `User` (`UserRole`) con normalización defensiva a `participant` en los adaptadores.
 9. Inventario: definiciones y objetos obtenidos detrás de `InventoryRepository` (`listDefinitions`, `listOwned`, `has`, `add` idempotente) con adaptadores `local`/`api` y tests.
-10. Feature flags globales detrás de `FeatureFlagsRepository` (`list`, `set`) con adaptadores `local`/`api`, provider y guard de ruta; `inventory` apagado por defecto y gestionable desde `/admin`.
+10. Feature flags globales detrás de `FeatureFlagsRepository` (`list`, `set`) con adaptadores `local`/`api`, provider y guard de ruta; `inventory` y `missions` apagados por defecto y gestionables desde `/admin`.
+11. Misiones base detrás de `MissionsRepository` (`list`, `checkAndComplete`) con adaptadores `local`/`api`, evaluación automática en `MetricsProvider`, recompensas de métricas/objetos y página `/missions` con flag `missions`.
 
 Pendiente:
 
@@ -195,6 +198,8 @@ GET    /talks
 GET    /objects
 GET    /users/:id/inventory
 POST   /users/:id/inventory
+GET    /users/:id/missions
+POST   /users/:id/missions/check
 GET    /rankings?category=expertise|aura|contacts|wins
 GET    /dashboard/public?rankingsLimit=5&evolutionsLimit=10
 GET    /dashboard/admin
@@ -264,13 +269,14 @@ unlayered         ← overrides globales
 - El combate es 100% local y simulado; no hay sincronización entre dispositivos.
 - El QR actual no está firmado (solo base64 de JSON). No asumir seguridad anti-falsificación.
 - No hay PWA, manifest ni service worker.
-- El inventario está apagado por defecto (MVP inicial). Se habilita desde `/admin` → Feature flags; en modo `local` persiste en `bilbostack_feature_flags`.
+- El inventario y las misiones están apagados por defecto (MVP inicial). Se habilitan desde `/admin` → Feature flags; en modo `local` persisten en `bilbostack_feature_flags`.
+- Las misiones se evalúan solo si el flag `missions` está activo; si se activa después de que haya actividad, el primer `refreshMetrics` completa las que ya cumplan objetivos.
 
 ## 12. Roadmap inmediato
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24), inventario (story 25) y feature flags~~ (hecho). Falta el resto de Fase 3 con datos mock: misiones (26), tarjetas compartibles (27) y Home real (28).
+3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24), inventario (story 25), feature flags y misiones base (story 26)~~ (hecho). Falta el resto de Fase 3 con datos mock: tarjetas compartibles (27) y Home real (28).
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.

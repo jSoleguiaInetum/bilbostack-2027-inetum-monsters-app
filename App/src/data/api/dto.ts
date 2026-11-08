@@ -11,6 +11,13 @@ import type { Ranking, RankingCategory, RankingEntry } from '../../lib/rankings'
 import type { AdminDashboard, PublicDashboard, RecentEvolution } from '../../lib/dashboard'
 import { resolveFeatureFlags, type FeatureFlagValues } from '../../lib/feature-flags'
 import type {
+  Mission,
+  MissionCheckResult,
+  MissionObjectiveType,
+  MissionProgress,
+  MissionType,
+} from '../../lib/missions'
+import type {
   GameObject,
   ObjectBenefitType,
   ObjectRarity,
@@ -225,6 +232,105 @@ export type FeatureFlagsDto = Record<string, boolean>
 
 export function toFeatureFlags(dto: FeatureFlagsDto | null | undefined): FeatureFlagValues {
   return resolveFeatureFlags(dto)
+}
+
+const MISSION_TYPES: MissionType[] = ['base', 'contextual', 'qr']
+const MISSION_OBJECTIVE_TYPES: MissionObjectiveType[] = [
+  'contacts',
+  'battles',
+  'battle_wins',
+  'talks',
+  'archetypes',
+  'achievements',
+  'expertise',
+  'aura',
+]
+
+function toMissionType(value: string | undefined): MissionType {
+  return MISSION_TYPES.includes(value as MissionType) ? value as MissionType : 'base'
+}
+
+function toMissionObjectiveType(value: string | undefined): MissionObjectiveType {
+  return MISSION_OBJECTIVE_TYPES.includes(value as MissionObjectiveType)
+    ? value as MissionObjectiveType
+    : 'contacts'
+}
+
+function toWholeNumber(value: unknown, fallback: number, minimum: number): number {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return fallback
+  return Math.max(minimum, Math.floor(value))
+}
+
+export interface MissionDto {
+  id: string
+  name: string
+  description?: string
+  type?: string
+  objective?: {
+    type?: string
+    target?: number
+  }
+  reward?: {
+    expertise?: number
+    auraTech?: number
+    objectId?: string | null
+  }
+  isActive?: boolean
+}
+
+export function toMission(dto: MissionDto): Mission {
+  return {
+    id: dto.id,
+    name: dto.name,
+    description: dto.description ?? '',
+    type: toMissionType(dto.type),
+    objective: {
+      type: toMissionObjectiveType(dto.objective?.type),
+      target: toWholeNumber(dto.objective?.target, 1, 1),
+    },
+    reward: {
+      expertise: toWholeNumber(dto.reward?.expertise, 0, 0),
+      auraTech: toWholeNumber(dto.reward?.auraTech, 0, 0),
+      objectId: dto.reward?.objectId ?? undefined,
+    },
+    isActive: dto.isActive ?? true,
+  }
+}
+
+export interface MissionProgressDto {
+  mission: MissionDto
+  status?: string
+  current?: number
+  target?: number
+  completedAt?: string | null
+}
+
+export function toMissionProgress(dto: MissionProgressDto): MissionProgress {
+  const mission = toMission(dto.mission)
+
+  return {
+    mission,
+    status: dto.status === 'completed' ? 'completed' : 'active',
+    current: toWholeNumber(dto.current, 0, 0),
+    target: toWholeNumber(dto.target, mission.objective.target, 1),
+    completedAt: dto.completedAt ?? undefined,
+  }
+}
+
+export interface MissionCheckDto {
+  completed?: MissionDto[]
+  metrics?: MetricsDto
+  grantedObjectIds?: string[]
+}
+
+export function toMissionCheckResult(dto: MissionCheckDto): MissionCheckResult {
+  return {
+    completed: (dto.completed ?? []).map(toMission),
+    metrics: toMetrics(dto.metrics ?? { expertise: 0, auraTech: 0, history: [] }),
+    grantedObjectIds: (dto.grantedObjectIds ?? []).filter(
+      (objectId): objectId is string => typeof objectId === 'string',
+    ),
+  }
 }
 
 export interface TalkDto {

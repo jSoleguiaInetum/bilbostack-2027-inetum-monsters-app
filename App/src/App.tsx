@@ -23,6 +23,7 @@ const RankingsPage = lazy(() => import('./pages/RankingsPage').then(m => ({ defa
 const PublicDashboardPage = lazy(() => import('./pages/PublicDashboardPage').then(m => ({ default: m.PublicDashboardPage })))
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })))
 const InventoryPage = lazy(() => import('./pages/InventoryPage').then(m => ({ default: m.InventoryPage })))
+const MissionsPage = lazy(() => import('./pages/MissionsPage').then(m => ({ default: m.MissionsPage })))
 const DevSeedPage = lazy(() => import('./pages/DevSeedPage').then(m => ({ default: m.DevSeedPage })))
 
 function LazyFallback() {
@@ -84,6 +85,13 @@ export default function App() {
                     <ProtectedRoute>
                       <FeatureFlagRoute flag="inventory">
                         <Layout><InventoryPage /></Layout>
+                      </FeatureFlagRoute>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/missions" element={
+                    <ProtectedRoute>
+                      <FeatureFlagRoute flag="missions">
+                        <Layout><MissionsPage /></Layout>
                       </FeatureFlagRoute>
                     </ProtectedRoute>
                   } />

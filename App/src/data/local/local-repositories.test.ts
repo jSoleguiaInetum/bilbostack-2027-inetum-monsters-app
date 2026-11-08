@@ -8,6 +8,7 @@ import { localDashboardRepository } from './dashboard-repository'
 import { localFeatureFlagsRepository } from './feature-flags-repository'
 import { localInventoryRepository } from './inventory-repository'
 import { localMetricsRepository } from './metrics-repository'
+import { localMissionsRepository } from './missions-repository'
 import { localRankingsRepository } from './rankings-repository'
 import { localTalksRepository } from './talks-repository'
 import { localUserRepository } from './user-repository'
@@ -245,25 +246,112 @@ describe('local inventory repository', () => {
   })
 })
 
+describe('local missions repository', () => {
+  function contact(id: string, archetype: 'developer' | 'ux' | 'qa') {
+    return {
+      userId: id,
+      name: `Contact ${id}`,
+      email: `${id}@example.com`,
+      archetype,
+    }
+  }
+
+  it('lists the active missions with their current progress', async () => {
+    const progress = await localMissionsRepository.list('user-1')
+
+    expect(progress.length).toBeGreaterThan(0)
+    expect(progress.every(entry => entry.status === 'active')).toBe(true)
+    expect(progress.find(entry => entry.mission.id === 'mission-first-contact')).toMatchObject({
+      current: 0,
+      target: 1,
+    })
+  })
+
+  it('completes missions once and applies their metric rewards', async () => {
+    await localContactsRepository.add('user-1', contact('contact-1', 'ux'))
+
+    const first = await localMissionsRepository.checkAndComplete('user-1')
+
+    expect(first.completed.map(mission => mission.id)).toEqual(['mission-first-contact'])
+    expect(first.metrics).toMatchObject({ expertise: 0, auraTech: 3 })
+
+    const second = await localMissionsRepository.checkAndComplete('user-1')
+
+    expect(second.completed).toEqual([])
+    expect(await localMetricsRepository.get('user-1')).toMatchObject({
+      expertise: 0,
+      auraTech: 3,
+    })
+    expect(await localMissionsRepository.list('user-1'))
+      .toContainEqual(expect.objectContaining({
+        mission: expect.objectContaining({ id: 'mission-first-contact' }),
+        status: 'completed',
+      }))
+  })
+
+  it('grants the configured objects with the mission source', async () => {
+    await localContactsRepository.add('user-1', contact('contact-1', 'developer'))
+    await localContactsRepository.add('user-1', contact('contact-2', 'ux'))
+    await localContactsRepository.add('user-1', contact('contact-3', 'qa'))
+
+    const result = await localMissionsRepository.checkAndComplete('user-1')
+
+    expect(result.completed.map(mission => mission.id)).toEqual([
+      'mission-first-contact',
+      'mission-network-3',
+      'mission-diverse-3',
+    ])
+    expect(result.grantedObjectIds).toEqual(['object-09', 'object-16'])
+    expect(result.metrics).toMatchObject({ expertise: 3, auraTech: 11 })
+
+    const owned = await localInventoryRepository.listOwned('user-1')
+    expect(owned.map(object => object.objectId)).toEqual(['object-09', 'object-16'])
+    expect(owned.every(object => object.source === 'mission')).toBe(true)
+  })
+
+  it('evaluates talk check-ins', async () => {
+    await localCheckInsRepository.add('user-1', {
+      talkId: 'talk-01',
+      title: 'Talk',
+      speaker: 'Speaker',
+    })
+
+    const result = await localMissionsRepository.checkAndComplete('user-1')
+
+    expect(result.completed.map(mission => mission.id)).toEqual(['mission-first-talk'])
+    expect(result.metrics).toMatchObject({ expertise: 0, auraTech: 5 })
+  })
+})
+
 describe('local feature flags repository', () => {
-  it('returns the MVP defaults with the inventory disabled', async () => {
-    expect(await localFeatureFlagsRepository.list()).toEqual({ inventory: false })
+  it('returns the MVP defaults with inventory and missions disabled', async () => {
+    expect(await localFeatureFlagsRepository.list()).toEqual({
+      inventory: false,
+      missions: false,
+    })
   })
 
   it('persists enabled flags globally', async () => {
     const updated = await localFeatureFlagsRepository.set('inventory', true)
 
-    expect(updated).toEqual({ inventory: true })
-    expect(await localFeatureFlagsRepository.list()).toEqual({ inventory: true })
+    expect(updated).toEqual({ inventory: true, missions: false })
+    expect(await localFeatureFlagsRepository.list()).toEqual({
+      inventory: true,
+      missions: false,
+    })
     expect(JSON.parse(localStorage.getItem(STORAGE_KEYS.featureFlags) as string)).toEqual({
       inventory: true,
+      missions: false,
     })
   })
 
   it('merges stored overrides with the defaults and ignores unknown flags', async () => {
     writeJson(STORAGE_KEYS.featureFlags, { inventory: true, unknown: true })
 
-    expect(await localFeatureFlagsRepository.list()).toEqual({ inventory: true })
+    expect(await localFeatureFlagsRepository.list()).toEqual({
+      inventory: true,
+      missions: false,
+    })
   })
 })
 

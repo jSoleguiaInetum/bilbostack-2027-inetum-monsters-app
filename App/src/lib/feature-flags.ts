@@ -1,4 +1,4 @@
-export type FeatureFlagKey = 'inventory'
+export type FeatureFlagKey = 'inventory' | 'missions'
 
 export interface FeatureFlagDefinition {
   key: FeatureFlagKey
@@ -12,6 +12,12 @@ export const FEATURE_FLAG_DEFINITIONS: readonly FeatureFlagDefinition[] = [
     key: 'inventory',
     name: 'Inventario',
     description: 'Permite a los participantes ver los objetos que han obtenido.',
+    defaultValue: false,
+  },
+  {
+    key: 'missions',
+    name: 'Misiones',
+    description: 'Activa las misiones base y sus recompensas automáticas.',
     defaultValue: false,
   },
 ]

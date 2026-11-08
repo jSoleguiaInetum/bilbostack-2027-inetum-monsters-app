@@ -9,6 +9,7 @@ import { createApiFeatureFlagsRepository } from './feature-flags-repository'
 import { HttpClient, httpClient } from './http-client'
 import { createApiInventoryRepository } from './inventory-repository'
 import { createApiMetricsRepository } from './metrics-repository'
+import { createApiMissionsRepository } from './missions-repository'
 import { createApiRankingsRepository } from './rankings-repository'
 import { createApiTalksRepository } from './talks-repository'
 import { createApiUserRepository } from './user-repository'
@@ -26,6 +27,7 @@ export function createApiRepositories(client: HttpClient = httpClient): Reposito
     rankings: createApiRankingsRepository(client),
     dashboard: createApiDashboardRepository(client),
     inventory: createApiInventoryRepository(client),
+    missions: createApiMissionsRepository(client),
     featureFlags: createApiFeatureFlagsRepository(client),
   }
 }

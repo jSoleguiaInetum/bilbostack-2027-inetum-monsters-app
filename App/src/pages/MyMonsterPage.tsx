@@ -106,6 +106,14 @@ export function MyMonsterPage() {
               Inventario
             </button>
           )}
+          {isEnabled('missions') && (
+            <button
+              onClick={() => navigate('/missions')}
+              className="snes-button has-turquoise-color w-full max-w-xs"
+            >
+              Misiones
+            </button>
+          )}
         </div>
 
       </main>

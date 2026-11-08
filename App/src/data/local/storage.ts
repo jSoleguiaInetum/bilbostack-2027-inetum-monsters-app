@@ -8,6 +8,7 @@ export const STORAGE_KEYS = {
   achievements: 'bilbostack_achievements',
   checkins: 'bilbostack_checkins',
   inventory: 'bilbostack_inventory',
+  missions: 'bilbostack_missions',
   featureFlags: 'bilbostack_feature_flags',
 } as const
 

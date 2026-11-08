@@ -26,7 +26,7 @@ PWA gamificada de networking para BilboStack 2027, conferencia tech de un dia (~
 - 10 charlas seed con QR escaneables (/dev-seed)
 - Rankings publicos con 4 categorias y dashboard publico `/dashboard`
 - Roles de usuario y guard `/admin` (Administrador/Organizacion)
-- Inventario de objetos y feature flags globales gestionables desde `/admin` (`inventory` apagado por defecto)
+- Inventario de objetos, misiones base y feature flags globales gestionables desde `/admin` (`inventory` y `missions` apagados por defecto)
 - Code splitting con React.lazy (10 chunks)
 - Build limpio: 0 errores TS
 
@@ -35,7 +35,7 @@ PWA gamificada de networking para BilboStack 2027, conferencia tech de un dia (~
 - Contenido del dashboard privado (CRUD usuarios, logros, QRs, estadisticas)
 - Tarjetas compartibles (LinkedIn)
 - PWA con service worker
-- Misiones
+- Home real y navegación a 1 tap
 - Prueba de carga y ensayo general
 
 ## Stack

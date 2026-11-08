@@ -10,6 +10,7 @@ describe('data composition root', () => {
     expect(repositories.rankings).toBeDefined()
     expect(repositories.dashboard).toBeDefined()
     expect(repositories.inventory).toBeDefined()
+    expect(repositories.missions).toBeDefined()
     expect(repositories.featureFlags).toBeDefined()
   })
 
@@ -21,6 +22,7 @@ describe('data composition root', () => {
     expect(repositories.rankings).toBeDefined()
     expect(repositories.dashboard).toBeDefined()
     expect(repositories.inventory).toBeDefined()
+    expect(repositories.missions).toBeDefined()
     expect(repositories.featureFlags).toBeDefined()
   })
 })

@@ -13,7 +13,7 @@ Estado: **iniciada**. La Fase 3 se apoya en la capa `src/data` y debe funcionar 
 | 24 | Dashboard privado | E11 | ✅ |
 | 25 | Inventario de objetos | E11/E13 | ✅ |
 | — | Feature flags (gestión en `/admin`) | E11 | ✅ |
-| 26 | Misiones base | E11/E13 | Pendiente |
+| 26 | Misiones base | E11/E13 | ✅ |
 | 27 | Tarjetas compartibles y OG | E13 | Pendiente |
 | 28 | Home real y navegación 1 tap | E14 | Pendiente |
 
@@ -52,4 +52,6 @@ Story 28 (Home) depende de 20, 21, 25 y 26
 - El panel `/admin` acepta el rol `admin`. En modo `local`, el primer usuario registrado es admin para poder probarlo.
 - `DashboardRepository.getAdminOverview` agrega totales del evento y medias de Expertise/Aura; no expone email en rankings públicos.
 - `UserRepository.updateRole` actualiza el rol en modo `local`/`api`; en `local` también refresca la sesión si el usuario se cambia a sí mismo.
-- Los feature flags son globales (no por usuario), viven detrás de `FeatureFlagsRepository` y se gestionan desde `/admin`. `inventory` arranca apagado: oculta el acceso en Mi Criatura y bloquea `/inventory` hasta que un admin lo habilite. En modo `local` persisten en `bilbostack_feature_flags`; en modo `api`, en `GET/PATCH /feature-flags`.
+- Los feature flags son globales (no por usuario), viven detrás de `FeatureFlagsRepository` y se gestionan desde `/admin`. `inventory` y `missions` arrancan apagados: ocultan el acceso en Mi Criatura y bloquean sus rutas hasta que un admin los habilite. En modo `local` persisten en `bilbostack_feature_flags`; en modo `api`, en `GET/PATCH /feature-flags`.
+- Las misiones base son automáticas: 7 definiciones en `src/lib/missions.ts`, objetivo declarativo (`contacts`, `battles`, `battle_wins`, `talks`, `archetypes`, `achievements`, `expertise`, `aura`) y recompensa de métricas/objeto. `MissionsRepository.checkAndComplete` evalúa y aplica recompensas y objetos de forma idempotente. En `local` solo se guardan las completaciones (`bilbostack_missions_<userId>`); en `api`, el backend devuelve el progreso y aplica las recompensas en `POST /users/:id/missions/check`.
+- La evaluación de misiones se dispara desde `MetricsProvider` después de cada recompensa y en `refreshMetrics`, solo con el flag `missions` activo. El historial de métricas registra `mission_complete`.

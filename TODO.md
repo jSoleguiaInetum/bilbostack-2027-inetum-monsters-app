@@ -3,14 +3,13 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: commit `24a28f3`, working tree limpio, 16 archivos de test, 99 tests verdes, `lint` y `tsc --noEmit` OK.
+- Última verificación: Story 26 implementada (pendiente de commit), 19 archivos de test, 113 tests verdes, `lint` y `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
 
-1. Story 26 — Misiones base
-2. Story 28 — Home real y navegación a 1 tap
-3. Story 27 — Tarjetas compartibles + OG (depende de 21 y 28)
+1. Story 28 — Home real y navegación a 1 tap
+2. Story 27 — Tarjetas compartibles + OG (depende de 21 y 28)
 
 ---
 
@@ -42,16 +41,18 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
   - [x] Puerto `FeatureFlagsRepository` + adaptadores `local`/`api` + tests
   - [x] `FeatureFlagsProvider`/`useFeatureFlags` y guard `FeatureFlagRoute`
   - [x] Sección de feature flags en `/admin` con toggle persistente
-  - [x] Flag `inventory` apagado por defecto (MVP inicial): oculta el acceso y bloquea `/inventory`
+  - [x] Flags `inventory` y `missions` apagados por defecto (MVP inicial): ocultan el acceso y bloquean sus rutas
+- [x] **Story 26 — Misiones base**
+  - [x] Dominio `src/lib/missions.ts` con 7 misiones seed, objetivos, recompensas y evaluación de progreso
+  - [x] Puerto `MissionsRepository` (`list`, `checkAndComplete`) + adaptadores `local`/`api` + tests
+  - [x] Evaluación automática tras cada recompensa (`MetricsProvider`) con recompensas y entrega de objetos
+  - [x] Página `/missions` con progreso, recompensas y acceso desde Mi Criatura (flag `missions`)
+  - [x] Toast de misión completada y registro `mission_complete` en el historial de métricas
 
 ### Pendiente
 
 - [!] `use`/consumo/equipamiento de objetos: diferido hasta que el modelo soporte `consumedAt`/`equipped`
-- [ ] Entrega automática de objetos por logros/misiones (fuera de alcance de la story 25)
-- [ ] **Story 26 — Misiones base**
-  - [ ] Puerto `MissionsRepository` (definiciones, progreso, completado)
-  - [ ] Adaptadores `local`/`api` + tests
-  - [ ] Evaluación automática de misiones y UI de progreso
+- [ ] Entrega automática de objetos por logros (las misiones ya entregan objetos)
 - [ ] **Story 27 — Tarjetas compartibles y OG**
   - [ ] Generación de imagen/tarjeta compartible (logro o criatura)
   - [ ] Metadatos Open Graph

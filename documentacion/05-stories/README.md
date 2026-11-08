@@ -37,7 +37,7 @@ Ver [fase-2/README.md](fase-2/README.md) para dependencias entre stories.
 
 ## Fase 3 — Rankings y Dashboards (en curso)
 
-Stories 20-28 planificadas. Rankings, dashboards e inventario ya están implementados.
+Stories 20-28 planificadas. Rankings, dashboards, inventario y misiones ya están implementados.
 
 - ✅ Story 20: `RankingsRepository` (4 categorías, local/API, tests)
 - ✅ Story 21: página de rankings (4 tabs, top 20, posición propia, refresco cada 30 s)
@@ -45,8 +45,9 @@ Stories 20-28 planificadas. Rankings, dashboards e inventario ya están implemen
 - ✅ Story 23: roles de usuario y guard de administración (`/admin` restringido)
 - ✅ Story 24: dashboard privado (estadísticas, usuarios, filtros y cambio de rol)
 - ✅ Story 25: inventario de objetos (`InventoryRepository`, página `/inventory`, seed de demo)
-- ✅ Feature flags globales con gestión en `/admin`; `inventory` apagado por defecto en el MVP.
-- Pendientes: misiones, tarjetas compartibles + OG y Home real.
+- ✅ Story 26: misiones base (`MissionsRepository`, evaluación automática, recompensas y página `/missions`)
+- ✅ Feature flags globales con gestión en `/admin`; `inventory` y `missions` apagados por defecto en el MVP.
+- Pendientes: tarjetas compartibles + OG y Home real.
 
 Ver [fase-3/README.md](fase-3/README.md) para el orden y las dependencias.
 Ver [backlog-estructurado.md](../03-backlog-y-criterios/backlog-estructurado.md) para el detalle de epicas.

@@ -24,6 +24,7 @@ export type ActionType =
   | 'achievement'
   | 'question_correct'
   | 'question_wrong'
+  | 'mission_complete'
 
 export const REWARDS: Record<ActionType, { expertise: number; auraTech: number }> = {
   register:          { expertise: 1, auraTech: 1 },
@@ -36,6 +37,7 @@ export const REWARDS: Record<ActionType, { expertise: number; auraTech: number }
   achievement:       { expertise: 0, auraTech: 2 },
   question_correct:  { expertise: 3, auraTech: 0 },
   question_wrong:    { expertise: 1, auraTech: 0 },
+  mission_complete:  { expertise: 0, auraTech: 0 },
 }
 
 const RARITY_AURA_BONUS: Record<string, number> = {

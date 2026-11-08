@@ -48,7 +48,7 @@ describe('FeatureFlagsProvider', () => {
   })
 
   it('loads the flags on mount', async () => {
-    mocks.list.mockResolvedValue({ inventory: true })
+    mocks.list.mockResolvedValue({ inventory: true, missions: false })
 
     renderProvider()
 
@@ -68,8 +68,8 @@ describe('FeatureFlagsProvider', () => {
   })
 
   it('persists a flag change and applies the returned values', async () => {
-    mocks.list.mockResolvedValue({ inventory: false })
-    mocks.set.mockResolvedValue({ inventory: true })
+    mocks.list.mockResolvedValue({ inventory: false, missions: false })
+    mocks.set.mockResolvedValue({ inventory: true, missions: false })
 
     renderProvider()
 

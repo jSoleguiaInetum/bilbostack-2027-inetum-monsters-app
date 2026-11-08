@@ -8,6 +8,7 @@ import { localDashboardRepository } from './dashboard-repository'
 import { localFeatureFlagsRepository } from './feature-flags-repository'
 import { localInventoryRepository } from './inventory-repository'
 import { localMetricsRepository } from './metrics-repository'
+import { localMissionsRepository } from './missions-repository'
 import { localRankingsRepository } from './rankings-repository'
 import { localTalksRepository } from './talks-repository'
 import { localUserRepository } from './user-repository'
@@ -24,5 +25,6 @@ export const localRepositories: Repositories = {
   rankings: localRankingsRepository,
   dashboard: localDashboardRepository,
   inventory: localInventoryRepository,
+  missions: localMissionsRepository,
   featureFlags: localFeatureFlagsRepository,
 }

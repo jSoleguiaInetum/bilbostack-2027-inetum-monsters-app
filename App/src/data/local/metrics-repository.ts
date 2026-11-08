@@ -21,6 +21,31 @@ async function initialize(userId: string, rarityName: string): Promise<PlayerMet
   return metrics
 }
 
+export async function addCustomMetricsReward(
+  userId: string,
+  expertise: number,
+  auraTech: number,
+): Promise<PlayerMetrics> {
+  const current = await get(userId)
+  if (expertise === 0 && auraTech === 0) return current
+
+  const updated: PlayerMetrics = {
+    expertise: current.expertise + expertise,
+    auraTech: current.auraTech + auraTech,
+    history: [
+      ...current.history,
+      {
+        action: 'mission_complete',
+        expertise,
+        auraTech,
+        timestamp: new Date().toISOString(),
+      },
+    ],
+  }
+  writeJson(metricsKey(userId), updated)
+  return updated
+}
+
 async function addReward(
   userId: string,
   action: ActionType,

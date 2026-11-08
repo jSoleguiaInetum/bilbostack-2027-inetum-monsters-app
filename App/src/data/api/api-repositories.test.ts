@@ -350,12 +350,107 @@ describe('api domain repositories', () => {
     })).rejects.toMatchObject({ code: 'VALIDATION' })
   })
 
+  it('maps the mission progress list', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse([
+      {
+        mission: {
+          id: 'mission-first-contact',
+          name: 'Primer movimiento',
+          description: 'Añade tu primer contacto',
+          type: 'base',
+          objective: { type: 'contacts', target: 1 },
+          reward: { expertise: 0, auraTech: 3, objectId: null },
+          isActive: true,
+        },
+        status: 'completed',
+        current: 1,
+        target: 1,
+        completedAt: '2026-01-01T10:00:00.000Z',
+      },
+      {
+        mission: {
+          id: 'mission-unknown',
+          name: 'Desconocida',
+          type: 'weird',
+          objective: { type: 'unknown', target: 0 },
+          reward: {},
+        },
+        status: 'active',
+      },
+    ]))
+
+    const progress = await repositories.missions.list('user-1')
+
+    expect(progress[0]).toMatchObject({
+      mission: {
+        id: 'mission-first-contact',
+        type: 'base',
+        objective: { type: 'contacts', target: 1 },
+        reward: { expertise: 0, auraTech: 3 },
+      },
+      status: 'completed',
+      current: 1,
+      target: 1,
+    })
+    expect(progress[0].mission.reward.objectId).toBeUndefined()
+    expect(progress[1]).toMatchObject({
+      mission: {
+        type: 'base',
+        objective: { type: 'contacts', target: 1 },
+        isActive: true,
+      },
+      status: 'active',
+      current: 0,
+      target: 1,
+    })
+    const [url] = fetchMock.mock.calls[0] as [string]
+    expect(url).toBe('https://api.test/users/user-1/missions')
+  })
+
+  it('checks missions and maps the granted objects and metrics', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({
+      completed: [{
+        id: 'mission-network-3',
+        name: 'Red de tres',
+        description: 'Consigue 3 contactos',
+        type: 'base',
+        objective: { type: 'contacts', target: 3 },
+        reward: { expertise: 3, auraTech: 3, objectId: 'object-09' },
+        isActive: true,
+      }],
+      metrics: {
+        expertise: 3,
+        auraTech: 8,
+        history: [{
+          action: 'mission_complete',
+          expertise: 3,
+          auraTech: 3,
+          timestamp: '2026-01-01T10:00:00.000Z',
+        }],
+      },
+      grantedObjectIds: ['object-09'],
+    }))
+
+    const result = await repositories.missions.checkAndComplete('user-1')
+
+    expect(result.completed[0]).toMatchObject({
+      id: 'mission-network-3',
+      reward: { objectId: 'object-09' },
+    })
+    expect(result.metrics).toMatchObject({ expertise: 3, auraTech: 8 })
+    expect(result.metrics.history).toHaveLength(1)
+    expect(result.grantedObjectIds).toEqual(['object-09'])
+    const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit]
+    expect(url).toBe('https://api.test/users/user-1/missions/check')
+    expect(init).toMatchObject({ method: 'POST', credentials: 'include' })
+  })
+
   it('maps feature flags and falls back to the MVP defaults', async () => {
     fetchMock.mockResolvedValueOnce(jsonResponse({ inventory: true, unknown: true }))
 
     const flags = await repositories.featureFlags.list()
 
-    expect(flags).toEqual({ inventory: true })
+    expect(flags).toEqual({ inventory: true, missions: false })
     const [url] = fetchMock.mock.calls[0] as [string]
     expect(url).toBe('https://api.test/feature-flags')
   })
@@ -365,7 +460,7 @@ describe('api domain repositories', () => {
 
     const flags = await repositories.featureFlags.set('inventory', false)
 
-    expect(flags).toEqual({ inventory: false })
+    expect(flags).toEqual({ inventory: false, missions: false })
     const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit]
     expect(url).toBe('https://api.test/feature-flags/inventory')
     expect(init).toMatchObject({ method: 'PATCH', credentials: 'include' })

@@ -17,7 +17,7 @@ const mocks = vi.hoisted(() => {
     getAdminOverview,
     setFlag,
     featureFlags: {
-      flags: { inventory: false },
+      flags: { inventory: false, missions: false },
       isEnabled: () => false,
       loading: false,
       error: false,

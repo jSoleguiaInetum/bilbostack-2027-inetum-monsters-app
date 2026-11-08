@@ -1,9 +1,12 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
 import { emptyMetrics, type PlayerMetrics, type ActionType } from './metrics'
 import type { AchievementContext, UnlockedAchievement } from './achievements'
+import type { Mission } from './missions'
 import { AchievementToast } from '../components/AchievementToast'
+import { MissionToast } from '../components/MissionToast'
 import { useAuth } from '../auth/AuthProvider'
 import { useRepositories } from '../data/DataProvider'
+import { useFeatureFlags } from './FeatureFlagsProvider'
 import type { Archetype } from '../monster/types'
 
 interface MetricsContextValue {
@@ -16,15 +19,19 @@ const MetricsContext = createContext<MetricsContextValue | null>(null)
 
 export function MetricsProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth()
+  const { isEnabled } = useFeatureFlags()
   const {
     metrics: metricsRepository,
     contacts: contactsRepository,
     battles: battlesRepository,
     achievements: achievementsRepository,
+    missions: missionsRepository,
   } = useRepositories()
   const [metrics, setMetrics] = useState<PlayerMetrics>(emptyMetrics())
   const [toastQueue, setToastQueue] = useState<UnlockedAchievement[]>([])
   const [currentToast, setCurrentToast] = useState<UnlockedAchievement | null>(null)
+  const [missionQueue, setMissionQueue] = useState<Mission[]>([])
+  const [currentMission, setCurrentMission] = useState<Mission | null>(null)
 
   useEffect(() => {
     if (!user) {
@@ -51,6 +58,13 @@ export function MetricsProvider({ children }: { children: ReactNode }) {
     }
   }, [currentToast, toastQueue])
 
+  useEffect(() => {
+    if (!currentMission && missionQueue.length > 0) {
+      setCurrentMission(missionQueue[0])
+      setMissionQueue(q => q.slice(1))
+    }
+  }, [currentMission, missionQueue])
+
   const handleAchievementCheck = useCallback(async (updatedMetrics: PlayerMetrics) => {
     if (!user) return
 
@@ -72,12 +86,27 @@ export function MetricsProvider({ children }: { children: ReactNode }) {
     }
   }, [user, contactsRepository, battlesRepository, achievementsRepository])
 
+  const handleProgressCheck = useCallback(async (
+    updatedMetrics: PlayerMetrics,
+  ): Promise<PlayerMetrics> => {
+    await handleAchievementCheck(updatedMetrics)
+    if (!user || !isEnabled('missions')) return updatedMetrics
+
+    const result = await missionsRepository.checkAndComplete(user.id)
+    if (result.completed.length === 0) return updatedMetrics
+
+    setMetrics(result.metrics)
+    setMissionQueue(q => [...q, ...result.completed])
+    await handleAchievementCheck(result.metrics)
+    return result.metrics
+  }, [user, isEnabled, missionsRepository, handleAchievementCheck])
+
   const refreshMetrics = useCallback(async () => {
     if (!user) return
     const current = await metricsRepository.get(user.id)
     setMetrics(current)
-    await handleAchievementCheck(current)
-  }, [user, metricsRepository, handleAchievementCheck])
+    await handleProgressCheck(current)
+  }, [user, metricsRepository, handleProgressCheck])
 
   const addMetricsRewardCb = useCallback(async (
     action: ActionType,
@@ -86,9 +115,8 @@ export function MetricsProvider({ children }: { children: ReactNode }) {
     if (!user) return metrics
     const updated = await metricsRepository.addReward(user.id, action, contactArchetype, user.archetype)
     setMetrics(updated)
-    await handleAchievementCheck(updated)
-    return updated
-  }, [user, metrics, metricsRepository, handleAchievementCheck])
+    return handleProgressCheck(updated)
+  }, [user, metrics, metricsRepository, handleProgressCheck])
 
   return (
     <MetricsContext value={{ metrics, addMetricsReward: addMetricsRewardCb, refreshMetrics }}>
@@ -96,6 +124,10 @@ export function MetricsProvider({ children }: { children: ReactNode }) {
       <AchievementToast
         achievement={currentToast}
         onDismiss={() => setCurrentToast(null)}
+      />
+      <MissionToast
+        mission={currentToast || toastQueue.length > 0 ? null : currentMission}
+        onDismiss={() => setCurrentMission(null)}
       />
     </MetricsContext>
   )
