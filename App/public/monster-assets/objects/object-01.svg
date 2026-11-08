@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="acc-01-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)" />
+      <stop offset="100%" stop-color="#151C33" />
+    </linearGradient>
+    <linearGradient id="acc-01-key-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#323F6B" />
+      <stop offset="100%" stop-color="var(--color-primary, #232D4B)" />
+    </linearGradient>
+    <filter id="acc-01-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <g id="acc-01" class="layer-6" transform="translate(100, 100)" filter="url(#acc-01-shadow)">
+    <!-- Sombra de flotación -->
+    <ellipse cx="36" cy="48" rx="28" ry="6" fill="#000000" opacity="0.3" />
+
+    <!-- Cuerpo principal del mini teclado en perspectiva isométrica / ángulo -->
+    <g transform="translate(0, 4)">
+      <!-- Base exterior del teclado -->
+      <rect x="2" y="8" width="68" height="34" rx="6" fill="var(--color-primary, #232D4B)" stroke="var(--color-secondary, #E20074)" stroke-width="1.5" />
+      <rect x="0" y="4" width="68" height="34" rx="6" fill="url(#acc-01-bg)" stroke="#3E4E80" stroke-width="1.5" />
+
+      <!-- Filas de teclas simuladas con rectángulos -->
+      <!-- Fila 1 -->
+      <rect x="5" y="8" width="8" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="15" y="8" width="8" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="25" y="8" width="8" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="35" y="8" width="8" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="45" y="8" width="8" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <!-- Tecla acentuada especial -->
+      <rect x="55" y="8" width="8" height="6" rx="1.5" fill="var(--color-accent, #F5F340)" stroke="#B5B320" stroke-width="0.75" />
+
+      <!-- Fila 2 -->
+      <rect x="5" y="16" width="11" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="18" y="16" width="8" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="28" y="16" width="8" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="38" y="16" width="8" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="48" y="16" width="15" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+
+      <!-- Fila 3 (Barra espaciadora y modificadores) -->
+      <rect x="5" y="24" width="8" height="6" rx="1.5" fill="var(--color-secondary, #E20074)" stroke="#A00050" stroke-width="0.75" />
+      <rect x="15" y="24" width="6" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <!-- Barra espaciadora -->
+      <rect x="23" y="24" width="22" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="47" y="24" width="8" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+      <rect x="57" y="24" width="6" height="6" rx="1.5" fill="url(#acc-01-key-grad)" stroke="#4A5C96" stroke-width="0.75" />
+
+      <!-- Indicador LED lateral de estado -->
+      <circle cx="61" cy="5" r="1.2" fill="var(--color-accent, #F5F340)" />
+    </g>
+
+    <!-- Cables sutiles flotantes decorativos -->
+    <path d="M -8,22 C -14,22 -18,14 -24,18" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="1.5" stroke-linecap="round" />
+    <path d="M 72,28 C 78,28 82,36 88,32" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+</svg>

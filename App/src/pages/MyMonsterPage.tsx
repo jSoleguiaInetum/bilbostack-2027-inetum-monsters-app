@@ -96,6 +96,12 @@ export function MyMonsterPage() {
           {params && <RarityBadge rarity={params.rarity} />}
           <MetricsDisplay metrics={metrics} />
           <EvolutionProgress metrics={metrics} />
+          <button
+            onClick={() => navigate('/inventory')}
+            className="snes-button has-ocean-color w-full max-w-xs"
+          >
+            Inventario
+          </button>
         </div>
 
       </main>

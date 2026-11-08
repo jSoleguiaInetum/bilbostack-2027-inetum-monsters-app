@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="acc-12-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)" />
+      <stop offset="100%" stop-color="#151C33" />
+    </linearGradient>
+    <filter id="acc-12-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <g id="acc-12" class="layer-6" transform="translate(350, 110)" filter="url(#acc-12-shadow)">
+    <!-- Sombra de flotación inferior -->
+    <ellipse cx="26" cy="58" rx="18" ry="5" fill="#000000" opacity="0.3" />
+    
+    <!-- Conector USB superior (metálico con líneas verticales de contacto) -->
+    <rect x="20" y="6" width="12" height="12" rx="1" fill="#C0CBDC" stroke="var(--color-primary, #232D4B)" stroke-width="1.2" />
+    <line x1="23" y1="8" x2="23" y2="16" stroke="var(--color-primary, #232D4B)" stroke-width="1.2" stroke-linecap="round" />
+    <line x1="26" y1="8" x2="26" y2="16" stroke="var(--color-primary, #232D4B)" stroke-width="1.2" stroke-linecap="round" />
+    <line x1="29" y1="8" x2="29" y2="16" stroke="var(--color-primary, #232D4B)" stroke-width="1.2" stroke-linecap="round" />
+    
+    <!-- Cuerpo principal del pendrive / USB de alta velocidad -->
+    <rect x="15" y="16" width="22" height="32" rx="4" fill="url(#acc-12-grad)" stroke="var(--color-secondary, #E20074)" stroke-width="2" />
+    
+    <!-- Detalle de marca / ranura decorativa en el cuerpo -->
+    <rect x="20" y="22" width="12" height="14" rx="2" fill="#0A0E1A" stroke="var(--color-accent, #F5F340)" stroke-width="1" />
+    <circle cx="26" cy="29" r="2" fill="var(--color-secondary, #E20074)" />
+    
+    <!-- Bucle inferior para lanyard con LED de estado -->
+    <path d="M 23,48 L 23,53 C 23,54.5 29,54.5 29,53 L 29,48" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1.8" stroke-linecap="round" />
+    <circle cx="26" cy="51" r="1.5" fill="var(--color-accent, #F5F340)" />
+  </g>
+</svg>

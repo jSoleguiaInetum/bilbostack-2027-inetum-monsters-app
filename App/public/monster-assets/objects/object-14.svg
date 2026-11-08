@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="acc-14-deck" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)" />
+      <stop offset="100%" stop-color="#151C33" />
+    </linearGradient>
+    <filter id="acc-14-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <g id="acc-14" class="layer-6" transform="translate(335, 115)" filter="url(#acc-14-shadow)">
+    <!-- Sombra de flotación inferior -->
+    <ellipse cx="28" cy="46" rx="22" ry="4" fill="#000000" opacity="0.3" />
+    
+    <!-- Chasis del Stream Deck -->
+    <rect x="5" y="10" width="46" height="30" rx="5" fill="url(#acc-14-deck)" stroke="var(--color-secondary, #E20074)" stroke-width="2" />
+    
+    <!-- Fila 1 -->
+    <!-- Tecla 1: Play con triángulo rosa centrado -->
+    <rect x="9" y="14" width="10" height="10" rx="2" fill="#0A0E1A" stroke="var(--color-accent, #F5F340)" stroke-width="1" />
+    <polygon points="12.5,16.5 16.5,19 12.5,21.5" fill="var(--color-secondary, #E20074)" />
+    
+    <!-- Tecla 2: Icono Git Branch desplazado un poco a la derecha para centrarlo -->
+    <rect x="23" y="14" width="10" height="10" rx="2" fill="#0A0E1A" stroke="var(--color-accent, #F5F340)" stroke-width="1" />
+    <line x1="26.8" y1="16.5" x2="26.8" y2="21.5" stroke="var(--color-accent, #F5F340)" stroke-width="0.8" />
+    <circle cx="26.8" cy="16.5" r="1" fill="var(--color-accent, #F5F340)" />
+    <circle cx="26.8" cy="21.5" r="1" fill="var(--color-accent, #F5F340)" />
+    <path d="M 26.8,20 C 28.3,20 29.8,19 29.8,17.5" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="0.8" />
+    <circle cx="29.8" cy="17.5" r="1" fill="var(--color-accent, #F5F340)" />
+    
+    <!-- Tecla 3: Código </> compacto con barra central -->
+    <rect x="37" y="14" width="10" height="10" rx="2" fill="#0A0E1A" stroke="var(--color-accent, #F5F340)" stroke-width="1" />
+    <path d="M 39.5,17.5 L 38.5,19 L 39.5,20.5" fill="none" stroke="#00FF66" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="41.2" y1="21" x2="42.8" y2="17" stroke="#00FF66" stroke-width="0.8" stroke-linecap="round" />
+    <path d="M 44.5,17.5 L 45.5,19 L 44.5,20.5" fill="none" stroke="#00FF66" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+    
+    <!-- Fila 2 -->
+    <!-- Tecla 4: Bug bajado un poco más (cuerpo en y=31.8) -->
+    <rect x="9" y="26" width="10" height="10" rx="2" fill="#0A0E1A" stroke="var(--color-accent, #F5F340)" stroke-width="1" />
+    <ellipse cx="14" cy="31.8" rx="2" ry="2.2" fill="var(--color-secondary, #E20074)" />
+    <circle cx="14" cy="29.0" r="0.9" fill="var(--color-secondary, #E20074)" />
+    <line x1="14" y1="30.0" x2="14" y2="34.5" stroke="#0A0E1A" stroke-width="0.5" />
+    <line x1="11.2" y1="30.6" x2="12.5" y2="31.1" stroke="var(--color-secondary, #E20074)" stroke-width="0.6" />
+    <line x1="15.5" y1="31.1" x2="16.8" y2="30.6" stroke="var(--color-secondary, #E20074)" stroke-width="0.6" />
+    <line x1="11" y1="31.8" x2="12.2" y2="31.8" stroke="var(--color-secondary, #E20074)" stroke-width="0.6" />
+    <line x1="15.8" y1="31.8" x2="17" y2="31.8" stroke="var(--color-secondary, #E20074)" stroke-width="0.6" />
+    <line x1="11.2" y1="33.0" x2="12.5" y2="32.5" stroke="var(--color-secondary, #E20074)" stroke-width="0.6" />
+    <line x1="15.5" y1="32.5" x2="16.8" y2="33.0" stroke="var(--color-secondary, #E20074)" stroke-width="0.6" />
+    <path d="M 13.5,28.3 L 12.8,27.6 M 14.5,28.3 L 15.2,27.6" stroke="var(--color-secondary, #E20074)" stroke-width="0.6" stroke-linecap="round" />
+    
+    <!-- Tecla 5: Nube + Sol bajados un poco más en conjunto -->
+    <rect x="23" y="26" width="10" height="10" rx="2" fill="#0A0E1A" stroke="var(--color-accent, #F5F340)" stroke-width="1" />
+    <circle cx="28" cy="30.8" r="1.6" fill="var(--color-accent, #F5F340)" />
+    <line x1="28" y1="28.1" x2="28" y2="27.3" stroke="var(--color-accent, #F5F340)" stroke-width="0.5" stroke-linecap="round" />
+    <line x1="30.2" y1="29.1" x2="30.8" y2="28.5" stroke="var(--color-accent, #F5F340)" stroke-width="0.5" stroke-linecap="round" />
+    <line x1="25.8" y1="29.1" x2="25.2" y2="28.5" stroke="var(--color-accent, #F5F340)" stroke-width="0.5" stroke-linecap="round" />
+    <path d="M 25.5,33.3 L 30.5,33.3 C 31.3,33.3 31.7,32.5 31.2,31.8 C 31.2,31.0 29.8,30.6 29.3,31.0 C 28.8,30.1 27,30.6 27,31.5 C 26,31.5 26,32.8 25.5,33.3 Z" fill="#FFFFFF" opacity="0.9" />
+    
+    <!-- Tecla 6: Configuración / Rueda dentada -->
+    <rect x="37" y="26" width="10" height="10" rx="2" fill="#0A0E1A" stroke="var(--color-accent, #F5F340)" stroke-width="1" />
+    <circle cx="42" cy="31" r="2.2" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1.2" />
+    <circle cx="42" cy="31" r="0.6" fill="var(--color-accent, #F5F340)" />
+  </g>
+</svg>

@@ -5,6 +5,7 @@ import { localBattlesRepository } from './battles-repository'
 import { localCheckInsRepository } from './checkins-repository'
 import { localContactsRepository } from './contacts-repository'
 import { localDashboardRepository } from './dashboard-repository'
+import { localInventoryRepository } from './inventory-repository'
 import { localMetricsRepository } from './metrics-repository'
 import { localRankingsRepository } from './rankings-repository'
 import { localTalksRepository } from './talks-repository'
@@ -192,6 +193,54 @@ describe('local check-ins repository', () => {
     expect(await localCheckInsRepository.add('user-1', checkIn)).toBe(false)
     expect(await localCheckInsRepository.hasCheckedIn('user-1', 'talk-01')).toBe(true)
     expect(await localCheckInsRepository.list('user-1')).toHaveLength(1)
+  })
+})
+
+describe('local inventory repository', () => {
+  it('lists only active definitions from the seed catalog', async () => {
+    const definitions = await localInventoryRepository.listDefinitions()
+
+    expect(definitions.length).toBeGreaterThan(0)
+    expect(definitions.every(object => object.isActive)).toBe(true)
+    expect(definitions.map(object => object.id)).toContain('object-01')
+  })
+
+  it('returns an empty inventory for a new user', async () => {
+    expect(await localInventoryRepository.listOwned('user-1')).toEqual([])
+  })
+
+  it('adds objects once and records source and timestamp', async () => {
+    expect(await localInventoryRepository.add('user-1', {
+      objectId: 'object-01',
+      source: 'achievement',
+    })).toBe(true)
+    expect(await localInventoryRepository.add('user-1', {
+      objectId: 'object-01',
+      source: 'mission',
+    })).toBe(false)
+
+    const owned = await localInventoryRepository.listOwned('user-1')
+
+    expect(owned).toHaveLength(1)
+    expect(owned[0].objectId).toBe('object-01')
+    expect(owned[0].source).toBe('achievement')
+    expect(Number.isNaN(Date.parse(owned[0].obtainedAt))).toBe(false)
+    expect(await localInventoryRepository.has('user-1', 'object-01')).toBe(true)
+  })
+
+  it('rejects objects that are not in the catalog', async () => {
+    expect(await localInventoryRepository.add('user-1', {
+      objectId: 'missing-object',
+      source: 'qr',
+    })).toBe(false)
+    expect(await localInventoryRepository.listOwned('user-1')).toEqual([])
+  })
+
+  it('isolates inventories per user', async () => {
+    await localInventoryRepository.add('user-1', { objectId: 'object-01', source: 'battle' })
+
+    expect(await localInventoryRepository.listOwned('user-2')).toEqual([])
+    expect(await localInventoryRepository.has('user-2', 'object-01')).toBe(false)
   })
 })
 

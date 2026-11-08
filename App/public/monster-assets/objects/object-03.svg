@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="acc-03-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)" />
+      <stop offset="100%" stop-color="#151C33" />
+    </linearGradient>
+    <filter id="acc-03-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <g id="acc-03" class="layer-6" transform="translate(360, 150)" filter="url(#acc-03-shadow)">
+    <!-- Sombra de flotación -->
+    <ellipse cx="28" cy="52" rx="22" ry="5" fill="#000000" opacity="0.3" />
+    
+    <!-- Cuerpo de la taza -->
+    <path d="M 12,20 C 12,16 16,14 20,14 L 36,14 C 40,14 44,16 44,20 L 42,44 C 42,48 38,50 34,50 L 22,50 C 18,50 14,48 14,44 Z" fill="url(#acc-03-grad)" stroke="var(--color-secondary, #E20074)" stroke-width="2" />
+    
+    <!-- Asa de la taza -->
+    <path d="M 42,22 C 48,22 52,26 52,32 C 52,38 48,42 42,42" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" stroke-linecap="round" />
+    
+    <!-- Vapor ascendente simulado con ondas -->
+    <path d="M 22,10 C 22,6 26,4 24,0" fill="none" stroke="var(--color-accent, #F5F340)" stroke-width="1.8" stroke-linecap="round" />
+    <path d="M 34,10 C 34,6 30,4 32,0" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="1.8" stroke-linecap="round" />
+    
+    <!-- Detalle decorativo central en la taza -->
+    <circle cx="28" cy="32" r="6" fill="var(--color-accent, #F5F340)" />
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="acc-05-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F0F2F5" />
+    </linearGradient>
+    <filter id="acc-05-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <g id="acc-05" class="layer-6" transform="translate(320, 80)" filter="url(#acc-05-shadow)">
+    <!-- Sombra de flotación inferior -->
+    <ellipse cx="36" cy="60" rx="30" ry="5" fill="#000000" opacity="0.3" />
+    
+    <!-- Tablero de la pizarra ancho (estilo whiteboard magnético con marco) -->
+    <rect x="2" y="6" width="68" height="46" rx="4" fill="url(#acc-05-grad)" stroke="var(--color-primary, #232D4B)" stroke-width="2.5" />
+    
+    <!-- 3 Columnas Kanban con líneas divisorias discontinuas (dashed) y contenidas dentro de la tabla -->
+    <line x1="24" y1="16" x2="24" y2="50" stroke="#B0BAC5" stroke-width="1.2" stroke-dasharray="2 2" />
+    <line x1="46" y1="16" x2="46" y2="50" stroke="#B0BAC5" stroke-width="1.2" stroke-dasharray="2 2" />
+    
+    <!-- Franjas de color superiores (títulos de las 3 columnas) -->
+    <rect x="4" y="8" width="19" height="6" rx="1" fill="var(--color-primary, #232D4B)" opacity="0.8" />
+    <rect x="26" y="8" width="19" height="6" rx="1" fill="var(--color-secondary, #E20074)" opacity="0.8" />
+    <rect x="48" y="8" width="20" height="6" rx="1" fill="var(--color-accent, #F5F340)" opacity="0.9" />
+    
+    <!-- Post-its distribuidos en las columnas -->
+    <!-- Columna 1 -->
+    <rect x="7" y="18" width="12" height="10" rx="1" fill="var(--color-accent, #F5F340)" stroke="var(--color-primary, #232D4B)" stroke-width="0.8" transform="rotate(-4 13 23)" />
+    <rect x="8" y="32" width="12" height="10" rx="1" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="0.8" />
+    
+    <!-- Columna 2 -->
+    <rect x="29" y="18" width="12" height="10" rx="1" fill="var(--color-secondary, #E20074)" stroke="var(--color-primary, #232D4B)" stroke-width="0.8" transform="rotate(6 35 23)" />
+    
+    <!-- Columna 3 -->
+    <rect x="52" y="18" width="12" height="10" rx="1" fill="var(--color-primary, #232D4B)" stroke="var(--color-accent, #F5F340)" stroke-width="0.8" />
+    <rect x="51" y="32" width="12" height="10" rx="1" fill="#FFFFFF" stroke="var(--color-primary, #232D4B)" stroke-width="0.8" transform="rotate(-3 57 37)" />
+    
+    <!-- Bandeja inferior para rotuladores -->
+    <rect x="14" y="52" width="44" height="3" rx="1" fill="var(--color-primary, #232D4B)" />
+  </g>
+</svg>

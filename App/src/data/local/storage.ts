@@ -7,6 +7,7 @@ export const STORAGE_KEYS = {
   fought: 'bilbostack_fought',
   achievements: 'bilbostack_achievements',
   checkins: 'bilbostack_checkins',
+  inventory: 'bilbostack_inventory',
 } as const
 
 export function readJson<T>(key: string, fallback: T): T {

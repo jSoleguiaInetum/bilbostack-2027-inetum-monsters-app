@@ -6,6 +6,7 @@ import { createApiCheckInsRepository } from './checkins-repository'
 import { createApiContactsRepository } from './contacts-repository'
 import { createApiDashboardRepository } from './dashboard-repository'
 import { HttpClient, httpClient } from './http-client'
+import { createApiInventoryRepository } from './inventory-repository'
 import { createApiMetricsRepository } from './metrics-repository'
 import { createApiRankingsRepository } from './rankings-repository'
 import { createApiTalksRepository } from './talks-repository'
@@ -23,6 +24,7 @@ export function createApiRepositories(client: HttpClient = httpClient): Reposito
     talks: createApiTalksRepository(client),
     rankings: createApiRankingsRepository(client),
     dashboard: createApiDashboardRepository(client),
+    inventory: createApiInventoryRepository(client),
   }
 }
 

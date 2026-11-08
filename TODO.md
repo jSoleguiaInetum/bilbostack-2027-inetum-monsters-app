@@ -8,10 +8,9 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
 
 ## Próximo foco (orden sugerido)
 
-1. Story 25 — Inventario de objetos
-2. Story 26 — Misiones base
-3. Story 28 — Home real y navegación a 1 tap
-4. Story 27 — Tarjetas compartibles + OG (depende de 21 y 28)
+1. Story 26 — Misiones base
+2. Story 28 — Home real y navegación a 1 tap
+3. Story 27 — Tarjetas compartibles + OG (depende de 21 y 28)
 
 ---
 
@@ -32,14 +31,17 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
 - [x] Story 22 — Dashboard público `/dashboard`
 - [x] Story 23 — Roles `participant`/`admin` + `AdminRoute` en `/admin`
 - [x] Story 24 — Dashboard privado `/admin` (stats, usuarios, filtros, cambio de rol)
+- [x] **Story 25 — Inventario de objetos**
+  - [x] Puerto `InventoryRepository` (`listDefinitions`, `listOwned`, `has`, `add` idempotente)
+  - [x] Adaptadores `local` y `api` + tests con la misma suite
+  - [x] Assets de objetos copiados a `App/public/monster-assets/objects/` (17 SVG)
+  - [x] Página `/inventory` con estados loading/vacío/error y acceso desde Mi Criatura
+  - [x] Seed de demo en `/dev-seed`
 
 ### Pendiente
 
-- [ ] **Story 25 — Inventario de objetos**
-  - [ ] Puerto `InventoryRepository` (list, add, has, use)
-  - [ ] Adaptadores `local` y `api` + tests con la misma suite
-  - [ ] Copiar assets de objetos a `App/public/` (hoy solo están en `documentacion/07-assets/monster-assets/objects/`)
-  - [ ] Página/panel de inventario y recompensa de objeto
+- [!] `use`/consumo/equipamiento de objetos: diferido hasta que el modelo soporte `consumedAt`/`equipped`
+- [ ] Entrega automática de objetos por logros/misiones (fuera de alcance de la story 25)
 - [ ] **Story 26 — Misiones base**
   - [ ] Puerto `MissionsRepository` (definiciones, progreso, completado)
   - [ ] Adaptadores `local`/`api` + tests

@@ -241,6 +241,115 @@ describe('api domain repositories', () => {
     expect(url).toBe('https://api.test/dashboard/admin')
   })
 
+  it('maps object definitions, normalizes rarity and filters inactive objects', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse([
+      {
+        id: 'object-01',
+        name: 'Teclado Mecánico',
+        description: 'Teclado compacto',
+        rarity: 'Inusual',
+        benefit: 'Estilo',
+        icon_url: '/monster-assets/objects/object-01.svg',
+        origin: 'BilboStack',
+      },
+      {
+        id: 'object-02',
+        name: 'Paleta de Diseño',
+        description: 'Paleta digital',
+        rarity: 'Epico',
+        benefit: 'Estilo',
+        benefit_type: 'Cosmetic',
+        benefit_value: 0,
+        icon_url: '/monster-assets/objects/object-02.svg',
+        origin: 'BilboStack',
+        is_active: true,
+      },
+      {
+        id: 'object-03',
+        name: 'Objeto retirado',
+        description: 'Ya no se entrega',
+        rarity: 'Inusual',
+        benefit: '',
+        icon_url: '/monster-assets/objects/object-03.svg',
+        origin: 'BilboStack',
+        is_active: false,
+      },
+    ]))
+
+    const definitions = await repositories.inventory.listDefinitions()
+
+    expect(definitions).toHaveLength(2)
+    expect(definitions[0]).toMatchObject({
+      id: 'object-01',
+      benefitType: 'Special',
+      benefitValue: 0,
+      isActive: true,
+    })
+    expect(definitions[1].rarity).toBe('Épico')
+    const [url] = fetchMock.mock.calls[0] as [string]
+    expect(url).toBe('https://api.test/objects')
+  })
+
+  it('maps the owned inventory and defaults unknown sources', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse([
+      { object_id: 'object-01', obtained_at: '2026-01-01T00:00:00.000Z', source: 'qr' },
+      { object_id: 'object-02', obtained_at: '2026-01-02T00:00:00.000Z', source: 'desconocido' },
+    ]))
+
+    const owned = await repositories.inventory.listOwned('user-1')
+
+    expect(owned[0]).toEqual({
+      objectId: 'object-01',
+      obtainedAt: '2026-01-01T00:00:00.000Z',
+      source: 'qr',
+    })
+    expect(owned[1].source).toBe('achievement')
+    const [url] = fetchMock.mock.calls[0] as [string]
+    expect(url).toBe('https://api.test/users/user-1/inventory')
+  })
+
+  it('derives has from the owned inventory', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse([
+      { object_id: 'object-01', obtained_at: '2026-01-01T00:00:00.000Z', source: 'qr' },
+    ]))
+    fetchMock.mockResolvedValueOnce(jsonResponse([]))
+
+    expect(await repositories.inventory.has('user-1', 'object-01')).toBe(true)
+    expect(await repositories.inventory.has('user-1', 'object-01')).toBe(false)
+  })
+
+  it('posts new inventory objects and handles conflicts as false', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({}, 201))
+    fetchMock.mockResolvedValueOnce(jsonResponse({ message: 'Object already owned' }, 409))
+
+    expect(await repositories.inventory.add('user-1', {
+      objectId: 'object-01',
+      source: 'qr',
+    })).toBe(true)
+
+    const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit]
+    expect(url).toBe('https://api.test/users/user-1/inventory')
+    expect(init).toMatchObject({ method: 'POST', credentials: 'include' })
+    expect(JSON.parse(init.body as string)).toEqual({
+      objectId: 'object-01',
+      source: 'qr',
+    })
+
+    expect(await repositories.inventory.add('user-1', {
+      objectId: 'object-01',
+      source: 'qr',
+    })).toBe(false)
+  })
+
+  it('propagates inventory validation errors', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({ message: 'Invalid object' }, 422))
+
+    await expect(repositories.inventory.add('user-1', {
+      objectId: 'missing',
+      source: 'qr',
+    })).rejects.toMatchObject({ code: 'VALIDATION' })
+  })
+
   it('maps network failures to a normalized DataError', async () => {
     fetchMock.mockRejectedValueOnce(new Error('offline'))
 

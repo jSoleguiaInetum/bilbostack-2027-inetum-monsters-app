@@ -4,6 +4,7 @@ import type { BattlesRepository } from './battles-repository'
 import type { CheckInsRepository } from './checkins-repository'
 import type { ContactsRepository } from './contacts-repository'
 import type { DashboardRepository } from './dashboard-repository'
+import type { InventoryRepository } from './inventory-repository'
 import type { MetricsRepository } from './metrics-repository'
 import type { RankingsRepository } from './rankings-repository'
 import type { TalksRepository } from './talks-repository'
@@ -20,6 +21,7 @@ export interface Repositories {
   talks: TalksRepository
   rankings: RankingsRepository
   dashboard: DashboardRepository
+  inventory: InventoryRepository
 }
 
 export type {
@@ -29,6 +31,7 @@ export type {
   CheckInsRepository,
   ContactsRepository,
   DashboardRepository,
+  InventoryRepository,
   MetricsRepository,
   RankingsRepository,
   TalksRepository,
@@ -36,4 +39,5 @@ export type {
 }
 export type { NewContact } from './contacts-repository'
 export type { NewCheckIn } from './checkins-repository'
+export type { NewUserObject } from './inventory-repository'
 export type { OAuthProvider } from './auth-repository'

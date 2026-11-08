@@ -27,3 +27,4 @@ export const ASSET_COUNTS = {
 } as const
 
 export const ASSETS_BASE_PATH = '/monster-assets'
+export const OBJECTS_BASE_PATH = '/monster-assets/objects'

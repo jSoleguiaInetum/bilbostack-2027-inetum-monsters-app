@@ -8,3 +8,10 @@ export type { Talk } from '../lib/seed-talks'
 export type { Ranking, RankingEntry, RankingCategory, RankingOptions } from '../lib/rankings'
 export type { DashboardStats, RecentEvolution, PublicDashboard, DashboardOptions } from '../lib/dashboard'
 export type { AdminDashboard, AdminDashboardStats } from '../lib/dashboard'
+export type {
+  GameObject,
+  UserObject,
+  ObjectRarity,
+  ObjectBenefitType,
+  ObjectSource,
+} from '../lib/objects'

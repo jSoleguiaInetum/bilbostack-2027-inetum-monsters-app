@@ -34,7 +34,7 @@ PWA gamificada de networking para BilboStack 2027, conferencia tech de un dia (~
 - Contenido del dashboard privado (CRUD usuarios, logros, QRs, estadisticas)
 - Tarjetas compartibles (LinkedIn)
 - PWA con service worker
-- Inventario de objetos y misiones
+- Misiones (el inventario de objetos ya está implementado)
 - Prueba de carga y ensayo general
 
 ## Stack

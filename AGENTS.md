@@ -17,7 +17,7 @@ PWA gamificada de networking para BilboStack 2027 (evento tech de un día, ~1000
 - **Código:** `App/` (no existe `plan/App/...`, aunque la documentación vieja lo mencione)
 - **Documentación:** `documentacion/`
 - **Idioma:** UI y docs en español; identificadores de código en inglés.
-- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 en curso (stories 20–24 hechas; 25–28 pendientes). Fase 4 pendiente. Ver `TODO.md`.
+- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 en curso (stories 20–25 hechas; 26–28 pendientes). Fase 4 pendiente. Ver `TODO.md`.
 - **Backend:** NO hay backend todavía. Todo funciona con mock local (`localStorage`).
 
 ## 2. Stack
@@ -89,11 +89,12 @@ Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `
 - Dashboard público `/dashboard`: 4 rankings, estadísticas globales y evoluciones recientes, sin autenticación.
 - Roles de usuario (`participant`, `admin`) con guard `/admin` (`AdminRoute`) y enlace condicional en Mi Criatura. En modo `local`, el primer usuario registrado es admin.
 - Dashboard privado `/admin`: estadísticas (totales + medias de Expertise/Aura), listado de usuarios con búsqueda y filtros por rol/arquetipo, y cambio de rol participante ↔ admin. Refresco cada 30 s.
-- Code splitting con `React.lazy` (9 chunks).
+- Inventario: 16 objetos seed (`src/lib/objects.ts`), `InventoryRepository` con adaptadores `local`/`api`, página `/inventory` y seed de demo en `/dev-seed`.
+- Code splitting con `React.lazy` (10 chunks).
 
 ### Pendiente
 
-- **Fase 3:** CRUD de logros/objetos y QRs, tarjetas compartibles + OG, inventario, misiones.
+- **Fase 3:** CRUD de logros/objetos y QRs, tarjetas compartibles + OG, misiones y entrega automática de objetos.
 - **Home real** (story 18): resumen del jugador y navegación a 1 tap. Hoy `/` redirige a `/my-monster`.
 - **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
@@ -154,12 +155,13 @@ Hecho:
 6. Adaptadores `api` con cliente HTTP común, DTOs mapeados y errores normalizados.
 7. Runner Vitest + jsdom con tests de lógica pura y adaptadores `local`/`api`.
 8. Roles en `User` (`UserRole`) con normalización defensiva a `participant` en los adaptadores.
+9. Inventario: definiciones y objetos obtenidos detrás de `InventoryRepository` (`listDefinitions`, `listOwned`, `has`, `add` idempotente) con adaptadores `local`/`api` y tests.
 
 Pendiente:
 
 1. Implementar el backend real que cumpla el contrato REST.
 2. Validar los adaptadores `api` contra ese backend (hoy se prueban con `fetch` mockeado).
-3. Implementar los puertos de inventario, misiones y administración cuando lleguen sus stories.
+3. Implementar los puertos de misiones y administración cuando lleguen sus stories.
 4. Definir la estrategia de sesión/token definitiva si el backend no usa cookie (`credentials: 'include'` es el supuesto actual).
 
 ### Contrato REST sugerido (orientativo)
@@ -187,6 +189,9 @@ POST   /users/:id/achievements/check
 GET    /users/:id/checkins
 POST   /users/:id/checkins
 GET    /talks
+GET    /objects
+GET    /users/:id/inventory
+POST   /users/:id/inventory
 GET    /rankings?category=expertise|aura|contacts|wins
 GET    /dashboard/public?rankingsLimit=5&evolutionsLimit=10
 GET    /dashboard/admin
@@ -259,7 +264,7 @@ unlayered         ← overrides globales
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23) y dashboard privado (story 24)~~ (hecho). Falta el resto de Fase 3 con datos mock: inventario (25), misiones (26), tarjetas compartibles (27) y Home real (28).
+3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24) e inventario (story 25)~~ (hecho). Falta el resto de Fase 3 con datos mock: misiones (26), tarjetas compartibles (27) y Home real (28).
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="acc-07-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-primary, #232D4B)" />
+      <stop offset="100%" stop-color="#151C33" />
+    </linearGradient>
+    <filter id="acc-07-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+  <g id="acc-07" class="layer-6" transform="translate(100, 120)" filter="url(#acc-07-shadow)">
+    <!-- Sombra de flotación inferior -->
+    <ellipse cx="36" cy="60" rx="30" ry="5" fill="#000000" opacity="0.3" />
+    
+    <!-- Lente circular translúcida principal -->
+    <circle cx="24" cy="24" r="16" fill="rgba(245, 243, 64, 0.15)" stroke="var(--color-accent, #F5F340)" stroke-width="3" />
+    
+    <!-- Círculo dashed interior, perfectamente contenido dentro de la lente -->
+    <circle cx="24" cy="24" r="11" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="1.2" stroke-dasharray="3 3" />
+    
+    <!-- Bicho / Bug más pequeño, totalmente confinado en el interior de la lente -->
+    <ellipse cx="24" cy="25" rx="3" ry="4" fill="var(--color-secondary, #E20074)" stroke="var(--color-primary, #232D4B)" stroke-width="0.7" />
+    <circle cx="24" cy="20" r="1.5" fill="var(--color-primary, #232D4B)" />
+    <path d="M 23,18.5 L 21,16" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="0.8" stroke-linecap="round" />
+    <path d="M 25,18.5 L 27,16" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="0.8" stroke-linecap="round" />
+    
+    <!-- Mango tecnológico robusto -->
+    <path d="M 36,36 L 56,56" fill="none" stroke="var(--color-primary, #232D4B)" stroke-width="7" stroke-linecap="round" />
+    <path d="M 36,36 L 56,56" fill="none" stroke="var(--color-secondary, #E20074)" stroke-width="3.5" stroke-linecap="round" />
+    <!-- LED indicador en el mango -->
+    <circle cx="47" cy="47" r="2" fill="var(--color-accent, #F5F340)" />
+  </g>
+</svg>

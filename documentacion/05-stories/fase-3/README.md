@@ -11,7 +11,7 @@ Estado: **iniciada**. La Fase 3 se apoya en la capa `src/data` y debe funcionar 
 | 22 | Dashboard público | E12 | ✅ |
 | 23 | Roles y guard de administración | E11 | ✅ |
 | 24 | Dashboard privado | E11 | ✅ |
-| 25 | Inventario de objetos | E11/E13 | Pendiente |
+| 25 | Inventario de objetos | E11/E13 | ✅ |
 | 26 | Misiones base | E11/E13 | Pendiente |
 | 27 | Tarjetas compartibles y OG | E13 | Pendiente |
 | 28 | Home real y navegación 1 tap | E14 | Pendiente |

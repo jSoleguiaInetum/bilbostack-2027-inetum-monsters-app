@@ -9,6 +9,13 @@ import type { Achievement, UnlockedAchievement } from '../../lib/achievements'
 import type { Talk } from '../../lib/seed-talks'
 import type { Ranking, RankingCategory, RankingEntry } from '../../lib/rankings'
 import type { AdminDashboard, PublicDashboard, RecentEvolution } from '../../lib/dashboard'
+import type {
+  GameObject,
+  ObjectBenefitType,
+  ObjectRarity,
+  ObjectSource,
+  UserObject,
+} from '../../lib/objects'
 
 export interface UserDto {
   id: string
@@ -135,6 +142,82 @@ export interface UnlockedAchievementDto {
 
 export function toUnlockedAchievement(dto: UnlockedAchievementDto): UnlockedAchievement {
   return { id: dto.id, unlockedAt: dto.unlockedAt }
+}
+
+const OBJECT_RARITIES: ObjectRarity[] = ['Inusual', 'Singular', 'Único', 'Épico', 'Legendario']
+const OBJECT_BENEFIT_TYPES: ObjectBenefitType[] = [
+  'ExpertiseBoost',
+  'AuraTechBoost',
+  'Cosmetic',
+  'Title',
+  'Special',
+]
+const OBJECT_SOURCES: ObjectSource[] = ['achievement', 'qr', 'battle', 'mission']
+const RARITY_ALIASES: Record<string, ObjectRarity> = {
+  Unico: 'Único',
+  Epico: 'Épico',
+}
+
+function toObjectRarity(value: string | undefined): ObjectRarity {
+  if (!value) return 'Inusual'
+  const normalized = RARITY_ALIASES[value] ?? value
+  return OBJECT_RARITIES.includes(normalized as ObjectRarity)
+    ? normalized as ObjectRarity
+    : 'Inusual'
+}
+
+function toBenefitType(value: string | undefined): ObjectBenefitType {
+  return OBJECT_BENEFIT_TYPES.includes(value as ObjectBenefitType)
+    ? value as ObjectBenefitType
+    : 'Special'
+}
+
+function toObjectSource(value: string | undefined): ObjectSource {
+  return OBJECT_SOURCES.includes(value as ObjectSource)
+    ? value as ObjectSource
+    : 'achievement'
+}
+
+export interface GameObjectDto {
+  id: string
+  name: string
+  description?: string
+  rarity?: string
+  benefit?: string
+  benefit_type?: string
+  benefit_value?: number
+  icon_url: string
+  origin?: string
+  is_active?: boolean
+}
+
+export function toGameObject(dto: GameObjectDto): GameObject {
+  return {
+    id: dto.id,
+    name: dto.name,
+    description: dto.description ?? '',
+    rarity: toObjectRarity(dto.rarity),
+    benefit: dto.benefit ?? '',
+    benefitType: toBenefitType(dto.benefit_type),
+    benefitValue: dto.benefit_value ?? 0,
+    iconUrl: dto.icon_url,
+    origin: dto.origin ?? '',
+    isActive: dto.is_active ?? true,
+  }
+}
+
+export interface UserObjectDto {
+  object_id: string
+  obtained_at: string
+  source?: string
+}
+
+export function toUserObject(dto: UserObjectDto): UserObject {
+  return {
+    objectId: dto.object_id,
+    obtainedAt: dto.obtained_at,
+    source: toObjectSource(dto.source),
+  }
 }
 
 export interface TalkDto {
