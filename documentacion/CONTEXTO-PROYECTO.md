@@ -26,7 +26,8 @@ PWA gamificada de networking para BilboStack 2027, conferencia tech de un dia (~
 - 10 charlas seed con QR escaneables (/dev-seed)
 - Rankings publicos con 4 categorias y dashboard publico `/dashboard`
 - Roles de usuario y guard `/admin` (Administrador/Organizacion)
-- Code splitting con React.lazy (9 chunks)
+- Inventario de objetos y feature flags globales gestionables desde `/admin` (`inventory` apagado por defecto)
+- Code splitting con React.lazy (10 chunks)
 - Build limpio: 0 errores TS
 
 ### Pendiente (Fases 3+4)
@@ -34,7 +35,7 @@ PWA gamificada de networking para BilboStack 2027, conferencia tech de un dia (~
 - Contenido del dashboard privado (CRUD usuarios, logros, QRs, estadisticas)
 - Tarjetas compartibles (LinkedIn)
 - PWA con service worker
-- Misiones (el inventario de objetos ya está implementado)
+- Misiones
 - Prueba de carga y ensayo general
 
 ## Stack
@@ -109,6 +110,6 @@ src/pages/MyMonsterPage.tsx → Criatura + metricas + banner evolucion
 
 1. Leer este documento para tener contexto
 2. Explorar el codigo en `App/`
-3. Para Fase 3: continuar por el dashboard privado (el guard de roles y `/admin` ya existen)
+3. Para Fase 3: continuar por las misiones (el inventario y los feature flags ya existen)
 4. Para backend: seguir arquitectura en `02-arquitectura-y-diseno/arquitectura-tecnica.md`
 5. Consultar `03-backlog-y-criterios/backlog-estructurado.md` para historias pendientes (epicas 11-14)

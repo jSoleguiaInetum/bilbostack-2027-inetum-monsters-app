@@ -3,7 +3,7 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: commit `6b0b107`, working tree limpio, 13 archivos de test, 106 archivos en `App/src/`.
+- Última verificación: cambios locales sin commitear, 16 archivos de test, 99 tests verdes, `lint` y `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
@@ -37,6 +37,12 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
   - [x] Assets de objetos copiados a `App/public/monster-assets/objects/` (17 SVG)
   - [x] Página `/inventory` con estados loading/vacío/error y acceso desde Mi Criatura
   - [x] Seed de demo en `/dev-seed`
+- [x] **Feature flags globales**
+  - [x] Dominio `src/lib/feature-flags.ts` con registry, defaults y `resolveFeatureFlags`
+  - [x] Puerto `FeatureFlagsRepository` + adaptadores `local`/`api` + tests
+  - [x] `FeatureFlagsProvider`/`useFeatureFlags` y guard `FeatureFlagRoute`
+  - [x] Sección de feature flags en `/admin` con toggle persistente
+  - [x] Flag `inventory` apagado por defecto (MVP inicial): oculta el acceso y bloquea `/inventory`
 
 ### Pendiente
 

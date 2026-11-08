@@ -45,6 +45,7 @@ Stories 20-28 planificadas. Rankings, dashboards e inventario ya están implemen
 - ✅ Story 23: roles de usuario y guard de administración (`/admin` restringido)
 - ✅ Story 24: dashboard privado (estadísticas, usuarios, filtros y cambio de rol)
 - ✅ Story 25: inventario de objetos (`InventoryRepository`, página `/inventory`, seed de demo)
+- ✅ Feature flags globales con gestión en `/admin`; `inventory` apagado por defecto en el MVP.
 - Pendientes: misiones, tarjetas compartibles + OG y Home real.
 
 Ver [fase-3/README.md](fase-3/README.md) para el orden y las dependencias.

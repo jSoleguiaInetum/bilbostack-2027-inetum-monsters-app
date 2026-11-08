@@ -350,6 +350,28 @@ describe('api domain repositories', () => {
     })).rejects.toMatchObject({ code: 'VALIDATION' })
   })
 
+  it('maps feature flags and falls back to the MVP defaults', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({ inventory: true, unknown: true }))
+
+    const flags = await repositories.featureFlags.list()
+
+    expect(flags).toEqual({ inventory: true })
+    const [url] = fetchMock.mock.calls[0] as [string]
+    expect(url).toBe('https://api.test/feature-flags')
+  })
+
+  it('patches a feature flag and returns the updated map', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({ inventory: false }))
+
+    const flags = await repositories.featureFlags.set('inventory', false)
+
+    expect(flags).toEqual({ inventory: false })
+    const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit]
+    expect(url).toBe('https://api.test/feature-flags/inventory')
+    expect(init).toMatchObject({ method: 'PATCH', credentials: 'include' })
+    expect(JSON.parse(init.body as string)).toEqual({ enabled: false })
+  })
+
   it('maps network failures to a normalized DataError', async () => {
     fetchMock.mockRejectedValueOnce(new Error('offline'))
 

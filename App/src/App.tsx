@@ -2,9 +2,11 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import { AuthProvider } from './auth/AuthProvider'
 import { DataProvider } from './data/DataProvider'
+import { FeatureFlagsProvider } from './lib/FeatureFlagsProvider'
 import { MetricsProvider } from './lib/MetricsProvider'
 import { ProtectedRoute } from './auth/ProtectedRoute'
 import { AdminRoute } from './auth/AdminRoute'
+import { FeatureFlagRoute } from './components/FeatureFlagRoute'
 import { Layout } from './components/Layout'
 import { Spinner } from './components/Spinner'
 import { LoginPage } from './pages/LoginPage'
@@ -35,69 +37,73 @@ export default function App() {
   return (
     <BrowserRouter>
       <DataProvider>
-        <AuthProvider>
-          <MetricsProvider>
-            <Suspense fallback={<LazyFallback />}>
-              <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/dashboard" element={<PublicDashboardPage />} />
-                <Route path="/my-monster" element={
-                  <ProtectedRoute>
-                    <Layout><MyMonsterPage /></Layout>
-                  </ProtectedRoute>
-                } />
-                <Route path="/scan" element={
-                  <ProtectedRoute>
-                    <Layout><ScanPage /></Layout>
-                  </ProtectedRoute>
-                } />
-                <Route path="/user/:id" element={
-                  <ProtectedRoute>
-                    <Layout><UserCardPage /></Layout>
-                  </ProtectedRoute>
-                } />
-                <Route path="/contacts" element={
-                  <ProtectedRoute>
-                    <Layout><ContactsPage /></Layout>
-                  </ProtectedRoute>
-                } />
-                <Route path="/battle/:id" element={
-                  <ProtectedRoute>
-                    <BattlePage />
-                  </ProtectedRoute>
-                } />
-                <Route path="/achievements" element={
-                  <ProtectedRoute>
-                    <Layout><AchievementsPage /></Layout>
-                  </ProtectedRoute>
-                } />
-                <Route path="/rankings" element={
-                  <ProtectedRoute>
-                    <Layout><RankingsPage /></Layout>
-                  </ProtectedRoute>
-                } />
-                <Route path="/inventory" element={
-                  <ProtectedRoute>
-                    <Layout><InventoryPage /></Layout>
-                  </ProtectedRoute>
-                } />
-                <Route path="/talk-checkin" element={
-                  <ProtectedRoute>
-                    <TalkCheckInPage />
-                  </ProtectedRoute>
-                } />
-                <Route path="/admin" element={
-                  <AdminRoute>
-                    <AdminPage />
-                  </AdminRoute>
-                } />
-                <Route path="/dev-seed" element={<DevSeedPage />} />
-                <Route path="*" element={<Navigate to="/my-monster" replace />} />
-              </Routes>
-            </Suspense>
-          </MetricsProvider>
-        </AuthProvider>
+        <FeatureFlagsProvider>
+          <AuthProvider>
+            <MetricsProvider>
+              <Suspense fallback={<LazyFallback />}>
+                <Routes>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/dashboard" element={<PublicDashboardPage />} />
+                  <Route path="/my-monster" element={
+                    <ProtectedRoute>
+                      <Layout><MyMonsterPage /></Layout>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/scan" element={
+                    <ProtectedRoute>
+                      <Layout><ScanPage /></Layout>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/user/:id" element={
+                    <ProtectedRoute>
+                      <Layout><UserCardPage /></Layout>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/contacts" element={
+                    <ProtectedRoute>
+                      <Layout><ContactsPage /></Layout>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/battle/:id" element={
+                    <ProtectedRoute>
+                      <BattlePage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/achievements" element={
+                    <ProtectedRoute>
+                      <Layout><AchievementsPage /></Layout>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/rankings" element={
+                    <ProtectedRoute>
+                      <Layout><RankingsPage /></Layout>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/inventory" element={
+                    <ProtectedRoute>
+                      <FeatureFlagRoute flag="inventory">
+                        <Layout><InventoryPage /></Layout>
+                      </FeatureFlagRoute>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/talk-checkin" element={
+                    <ProtectedRoute>
+                      <TalkCheckInPage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/admin" element={
+                    <AdminRoute>
+                      <AdminPage />
+                    </AdminRoute>
+                  } />
+                  <Route path="/dev-seed" element={<DevSeedPage />} />
+                  <Route path="*" element={<Navigate to="/my-monster" replace />} />
+                </Routes>
+              </Suspense>
+            </MetricsProvider>
+          </AuthProvider>
+        </FeatureFlagsProvider>
       </DataProvider>
     </BrowserRouter>
   )

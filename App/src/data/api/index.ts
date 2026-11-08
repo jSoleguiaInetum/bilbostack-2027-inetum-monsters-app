@@ -5,6 +5,7 @@ import { createApiBattlesRepository } from './battles-repository'
 import { createApiCheckInsRepository } from './checkins-repository'
 import { createApiContactsRepository } from './contacts-repository'
 import { createApiDashboardRepository } from './dashboard-repository'
+import { createApiFeatureFlagsRepository } from './feature-flags-repository'
 import { HttpClient, httpClient } from './http-client'
 import { createApiInventoryRepository } from './inventory-repository'
 import { createApiMetricsRepository } from './metrics-repository'
@@ -25,6 +26,7 @@ export function createApiRepositories(client: HttpClient = httpClient): Reposito
     rankings: createApiRankingsRepository(client),
     dashboard: createApiDashboardRepository(client),
     inventory: createApiInventoryRepository(client),
+    featureFlags: createApiFeatureFlagsRepository(client),
   }
 }
 

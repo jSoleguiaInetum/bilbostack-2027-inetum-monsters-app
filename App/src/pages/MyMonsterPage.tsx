@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../auth/AuthProvider'
 import { isAdminRole } from '../auth/roles'
 import { useMetrics } from '../lib/MetricsProvider'
+import { useFeatureFlags } from '../lib/FeatureFlagsProvider'
 import { MonsterCard } from '../monster/MonsterCard'
 import { MonsterSkeleton } from '../components/MonsterSkeleton'
 import { MetricsDisplay } from '../components/MetricsDisplay'
@@ -17,6 +18,7 @@ import type { MonsterParams } from '../monster/types'
 export function MyMonsterPage() {
   const { user, signOut } = useAuth()
   const { metrics } = useMetrics()
+  const { isEnabled } = useFeatureFlags()
   const navigate = useNavigate()
   const [params, setParams] = useState<MonsterParams | null>(null)
   const [qrFullscreen, setQrFullscreen] = useState(false)
@@ -96,12 +98,14 @@ export function MyMonsterPage() {
           {params && <RarityBadge rarity={params.rarity} />}
           <MetricsDisplay metrics={metrics} />
           <EvolutionProgress metrics={metrics} />
-          <button
-            onClick={() => navigate('/inventory')}
-            className="snes-button has-ocean-color w-full max-w-xs"
-          >
-            Inventario
-          </button>
+          {isEnabled('inventory') && (
+            <button
+              onClick={() => navigate('/inventory')}
+              className="snes-button has-ocean-color w-full max-w-xs"
+            >
+              Inventario
+            </button>
+          )}
         </div>
 
       </main>

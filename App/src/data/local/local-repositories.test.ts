@@ -5,6 +5,7 @@ import { localBattlesRepository } from './battles-repository'
 import { localCheckInsRepository } from './checkins-repository'
 import { localContactsRepository } from './contacts-repository'
 import { localDashboardRepository } from './dashboard-repository'
+import { localFeatureFlagsRepository } from './feature-flags-repository'
 import { localInventoryRepository } from './inventory-repository'
 import { localMetricsRepository } from './metrics-repository'
 import { localRankingsRepository } from './rankings-repository'
@@ -241,6 +242,28 @@ describe('local inventory repository', () => {
 
     expect(await localInventoryRepository.listOwned('user-2')).toEqual([])
     expect(await localInventoryRepository.has('user-2', 'object-01')).toBe(false)
+  })
+})
+
+describe('local feature flags repository', () => {
+  it('returns the MVP defaults with the inventory disabled', async () => {
+    expect(await localFeatureFlagsRepository.list()).toEqual({ inventory: false })
+  })
+
+  it('persists enabled flags globally', async () => {
+    const updated = await localFeatureFlagsRepository.set('inventory', true)
+
+    expect(updated).toEqual({ inventory: true })
+    expect(await localFeatureFlagsRepository.list()).toEqual({ inventory: true })
+    expect(JSON.parse(localStorage.getItem(STORAGE_KEYS.featureFlags) as string)).toEqual({
+      inventory: true,
+    })
+  })
+
+  it('merges stored overrides with the defaults and ignores unknown flags', async () => {
+    writeJson(STORAGE_KEYS.featureFlags, { inventory: true, unknown: true })
+
+    expect(await localFeatureFlagsRepository.list()).toEqual({ inventory: true })
   })
 })
 

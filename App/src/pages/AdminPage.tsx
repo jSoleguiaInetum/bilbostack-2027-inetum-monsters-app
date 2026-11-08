@@ -4,10 +4,13 @@ import { useAuth } from '../auth/AuthProvider'
 import { useRepositories } from '../data/DataProvider'
 import { roleInfo } from '../auth/roles'
 import { ARCHETYPES } from '../lib/constants'
+import { FEATURE_FLAG_DEFINITIONS } from '../lib/feature-flags'
+import { useFeatureFlags } from '../lib/FeatureFlagsProvider'
 import { Spinner } from '../components/Spinner'
 import type { User, UserRole } from '../auth/types'
 import type { Archetype } from '../monster/types'
 import type { AdminDashboard } from '../lib/dashboard'
+import type { FeatureFlagKey } from '../lib/feature-flags'
 
 export const ADMIN_REFRESH_MS = 30_000
 
@@ -49,6 +52,12 @@ function ErrorState({ onRetry }: { onRetry: () => void }) {
 export function AdminPage() {
   const { user } = useAuth()
   const { users: usersRepository, dashboard: dashboardRepository } = useRepositories()
+  const {
+    flags: featureFlagValues,
+    loading: flagsLoading,
+    error: flagsError,
+    setFlag,
+  } = useFeatureFlags()
 
   const [users, setUsers] = useState<User[] | null>(null)
   const [dashboard, setDashboard] = useState<AdminDashboard | null>(null)
@@ -62,6 +71,8 @@ export function AdminPage() {
 
   const [updatingId, setUpdatingId] = useState<string | null>(null)
   const [updateError, setUpdateError] = useState<string | null>(null)
+  const [updatingFlag, setUpdatingFlag] = useState<FeatureFlagKey | null>(null)
+  const [flagUpdateError, setFlagUpdateError] = useState<string | null>(null)
 
   useEffect(() => {
     let active = true
@@ -133,6 +144,19 @@ export function AdminPage() {
     }
   }
 
+  async function toggleFlag(key: FeatureFlagKey, enabled: boolean) {
+    setUpdatingFlag(key)
+    setFlagUpdateError(null)
+
+    try {
+      await setFlag(key, enabled)
+    } catch {
+      setFlagUpdateError('No se pudo actualizar el feature flag. Inténtalo de nuevo.')
+    } finally {
+      setUpdatingFlag(null)
+    }
+  }
+
   if (loading && !users) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
@@ -185,6 +209,67 @@ export function AdminPage() {
         <StatCard icon="🏆" label="Logros" value={dashboard?.stats.totalAchievements ?? 0} />
         <StatCard icon="⚡" label="Expertise medio" value={formatAverage(dashboard?.stats.averageExpertise ?? 0)} />
         <StatCard icon="✨" label="Aura media" value={formatAverage(dashboard?.stats.averageAuraTech ?? 0)} />
+      </section>
+
+      <section aria-label="Feature flags" className="mb-6 rounded-lg border border-primary bg-surface md:mb-8">
+        <header className="border-b border-primary px-4 py-3">
+          <h2 className="text-[11px] font-bold text-accent">🚩 Feature flags</h2>
+          <p className="mt-1 text-[9px] text-gray-500">
+            Funciones que se pueden activar sin desplegar. En el MVP inicial el inventario
+            permanece deshabilitado.
+          </p>
+        </header>
+
+        {(flagsError || flagUpdateError) && (
+          <p className="border-b border-primary px-4 py-2 text-[9px] text-secondary">
+            {flagUpdateError
+              ?? 'No se pudieron cargar los feature flags. Se usan los valores por defecto.'}
+          </p>
+        )}
+
+        <ul className="divide-y divide-primary">
+          {FEATURE_FLAG_DEFINITIONS.map(definition => {
+            const enabled = featureFlagValues[definition.key]
+            const isUpdating = updatingFlag === definition.key
+
+            return (
+              <li
+                key={definition.key}
+                className="flex flex-col gap-3 px-4 py-3 md:flex-row md:items-center"
+              >
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] font-bold text-white">{definition.name}</p>
+                  <p className="text-[8px] text-gray-500">{definition.description}</p>
+                </div>
+                <span
+                  className={[
+                    'w-fit rounded-full border px-2 py-1 text-[8px] font-bold',
+                    enabled
+                      ? 'border-secondary text-secondary'
+                      : 'border-primary text-gray-500',
+                  ].join(' ')}
+                >
+                  {enabled ? 'Habilitado' : 'Deshabilitado'}
+                </span>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={enabled}
+                  aria-label={`${definition.name}: ${enabled ? 'habilitado' : 'deshabilitado'}`}
+                  onClick={() => void toggleFlag(definition.key, !enabled)}
+                  disabled={flagsLoading || isUpdating}
+                  className={[
+                    'snes-button text-[8px]',
+                    enabled ? 'has-phantom-color' : 'has-nature-color',
+                    flagsLoading ? 'opacity-50' : '',
+                  ].join(' ')}
+                >
+                  {isUpdating ? 'Guardando...' : enabled ? 'Deshabilitar' : 'Habilitar'}
+                </button>
+              </li>
+            )
+          })}
+        </ul>
       </section>
 
       <section className="mb-6 grid gap-3 md:mb-8 md:grid-cols-3">

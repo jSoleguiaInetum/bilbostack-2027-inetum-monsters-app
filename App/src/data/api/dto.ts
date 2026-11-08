@@ -9,6 +9,7 @@ import type { Achievement, UnlockedAchievement } from '../../lib/achievements'
 import type { Talk } from '../../lib/seed-talks'
 import type { Ranking, RankingCategory, RankingEntry } from '../../lib/rankings'
 import type { AdminDashboard, PublicDashboard, RecentEvolution } from '../../lib/dashboard'
+import { resolveFeatureFlags, type FeatureFlagValues } from '../../lib/feature-flags'
 import type {
   GameObject,
   ObjectBenefitType,
@@ -218,6 +219,12 @@ export function toUserObject(dto: UserObjectDto): UserObject {
     obtainedAt: dto.obtained_at,
     source: toObjectSource(dto.source),
   }
+}
+
+export type FeatureFlagsDto = Record<string, boolean>
+
+export function toFeatureFlags(dto: FeatureFlagsDto | null | undefined): FeatureFlagValues {
+  return resolveFeatureFlags(dto)
 }
 
 export interface TalkDto {

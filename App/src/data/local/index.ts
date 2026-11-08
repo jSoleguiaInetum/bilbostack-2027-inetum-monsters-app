@@ -5,6 +5,7 @@ import { localBattlesRepository } from './battles-repository'
 import { localCheckInsRepository } from './checkins-repository'
 import { localContactsRepository } from './contacts-repository'
 import { localDashboardRepository } from './dashboard-repository'
+import { localFeatureFlagsRepository } from './feature-flags-repository'
 import { localInventoryRepository } from './inventory-repository'
 import { localMetricsRepository } from './metrics-repository'
 import { localRankingsRepository } from './rankings-repository'
@@ -23,4 +24,5 @@ export const localRepositories: Repositories = {
   rankings: localRankingsRepository,
   dashboard: localDashboardRepository,
   inventory: localInventoryRepository,
+  featureFlags: localFeatureFlagsRepository,
 }

@@ -9,11 +9,21 @@ const mocks = vi.hoisted(() => {
   const list = vi.fn()
   const updateRole = vi.fn()
   const getAdminOverview = vi.fn()
+  const setFlag = vi.fn()
   return {
     auth: { user: { id: 'admin-1', name: 'Admin', role: 'admin' }, loading: false },
     list,
     updateRole,
     getAdminOverview,
+    setFlag,
+    featureFlags: {
+      flags: { inventory: false },
+      isEnabled: () => false,
+      loading: false,
+      error: false,
+      refresh: () => undefined,
+      setFlag,
+    },
     repositories: {
       users: { list, updateRole },
       dashboard: { getAdminOverview },
@@ -27,6 +37,10 @@ vi.mock('../auth/AuthProvider', () => ({
 
 vi.mock('../data/DataProvider', () => ({
   useRepositories: () => mocks.repositories,
+}))
+
+vi.mock('../lib/FeatureFlagsProvider', () => ({
+  useFeatureFlags: () => mocks.featureFlags,
 }))
 
 const USERS: User[] = [
@@ -74,6 +88,7 @@ describe('AdminPage', () => {
     mocks.list.mockReset().mockResolvedValue(USERS)
     mocks.updateRole.mockReset()
     mocks.getAdminOverview.mockReset().mockResolvedValue(adminDashboard())
+    mocks.setFlag.mockReset().mockResolvedValue(undefined)
   })
 
   afterEach(() => {
@@ -127,5 +142,19 @@ describe('AdminPage', () => {
     const selfButton = await screen.findByRole('button', { name: /Quitar admin/i })
 
     expect((selfButton as HTMLButtonElement).disabled).toBe(true)
+  })
+
+  it('lists the feature flags and toggles the inventory', async () => {
+    renderPage()
+
+    const toggle = await screen.findByRole('switch', { name: /Inventario/i })
+
+    expect(toggle.getAttribute('aria-checked')).toBe('false')
+
+    fireEvent.click(toggle)
+
+    await waitFor(() => {
+      expect(mocks.setFlag).toHaveBeenCalledWith('inventory', true)
+    })
   })
 })
