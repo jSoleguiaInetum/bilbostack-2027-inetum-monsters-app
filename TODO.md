@@ -3,7 +3,7 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: cambios locales sin commitear, 16 archivos de test, 99 tests verdes, `lint` y `tsc --noEmit` OK.
+- Última verificación: commit `24a28f3`, working tree limpio, 16 archivos de test, 99 tests verdes, `lint` y `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
