@@ -28,15 +28,14 @@ PWA gamificada de networking para BilboStack 2027, conferencia tech de un dia (~
 - Roles de usuario y guard `/admin` (Administrador/Organizacion)
 - Inventario de objetos, misiones base y feature flags globales gestionables desde `/admin` (`inventory` y `missions` apagados por defecto)
 - Tarjetas compartibles PNG para Mi Criatura y logros, con OG estaticos
+- CRUD de logros, objetos y QRs en `/admin`
 - Home real `/` con resumen del jugador y accesos de 1 tap; QR personal en `/qr`
 - Code splitting con React.lazy (10 chunks)
 - Build limpio: 0 errores TS
 
-- CRUD de logros, objetos y QRs en `/admin`
-
-### Pendiente (Fases 3+4)
+### Pendiente (Fase 4)
 - Backend real (API generica; no Supabase)
-- OG dinamicos de tarjetas compartibles (requieren backend o prerender)
+- OG dinamicos de tarjetas compartibles (movidos desde la story 27; requieren backend o prerender)
 - PWA con service worker
 - Prueba de carga y ensayo general
 

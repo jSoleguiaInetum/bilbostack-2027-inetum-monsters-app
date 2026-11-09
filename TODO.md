@@ -8,9 +8,9 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
 
 ## Próximo foco (orden sugerido)
 
-1. Story 27 — OG dinámicos por tarjeta (bloqueado por backend/prerender)
-2. Fase 4 — PWA, hardening, prueba de carga y deploy
-3. Backend real — implementar el contrato REST y validar los adaptadores `api`
+1. Fase 4 — PWA, hardening, prueba de carga y deploy
+2. Backend real — implementar el contrato REST y validar los adaptadores `api`
+3. Story 27 — OG dinámicos por tarjeta (movida a Fase 4; requiere backend/prerender)
 
 ---
 
@@ -23,6 +23,8 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
 - [x] Runner Vitest + jsdom con tests de dominio, adaptadores y 3 páginas
 
 ## Fase 3 — Rankings, dashboards y social
+
+**Completada.** El único remanente (OG dinámicos de la story 27) pasó a Fase 4.
 
 ### Hecho
 
@@ -56,17 +58,17 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
   - [x] Login, registro y guards redirigen a `/`; nav inferior con Inicio, QR, Contactos, Logros y Rankings
   - [x] Resuelta la contradicción de story 18: el Home real ya existe
 
-### Pendiente
+### Cierre
 
 - [!] `use`/consumo/equipamiento de objetos: diferido hasta que el modelo soporte `consumedAt`/`equipped`
 - [x] Entrega automática de objetos por logros (las misiones ya entregan objetos)
   - [x] Mecanismo: `objectId?` en definiciones y desbloqueos, entrega idempotente vía `InventoryRepository` (`source: 'achievement'`)
   - [x] Asignar el objeto de recompensa desde el CRUD de logros en `/admin`
-- [ ] **Story 27 — Tarjetas compartibles y OG**
+- [x] **Story 27 — Tarjetas compartibles y OG**
   - [x] Generación de tarjeta PNG en cliente (monstruo o logro) con métricas, evolución, logros y branding
   - [x] Descarga PNG y compartir por LinkedIn, X/Twitter y copia de texto desde Mi Criatura y logros desbloqueados
   - [x] Metadatos Open Graph estáticos de la app (`index.html` + `og-image.png`)
-  - [!] OG dinámicos por tarjeta/URL pública: requiere backend o prerender; en modo `local` no hay datos cross-device
+  - [~] OG dinámicos por tarjeta/URL pública: movidos a Fase 4 (requieren backend o prerender)
 - [x] **CRUD en `/admin`**: logros, objetos y QRs
   - [x] Logros: crear, editar, activar/desactivar, eliminar, condición declarativa y objeto de recompensa
   - [x] Objetos: crear, editar, activar/desactivar, eliminar y asignar icono/beneficio/rareza
@@ -76,6 +78,7 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
 
 ## Fase 4 — Hardening y evento
 
+- [ ] Story 27 (remanente) — OG dinámicos por tarjeta/URL pública (requiere backend o prerender; en modo `local` no hay datos cross-device)
 - [ ] PWA: `manifest.json` + service worker + iconos
 - [ ] Detectar navegadores in-app y ofrecer "Abrir en navegador"
 - [ ] Prueba de carga (~1000 asistentes / ~200 concurrentes)

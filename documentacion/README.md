@@ -18,7 +18,7 @@
 | Fase 0 — Fundacion | ✅ Completada | Stack, setup, assets SVG, prompts de IA |
 | Fase 1 — MVP Core | ✅ Completada | Auth, criatura, QR, scan, post-scan |
 | Fase 2 — Interaccion Social | ✅ Completada (con polish) | Metricas, combates, contactos, logros, evolucion, check-in charlas |
-| Fase 3 — Rankings, Dashboards, Social | 🚧 En curso | Rankings, dashboard publico y guard de roles/admin hechos; faltan dashboard privado, inventario, misiones y tarjetas |
+| Fase 3 — Rankings, Dashboards, Social | ✅ Completada | Rankings, dashboards, roles/admin, inventario, misiones, tarjetas y CRUD de admin (OG dinámicos movidos a Fase 4) |
 | Fase 4 — Hardening + Evento | ❌ Pendiente | Prueba de carga, ensayo general, deploy produccion |
 
 ### Lo que esta construido (codigo en `App/`)

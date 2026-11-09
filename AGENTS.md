@@ -17,7 +17,7 @@ PWA gamificada de networking para BilboStack 2027 (evento tech de un día, ~1000
 - **Código:** `App/` (no existe `plan/App/...`, aunque la documentación vieja lo mencione)
 - **Documentación:** `documentacion/`
 - **Idioma:** UI y docs en español; identificadores de código en inglés.
-- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 completada salvo los OG dinámicos de la story 27 (requieren backend/prerender). CRUD de admin, incluido QRs por tipo, ya está implementado. Fase 4 pendiente. Ver `TODO.md`.
+- **Estado:** Fases 0, 1, 2 y 3 completadas. El OG dinámico de la story 27 se movió a Fase 4 (requiere backend/prerender). CRUD de admin, incluido QRs por tipo, ya está implementado. Fase 4 pendiente. Ver `TODO.md`.
 - **Backend:** NO hay backend todavía. Todo funciona con mock local (`localStorage`).
 
 ## 2. Stack
@@ -99,8 +99,7 @@ Rutas: `/` (Home), `/login`, `/register`, `/dashboard` (pública), `/my-monster`
 
 ### Pendiente
 
-- **Fase 3:** OG dinámicos de tarjetas compartibles (requieren backend o prerender).
-- **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
+- **Fase 4:** OG dinámicos de tarjetas compartibles (movidos desde la story 27; requieren backend o prerender), PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
 - Documentación: `documentacion/05-stories/fase-2/` solo tiene `README.md`; faltan las stories 11-19 detalladas.
 
@@ -294,7 +293,7 @@ unlayered         ← overrides globales
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24), inventario (story 25), feature flags y misiones base (story 26), tarjetas compartibles PNG (story 27), Home real y navegación 1 tap (story 28), CRUD de admin (logros, objetos y QRs)~~ (hecho). Falta el OG dinámico de tarjetas (27, requiere backend/prerender).
+3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24), inventario (story 25), feature flags y misiones base (story 26), tarjetas compartibles PNG (story 27), Home real y navegación 1 tap (story 28), CRUD de admin (logros, objetos y QRs)~~ (hecho; el OG dinámico de la story 27 se movió a Fase 4).
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.
