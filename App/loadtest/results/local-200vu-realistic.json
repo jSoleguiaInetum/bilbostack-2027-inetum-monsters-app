@@ -1,0 +1,36 @@
+{
+  "target": "http://127.0.0.1:4173",
+  "startedAt": "2026-11-09T12:37:26.130Z",
+  "durationSeconds": 30,
+  "users": 200,
+  "thinkTimeMs": 3000,
+  "assets": {
+    "total": 196,
+    "critical": 18
+  },
+  "thresholds": {
+    "p95Ms": 200,
+    "maxErrorRate": 0.01
+  },
+  "summary": {
+    "requests": 29204,
+    "errors": 0,
+    "errorRate": 0,
+    "bytes": 368051753,
+    "throughputRps": 884.8624409162526,
+    "throughputMBps": 10.635120104969003,
+    "latencyMs": {
+      "avg": 72.64653746404609,
+      "min": 0.4795,
+      "p50": 66.7231,
+      "p90": 128.9735,
+      "p95": 199.4905,
+      "p99": 432.8088,
+      "max": 486.0856
+    },
+    "statuses": {
+      "200": 29204
+    }
+  },
+  "passed": true
+}

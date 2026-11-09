@@ -9,7 +9,10 @@
     "lint": "oxlint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "loadtest": "node loadtest/loadtest.mjs",
+    "loadtest:stress": "node loadtest/loadtest.mjs --url http://127.0.0.1:4173 --users 200 --duration 30 --think 0 --json loadtest/results/local-200vu-stress.json",
+    "loadtest:realistic": "node loadtest/loadtest.mjs --url http://127.0.0.1:4173 --users 200 --duration 30 --think 3000 --json loadtest/results/local-200vu-realistic.json"
   },
   "dependencies": {
     "html5-qrcode": "^2.3.8",

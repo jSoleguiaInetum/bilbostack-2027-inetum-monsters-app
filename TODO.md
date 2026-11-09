@@ -3,12 +3,12 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: detección de navegadores in-app con banner "Abrir en navegador", 27 archivos de test, 160 tests verdes, `lint` y `tsc --noEmit` OK.
+- Última verificación: prueba de carga del frontend estático (200 VUs) con 0 errores y p95 199 ms; `lint` OK; 27 archivos de test, 160 tests verdes, `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
 
-1. Fase 4 — Prueba de carga, E2E visual, ensayo general y deploy
+1. Fase 4 — E2E visual, ensayo general y deploy (prueba de carga del frontend hecha; falta validarla contra staging/CDN y la parte de API cuando exista backend)
 2. Backend real — implementar el contrato REST y validar los adaptadores `api`
 3. Story 27 — OG dinámicos por tarjeta (movida a Fase 4; requiere backend/prerender)
 
@@ -88,7 +88,14 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
   - [x] Banner en `Layout` con intent de Chrome en Android y copia de enlace en iOS; descartable
   - [x] Tests del detector
 - [ ] Story 27 (remanente) — OG dinámicos por tarjeta/URL pública (requiere backend o prerender; en modo `local` no hay datos cross-device)
-- [ ] Prueba de carga (~1000 asistentes / ~200 concurrentes)
+- [x] **Prueba de carga del frontend estático (~200 concurrentes)**
+  - [x] Arnés sin dependencias `App/loadtest/loadtest.mjs` (sesiones de navegador concurrentes contra el build) + scripts `loadtest:stress` / `loadtest:realistic`
+  - [x] Escenario realista (200 VUs, think time 3 s): 29.204 peticiones, 0 errores, p95 199,49 ms, 885 req/s, 10,6 MB/s — **PASS**
+  - [x] Escenario de estrés (200 VUs, sin think time): 53.106 peticiones, 0 errores, p95 268 ms, 1.765 req/s, 21,1 MB/s (servidor y generador comparten CPU; cota inferior)
+  - [x] Informes en `App/loadtest/results/local-200vu-realistic.json` y `local-200vu-stress.json`
+  - [!] Criterios de API R-02, R-03, R-05, R-07, R-08 y O-04 bloqueados: requieren backend real. El arnés acepta `--url` para apuntarlo a staging/producción cuando exista
+  - [ ] Repetir contra staging/producción (CDN real) tras el deploy
+- [ ] R-01 (FCP <2 s en 4G) verificable con Lighthouse/WebPageTest. Bundle inicial actual: 320 kB JS (101 kB gzip) + 98 kB CSS (15 kB gzip); `ScanPage` 372 kB se carga lazy
 - [ ] E2E visual en matriz de dispositivos (iPhone SE, iPhone 14+, Galaxy A, iPad)
 - [ ] Ensayo general con 10–20 usuarios reales
 - [ ] Deploy a producción + runbook del día del evento
