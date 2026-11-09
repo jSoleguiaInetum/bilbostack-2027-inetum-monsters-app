@@ -3,12 +3,12 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: PWA (manifest + service worker + iconos), 26 archivos de test, 150 tests verdes, `lint` y `tsc --noEmit` OK.
+- Última verificación: detección de navegadores in-app con banner "Abrir en navegador", 27 archivos de test, 160 tests verdes, `lint` y `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
 
-1. Fase 4 — Detectar navegadores in-app, prueba de carga, E2E visual, ensayo y deploy
+1. Fase 4 — Prueba de carga, E2E visual, ensayo general y deploy
 2. Backend real — implementar el contrato REST y validar los adaptadores `api`
 3. Story 27 — OG dinámicos por tarjeta (movida a Fase 4; requiere backend/prerender)
 
@@ -83,8 +83,11 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
   - [x] `public/sw.js` (network-first para navegaciones con fallback `offline.html`, cache-first para assets, stale-while-revalidate para Google Fonts); registro solo en producción desde `main.tsx`
   - [x] Iconos PNG generados por `scripts/generate-pwa-icons.mjs` (192, 512, maskable 512, apple-touch 180) con la paleta del tema
   - [x] `index.html`: manifest, `theme-color`, apple-touch-icon y metas iOS
+- [x] Detectar navegadores in-app y ofrecer "Abrir en navegador"
+  - [x] Detector puro por user agent (`src/lib/inapp.ts`): Instagram, Facebook, LinkedIn, X/Twitter, TikTok, Snapchat, WhatsApp, Slack, Telegram
+  - [x] Banner en `Layout` con intent de Chrome en Android y copia de enlace en iOS; descartable
+  - [x] Tests del detector
 - [ ] Story 27 (remanente) — OG dinámicos por tarjeta/URL pública (requiere backend o prerender; en modo `local` no hay datos cross-device)
-- [ ] Detectar navegadores in-app y ofrecer "Abrir en navegador"
 - [ ] Prueba de carga (~1000 asistentes / ~200 concurrentes)
 - [ ] E2E visual en matriz de dispositivos (iPhone SE, iPhone 14+, Galaxy A, iPad)
 - [ ] Ensayo general con 10–20 usuarios reales

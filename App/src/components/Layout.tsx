@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react'
 import { useNavigate, useLocation } from 'react-router'
+import { InAppBrowserBanner } from './InAppBrowserBanner'
 
 const NAV_TABS = [
   { path: '/', icon: '🏠', label: 'Inicio' },
@@ -15,6 +16,7 @@ export function Layout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <InAppBrowserBanner />
       <main className="flex-1 pb-20">
         {children}
       </main>

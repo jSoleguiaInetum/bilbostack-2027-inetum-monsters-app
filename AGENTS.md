@@ -100,7 +100,7 @@ Rutas: `/` (Home), `/login`, `/register`, `/dashboard` (pública), `/my-monster`
 
 ### Pendiente
 
-- **Fase 4:** OG dinámicos de tarjetas compartibles (movidos desde la story 27; requieren backend o prerender), detección de navegadores in-app, prueba de carga, E2E visual, ensayo general y deploy. La PWA (manifest + SW + iconos) ya está hecha.
+- **Fase 4:** OG dinámicos de tarjetas compartibles (movidos desde la story 27; requieren backend o prerender), prueba de carga, E2E visual, ensayo general y deploy. La PWA (manifest + SW + iconos) y la detección de navegadores in-app con banner ya están hechas.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
 - Documentación: `documentacion/05-stories/fase-2/` solo tiene `README.md`; faltan las stories 11-19 detalladas.
 
