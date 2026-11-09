@@ -3,12 +3,12 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: prueba de carga del frontend estático (200 VUs) con 0 errores y p95 199 ms; `lint` OK; 27 archivos de test, 160 tests verdes, `tsc --noEmit` OK.
+- Última verificación: E2E visual en 6 perfiles de dispositivo (90 tests verdes, sin desbordamiento horizontal ni errores de consola), prueba de carga del frontend (200 VUs, 0 errores, p95 199 ms); `lint`, `tsc -b` y 160 tests unitarios OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
 
-1. Fase 4 — E2E visual, ensayo general y deploy (prueba de carga del frontend hecha; falta validarla contra staging/CDN y la parte de API cuando exista backend)
+1. Fase 4 — ejecutar el ensayo general con 10–20 personas reales (kit listo en `/rehearsal`) y luego deploy a producción + runbook del día del evento
 2. Backend real — implementar el contrato REST y validar los adaptadores `api`
 3. Story 27 — OG dinámicos por tarjeta (movida a Fase 4; requiere backend/prerender)
 
@@ -96,8 +96,25 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
   - [!] Criterios de API R-02, R-03, R-05, R-07, R-08 y O-04 bloqueados: requieren backend real. El arnés acepta `--url` para apuntarlo a staging/producción cuando exista
   - [ ] Repetir contra staging/producción (CDN real) tras el deploy
 - [ ] R-01 (FCP <2 s en 4G) verificable con Lighthouse/WebPageTest. Bundle inicial actual: 320 kB JS (101 kB gzip) + 98 kB CSS (15 kB gzip); `ScanPage` 372 kB se carga lazy
-- [ ] E2E visual en matriz de dispositivos (iPhone SE, iPhone 14+, Galaxy A, iPad)
+- [x] **E2E visual en matriz de dispositivos (iPhone SE, iPhone 14+, Galaxy A, iPad)**
+  - [x] Runner Playwright (`App/playwright.config.ts`, specs en `App/e2e/`) con 6 perfiles: 4 emulados en Chromium (iPhone SE, iPhone 14, Galaxy A, iPad) + 2 con WebKit usando los perfiles iOS reales (iPhone SE, iPhone 14)
+  - [x] Siembra del adaptador `local` vía `localStorage` (`App/e2e/seed.ts`): 8 usuarios, métricas, contactos, combates, logros, objetos y flags activos
+  - [x] Aserciones: heading visible, cero desbordamiento horizontal, nav inferior contenida, SVG del monstruo sin 404, sin errores de consola ni de página
+  - [x] 90 tests verdes en los 6 perfiles (28 s); capturas en `App/e2e/screenshots/<perfil>/<pagina>.png`
+  - [x] Detector de desbordamiento validado contra un caso sintético (elemento de 2000 px en 375 px) para descartar falsos verdes
+  - [!] Sin baseline de regresión visual: la fuente `Press Start 2P` viene de Google Fonts y hace los píxeles frágiles entre entornos. Las capturas son para revisión humana
+  - [!] La emulación no cubre cámara real, PWA install, service worker en Safari, navegadores in-app ni permisos: va al ensayo general
 - [ ] Ensayo general con 10–20 usuarios reales
+  - [x] Kit de ensayo: página `/rehearsal` con siembra de datos, checklist de 12 flujos y captura de feedback
+    - [x] Puerto `RehearsalRepository` + adaptadores `local` y `api` (en `api` la siembra no existe: no se pueden inventar usuarios en un servidor real)
+    - [x] Builder puro y determinista (`src/lib/rehearsal-data.ts`): 24 usuarios ficticios, 8 arquetipos, contactos, combates, logros, objetos y misiones
+    - [x] `reset()` borra solo los datos de ensayo (prefijo `rehearsal-`) y deja intactos los del usuario real
+    - [x] Feedback: puntuación 1–5, flujo, dispositivo, comentario y marca de fallo bloqueante; exportable al portapapeles
+    - [x] Tests: 20 unitarios (builder + adaptador local) y 2 E2E que siembran y comprueban que los datos llegan a los rankings
+  - [ ] Imprimir los QRs de charla, NPC, misión y objeto desde `/admin` (check-in de charla es el flujo con mas riesgo)
+  - [ ] Ejecutar el ensayo con 10–20 personas en el venue, con WiFi institucional y 4G de backup
+  - [ ] Recoger el feedback de cada asistente y triagear los fallos bloqueantes
+  - [!] Sin backend, el ensayo solo valida UX, flujos y hardware: rankings, dashboard y combates son locales. El multiusuario real (contactos entre dispositivos, posiciones compartidas) no se puede validar hasta que exista el backend
 - [ ] Deploy a producción + runbook del día del evento
 - [ ] Content freeze y seed final (charlas, QRs, logros, misiones, objetos)
 
@@ -112,7 +129,7 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
 ## Deuda técnica y documentación
 
 - [ ] Activar `strict: true` en TypeScript en un cambio dedicado y corregir errores
-- [ ] Corregir `AGENTS.md` §10: `@testing-library/react` **sí** está instalado (`^16.3.3`)
+- [x] Corregir `AGENTS.md` §10: `@testing-library/react` **sí** está instalado (`^16.3.3`) — ya estaba correcto, ítem obsoleto
 - [ ] Actualizar conteo de SVGs en docs: son 152, no 154
 - [ ] Completar stories detalladas faltantes: fase 2 (11–19) solo tiene README; falta story 24 y las 25–28
 - [ ] Corregir `CONTEXTO-PROYECTO.md`: los paths `plan/App/...` ya no existen (es `App/`)

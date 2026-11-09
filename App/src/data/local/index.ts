@@ -11,6 +11,7 @@ import { localMetricsRepository } from './metrics-repository'
 import { localMissionsRepository } from './missions-repository'
 import { localQrRepository } from './qr-repository'
 import { localRankingsRepository } from './rankings-repository'
+import { localRehearsalRepository } from './rehearsal-repository'
 import { localTalksRepository } from './talks-repository'
 import { localUserRepository } from './user-repository'
 
@@ -29,4 +30,5 @@ export const localRepositories: Repositories = {
   missions: localMissionsRepository,
   featureFlags: localFeatureFlagsRepository,
   qrs: localQrRepository,
+  rehearsal: localRehearsalRepository,
 }

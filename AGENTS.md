@@ -46,6 +46,11 @@ npm run lint       # oxlint
 npm test           # suite Vitest (run)
 npm run test:watch # Vitest en modo watch
 npm run preview    # preview del build
+npm run e2e        # suite E2E de Playwright (matriz de dispositivos)
+npm run e2e:ui     # Playwright en modo interactivo
+npm run e2e:report # abre el informe HTML de la última ejecución
+npm run e2e:install # descarga los navegadores de Playwright (chromium + webkit)
+npm run loadtest   # prueba de carga del frontend estático
 ```
 
 No ejecutar `npm run build` como verificación automática después de cada cambio si no se pidió; usar `npm run lint`, `npm test` y `npx tsc -p tsconfig.app.json --noEmit`.
@@ -68,7 +73,7 @@ App/
 │   └── pages/                 Home, Login, Register, MyMonster, MyQr, UserCard, Scan, QrInfo, Contacts, Battle, Achievements, TalkCheckIn, Rankings, PublicDashboard, Admin, Inventory, Missions, DevSeed
 ```
 
-Rutas: `/` (Home), `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/qr`, `/scan`, `/qr-info` (QRs de NPC/misión/objeto/evento), `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/inventory` (flag), `/missions` (flag), `/talk-checkin`, `/admin` (admin), `/dev-seed`.
+Rutas: `/` (Home), `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/qr`, `/scan`, `/qr-info` (QRs de NPC/misión/objeto/evento), `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/inventory` (flag), `/missions` (flag), `/talk-checkin`, `/admin` (admin), `/dev-seed`, `/rehearsal` (dev).
 
 ## 5. Estado actual
 
@@ -140,6 +145,7 @@ Crear interfaces (puertos) y dos implementaciones por dominio. La UI/providers s
 | `FeatureFlagsRepository` | list, set (flags globales; `inventory` y `missions` apagados por defecto) |
 | `InventoryRepository` | listDefinitions, listAllDefinitions, createDefinition, updateDefinition, deleteDefinition, listOwned, has, add |
 | `QrRepository` | list, create, delete (QRs de admin por tipo) |
+| `RehearsalRepository` | seed, reset, saveFeedback, listFeedback (utilidad de ensayo, solo en modo `local`) |
 
 ### Reglas obligatorias
 
@@ -277,6 +283,17 @@ unlayered         ← overrides globales
 - Si se añade UI con comportamiento propio, usar `@testing-library/react` (ya instalado, `^16.3.3`).
 - Zona prioritaria de tests: `generator.ts`, `evolution.ts`, `battle.ts`, `achievements.ts` y los adaptadores de datos (misma suite para `local` y `api`).
 
+### E2E y matriz de dispositivos
+
+- Runner: Playwright (`npm run e2e`). Config en `App/playwright.config.ts`, specs en `App/e2e/`.
+- Cubre 6 perfiles: iPhone SE, iPhone 14, Galaxy A e iPad en Chromium, más iPhone SE e iPhone 14 con WebKit (Safari real de iOS, que es lo que usa la mayoría de asistentes).
+- Levanta su propio servidor (`npm run build && npm run preview`) en el puerto 4173.
+- Siembra el adaptador `local` vía `localStorage` (`App/e2e/seed.ts`) para no depender del backend.
+- Aserciones: heading visible, cero desbordamiento horizontal, nav inferior contenida, SVG del monstruo sin 404 y sin errores de consola ni de página.
+- Las capturas se guardan en `App/e2e/screenshots/<perfil>/<pagina>.png` para revisión visual. **No hay baseline de regresión visual**: la fuente `Press Start 2P` se sirve desde Google Fonts y haría los píxeles frágiles entre entornos.
+- Lo que la emulación **no** cubre y sigue necesitando dispositivos físicos: cámara real, PWA install, service worker en Safari, navegadores in-app y permisos. Eso va en el ensayo general.
+- Playwright es el único proyecto fuera de `src/`; se type-checkea con `App/tsconfig.e2e.json` (referenciado desde `tsconfig.json`).
+
 ## 11. Gotchas conocidos
 
 - `.git/config` tenía `core.worktree` apuntando a `C:\Users\Aussar\...` (inexistente). Ya se eliminó esa clave; el repo vive en `C:\Program Files\Ampps\www\...`.
@@ -318,3 +335,4 @@ unlayered         ← overrides globales
 - `documentacion/03-backlog-y-criterios/criterios-aceptacion-mvp.md` — criterios verificables.
 - `documentacion/04-plan-y-riesgos/` — cronograma, riesgos, calidad y operaciones.
 - `documentacion/06-journals/` — decisiones y problemas resueltos de fases 1 y 2.
+- `MODEL_SELECTION.md` — configuración de auto-selección de modelos según tarea.

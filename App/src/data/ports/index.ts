@@ -10,6 +10,7 @@ import type { MetricsRepository } from './metrics-repository'
 import type { MissionsRepository } from './missions-repository'
 import type { QrRepository } from './qr-repository'
 import type { RankingsRepository } from './rankings-repository'
+import type { RehearsalRepository } from './rehearsal-repository'
 import type { TalksRepository } from './talks-repository'
 import type { UserRepository } from './user-repository'
 
@@ -28,6 +29,7 @@ export interface Repositories {
   missions: MissionsRepository
   featureFlags: FeatureFlagsRepository
   qrs: QrRepository
+  rehearsal: RehearsalRepository
 }
 
 export type {
@@ -43,6 +45,7 @@ export type {
   MissionsRepository,
   QrRepository,
   RankingsRepository,
+  RehearsalRepository,
   TalksRepository,
   UserRepository,
 }
@@ -50,3 +53,9 @@ export type { NewContact } from './contacts-repository'
 export type { NewCheckIn } from './checkins-repository'
 export type { NewUserObject } from './inventory-repository'
 export type { OAuthProvider } from './auth-repository'
+export type {
+  RehearsalFeedback,
+  RehearsalFeedbackInput,
+  RehearsalSeedOptions,
+  RehearsalSeedResult,
+} from './rehearsal-repository'

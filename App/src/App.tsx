@@ -28,6 +28,7 @@ const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m
 const InventoryPage = lazy(() => import('./pages/InventoryPage').then(m => ({ default: m.InventoryPage })))
 const MissionsPage = lazy(() => import('./pages/MissionsPage').then(m => ({ default: m.MissionsPage })))
 const DevSeedPage = lazy(() => import('./pages/DevSeedPage').then(m => ({ default: m.DevSeedPage })))
+const RehearsalPage = lazy(() => import('./pages/RehearsalPage').then(m => ({ default: m.RehearsalPage })))
 
 function LazyFallback() {
   return (
@@ -124,6 +125,7 @@ export default function App() {
                     </AdminRoute>
                   } />
                   <Route path="/dev-seed" element={<DevSeedPage />} />
+                  <Route path="/rehearsal" element={<RehearsalPage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
               </Suspense>

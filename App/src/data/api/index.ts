@@ -12,6 +12,7 @@ import { createApiMetricsRepository } from './metrics-repository'
 import { createApiMissionsRepository } from './missions-repository'
 import { createApiQrRepository } from './qr-repository'
 import { createApiRankingsRepository } from './rankings-repository'
+import { apiRehearsalRepository } from './rehearsal-repository'
 import { createApiTalksRepository } from './talks-repository'
 import { createApiUserRepository } from './user-repository'
 
@@ -31,6 +32,7 @@ export function createApiRepositories(client: HttpClient = httpClient): Reposito
     missions: createApiMissionsRepository(client),
     featureFlags: createApiFeatureFlagsRepository(client),
     qrs: createApiQrRepository(client),
+    rehearsal: apiRehearsalRepository,
   }
 }
 
