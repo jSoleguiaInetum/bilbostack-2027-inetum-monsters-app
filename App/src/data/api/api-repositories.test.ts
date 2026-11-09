@@ -445,6 +445,30 @@ describe('api domain repositories', () => {
     expect(init).toMatchObject({ method: 'POST', credentials: 'include' })
   })
 
+  it('maps the reward object returned by the achievement check', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse([{
+      id: 'first-contact',
+      unlockedAt: '2026-01-01T10:00:00.000Z',
+      objectId: 'object-01',
+    }]))
+
+    const unlocked = await repositories.achievements.checkAndUnlock('user-1', {
+      userId: 'user-1',
+      metrics: { expertise: 0, auraTech: 0, history: [] },
+      contactCount: 1,
+      battleCount: 0,
+      battleWins: 0,
+      uniqueArchetypesContacted: 1,
+    })
+
+    expect(unlocked[0]).toMatchObject({
+      id: 'first-contact',
+      objectId: 'object-01',
+    })
+    const [url] = fetchMock.mock.calls[0] as [string]
+    expect(url).toBe('https://api.test/users/user-1/achievements/check')
+  })
+
   it('maps feature flags and falls back to the MVP defaults', async () => {
     fetchMock.mockResolvedValueOnce(jsonResponse({ inventory: true, unknown: true }))
 

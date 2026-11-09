@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { evaluateAchievements } from './achievements'
-import type { AchievementContext } from './achievements'
+import type { Achievement, AchievementContext } from './achievements'
 
 function context(overrides: Partial<AchievementContext> = {}): AchievementContext {
   return {
@@ -28,6 +28,26 @@ describe('achievements', () => {
 
     expect(second.newlyUnlocked).toEqual([])
     expect(second.unlocked).toHaveLength(1)
+  })
+
+  it('includes the reward object configured in the definition', () => {
+    const definitions: Achievement[] = [{
+      id: 'object-reward',
+      name: 'Objeto',
+      description: 'Entrega un objeto',
+      icon: '📦',
+      hidden: false,
+      objectId: 'object-01',
+      condition: () => true,
+    }]
+
+    const result = evaluateAchievements([], context(), definitions)
+
+    expect(result.newlyUnlocked[0]).toMatchObject({
+      id: 'object-reward',
+      objectId: 'object-01',
+    })
+    expect(result.unlocked[0]).toMatchObject({ id: 'object-reward' })
   })
 
   it('evaluates multiple achievements in one pass', () => {

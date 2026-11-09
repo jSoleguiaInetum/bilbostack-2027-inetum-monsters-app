@@ -130,6 +130,7 @@ export interface AchievementDto {
   description: string
   icon: string
   hidden: boolean
+  objectId?: string | null
 }
 
 export function toAchievement(dto: AchievementDto): Achievement {
@@ -139,6 +140,7 @@ export function toAchievement(dto: AchievementDto): Achievement {
     description: dto.description,
     icon: dto.icon,
     hidden: dto.hidden,
+    objectId: dto.objectId ?? undefined,
     condition: () => false,
   }
 }
@@ -146,10 +148,15 @@ export function toAchievement(dto: AchievementDto): Achievement {
 export interface UnlockedAchievementDto {
   id: string
   unlockedAt: string
+  objectId?: string | null
 }
 
 export function toUnlockedAchievement(dto: UnlockedAchievementDto): UnlockedAchievement {
-  return { id: dto.id, unlockedAt: dto.unlockedAt }
+  return {
+    id: dto.id,
+    unlockedAt: dto.unlockedAt,
+    objectId: dto.objectId ?? undefined,
+  }
 }
 
 const OBJECT_RARITIES: ObjectRarity[] = ['Inusual', 'Singular', 'Único', 'Épico', 'Legendario']

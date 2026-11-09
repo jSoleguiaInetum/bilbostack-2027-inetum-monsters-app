@@ -28,6 +28,7 @@ export function MetricsProvider({ children }: { children: ReactNode }) {
     battles: battlesRepository,
     achievements: achievementsRepository,
     missions: missionsRepository,
+    inventory: inventoryRepository,
   } = useRepositories()
   const [metrics, setMetrics] = useState<PlayerMetrics>(emptyMetrics())
   const [toastQueue, setToastQueue] = useState<UnlockedAchievement[]>([])
@@ -93,13 +94,19 @@ export function MetricsProvider({ children }: { children: ReactNode }) {
       if (unlocked.length === 0) break
 
       newlyUnlocked.push(...unlocked)
-      for (let index = 0; index < unlocked.length; index++) {
+      for (const achievement of unlocked) {
         currentMetrics = await metricsRepository.addReward(
           user.id,
           'achievement',
           undefined,
           user.archetype,
         )
+        if (achievement.objectId) {
+          await inventoryRepository.add(user.id, {
+            objectId: achievement.objectId,
+            source: 'achievement',
+          })
+        }
       }
     }
 
@@ -109,7 +116,7 @@ export function MetricsProvider({ children }: { children: ReactNode }) {
     }
 
     return currentMetrics
-  }, [user, contactsRepository, battlesRepository, achievementsRepository, metricsRepository])
+  }, [user, contactsRepository, battlesRepository, achievementsRepository, metricsRepository, inventoryRepository])
 
   const handleProgressCheck = useCallback(async (
     updatedMetrics: PlayerMetrics,

@@ -6,12 +6,14 @@ export interface Achievement {
   description: string
   icon: string
   hidden: boolean
+  objectId?: string
   condition: (ctx: AchievementContext) => boolean
 }
 
 export interface UnlockedAchievement {
   id: string
   unlockedAt: string
+  objectId?: string
 }
 
 export interface AchievementContext {
@@ -125,15 +127,20 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
 export function evaluateAchievements(
   unlocked: UnlockedAchievement[],
   context: AchievementContext,
+  definitions: Achievement[] = ACHIEVEMENT_DEFINITIONS,
 ): { unlocked: UnlockedAchievement[]; newlyUnlocked: UnlockedAchievement[] } {
   const unlockedIds = new Set(unlocked.map((achievement) => achievement.id))
   const next = [...unlocked]
   const newlyUnlocked: UnlockedAchievement[] = []
 
-  for (const def of ACHIEVEMENT_DEFINITIONS) {
+  for (const def of definitions) {
     if (unlockedIds.has(def.id)) continue
     if (def.condition(context)) {
-      const entry = { id: def.id, unlockedAt: new Date().toISOString() }
+      const entry = {
+        id: def.id,
+        unlockedAt: new Date().toISOString(),
+        objectId: def.objectId,
+      }
       newlyUnlocked.push(entry)
       next.push(entry)
     }

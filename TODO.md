@@ -3,7 +3,7 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: recompensa de +2 Aura Tech por logro conectada (pendiente de commit), 19 archivos de test, 115 tests verdes, `lint` y `tsc --noEmit` OK.
+- Última verificación: mecanismo de objetos por logro implementado (mapping pendiente), 19 archivos de test, 118 tests verdes, `lint` y `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
@@ -53,6 +53,8 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
 
 - [!] `use`/consumo/equipamiento de objetos: diferido hasta que el modelo soporte `consumedAt`/`equipped`
 - [ ] Entrega automática de objetos por logros (las misiones ya entregan objetos)
+  - [x] Mecanismo: `objectId?` en definiciones y desbloqueos, entrega idempotente vía `InventoryRepository` (`source: 'achievement'`)
+  - [ ] Definir qué logro entrega qué objeto (contenido)
 - [ ] **Story 27 — Tarjetas compartibles y OG**
   - [ ] Generación de imagen/tarjeta compartible (logro o criatura)
   - [ ] Metadatos Open Graph

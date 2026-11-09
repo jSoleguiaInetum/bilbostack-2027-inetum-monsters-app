@@ -10,6 +10,7 @@ const mocks = vi.hoisted(() => {
   const battlesList = vi.fn()
   const achievementsCheck = vi.fn()
   const missionsCheck = vi.fn()
+  const inventoryAdd = vi.fn()
 
   return {
     isEnabled: vi.fn(),
@@ -19,6 +20,7 @@ const mocks = vi.hoisted(() => {
     battlesList,
     achievementsCheck,
     missionsCheck,
+    inventoryAdd,
     user: {
       id: 'user-1',
       name: 'Test',
@@ -32,6 +34,7 @@ const mocks = vi.hoisted(() => {
       battles: { list: battlesList },
       achievements: { checkAndUnlock: achievementsCheck },
       missions: { checkAndComplete: missionsCheck },
+      inventory: { add: inventoryAdd },
     },
   }
 })
@@ -80,6 +83,7 @@ describe('MetricsProvider missions integration', () => {
     mocks.battlesList.mockReset()
     mocks.achievementsCheck.mockReset()
     mocks.missionsCheck.mockReset()
+    mocks.inventoryAdd.mockReset()
     mocks.metricsGet.mockResolvedValue(emptyMetrics())
     mocks.contactsList.mockResolvedValue([])
     mocks.battlesList.mockResolvedValue([])
@@ -152,6 +156,37 @@ describe('MetricsProvider missions integration', () => {
       'developer',
     )
     expect(mocks.achievementsCheck).toHaveBeenCalledTimes(2)
+    expect(mocks.inventoryAdd).not.toHaveBeenCalled()
+  })
+
+  it('grants the object configured on a newly unlocked achievement', async () => {
+    mocks.isEnabled.mockReturnValue(false)
+    mocks.metricsAddReward
+      .mockResolvedValueOnce({ expertise: 0, auraTech: 2, history: [] })
+      .mockResolvedValueOnce({ expertise: 0, auraTech: 4, history: [] })
+    mocks.achievementsCheck
+      .mockResolvedValueOnce([{
+        id: 'first-contact',
+        unlockedAt: '2026-01-01T10:00:00.000Z',
+        objectId: 'object-01',
+      }])
+      .mockResolvedValueOnce([])
+    mocks.inventoryAdd.mockResolvedValue(true)
+
+    render(
+      <MetricsProvider>
+        <Probe />
+      </MetricsProvider>,
+    )
+
+    expect(await screen.findByText('0/0')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'reward' }))
+
+    expect(await screen.findByText('0/4')).toBeTruthy()
+    expect(mocks.inventoryAdd).toHaveBeenCalledWith('user-1', {
+      objectId: 'object-01',
+      source: 'achievement',
+    })
   })
 
   it('keeps evaluating when the achievement reward unlocks another achievement', async () => {
