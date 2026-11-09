@@ -3,12 +3,12 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: CRUD de admin (logros, objetos y QRs), 25 archivos de test, 145 tests verdes, `lint` y `tsc --noEmit` OK.
+- Última verificación: PWA (manifest + service worker + iconos), 26 archivos de test, 150 tests verdes, `lint` y `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
 
-1. Fase 4 — PWA, hardening, prueba de carga y deploy
+1. Fase 4 — Detectar navegadores in-app, prueba de carga, E2E visual, ensayo y deploy
 2. Backend real — implementar el contrato REST y validar los adaptadores `api`
 3. Story 27 — OG dinámicos por tarjeta (movida a Fase 4; requiere backend/prerender)
 
@@ -78,8 +78,12 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
 
 ## Fase 4 — Hardening y evento
 
+- [x] **PWA**
+  - [x] `public/manifest.webmanifest` (instalable, español, iconos any + maskable, shortcuts a `/qr`, `/scan` y `/rankings`)
+  - [x] `public/sw.js` (network-first para navegaciones con fallback `offline.html`, cache-first para assets, stale-while-revalidate para Google Fonts); registro solo en producción desde `main.tsx`
+  - [x] Iconos PNG generados por `scripts/generate-pwa-icons.mjs` (192, 512, maskable 512, apple-touch 180) con la paleta del tema
+  - [x] `index.html`: manifest, `theme-color`, apple-touch-icon y metas iOS
 - [ ] Story 27 (remanente) — OG dinámicos por tarjeta/URL pública (requiere backend o prerender; en modo `local` no hay datos cross-device)
-- [ ] PWA: `manifest.json` + service worker + iconos
 - [ ] Detectar navegadores in-app y ofrecer "Abrir en navegador"
 - [ ] Prueba de carga (~1000 asistentes / ~200 concurrentes)
 - [ ] E2E visual en matriz de dispositivos (iPhone SE, iPhone 14+, Galaxy A, iPad)

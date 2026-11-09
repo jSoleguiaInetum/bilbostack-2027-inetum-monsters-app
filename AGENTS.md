@@ -29,6 +29,7 @@ PWA gamificada de networking para BilboStack 2027 (evento tech de un día, ~1000
 | Lenguaje | TypeScript 7 |
 | Routing | React Router 8 |
 | Estilos | Tailwind CSS v4 + SNES.CSS |
+| PWA | Manifest + service worker (`public/sw.js`, registrado solo en producción) + iconos generados por `scripts/generate-pwa-icons.mjs` |
 | QR | `qrcode` (generar) + `html5-qrcode` (escanear) |
 | Estado | React Context (Zustand instalado pero sin uso) |
 | Fuente | Press Start 2P (Google Fonts, cargada en `index.html`) |
@@ -99,7 +100,7 @@ Rutas: `/` (Home), `/login`, `/register`, `/dashboard` (pública), `/my-monster`
 
 ### Pendiente
 
-- **Fase 4:** OG dinámicos de tarjetas compartibles (movidos desde la story 27; requieren backend o prerender), PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
+- **Fase 4:** OG dinámicos de tarjetas compartibles (movidos desde la story 27; requieren backend o prerender), detección de navegadores in-app, prueba de carga, E2E visual, ensayo general y deploy. La PWA (manifest + SW + iconos) ya está hecha.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
 - Documentación: `documentacion/05-stories/fase-2/` solo tiene `README.md`; faltan las stories 11-19 detalladas.
 
@@ -285,7 +286,7 @@ unlayered         ← overrides globales
 - `documentacion/README.md` menciona 19 stories; faltan las detalladas de fase 2 (11–19) y varias de fase 3 (24–28).
 - El combate es 100% local y simulado; no hay sincronización entre dispositivos.
 - El QR actual no está firmado (solo base64 de JSON). No asumir seguridad anti-falsificación.
-- No hay PWA, manifest ni service worker.
+- El service worker solo se registra en producción (`import.meta.env.PROD`): en dev cachearía assets de HMR. Al cambiar la estrategia del SW, subir `VERSION` en `public/sw.js` para forzar la actualización.
 - El inventario y las misiones están apagados por defecto (MVP inicial). Se habilitan desde `/admin` → Feature flags; en modo `local` persisten en `bilbostack_feature_flags`.
 - Las misiones se evalúan solo si el flag `missions` está activo; si se activa después de que haya actividad, el primer `refreshMetrics` completa las que ya cumplan objetivos.
 
@@ -296,7 +297,7 @@ unlayered         ← overrides globales
 3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24), inventario (story 25), feature flags y misiones base (story 26), tarjetas compartibles PNG (story 27), Home real y navegación 1 tap (story 28), CRUD de admin (logros, objetos y QRs)~~ (hecho; el OG dinámico de la story 27 se movió a Fase 4).
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
-6. PWA, endurecimiento, prueba de carga y deploy.
+6. ~~PWA, endurecimiento~~ (PWA hecha), prueba de carga y deploy.
 
 ## 13. Definition of Done para cambios
 
