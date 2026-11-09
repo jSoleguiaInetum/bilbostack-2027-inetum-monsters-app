@@ -156,15 +156,22 @@ email → SHA-256 → hex string → extract params:
 
 | Ruta | Pagina | Auth | Lazy |
 |---|---|---|---|
+| `/` | HomePage | Si | No |
 | `/login` | LoginPage | No | No |
 | `/register` | RegisterPage | No | No |
+| `/dashboard` | PublicDashboardPage | No | Si |
 | `/my-monster` | MyMonsterPage | Si | No |
+| `/qr` | MyQrPage | Si | Si |
 | `/scan` | ScanPage | Si | Si |
 | `/user/:id` | UserCardPage | Si | No |
 | `/contacts` | ContactsPage | Si | Si |
 | `/battle/:id` | BattlePage | Si | Si |
 | `/achievements` | AchievementsPage | Si | Si |
+| `/rankings` | RankingsPage | Si | Si |
+| `/inventory` | InventoryPage | Si (flag) | Si |
+| `/missions` | MissionsPage | Si (flag) | Si |
 | `/talk-checkin` | TalkCheckInPage | Si | Si |
+| `/admin` | AdminPage | Admin | Si |
 | `/dev-seed` | DevSeedPage | No | Si |
 
 ---

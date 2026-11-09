@@ -37,7 +37,7 @@ Ver [fase-2/README.md](fase-2/README.md) para dependencias entre stories.
 
 ## Fase 3 — Rankings y Dashboards (en curso)
 
-Stories 20-28 planificadas. Rankings, dashboards, inventario y misiones ya están implementados.
+Stories 20-28 implementadas, salvo el OG dinámico de la story 27. El CRUD de admin (logros, objetos y QRs) está hecho.
 
 - ✅ Story 20: `RankingsRepository` (4 categorías, local/API, tests)
 - ✅ Story 21: página de rankings (4 tabs, top 20, posición propia, refresco cada 30 s)
@@ -47,7 +47,10 @@ Stories 20-28 planificadas. Rankings, dashboards, inventario y misiones ya está
 - ✅ Story 25: inventario de objetos (`InventoryRepository`, página `/inventory`, seed de demo)
 - ✅ Story 26: misiones base (`MissionsRepository`, evaluación automática, recompensas y página `/missions`)
 - ✅ Feature flags globales con gestión en `/admin`; `inventory` y `missions` apagados por defecto en el MVP.
-- Pendientes: OG dinámicos de tarjetas compartibles y Home real.
+- ⚠️ Story 27: tarjetas compartibles y OG estáticos; los OG dinámicos requieren backend o prerender.
+- ✅ Story 28: Home real (`/`) con resumen del jugador y accesos de 1 tap; QR personal en `/qr`.
+- ✅ CRUD de admin: logros (condición declarativa y objeto de recompensa), objetos y QRs por tipo (generar, descargar, imprimir, eliminar).
+- Pendiente: OG dinámicos de tarjetas compartibles.
 
 Ver [fase-3/README.md](fase-3/README.md) para el orden y las dependencias.
 Ver [backlog-estructurado.md](../03-backlog-y-criterios/backlog-estructurado.md) para el detalle de epicas.

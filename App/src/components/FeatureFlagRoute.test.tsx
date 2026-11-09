@@ -18,7 +18,7 @@ function renderRoute() {
   return render(
     <MemoryRouter initialEntries={['/inventory']}>
       <Routes>
-        <Route path="/my-monster" element={<p>Mi criatura</p>} />
+        <Route path="/" element={<p>Inicio</p>} />
         <Route
           path="/inventory"
           element={(
@@ -41,10 +41,10 @@ describe('FeatureFlagRoute', () => {
     cleanup()
   })
 
-  it('redirects to the monster page when the flag is disabled', () => {
+  it('redirects to the home page when the flag is disabled', () => {
     renderRoute()
 
-    expect(screen.getByText('Mi criatura')).toBeTruthy()
+    expect(screen.getByText('Inicio')).toBeTruthy()
     expect(screen.queryByText('Inventario')).toBeNull()
   })
 
@@ -62,6 +62,6 @@ describe('FeatureFlagRoute', () => {
     renderRoute()
 
     expect(screen.getByText('Cargando...')).toBeTruthy()
-    expect(screen.queryByText('Mi criatura')).toBeNull()
+    expect(screen.queryByText('Inicio')).toBeNull()
   })
 })

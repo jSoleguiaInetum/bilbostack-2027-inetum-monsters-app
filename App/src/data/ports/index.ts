@@ -8,6 +8,7 @@ import type { FeatureFlagsRepository } from './feature-flags-repository'
 import type { InventoryRepository } from './inventory-repository'
 import type { MetricsRepository } from './metrics-repository'
 import type { MissionsRepository } from './missions-repository'
+import type { QrRepository } from './qr-repository'
 import type { RankingsRepository } from './rankings-repository'
 import type { TalksRepository } from './talks-repository'
 import type { UserRepository } from './user-repository'
@@ -26,6 +27,7 @@ export interface Repositories {
   inventory: InventoryRepository
   missions: MissionsRepository
   featureFlags: FeatureFlagsRepository
+  qrs: QrRepository
 }
 
 export type {
@@ -39,6 +41,7 @@ export type {
   InventoryRepository,
   MetricsRepository,
   MissionsRepository,
+  QrRepository,
   RankingsRepository,
   TalksRepository,
   UserRepository,

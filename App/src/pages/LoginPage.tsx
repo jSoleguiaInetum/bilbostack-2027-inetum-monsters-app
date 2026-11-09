@@ -11,7 +11,7 @@ export function LoginPage() {
   const [loading, setLoading] = useState(false)
 
   if (user) {
-    navigate('/my-monster', { replace: true })
+    navigate('/', { replace: true })
     return null
   }
 
@@ -21,7 +21,7 @@ export function LoginPage() {
     setLoading(true)
     try {
       await signInWithEmail(email, password)
-      navigate('/my-monster')
+      navigate('/')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al iniciar sesión')
     } finally {
@@ -34,7 +34,7 @@ export function LoginPage() {
     setLoading(true)
     try {
       await signInWithOAuth(provider)
-      navigate('/my-monster')
+      navigate('/')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error con OAuth')
     } finally {

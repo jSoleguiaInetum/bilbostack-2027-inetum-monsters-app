@@ -2,7 +2,7 @@ import { type ReactNode } from 'react'
 import { useNavigate, useLocation } from 'react-router'
 
 const NAV_TABS = [
-  { path: '/my-monster', icon: '🐾', label: 'Criatura' },
+  { path: '/', icon: '🏠', label: 'Inicio' },
   { path: '/scan', icon: '📷', label: 'QR' },
   { path: '/contacts', icon: '👥', label: 'Contactos' },
   { path: '/achievements', icon: '🏆', label: 'Logros' },

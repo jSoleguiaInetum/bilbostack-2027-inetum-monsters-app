@@ -19,7 +19,7 @@ export function FeatureFlagRoute({ flag, children }: FeatureFlagRouteProps) {
     )
   }
 
-  if (!isEnabled(flag)) return <Navigate to="/my-monster" replace />
+  if (!isEnabled(flag)) return <Navigate to="/" replace />
 
   return <>{children}</>
 }

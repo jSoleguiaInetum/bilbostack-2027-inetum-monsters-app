@@ -20,7 +20,7 @@ function renderAt(path: string) {
       <Routes>
         <Route path="/admin" element={<AdminRoute><p>Panel</p></AdminRoute>} />
         <Route path="/login" element={<p>Login</p>} />
-        <Route path="/my-monster" element={<p>Mi Criatura</p>} />
+        <Route path="/" element={<p>Inicio</p>} />
       </Routes>
     </MemoryRouter>,
   )
@@ -46,11 +46,11 @@ describe('AdminRoute', () => {
     expect(screen.getByText('Login')).toBeTruthy()
   })
 
-  it('redirects non-admin users to their monster', () => {
+  it('redirects non-admin users to the home page', () => {
     mocks.auth.user = { role: 'participant' }
     renderAt('/admin')
 
-    expect(screen.getByText('Mi Criatura')).toBeTruthy()
+    expect(screen.getByText('Inicio')).toBeTruthy()
   })
 
   it('allows admin role', () => {

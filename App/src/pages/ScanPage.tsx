@@ -21,6 +21,8 @@ export function ScanPage() {
       navigate(`/user/${payload.userId}`, { state: { payload } })
     } else if (payload.type === 'talk') {
       navigate('/talk-checkin', { state: { payload } })
+    } else {
+      navigate('/qr-info', { state: { payload } })
     }
   }
 

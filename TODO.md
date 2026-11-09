@@ -3,13 +3,14 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: tarjetas compartibles PNG + OG estáticos (story 27 parcial), 21 archivos de test, 124 tests verdes, `lint` y `tsc --noEmit` OK.
+- Última verificación: CRUD de admin (logros, objetos y QRs), 25 archivos de test, 145 tests verdes, `lint` y `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
 
-1. Story 28 — Home real y navegación a 1 tap
-2. Story 27 — OG dinámicos por tarjeta (bloqueado por backend/prerender)
+1. Story 27 — OG dinámicos por tarjeta (bloqueado por backend/prerender)
+2. Fase 4 — PWA, hardening, prueba de carga y deploy
+3. Backend real — implementar el contrato REST y validar los adaptadores `api`
 
 ---
 
@@ -48,24 +49,30 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
   - [x] Evaluación automática tras cada recompensa (`MetricsProvider`) con recompensas y entrega de objetos
   - [x] Página `/missions` con progreso, recompensas y acceso desde Mi Criatura (flag `missions`)
   - [x] Toast de misión completada y registro `mission_complete` en el historial de métricas
+- [x] **Story 28 — Home real y navegación a 1 tap**
+  - [x] Página `/` con resumen del jugador: monstruo, arquetipo, Expertise, Aura Tech y próxima evolución
+  - [x] Logros recientes ordenados por fecha con enlace a `/achievements`
+  - [x] Acciones directas a Mi Criatura, Mi QR (`/qr`), Escanear QR, Contactos, Logros, Rankings y, con flag activo, Inventario y Misiones
+  - [x] Login, registro y guards redirigen a `/`; nav inferior con Inicio, QR, Contactos, Logros y Rankings
+  - [x] Resuelta la contradicción de story 18: el Home real ya existe
 
 ### Pendiente
 
 - [!] `use`/consumo/equipamiento de objetos: diferido hasta que el modelo soporte `consumedAt`/`equipped`
-- [ ] Entrega automática de objetos por logros (las misiones ya entregan objetos)
+- [x] Entrega automática de objetos por logros (las misiones ya entregan objetos)
   - [x] Mecanismo: `objectId?` en definiciones y desbloqueos, entrega idempotente vía `InventoryRepository` (`source: 'achievement'`)
-  - [ ] Definir qué logro entrega qué objeto (contenido)
+  - [x] Asignar el objeto de recompensa desde el CRUD de logros en `/admin`
 - [ ] **Story 27 — Tarjetas compartibles y OG**
   - [x] Generación de tarjeta PNG en cliente (monstruo o logro) con métricas, evolución, logros y branding
   - [x] Descarga PNG y compartir por LinkedIn, X/Twitter y copia de texto desde Mi Criatura y logros desbloqueados
   - [x] Metadatos Open Graph estáticos de la app (`index.html` + `og-image.png`)
   - [!] OG dinámicos por tarjeta/URL pública: requiere backend o prerender; en modo `local` no hay datos cross-device
-- [ ] **Story 28 — Home real y navegación a 1 tap**
-  - [ ] Página `/` con resumen del jugador (hoy redirige a `/my-monster`)
-  - [ ] Navegación directa a acciones principales
-  - [ ] Revisar contradicción: story 18 figura ✅ en `05-stories/README.md`, pero el Home real está pendiente
-- [ ] **CRUD en `/admin`**: logros, objetos y QRs
-  - [ ] Generar/descargar/imprimir QRs por tipo (charla, NPC, misión, objeto, evento)
+- [x] **CRUD en `/admin`**: logros, objetos y QRs
+  - [x] Logros: crear, editar, activar/desactivar, eliminar, condición declarativa y objeto de recompensa
+  - [x] Objetos: crear, editar, activar/desactivar, eliminar y asignar icono/beneficio/rareza
+  - [x] QRs: generar/descargar/imprimir/eliminar por tipo (charla, NPC, misión, objeto, evento)
+  - [x] Escaneo de QRs de NPC, misión, objeto y evento con página informativa; los QR de objeto entregan el objeto
+  - [x] Adaptadores `local`/`api` y tests para todo el CRUD
 
 ## Fase 4 — Hardening y evento
 

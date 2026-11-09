@@ -20,7 +20,7 @@ export function RegisterPage() {
   const [loading, setLoading] = useState(false)
 
   if (user) {
-    navigate('/my-monster', { replace: true })
+    navigate('/', { replace: true })
     return null
   }
 
@@ -42,7 +42,7 @@ export function RegisterPage() {
       const newUser = await signUpWithEmail(email, password, name.trim(), archetype)
       const { params } = await generateMonster(email.trim().toLowerCase())
       await metrics.initialize(newUser.id, params.rarity.name)
-      navigate('/my-monster')
+      navigate('/')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al registrarse')
     } finally {

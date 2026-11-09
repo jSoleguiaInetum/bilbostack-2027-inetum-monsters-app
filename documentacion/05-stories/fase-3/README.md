@@ -15,7 +15,8 @@ Estado: **iniciada**. La Fase 3 se apoya en la capa `src/data` y debe funcionar 
 | — | Feature flags (gestión en `/admin`) | E11 | ✅ |
 | 26 | Misiones base | E11/E13 | ✅ |
 | 27 | Tarjetas compartibles y OG | E13 | Parcial (OG dinámico pendiente) |
-| 28 | Home real y navegación 1 tap | E14 | Pendiente |
+| 28 | Home real y navegación 1 tap | E14 | ✅ |
+| — | CRUD de admin (logros, objetos, QRs) | E11/E6 | ✅ |
 
 ## Dependencias
 
@@ -56,3 +57,6 @@ Story 28 (Home) depende de 20, 21, 25 y 26
 - Las misiones base son automáticas: 7 definiciones en `src/lib/missions.ts`, objetivo declarativo (`contacts`, `battles`, `battle_wins`, `talks`, `archetypes`, `achievements`, `expertise`, `aura`) y recompensa de métricas/objeto. `MissionsRepository.checkAndComplete` evalúa y aplica recompensas y objetos de forma idempotente. En `local` solo se guardan las completaciones (`bilbostack_missions_<userId>`); en `api`, el backend devuelve el progreso y aplica las recompensas en `POST /users/:id/missions/check`.
 - La evaluación de misiones se dispara desde `MetricsProvider` después de cada recompensa y en `refreshMetrics`, solo con el flag `missions` activo. El historial de métricas registra `mission_complete`.
 - Las tarjetas compartibles se generan en cliente con canvas (`src/lib/share-card.ts` y `share-card-canvas.ts`), sin backend: monstruo, métricas, evolución, logros y branding, con descarga PNG y enlaces a LinkedIn/X. Los OG estáticos viven en `index.html`; los OG dinámicos por tarjeta requieren backend o prerender.
+- El CRUD de admin vive en `/admin` (pestañas Logros, Objetos y QRs). Logros y objetos usan `listAllDefinitions` para ver también los inactivos; el borrado de definiciones base se guarda como tombstone en local y como `DELETE` en api. Las condiciones de logro son declarativas (`conditionType` + `conditionTarget`), así un logro creado desde el admin se evalúa igual que los seed.
+- Los QRs de admin (`bilbostack_admin_qrs` en local, `/admin/qrs` en api) generan payloads de charla, NPC, misión, objeto y evento. Al escanearlos: charla → check-in, persona → perfil, objeto → entrega al inventario, resto → `/qr-info`.
+- El Home (`/`) es un hub post-login: muestra monstruo, métricas, próxima evolución y los 3 logros recientes, y enlaza en un tap a todas las secciones principales. Las secciones con flag (`inventory`, `missions`) solo aparecen cuando están habilitadas. El QR personal tiene ruta propia (`/qr`) para acceso directo.

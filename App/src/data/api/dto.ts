@@ -5,7 +5,11 @@ import type { PlayerMetrics } from '../../lib/metrics'
 import type { Contact } from '../../lib/contacts'
 import type { BattleResult } from '../../lib/battle'
 import type { CheckIn } from '../../lib/checkins'
-import type { Achievement, UnlockedAchievement } from '../../lib/achievements'
+import type {
+  Achievement,
+  AchievementConditionType,
+  UnlockedAchievement,
+} from '../../lib/achievements'
 import type { Talk } from '../../lib/seed-talks'
 import type { Ranking, RankingCategory, RankingEntry } from '../../lib/rankings'
 import type { AdminDashboard, PublicDashboard, RecentEvolution } from '../../lib/dashboard'
@@ -20,10 +24,12 @@ import type {
 import type {
   GameObject,
   ObjectBenefitType,
+  ObjectDefinitionInput,
   ObjectRarity,
   ObjectSource,
   UserObject,
 } from '../../lib/objects'
+import type { AdminQr, AdminQrType, QRPayload } from '../../qr/types'
 
 export interface UserDto {
   id: string
@@ -124,6 +130,24 @@ export function toCheckIn(dto: CheckInDto): CheckIn {
   }
 }
 
+const ACHIEVEMENT_CONDITION_TYPES: AchievementConditionType[] = [
+  'contacts',
+  'battles',
+  'battle_wins',
+  'archetypes',
+  'expertise',
+  'aura',
+  'total',
+]
+
+function toAchievementConditionType(
+  value: string | undefined,
+): AchievementConditionType | undefined {
+  return ACHIEVEMENT_CONDITION_TYPES.includes(value as AchievementConditionType)
+    ? value as AchievementConditionType
+    : undefined
+}
+
 export interface AchievementDto {
   id: string
   name: string
@@ -131,6 +155,9 @@ export interface AchievementDto {
   icon: string
   hidden: boolean
   objectId?: string | null
+  isActive?: boolean
+  conditionType?: string
+  conditionTarget?: number
 }
 
 export function toAchievement(dto: AchievementDto): Achievement {
@@ -141,7 +168,9 @@ export function toAchievement(dto: AchievementDto): Achievement {
     icon: dto.icon,
     hidden: dto.hidden,
     objectId: dto.objectId ?? undefined,
-    condition: () => false,
+    isActive: dto.isActive ?? true,
+    conditionType: toAchievementConditionType(dto.conditionType),
+    conditionTarget: dto.conditionTarget,
   }
 }
 
@@ -218,6 +247,32 @@ export function toGameObject(dto: GameObjectDto): GameObject {
     iconUrl: dto.icon_url,
     origin: dto.origin ?? '',
     isActive: dto.is_active ?? true,
+  }
+}
+
+export interface GameObjectBodyDto {
+  name: string
+  description: string
+  rarity: string
+  benefit: string
+  benefit_type: string
+  benefit_value: number
+  icon_url: string
+  origin: string
+  is_active: boolean
+}
+
+export function toGameObjectBody(dto: ObjectDefinitionInput): GameObjectBodyDto {
+  return {
+    name: dto.name,
+    description: dto.description,
+    rarity: dto.rarity,
+    benefit: dto.benefit,
+    benefit_type: dto.benefitType,
+    benefit_value: dto.benefitValue,
+    icon_url: dto.iconUrl,
+    origin: dto.origin,
+    is_active: dto.isActive,
   }
 }
 
@@ -348,6 +403,30 @@ export interface TalkDto {
 
 export function toTalk(dto: TalkDto): Talk {
   return { talkId: dto.talkId, title: dto.title, speaker: dto.speaker }
+}
+
+const ADMIN_QR_TYPES: AdminQrType[] = ['talk', 'npc', 'mission', 'object', 'event']
+
+function toAdminQrType(value: string | undefined): AdminQrType {
+  return ADMIN_QR_TYPES.includes(value as AdminQrType) ? value as AdminQrType : 'event'
+}
+
+export interface AdminQrDto {
+  id: string
+  type: string
+  label: string
+  payload: QRPayload
+  createdAt: string
+}
+
+export function toAdminQr(dto: AdminQrDto): AdminQr {
+  return {
+    id: dto.id,
+    type: toAdminQrType(dto.type),
+    label: dto.label,
+    payload: dto.payload,
+    createdAt: dto.createdAt,
+  }
 }
 
 export interface RankingEntryDto {

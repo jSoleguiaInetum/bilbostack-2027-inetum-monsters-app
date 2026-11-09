@@ -496,4 +496,120 @@ describe('api domain repositories', () => {
 
     await expect(repositories.talks.list()).rejects.toMatchObject({ code: 'NETWORK' })
   })
+
+  it('lists all achievements including inactive ones for the admin panel', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse([{
+      id: 'custom',
+      name: 'Custom',
+      description: 'Custom achievement',
+      icon: '🏅',
+      hidden: false,
+      isActive: false,
+      conditionType: 'contacts',
+      conditionTarget: 3,
+    }]))
+
+    const definitions = await repositories.achievements.listAllDefinitions()
+
+    expect(definitions[0]).toMatchObject({
+      id: 'custom',
+      isActive: false,
+      conditionType: 'contacts',
+      conditionTarget: 3,
+    })
+    const [url] = fetchMock.mock.calls[0] as [string]
+    expect(url).toBe('https://api.test/achievements/definitions?includeInactive=true')
+  })
+
+  it('creates, updates and deletes achievement definitions', async () => {
+    const input = {
+      name: 'Custom',
+      description: 'Custom achievement',
+      icon: '🏅',
+      hidden: false,
+      isActive: true,
+      conditionType: 'battle_wins' as const,
+      conditionTarget: 2,
+    }
+    fetchMock.mockResolvedValueOnce(jsonResponse({ id: 'achievement-1', ...input }))
+    fetchMock.mockResolvedValueOnce(jsonResponse({ id: 'achievement-1', ...input, name: 'Updated' }))
+    fetchMock.mockResolvedValueOnce(jsonResponse({}, 204))
+
+    expect(await repositories.achievements.createDefinition(input))
+      .toMatchObject({ id: 'achievement-1', conditionTarget: 2 })
+    expect(await repositories.achievements.updateDefinition('achievement-1', input))
+      .toMatchObject({ name: 'Updated' })
+    await repositories.achievements.deleteDefinition('achievement-1')
+
+    expect(fetchMock.mock.calls[0][0]).toBe('https://api.test/achievements/definitions')
+    expect(fetchMock.mock.calls[1][0]).toBe('https://api.test/achievements/definitions/achievement-1')
+    expect(fetchMock.mock.calls[2][1]).toMatchObject({ method: 'DELETE' })
+  })
+
+  it('manages object definitions with snake_case payloads', async () => {
+    const input = {
+      name: 'Custom',
+      description: 'Custom object',
+      rarity: 'Único' as const,
+      benefit: '+2 Expertise',
+      benefitType: 'ExpertiseBoost' as const,
+      benefitValue: 2,
+      iconUrl: '/monster-assets/objects/object-01.svg',
+      origin: 'Test',
+      isActive: true,
+    }
+    fetchMock.mockResolvedValueOnce(jsonResponse({
+      id: 'object-1',
+      name: 'Custom',
+      description: 'Custom object',
+      rarity: 'Único',
+      benefit: '+2 Expertise',
+      benefit_type: 'ExpertiseBoost',
+      benefit_value: 2,
+      icon_url: '/monster-assets/objects/object-01.svg',
+      origin: 'Test',
+      is_active: true,
+    }))
+
+    const created = await repositories.inventory.createDefinition(input)
+
+    expect(created).toMatchObject({ id: 'object-1', benefitType: 'ExpertiseBoost', benefitValue: 2 })
+    const [, init] = fetchMock.mock.calls[0] as [string, RequestInit]
+    expect(JSON.parse(init.body as string)).toMatchObject({
+      benefit_type: 'ExpertiseBoost',
+      benefit_value: 2,
+      icon_url: '/monster-assets/objects/object-01.svg',
+      is_active: true,
+    })
+  })
+
+  it('lists, creates and deletes admin QR codes', async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse([{
+      id: 'qr-1',
+      type: 'event',
+      label: 'Evento',
+      payload: { type: 'event', eventId: 'event-1', name: 'Evento' },
+      createdAt: '2026-01-01T00:00:00.000Z',
+    }]))
+    fetchMock.mockResolvedValueOnce(jsonResponse({
+      id: 'qr-2',
+      type: 'talk',
+      label: 'Charla',
+      payload: { type: 'talk', talkId: 'talk-1', title: 'Charla', speaker: 'Ada' },
+      createdAt: '2026-01-02T00:00:00.000Z',
+    }))
+    fetchMock.mockResolvedValueOnce(jsonResponse({}, 204))
+
+    expect((await repositories.qrs.list())[0]).toMatchObject({ id: 'qr-1', type: 'event' })
+    expect(await repositories.qrs.create({
+      type: 'talk',
+      label: 'Charla',
+      referenceId: 'talk-1',
+      speaker: 'Ada',
+    })).toMatchObject({ id: 'qr-2', type: 'talk' })
+    await repositories.qrs.delete('qr-2')
+
+    expect(fetchMock.mock.calls[0][0]).toBe('https://api.test/admin/qrs')
+    expect(fetchMock.mock.calls[2][0]).toBe('https://api.test/admin/qrs/qr-2')
+  })
 })

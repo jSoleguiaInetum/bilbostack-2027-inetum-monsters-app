@@ -54,7 +54,7 @@ export function QRScanner({ onScan, onError, onReady }: QRScannerProps) {
 
   return (
     <div className="relative">
-      <p className="text-tech text-sm text-center mb-3">Apunta al QR de otro jugador</p>
+      <p className="text-tech text-sm text-center mb-3">Apunta al QR</p>
       <div className="relative rounded-xl overflow-hidden border-2 border-primary">
         <div id="qr-reader" style={{ width: '100%' }} />
         {/* Esquinas de enfoque */}

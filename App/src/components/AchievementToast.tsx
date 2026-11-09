@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { ACHIEVEMENT_DEFINITIONS, type UnlockedAchievement } from '../lib/achievements'
+import { ACHIEVEMENT_DEFINITIONS, type Achievement, type UnlockedAchievement } from '../lib/achievements'
+import { useRepositories } from '../data/DataProvider'
 
 interface AchievementToastProps {
   achievement: UnlockedAchievement | null
@@ -7,7 +8,9 @@ interface AchievementToastProps {
 }
 
 export function AchievementToast({ achievement, onDismiss }: AchievementToastProps) {
+  const { achievements: achievementsRepository } = useRepositories()
   const [visible, setVisible] = useState(false)
+  const [definition, setDefinition] = useState<Achievement | null>(null)
 
   useEffect(() => {
     if (achievement) {
@@ -20,10 +23,33 @@ export function AchievementToast({ achievement, onDismiss }: AchievementToastPro
     }
   }, [achievement, onDismiss])
 
+  useEffect(() => {
+    if (!achievement) {
+      setDefinition(null)
+      return
+    }
+
+    let active = true
+    const fallback = ACHIEVEMENT_DEFINITIONS.find(item => item.id === achievement.id) ?? null
+    setDefinition(fallback)
+    achievementsRepository.listDefinitions()
+      .then(definitions => {
+        if (!active) return
+        setDefinition(definitions.find(item => item.id === achievement.id) ?? fallback)
+      })
+      .catch(() => undefined)
+
+    return () => {
+      active = false
+    }
+  }, [achievement, achievementsRepository])
+
   if (!achievement) return null
 
-  const def = ACHIEVEMENT_DEFINITIONS.find(d => d.id === achievement.id)
-  if (!def) return null
+  const def = definition ?? {
+    icon: '🏅',
+    name: 'Nuevo logro',
+  }
 
   return (
     <div className={`fixed top-4 left-1/2 -translate-x-1/2 z-[100] transition-all duration-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>

@@ -40,7 +40,7 @@ Helpers en `src/auth/roles.ts`:
 
 - `loading` → estado de carga.
 - Sin sesión → redirige a `/login`.
-- Rol no administrador → redirige a `/my-monster`.
+- Rol no administrador → redirige a `/`.
 - `admin` → renderiza el contenido.
 
 ## UI

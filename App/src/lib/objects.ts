@@ -29,6 +29,34 @@ export interface GameObject {
   isActive: boolean
 }
 
+export interface ObjectDefinitionInput {
+  name: string
+  description: string
+  rarity: ObjectRarity
+  benefit: string
+  benefitType: ObjectBenefitType
+  benefitValue: number
+  iconUrl: string
+  origin: string
+  isActive: boolean
+}
+
+export const OBJECT_RARITIES: ObjectRarity[] = [
+  'Inusual',
+  'Singular',
+  'Único',
+  'Épico',
+  'Legendario',
+]
+
+export const OBJECT_BENEFIT_TYPES: ObjectBenefitType[] = [
+  'ExpertiseBoost',
+  'AuraTechBoost',
+  'Cosmetic',
+  'Title',
+  'Special',
+]
+
 export interface UserObject {
   objectId: string
   obtainedAt: string

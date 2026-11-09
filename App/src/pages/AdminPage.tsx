@@ -7,6 +7,9 @@ import { ARCHETYPES } from '../lib/constants'
 import { FEATURE_FLAG_DEFINITIONS } from '../lib/feature-flags'
 import { useFeatureFlags } from '../lib/FeatureFlagsProvider'
 import { Spinner } from '../components/Spinner'
+import { AdminAchievements } from '../components/admin/AdminAchievements'
+import { AdminObjects } from '../components/admin/AdminObjects'
+import { AdminQrs } from '../components/admin/AdminQrs'
 import type { User, UserRole } from '../auth/types'
 import type { Archetype } from '../monster/types'
 import type { AdminDashboard } from '../lib/dashboard'
@@ -16,6 +19,14 @@ export const ADMIN_REFRESH_MS = 30_000
 
 type RoleFilter = 'all' | UserRole
 type ArchetypeFilter = 'all' | Archetype
+type AdminTab = 'users' | 'achievements' | 'objects' | 'qrs'
+
+const ADMIN_TABS: Array<{ value: AdminTab; label: string }> = [
+  { value: 'users', label: 'Usuarios' },
+  { value: 'achievements', label: 'Logros' },
+  { value: 'objects', label: 'Objetos' },
+  { value: 'qrs', label: 'QRs' },
+]
 
 const ROLE_FILTERS: Array<{ value: RoleFilter; label: string }> = [
   { value: 'all', label: 'Todos los roles' },
@@ -65,6 +76,7 @@ export function AdminPage() {
   const [error, setError] = useState(false)
   const [reloadKey, setReloadKey] = useState(0)
 
+  const [tab, setTab] = useState<AdminTab>('users')
   const [query, setQuery] = useState('')
   const [roleFilter, setRoleFilter] = useState<RoleFilter>('all')
   const [archetypeFilter, setArchetypeFilter] = useState<ArchetypeFilter>('all')
@@ -272,6 +284,25 @@ export function AdminPage() {
         </ul>
       </section>
 
+      <nav aria-label="Secciones de administración" className="mb-4 flex flex-wrap gap-2">
+        {ADMIN_TABS.map(item => (
+          <button
+            key={item.value}
+            type="button"
+            onClick={() => setTab(item.value)}
+            className={[
+              'snes-button text-[8px]',
+              tab === item.value ? 'has-nature-color' : 'has-phantom-color',
+            ].join(' ')}
+            aria-current={tab === item.value ? 'page' : undefined}
+          >
+            {item.label}
+          </button>
+        ))}
+      </nav>
+
+      {tab === 'users' && (
+        <>
       <section className="mb-6 grid gap-3 md:mb-8 md:grid-cols-3">
         <label className="flex flex-col gap-2 text-[9px] text-gray-500">
           Buscar
@@ -378,10 +409,16 @@ export function AdminPage() {
           </ul>
         )}
       </section>
+        </>
+      )}
+
+      {tab === 'achievements' && <AdminAchievements />}
+      {tab === 'objects' && <AdminObjects />}
+      {tab === 'qrs' && <AdminQrs />}
 
       <p className="mt-8 rounded-lg border border-primary bg-surface px-4 py-3 text-[9px] text-gray-500">
-        Los cambios de rol se aplican al instante. La gestión de logros, objetos y QR llega en las
-        siguientes stories.
+        Los cambios de rol se aplican al instante. Los logros, objetos y QR se gestionan en sus
+        pestañas y persisten según el modo de datos activo.
       </p>
     </div>
   )

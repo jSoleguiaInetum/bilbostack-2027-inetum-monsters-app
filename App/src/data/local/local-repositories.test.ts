@@ -9,6 +9,7 @@ import { localFeatureFlagsRepository } from './feature-flags-repository'
 import { localInventoryRepository } from './inventory-repository'
 import { localMetricsRepository } from './metrics-repository'
 import { localMissionsRepository } from './missions-repository'
+import { localQrRepository } from './qr-repository'
 import { localRankingsRepository } from './rankings-repository'
 import { localTalksRepository } from './talks-repository'
 import { localUserRepository } from './user-repository'
@@ -672,5 +673,166 @@ describe('local dashboard repository', () => {
     })
     expect(dashboard.stats.averageExpertise).toBeCloseTo(53 / 3)
     expect(dashboard.stats.averageAuraTech).toBeCloseTo(58 / 3)
+  })
+})
+
+describe('admin achievement definitions', () => {
+  const input = {
+    name: 'Conector',
+    description: 'Consigue 2 contactos',
+    icon: '🔗',
+    hidden: false,
+    objectId: 'object-01',
+    isActive: true,
+    conditionType: 'contacts' as const,
+    conditionTarget: 2,
+  }
+
+  it('creates, updates and deletes custom achievements', async () => {
+    const created = await localAchievementsRepository.createDefinition(input)
+
+    expect(created.id).toMatch(/^achievement-/)
+    expect(await localAchievementsRepository.listAllDefinitions())
+      .toContainEqual(expect.objectContaining({ id: created.id, name: 'Conector' }))
+
+    const updated = await localAchievementsRepository.updateDefinition(created.id, {
+      ...input,
+      name: 'Súper conector',
+      isActive: false,
+    })
+
+    expect(updated.name).toBe('Súper conector')
+    expect(await localAchievementsRepository.listDefinitions())
+      .not.toContainEqual(expect.objectContaining({ id: created.id }))
+
+    await localAchievementsRepository.deleteDefinition(created.id)
+
+    expect(await localAchievementsRepository.listAllDefinitions())
+      .not.toContainEqual(expect.objectContaining({ id: created.id }))
+  })
+
+  it('overrides and deletes seed achievements', async () => {
+    await localAchievementsRepository.updateDefinition('first-contact', {
+      ...input,
+      name: 'Primer lazo',
+      conditionTarget: 1,
+    })
+
+    expect(await localAchievementsRepository.listDefinitions())
+      .toContainEqual(expect.objectContaining({ id: 'first-contact', name: 'Primer lazo' }))
+
+    await localAchievementsRepository.deleteDefinition('first-contact')
+
+    expect(await localAchievementsRepository.listDefinitions())
+      .not.toContainEqual(expect.objectContaining({ id: 'first-contact' }))
+  })
+
+  it('unlocks custom achievements using their declarative condition', async () => {
+    const created = await localAchievementsRepository.createDefinition(input)
+
+    const unlocked = await localAchievementsRepository.checkAndUnlock('user-1', {
+      userId: 'user-1',
+      metrics: { expertise: 0, auraTech: 0, history: [] },
+      contactCount: 2,
+      battleCount: 0,
+      battleWins: 0,
+      uniqueArchetypesContacted: 0,
+    })
+
+    expect(unlocked).toContainEqual(expect.objectContaining({
+      id: created.id,
+      objectId: 'object-01',
+    }))
+  })
+})
+
+describe('admin object definitions', () => {
+  const input = {
+    name: 'Teclado custom',
+    description: 'Un objeto de prueba',
+    rarity: 'Único' as const,
+    benefit: '+2 Expertise',
+    benefitType: 'ExpertiseBoost' as const,
+    benefitValue: 2,
+    iconUrl: '/monster-assets/objects/object-01.svg',
+    origin: 'Test',
+    isActive: true,
+  }
+
+  it('creates, updates and deletes custom objects', async () => {
+    const created = await localInventoryRepository.createDefinition(input)
+
+    expect(created.id).toMatch(/^object-/)
+    expect(await localInventoryRepository.listDefinitions())
+      .toContainEqual(expect.objectContaining({ id: created.id, name: 'Teclado custom' }))
+
+    await localInventoryRepository.updateDefinition(created.id, {
+      ...input,
+      name: 'Teclado pro',
+      isActive: false,
+    })
+
+    expect(await localInventoryRepository.listDefinitions())
+      .not.toContainEqual(expect.objectContaining({ id: created.id }))
+    expect(await localInventoryRepository.listAllDefinitions())
+      .toContainEqual(expect.objectContaining({ id: created.id, name: 'Teclado pro' }))
+
+    await localInventoryRepository.deleteDefinition(created.id)
+
+    expect(await localInventoryRepository.listAllDefinitions())
+      .not.toContainEqual(expect.objectContaining({ id: created.id }))
+  })
+
+  it('grants custom objects to users', async () => {
+    const created = await localInventoryRepository.createDefinition(input)
+
+    expect(await localInventoryRepository.add('user-1', {
+      objectId: created.id,
+      source: 'qr',
+    })).toBe(true)
+    expect(await localInventoryRepository.has('user-1', created.id)).toBe(true)
+  })
+})
+
+describe('admin qr repository', () => {
+  it('creates talk and object QR payloads, lists and deletes them', async () => {
+    const talk = await localQrRepository.create({
+      type: 'talk',
+      label: 'Charla de prueba',
+      referenceId: 'talk-01',
+      speaker: 'Ada Lovelace',
+    })
+    const object = await localQrRepository.create({
+      type: 'object',
+      label: 'Teclado',
+      referenceId: 'object-01',
+      description: 'Objeto de prueba',
+    })
+
+    expect(talk.payload).toEqual({
+      type: 'talk',
+      talkId: 'talk-01',
+      title: 'Charla de prueba',
+      speaker: 'Ada Lovelace',
+    })
+    expect(object.payload).toEqual({
+      type: 'object',
+      objectId: 'object-01',
+      name: 'Teclado',
+      description: 'Objeto de prueba',
+    })
+    expect((await localQrRepository.list()).map(qr => qr.id)).toEqual([object.id, talk.id])
+
+    await localQrRepository.delete(talk.id)
+
+    expect((await localQrRepository.list()).map(qr => qr.id)).toEqual([object.id])
+  })
+
+  it('rejects empty labels or references', async () => {
+    await expect(localQrRepository.create({
+      type: 'event',
+      label: '',
+      referenceId: 'event-01',
+    })).rejects.toMatchObject({ code: 'VALIDATION' })
   })
 })

@@ -1,5 +1,14 @@
 import type { PlayerMetrics } from './metrics'
 
+export type AchievementConditionType =
+  | 'contacts'
+  | 'battles'
+  | 'battle_wins'
+  | 'archetypes'
+  | 'expertise'
+  | 'aura'
+  | 'total'
+
 export interface Achievement {
   id: string
   name: string
@@ -7,7 +16,21 @@ export interface Achievement {
   icon: string
   hidden: boolean
   objectId?: string
-  condition: (ctx: AchievementContext) => boolean
+  isActive?: boolean
+  conditionType?: AchievementConditionType
+  conditionTarget?: number
+  condition?: (ctx: AchievementContext) => boolean
+}
+
+export interface AchievementDefinitionInput {
+  name: string
+  description: string
+  icon: string
+  hidden: boolean
+  objectId?: string
+  isActive: boolean
+  conditionType: AchievementConditionType
+  conditionTarget: number
 }
 
 export interface UnlockedAchievement {
@@ -25,6 +48,53 @@ export interface AchievementContext {
   uniqueArchetypesContacted: number
 }
 
+export const ACHIEVEMENT_CONDITION_TYPES: AchievementConditionOption[] = [
+  { value: 'contacts', label: 'Contactos' },
+  { value: 'battles', label: 'Combates jugados' },
+  { value: 'battle_wins', label: 'Combates ganados' },
+  { value: 'archetypes', label: 'Arquetipos distintos' },
+  { value: 'expertise', label: 'Expertise' },
+  { value: 'aura', label: 'Aura Tech' },
+  { value: 'total', label: 'Expertise + Aura Tech' },
+]
+
+export interface AchievementConditionOption {
+  value: AchievementConditionType
+  label: string
+}
+
+export function achievementProgressValue(
+  type: AchievementConditionType,
+  context: AchievementContext,
+): number {
+  switch (type) {
+    case 'contacts':
+      return context.contactCount
+    case 'battles':
+      return context.battleCount
+    case 'battle_wins':
+      return context.battleWins
+    case 'archetypes':
+      return context.uniqueArchetypesContacted
+    case 'expertise':
+      return context.metrics.expertise
+    case 'aura':
+      return context.metrics.auraTech
+    case 'total':
+      return context.metrics.expertise + context.metrics.auraTech
+  }
+}
+
+export function achievementMatches(
+  achievement: Achievement,
+  context: AchievementContext,
+): boolean {
+  if (achievement.condition) return achievement.condition(context)
+  if (!achievement.conditionType) return false
+  return achievementProgressValue(achievement.conditionType, context)
+    >= (achievement.conditionTarget ?? 0)
+}
+
 export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   {
     id: 'first-contact',
@@ -32,15 +102,19 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     description: 'Añade a tu primer contacto',
     icon: '🤝',
     hidden: false,
-    condition: (ctx) => ctx.contactCount >= 1,
+    isActive: true,
+    conditionType: 'contacts',
+    conditionTarget: 1,
   },
   {
     id: 'networker',
     name: 'Networker',
     description: 'Consigue 5 contactos',
-    icon: '🌐',
+    icon: '🕸️',
     hidden: false,
-    condition: (ctx) => ctx.contactCount >= 5,
+    isActive: true,
+    conditionType: 'contacts',
+    conditionTarget: 5,
   },
   {
     id: 'social-butterfly',
@@ -48,7 +122,9 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     description: 'Consigue 15 contactos',
     icon: '🦋',
     hidden: false,
-    condition: (ctx) => ctx.contactCount >= 15,
+    isActive: true,
+    conditionType: 'contacts',
+    conditionTarget: 15,
   },
   {
     id: 'first-blood',
@@ -56,23 +132,29 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     description: 'Gana tu primer combate',
     icon: '⚔️',
     hidden: false,
-    condition: (ctx) => ctx.battleWins >= 1,
+    isActive: true,
+    conditionType: 'battle_wins',
+    conditionTarget: 1,
   },
   {
     id: 'gladiator',
     name: 'Gladiador',
     description: 'Gana 5 combates',
-    icon: '🏛️',
+    icon: '🏆',
     hidden: false,
-    condition: (ctx) => ctx.battleWins >= 5,
+    isActive: true,
+    conditionType: 'battle_wins',
+    conditionTarget: 5,
   },
   {
     id: 'battle-veteran',
     name: 'Veterano',
     description: 'Participa en 10 combates',
-    icon: '🎖️',
+    icon: '🛡️',
     hidden: false,
-    condition: (ctx) => ctx.battleCount >= 10,
+    isActive: true,
+    conditionType: 'battles',
+    conditionTarget: 10,
   },
   {
     id: 'diverse-network',
@@ -80,15 +162,19 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     description: 'Conecta con al menos 4 arquetipos diferentes',
     icon: '🌈',
     hidden: false,
-    condition: (ctx) => ctx.uniqueArchetypesContacted >= 4,
+    isActive: true,
+    conditionType: 'archetypes',
+    conditionTarget: 4,
   },
   {
     id: 'all-archetypes',
     name: 'Coleccionista',
     description: 'Conecta con los 8 arquetipos',
-    icon: '💎',
+    icon: '🧩',
     hidden: true,
-    condition: (ctx) => ctx.uniqueArchetypesContacted >= 8,
+    isActive: true,
+    conditionType: 'archetypes',
+    conditionTarget: 8,
   },
   {
     id: 'expert',
@@ -96,7 +182,9 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     description: 'Alcanza 50 puntos de Expertise',
     icon: '⚡',
     hidden: false,
-    condition: (ctx) => ctx.metrics.expertise >= 50,
+    isActive: true,
+    conditionType: 'expertise',
+    conditionTarget: 50,
   },
   {
     id: 'aura-master',
@@ -104,7 +192,9 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     description: 'Alcanza 50 puntos de Aura Tech',
     icon: '✨',
     hidden: false,
-    condition: (ctx) => ctx.metrics.auraTech >= 50,
+    isActive: true,
+    conditionType: 'aura',
+    conditionTarget: 50,
   },
   {
     id: 'evolved',
@@ -112,15 +202,19 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
     description: 'Evoluciona tu criatura por primera vez',
     icon: '🧬',
     hidden: false,
-    condition: (ctx) => (ctx.metrics.expertise + ctx.metrics.auraTech) >= 20,
+    isActive: true,
+    conditionType: 'total',
+    conditionTarget: 20,
   },
   {
     id: 'max-evolution',
     name: 'Forma Final',
     description: 'Alcanza la evolución máxima',
-    icon: '🐉',
+    icon: '👑',
     hidden: true,
-    condition: (ctx) => (ctx.metrics.expertise + ctx.metrics.auraTech) >= 120,
+    isActive: true,
+    conditionType: 'total',
+    conditionTarget: 120,
   },
 ]
 
@@ -134,8 +228,9 @@ export function evaluateAchievements(
   const newlyUnlocked: UnlockedAchievement[] = []
 
   for (const def of definitions) {
+    if (def.isActive === false) continue
     if (unlockedIds.has(def.id)) continue
-    if (def.condition(context)) {
+    if (achievementMatches(def, context)) {
       const entry = {
         id: def.id,
         unlockedAt: new Date().toISOString(),

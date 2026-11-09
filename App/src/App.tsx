@@ -11,14 +11,17 @@ import { Layout } from './components/Layout'
 import { Spinner } from './components/Spinner'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
+import { HomePage } from './pages/HomePage'
 import { MyMonsterPage } from './pages/MyMonsterPage'
 import { UserCardPage } from './pages/UserCardPage'
 
+const MyQrPage = lazy(() => import('./pages/MyQrPage').then(m => ({ default: m.MyQrPage })))
 const ScanPage = lazy(() => import('./pages/ScanPage').then(m => ({ default: m.ScanPage })))
 const ContactsPage = lazy(() => import('./pages/ContactsPage').then(m => ({ default: m.ContactsPage })))
 const BattlePage = lazy(() => import('./pages/BattlePage').then(m => ({ default: m.BattlePage })))
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage').then(m => ({ default: m.AchievementsPage })))
 const TalkCheckInPage = lazy(() => import('./pages/TalkCheckInPage').then(m => ({ default: m.TalkCheckInPage })))
+const QrInfoPage = lazy(() => import('./pages/QrInfoPage').then(m => ({ default: m.QrInfoPage })))
 const RankingsPage = lazy(() => import('./pages/RankingsPage').then(m => ({ default: m.RankingsPage })))
 const PublicDashboardPage = lazy(() => import('./pages/PublicDashboardPage').then(m => ({ default: m.PublicDashboardPage })))
 const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })))
@@ -46,6 +49,16 @@ export default function App() {
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/dashboard" element={<PublicDashboardPage />} />
+                  <Route path="/" element={
+                    <ProtectedRoute>
+                      <Layout><HomePage /></Layout>
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/qr" element={
+                    <ProtectedRoute>
+                      <Layout><MyQrPage /></Layout>
+                    </ProtectedRoute>
+                  } />
                   <Route path="/my-monster" element={
                     <ProtectedRoute>
                       <Layout><MyMonsterPage /></Layout>
@@ -100,13 +113,18 @@ export default function App() {
                       <TalkCheckInPage />
                     </ProtectedRoute>
                   } />
+                  <Route path="/qr-info" element={
+                    <ProtectedRoute>
+                      <QrInfoPage />
+                    </ProtectedRoute>
+                  } />
                   <Route path="/admin" element={
                     <AdminRoute>
                       <AdminPage />
                     </AdminRoute>
                   } />
                   <Route path="/dev-seed" element={<DevSeedPage />} />
-                  <Route path="*" element={<Navigate to="/my-monster" replace />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
               </Suspense>
             </MetricsProvider>

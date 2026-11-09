@@ -17,7 +17,7 @@ PWA gamificada de networking para BilboStack 2027 (evento tech de un día, ~1000
 - **Código:** `App/` (no existe `plan/App/...`, aunque la documentación vieja lo mencione)
 - **Documentación:** `documentacion/`
 - **Idioma:** UI y docs en español; identificadores de código en inglés.
-- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 en curso (stories 20–27 + feature flags hechas; story 27 parcial por OG dinámicos y story 28 pendiente). Fase 4 pendiente. Ver `TODO.md`.
+- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 completada salvo los OG dinámicos de la story 27 (requieren backend/prerender). CRUD de admin, incluido QRs por tipo, ya está implementado. Fase 4 pendiente. Ver `TODO.md`.
 - **Backend:** NO hay backend todavía. Todo funciona con mock local (`localStorage`).
 
 ## 2. Stack
@@ -61,13 +61,13 @@ App/
 │   ├── auth/                  AuthProvider, ProtectedRoute, AdminRoute, roles, types
 │   ├── data/                  ports/, local/, api/, talks.json, DataProvider, types, errors, config
 │   ├── monster/               generator.ts, MonsterCard, RarityBadge, types
-│   ├── qr/                    QRDisplay, QRScanner, qr-codec, types
+│   ├── qr/                    QRDisplay, QRScanner, qr-codec, types (persona, charla, NPC, misión, objeto, evento)
 │   ├── lib/                   metrics, battle, achievements, evolution, questions, rankings, seed-talks, constants, crypto, MetricsProvider
-│   ├── components/            Layout, MetricsDisplay, EvolutionProgress, Spinner, MonsterSkeleton, AchievementToast, ArchetypeSelector, ErrorBoundary
-│   └── pages/                 Login, Register, MyMonster, UserCard, Scan, Contacts, Battle, Achievements, TalkCheckIn, Rankings, PublicDashboard, Admin, DevSeed
+│   ├── components/            Layout, MetricsDisplay, EvolutionProgress, Spinner, MonsterSkeleton, AchievementToast, ArchetypeSelector, ErrorBoundary, admin/ (CRUD de logros, objetos y QRs)
+│   └── pages/                 Home, Login, Register, MyMonster, MyQr, UserCard, Scan, QrInfo, Contacts, Battle, Achievements, TalkCheckIn, Rankings, PublicDashboard, Admin, Inventory, Missions, DevSeed
 ```
 
-Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/talk-checkin`, `/admin` (admin), `/dev-seed`.
+Rutas: `/` (Home), `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/qr`, `/scan`, `/qr-info` (QRs de NPC/misión/objeto/evento), `/user/:id`, `/contacts`, `/battle/:id`, `/achievements`, `/rankings`, `/inventory` (flag), `/missions` (flag), `/talk-checkin`, `/admin` (admin), `/dev-seed`.
 
 ## 5. Estado actual
 
@@ -82,23 +82,24 @@ Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `
 - Métricas Expertise (⚡) y Aura Tech (✨), tabla de recompensas e historial.
 - Combates mejor de 3, timer 10s, preguntas por arquetipo, oponente simulado, 1 combate por par.
 - Contactos con iconos de origen (🤝 / ⚔️👑 / ⚔️💀 / ⚔️🤗).
-- 12 logros con evaluación automática, recompensa de +2 Aura Tech y toast. El modelo admite `objectId` opcional y entrega el objeto vía `InventoryRepository` (`source: 'achievement'`); falta definir el mapping logro → objeto.
-- QR personal, escáner, check-in de charlas (+5 Aura Tech), 10 charlas reales de BilboStack 2027 en `/dev-seed` (datos en `src/data/talks.json`).
+- 12 logros con evaluación automática, recompensa de +2 Aura Tech y toast. El modelo admite `objectId` opcional y entrega el objeto vía `InventoryRepository` (`source: 'achievement'`). Las condiciones son declarativas (`conditionType` + `conditionTarget`) y el mapping logro → objeto se edita desde `/admin`.
+- QR personal, escáner, check-in de charlas (+5 Aura Tech), 10 charlas reales de BilboStack 2027 en `/dev-seed` (datos en `src/data/talks.json`). El escáner acepta QR de persona, charla, NPC, misión, objeto y evento; los de objeto entregan el objeto al inventario.
 - `RankingsRepository` con 4 categorías, adaptadores `local`/`api` y tests.
 - Página `/rankings` con 4 tabs, top 20, posición propia y refresco cada 30 s.
 - Dashboard público `/dashboard`: 4 rankings, estadísticas globales y evoluciones recientes, sin autenticación.
 - Roles de usuario (`participant`, `admin`) con guard `/admin` (`AdminRoute`) y enlace condicional en Mi Criatura. En modo `local`, el primer usuario registrado es admin.
-- Dashboard privado `/admin`: estadísticas (totales + medias de Expertise/Aura), listado de usuarios con búsqueda y filtros por rol/arquetipo, y cambio de rol participante ↔ admin. Refresco cada 30 s.
+- Dashboard privado `/admin`: estadísticas (totales + medias de Expertise/Aura), listado de usuarios con búsqueda y filtros por rol/arquetipo, cambio de rol participante ↔ admin, feature flags y CRUD de logros, objetos y QRs. Refresco cada 30 s.
+- CRUD de logros: crear/editar/activar/desactivar/eliminar definiciones, condición declarativa y objeto de recompensa. CRUD de objetos: nombre, descripción, rareza, beneficio, icono, origen y estado. CRUD de QRs: generar, descargar PNG, imprimir y eliminar QRs de charla, NPC, misión, objeto y evento.
 - Inventario: 16 objetos seed (`src/lib/objects.ts`), `InventoryRepository` con adaptadores `local`/`api`, página `/inventory` y seed de demo en `/dev-seed`. Detrás del flag `inventory`, apagado por defecto.
 - Feature flags globales: `src/lib/feature-flags.ts`, `FeatureFlagsRepository`, `FeatureFlagsProvider`/`useFeatureFlags`, guard `FeatureFlagRoute` y gestión en `/admin`. Persisten en `bilbostack_feature_flags` (local) o `/feature-flags` (api). `inventory` y `missions` arrancan apagados.
 - Misiones base: 7 misiones seed (`src/lib/missions.ts`), `MissionsRepository` con `list`/`checkAndComplete`, adaptadores `local`/`api`, evaluación automática en `MetricsProvider`, recompensas de métricas y objetos, toast y página `/missions`. Detrás del flag `missions`.
 - Tarjetas compartibles: PNG generado en cliente con canvas (monstruo, métricas, evolución, logros y branding), descarga, LinkedIn, X y copia de texto desde Mi Criatura y cada logro desbloqueado. OG estáticos en `index.html` + `og-image.png`; los OG dinámicos por tarjeta requieren backend o prerender.
+- Home real `/`: monstruo, arquetipo, métricas, próxima evolución, 3 logros recientes y accesos de 1 tap a Mi Criatura, Mi QR (`/qr`), Escanear, Contactos, Logros, Rankings, Inventario y Misiones (estos dos según flag).
 - Code splitting con `React.lazy`.
 
 ### Pendiente
 
-- **Fase 3:** CRUD de logros/objetos y QRs, OG dinámicos de tarjetas compartibles y Home real.
-- **Home real** (story 18): resumen del jugador y navegación a 1 tap. Hoy `/` redirige a `/my-monster`.
+- **Fase 3:** OG dinámicos de tarjetas compartibles (requieren backend o prerender).
 - **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
 - Documentación: `documentacion/05-stories/fase-2/` solo tiene `README.md`; faltan las stories 11-19 detalladas.
@@ -130,13 +131,15 @@ Crear interfaces (puertos) y dos implementaciones por dominio. La UI/providers s
 | `MetricsRepository` | get, init, addReward |
 | `ContactsRepository` | list, add, isContact |
 | `BattlesRepository` | list, save, hasFought, getFoughtOpponents |
-| `AchievementsRepository` | listDefinitions, listUnlocked, checkAndUnlock |
+| `AchievementsRepository` | listDefinitions, listAllDefinitions, createDefinition, updateDefinition, deleteDefinition, listUnlocked, checkAndUnlock |
 | `CheckInsRepository` | list, hasCheckedIn, add |
 | `TalksRepository` | listTalks |
 | `RankingsRepository` | getByCategory |
 | `DashboardRepository` | getOverview (stats + rankings + evoluciones recientes), getAdminOverview (stats + medias) |
 | `MissionsRepository` | list, checkAndComplete (progreso, recompensas y objetos) |
 | `FeatureFlagsRepository` | list, set (flags globales; `inventory` y `missions` apagados por defecto) |
+| `InventoryRepository` | listDefinitions, listAllDefinitions, createDefinition, updateDefinition, deleteDefinition, listOwned, has, add |
+| `QrRepository` | list, create, delete (QRs de admin por tipo) |
 
 ### Reglas obligatorias
 
@@ -146,7 +149,7 @@ Crear interfaces (puertos) y dos implementaciones por dominio. La UI/providers s
 4. **Errores normalizados**: un tipo común (ej. `DataError` con `code` y `message`) para que la UI no dependa del formato del backend.
 5. **Selección por composición**, no por `if` dispersos: un `DataProvider`/composition root elige la implementación según `VITE_DATA_MODE`.
 6. **Sin conceptos de Supabase** en el dominio (nada de `auth.uid`, RLS, Realtime channels, Edge Functions). Si se necesita tiempo real, definir un puerto `RealtimePort` y una implementación concreta.
-7. **QR estable**: el payload actual es `btoa(JSON.stringify({ type: 'person' | 'talk', ... }))`. Si en modo API se firma o cambia el formato, versionar el contrato y mantener retrocompatibilidad de lectura.
+7. **QR estable**: el payload actual es base64 de JSON UTF-8 con `type: 'person' | 'talk' | 'npc' | 'mission' | 'object' | 'event'`. La codificación es compatible con el base64 ASCII anterior. Si en modo API se firma o cambia el formato, versionar el contrato y mantener retrocompatibilidad de lectura.
 
 ### Estado de la migración
 
@@ -163,12 +166,13 @@ Hecho:
 9. Inventario: definiciones y objetos obtenidos detrás de `InventoryRepository` (`listDefinitions`, `listOwned`, `has`, `add` idempotente) con adaptadores `local`/`api` y tests.
 10. Feature flags globales detrás de `FeatureFlagsRepository` (`list`, `set`) con adaptadores `local`/`api`, provider y guard de ruta; `inventory` y `missions` apagados por defecto y gestionables desde `/admin`.
 11. Misiones base detrás de `MissionsRepository` (`list`, `checkAndComplete`) con adaptadores `local`/`api`, evaluación automática en `MetricsProvider`, recompensas de métricas/objetos y página `/missions` con flag `missions`.
+12. CRUD administrativo detrás de `AchievementsRepository` e `InventoryRepository` (definiciones), y `QrRepository` para QRs; adaptadores `local`/`api`, persistencia local en `bilbostack_achievement_definitions`, `bilbostack_object_definitions` y `bilbostack_admin_qrs`.
 
 Pendiente:
 
 1. Implementar el backend real que cumpla el contrato REST.
 2. Validar los adaptadores `api` contra ese backend (hoy se prueban con `fetch` mockeado).
-3. Implementar los puertos de misiones y administración cuando lleguen sus stories.
+3. Validar el contrato de CRUD (logros, objetos, QRs) contra el backend real.
 4. Definir la estrategia de sesión/token definitiva si el backend no usa cookie (`credentials: 'include'` es el supuesto actual).
 
 ### Contrato REST sugerido (orientativo)
@@ -190,6 +194,10 @@ POST   /users/:id/contacts
 GET    /users/:id/battles
 POST   /users/:id/battles
 GET    /achievements/definitions
+GET    /achievements/definitions?includeInactive=true
+POST   /achievements/definitions
+PATCH  /achievements/definitions/:id
+DELETE /achievements/definitions/:id
 GET    /users/:id/achievements
 PUT    /users/:id/achievements
 POST   /users/:id/achievements/check
@@ -197,6 +205,10 @@ GET    /users/:id/checkins
 POST   /users/:id/checkins
 GET    /talks
 GET    /objects
+GET    /objects?includeInactive=true
+POST   /objects
+PATCH  /objects/:id
+DELETE /objects/:id
 GET    /users/:id/inventory
 POST   /users/:id/inventory
 GET    /users/:id/missions
@@ -206,6 +218,9 @@ GET    /dashboard/public?rankingsLimit=5&evolutionsLimit=10
 GET    /dashboard/admin
 GET    /feature-flags
 PATCH  /feature-flags/:key
+GET    /admin/qrs
+POST   /admin/qrs
+DELETE /admin/qrs/:id
 POST   /qr/resolve
 ```
 
@@ -241,7 +256,7 @@ unlayered         ← overrides globales
 - No añadir `!important` nuevos sin justificar; ya hay overrides necesarios para SNES.CSS.
 - `* { font-family: "Press Start 2P" !important }` es intencional.
 - No re-añadir `<StrictMode>` en `main.tsx`: el escáner QR hace doble montaje y rompe `html5-qrcode`. Si se quiere reactivar, primero corregir el ciclo de vida del scanner.
-- Mobile-first, verificar a 375px. El nav inferior tiene 4 tabs; no agregar tabs sin revisar el fit.
+- Mobile-first, verificar a 375px. El nav inferior tiene 5 tabs (Inicio, QR, Contactos, Logros, Rankings); no agregar tabs sin revisar el fit.
 - No hardcodear colores nuevos: usar el `@theme` de `index.css` (`primary`, `secondary`, `accent`, `tech`, `surface`, `background`, etc.).
 
 ## 9. Convenciones de código
@@ -279,7 +294,7 @@ unlayered         ← overrides globales
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24), inventario (story 25), feature flags y misiones base (story 26), tarjetas compartibles PNG (story 27)~~ (hecho). Falta el OG dinámico de tarjetas (27, requiere backend/prerender) y Home real (28).
+3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24), inventario (story 25), feature flags y misiones base (story 26), tarjetas compartibles PNG (story 27), Home real y navegación 1 tap (story 28), CRUD de admin (logros, objetos y QRs)~~ (hecho). Falta el OG dinámico de tarjetas (27, requiere backend/prerender).
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.
