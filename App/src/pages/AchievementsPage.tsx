@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../auth/AuthProvider'
 import { useMetrics } from '../lib/MetricsProvider'
 import { useRepositories } from '../data/DataProvider'
+import { ShareCardModal } from '../components/ShareCardModal'
 import type { Achievement, AchievementContext } from '../lib/achievements'
 
 export function AchievementsPage() {
@@ -11,6 +12,7 @@ export function AchievementsPage() {
   const [definitions, setDefinitions] = useState<Achievement[]>([])
   const [unlockedIds, setUnlockedIds] = useState<Set<string>>(new Set())
   const [context, setContext] = useState<AchievementContext | null>(null)
+  const [shareAchievementId, setShareAchievementId] = useState<string | null>(null)
 
   useEffect(() => {
     if (!user) return
@@ -76,7 +78,15 @@ export function AchievementsPage() {
                     {achievement.description}
                   </p>
                 </div>
-                {isUnlocked && <span className="text-nature text-xs">✓</span>}
+                {isUnlocked && (
+                  <button
+                    onClick={() => setShareAchievementId(achievement.id)}
+                    aria-label={`Compartir ${achievement.name}`}
+                    className="text-lg text-tech hover:text-white transition-colors"
+                  >
+                    📤
+                  </button>
+                )}
               </div>
             )
           })}
@@ -91,6 +101,14 @@ export function AchievementsPage() {
           </div>
         </div>
       </main>
+
+      <ShareCardModal
+        open={shareAchievementId !== null}
+        onClose={() => setShareAchievementId(null)}
+        user={user}
+        metrics={metrics}
+        featuredAchievementId={shareAchievementId ?? undefined}
+      />
     </div>
   )
 }

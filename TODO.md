@@ -3,13 +3,13 @@
 Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualizar al cerrar cada tarea, story o commit.**
 
 - `[ ]` pendiente · `[x]` hecho · `[!]` bloqueado · `[?]` a decidir
-- Última verificación: mecanismo de objetos por logro implementado (mapping pendiente), 19 archivos de test, 118 tests verdes, `lint` y `tsc --noEmit` OK.
+- Última verificación: tarjetas compartibles PNG + OG estáticos (story 27 parcial), 21 archivos de test, 124 tests verdes, `lint` y `tsc --noEmit` OK.
 - Detalle de dominio: `documentacion/CONTEXTO-PROYECTO.md`. Estado y reglas: `AGENTS.md`.
 
 ## Próximo foco (orden sugerido)
 
 1. Story 28 — Home real y navegación a 1 tap
-2. Story 27 — Tarjetas compartibles + OG (depende de 21 y 28)
+2. Story 27 — OG dinámicos por tarjeta (bloqueado por backend/prerender)
 
 ---
 
@@ -56,9 +56,10 @@ Lista viva de trabajo del proyecto. **Leer al inicio de cada sesión y actualiza
   - [x] Mecanismo: `objectId?` en definiciones y desbloqueos, entrega idempotente vía `InventoryRepository` (`source: 'achievement'`)
   - [ ] Definir qué logro entrega qué objeto (contenido)
 - [ ] **Story 27 — Tarjetas compartibles y OG**
-  - [ ] Generación de imagen/tarjeta compartible (logro o criatura)
-  - [ ] Metadatos Open Graph
-  - [ ] Botón de compartir por logro desbloqueado
+  - [x] Generación de tarjeta PNG en cliente (monstruo o logro) con métricas, evolución, logros y branding
+  - [x] Descarga PNG y compartir por LinkedIn, X/Twitter y copia de texto desde Mi Criatura y logros desbloqueados
+  - [x] Metadatos Open Graph estáticos de la app (`index.html` + `og-image.png`)
+  - [!] OG dinámicos por tarjeta/URL pública: requiere backend o prerender; en modo `local` no hay datos cross-device
 - [ ] **Story 28 — Home real y navegación a 1 tap**
   - [ ] Página `/` con resumen del jugador (hoy redirige a `/my-monster`)
   - [ ] Navegación directa a acciones principales

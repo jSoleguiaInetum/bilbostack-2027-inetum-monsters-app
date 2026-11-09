@@ -14,7 +14,7 @@ Estado: **iniciada**. La Fase 3 se apoya en la capa `src/data` y debe funcionar 
 | 25 | Inventario de objetos | E11/E13 | ✅ |
 | — | Feature flags (gestión en `/admin`) | E11 | ✅ |
 | 26 | Misiones base | E11/E13 | ✅ |
-| 27 | Tarjetas compartibles y OG | E13 | Pendiente |
+| 27 | Tarjetas compartibles y OG | E13 | Parcial (OG dinámico pendiente) |
 | 28 | Home real y navegación 1 tap | E14 | Pendiente |
 
 ## Dependencias
@@ -29,7 +29,7 @@ Story 23 (Roles/admin)
         ├── Story 25 (Inventario)
         └── Story 26 (Misiones)
 
-Story 27 (Share/OG) depende de 21 y 28
+Story 27 (Share/OG) depende de 21; el OG dinámico y la URL pública requieren backend o prerender
 Story 28 (Home) depende de 20, 21, 25 y 26
 ```
 
@@ -55,3 +55,4 @@ Story 28 (Home) depende de 20, 21, 25 y 26
 - Los feature flags son globales (no por usuario), viven detrás de `FeatureFlagsRepository` y se gestionan desde `/admin`. `inventory` y `missions` arrancan apagados: ocultan el acceso en Mi Criatura y bloquean sus rutas hasta que un admin los habilite. En modo `local` persisten en `bilbostack_feature_flags`; en modo `api`, en `GET/PATCH /feature-flags`.
 - Las misiones base son automáticas: 7 definiciones en `src/lib/missions.ts`, objetivo declarativo (`contacts`, `battles`, `battle_wins`, `talks`, `archetypes`, `achievements`, `expertise`, `aura`) y recompensa de métricas/objeto. `MissionsRepository.checkAndComplete` evalúa y aplica recompensas y objetos de forma idempotente. En `local` solo se guardan las completaciones (`bilbostack_missions_<userId>`); en `api`, el backend devuelve el progreso y aplica las recompensas en `POST /users/:id/missions/check`.
 - La evaluación de misiones se dispara desde `MetricsProvider` después de cada recompensa y en `refreshMetrics`, solo con el flag `missions` activo. El historial de métricas registra `mission_complete`.
+- Las tarjetas compartibles se generan en cliente con canvas (`src/lib/share-card.ts` y `share-card-canvas.ts`), sin backend: monstruo, métricas, evolución, logros y branding, con descarga PNG y enlaces a LinkedIn/X. Los OG estáticos viven en `index.html`; los OG dinámicos por tarjeta requieren backend o prerender.

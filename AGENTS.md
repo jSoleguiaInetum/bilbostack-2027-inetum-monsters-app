@@ -17,7 +17,7 @@ PWA gamificada de networking para BilboStack 2027 (evento tech de un día, ~1000
 - **Código:** `App/` (no existe `plan/App/...`, aunque la documentación vieja lo mencione)
 - **Documentación:** `documentacion/`
 - **Idioma:** UI y docs en español; identificadores de código en inglés.
-- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 en curso (stories 20–26 + feature flags hechas; 27–28 pendientes). Fase 4 pendiente. Ver `TODO.md`.
+- **Estado:** Fases 0, 1 y 2 completadas. Fase 3 en curso (stories 20–27 + feature flags hechas; story 27 parcial por OG dinámicos y story 28 pendiente). Fase 4 pendiente. Ver `TODO.md`.
 - **Backend:** NO hay backend todavía. Todo funciona con mock local (`localStorage`).
 
 ## 2. Stack
@@ -92,11 +92,12 @@ Rutas: `/login`, `/register`, `/dashboard` (pública), `/my-monster`, `/scan`, `
 - Inventario: 16 objetos seed (`src/lib/objects.ts`), `InventoryRepository` con adaptadores `local`/`api`, página `/inventory` y seed de demo en `/dev-seed`. Detrás del flag `inventory`, apagado por defecto.
 - Feature flags globales: `src/lib/feature-flags.ts`, `FeatureFlagsRepository`, `FeatureFlagsProvider`/`useFeatureFlags`, guard `FeatureFlagRoute` y gestión en `/admin`. Persisten en `bilbostack_feature_flags` (local) o `/feature-flags` (api). `inventory` y `missions` arrancan apagados.
 - Misiones base: 7 misiones seed (`src/lib/missions.ts`), `MissionsRepository` con `list`/`checkAndComplete`, adaptadores `local`/`api`, evaluación automática en `MetricsProvider`, recompensas de métricas y objetos, toast y página `/missions`. Detrás del flag `missions`.
+- Tarjetas compartibles: PNG generado en cliente con canvas (monstruo, métricas, evolución, logros y branding), descarga, LinkedIn, X y copia de texto desde Mi Criatura y cada logro desbloqueado. OG estáticos en `index.html` + `og-image.png`; los OG dinámicos por tarjeta requieren backend o prerender.
 - Code splitting con `React.lazy`.
 
 ### Pendiente
 
-- **Fase 3:** CRUD de logros/objetos y QRs, tarjetas compartibles + OG y Home real.
+- **Fase 3:** CRUD de logros/objetos y QRs, OG dinámicos de tarjetas compartibles y Home real.
 - **Home real** (story 18): resumen del jugador y navegación a 1 tap. Hoy `/` redirige a `/my-monster`.
 - **Fase 4:** PWA (manifest + service worker), prueba de carga, E2E visual, ensayo general y deploy.
 - Backend real: los adaptadores `api` existen, pero falta un servidor que cumpla el contrato.
@@ -278,7 +279,7 @@ unlayered         ← overrides globales
 
 1. `npm install` y verificación base (`npm run lint`).
 2. ~~Introducir `src/data/` con puertos + adaptadores `local`~~ (hecho).
-3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24), inventario (story 25), feature flags y misiones base (story 26)~~ (hecho). Falta el resto de Fase 3 con datos mock: tarjetas compartibles (27) y Home real (28).
+3. ~~Rankings UI (story 21), dashboard público (story 22), roles/admin (story 23), dashboard privado (story 24), inventario (story 25), feature flags y misiones base (story 26), tarjetas compartibles PNG (story 27)~~ (hecho). Falta el OG dinámico de tarjetas (27, requiere backend/prerender) y Home real (28).
 4. ~~Añadir adaptadores `api` y selector `VITE_DATA_MODE`~~ (hecho).
 5. ~~Añadir tests y runner~~ (hecho).
 6. PWA, endurecimiento, prueba de carga y deploy.

@@ -47,7 +47,7 @@ Stories 20-28 planificadas. Rankings, dashboards, inventario y misiones ya está
 - ✅ Story 25: inventario de objetos (`InventoryRepository`, página `/inventory`, seed de demo)
 - ✅ Story 26: misiones base (`MissionsRepository`, evaluación automática, recompensas y página `/missions`)
 - ✅ Feature flags globales con gestión en `/admin`; `inventory` y `missions` apagados por defecto en el MVP.
-- Pendientes: tarjetas compartibles + OG y Home real.
+- Pendientes: OG dinámicos de tarjetas compartibles y Home real.
 
 Ver [fase-3/README.md](fase-3/README.md) para el orden y las dependencias.
 Ver [backlog-estructurado.md](../03-backlog-y-criterios/backlog-estructurado.md) para el detalle de epicas.

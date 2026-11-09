@@ -10,6 +10,7 @@ import { MetricsDisplay } from '../components/MetricsDisplay'
 import { RarityBadge } from '../monster/RarityBadge'
 import { QRDisplay } from '../qr/QRDisplay'
 import { EvolutionProgress } from '../components/EvolutionProgress'
+import { ShareCardModal } from '../components/ShareCardModal'
 import { generateMonster } from '../monster/generator'
 import { getEvolutionStage, EVOLUTION_THRESHOLDS } from '../lib/evolution'
 import { ARCHETYPES } from '../lib/constants'
@@ -22,6 +23,7 @@ export function MyMonsterPage() {
   const navigate = useNavigate()
   const [params, setParams] = useState<MonsterParams | null>(null)
   const [qrFullscreen, setQrFullscreen] = useState(false)
+  const [shareOpen, setShareOpen] = useState(false)
   const [evolutionBanner, setEvolutionBanner] = useState<string | null>(null)
 
   const evolution = getEvolutionStage(metrics)
@@ -98,6 +100,12 @@ export function MyMonsterPage() {
           {params && <RarityBadge rarity={params.rarity} />}
           <MetricsDisplay metrics={metrics} />
           <EvolutionProgress metrics={metrics} />
+          <button
+            onClick={() => setShareOpen(true)}
+            className="snes-button has-sunshine-color w-full max-w-xs"
+          >
+            Compartir tarjeta
+          </button>
           {isEnabled('inventory') && (
             <button
               onClick={() => navigate('/inventory')}
@@ -142,6 +150,13 @@ export function MyMonsterPage() {
           <p className="text-gray-400 text-sm">Toca para cerrar</p>
         </div>
       )}
+
+      <ShareCardModal
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        user={user}
+        metrics={metrics}
+      />
     </div>
   )
 }
